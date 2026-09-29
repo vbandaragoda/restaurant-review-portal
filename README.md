@@ -1,6 +1,6 @@
 # TasteLanka Restaurant Review Portal
 
-TasteLanka is a multilingual restaurant discovery and review portal for Colombo, Kandy and Galle. The first implemented vertical slice is the responsive Figma home page plus a Spring Boot REST foundation for restaurants and JWT authentication.
+TasteLanka is a multilingual restaurant discovery and review portal for Colombo, Kandy and Galle. It includes responsive customer journeys, JWT authentication, moderated reviews, saved restaurants, and administration workflows for restaurants and menus.
 
 ## Architecture
 
@@ -20,22 +20,36 @@ Spring Boot 4.1 + Spring Security + JWT
 
 ## Run locally
 
-1. Copy `.env.example` to `.env` and change the development secrets.
+1. Copy `.env.example` to `.env` and change the development secrets. Docker Compose reads this file for MySQL.
 2. Start MySQL: `docker compose up -d mysql`
-3. Start the API: `cd backend` then `./mvnw spring-boot:run` (Windows: `mvnw.cmd spring-boot:run`).
-4. Start the UI: `cd frontend`, run `npm install`, then `npm run dev`.
-5. Open `http://localhost:3000`.
+3. Optionally set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in the API terminal to create or promote the first administrator on startup. In PowerShell, use `$env:ADMIN_EMAIL="admin@example.com"` and `$env:ADMIN_PASSWORD="change-me"`.
+4. Start the API: `cd backend` then `./mvnw spring-boot:run` (Windows: `.\mvnw.cmd spring-boot:run`).
+5. Start the UI: `cd frontend`, run `npm install`, then `npm run dev`.
+6. Open `http://localhost:3000`.
 
 The API defaults to `http://localhost:8080/api/v1`. Override it with `NEXT_PUBLIC_API_URL`.
 
-## Initial REST endpoints
+## REST API
 
 - `GET /api/v1/health`
 - `GET /api/v1/restaurants`
 - `GET /api/v1/restaurants/top-rated`
 - `GET /api/v1/restaurants/{slug}`
+- `GET /api/v1/dishes?restaurant={slug}`
+- `GET /api/v1/dishes/{slug}`
+- `GET /api/v1/reviews?restaurant={slug}`
+- `POST /api/v1/reviews`
+- `GET /api/v1/reviews/mine`
+- `GET /api/v1/users/me`
+- `GET|POST|DELETE /api/v1/users/me/saved-restaurants/**`
 - `POST /api/v1/auth/register`
 - `POST /api/v1/auth/login`
+- `GET /api/v1/admin/dashboard`
+- `GET|POST|PUT|DELETE /api/v1/admin/restaurants/**`
+- `GET|POST|PUT|DELETE /api/v1/admin/dishes/**`
+- `GET|PATCH /api/v1/admin/reviews/**`
+
+Customer routes include `/restaurants`, `/restaurants/[slug]`, `/dishes/[slug]`, `/reviews/new`, `/login`, `/signup`, and `/profile`. Administration routes live under `/admin`.
 
 ## Unicode and localization
 

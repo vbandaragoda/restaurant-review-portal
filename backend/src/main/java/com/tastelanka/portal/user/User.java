@@ -8,6 +8,7 @@ import java.time.Instant;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "BIGINT UNSIGNED")
     private Long id;
 
     @Column(name = "full_name", nullable = false, length = 120)
@@ -44,4 +45,6 @@ public class User {
     public String getPasswordHash() { return passwordHash; }
     public Role getRole() { return role; }
     public String getPreferredLanguage() { return preferredLanguage; }
+    public Instant getCreatedAt() { return createdAt; }
+    public void setRole(Role role) { this.role = role; }
 }

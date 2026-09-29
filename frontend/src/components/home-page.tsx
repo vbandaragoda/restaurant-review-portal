@@ -13,10 +13,10 @@ const cuisines = [
 ] as const;
 
 const restaurants = [
-  { name: "Ministry of Crab", mobileName: "Ministry of Crab", cuisine: "Seafood · Sri Lankan", mobileMeta: "Colombo • Seafood", location: "Colombo", rating: "4.8", reviews: "320", price: "LKR 8,000 – 12,000", mobilePrice: "LKR 8k–12k", color: "#522e14" },
-  { name: "The Empire Cafe", mobileName: "Empire Cafe", cuisine: "Cafe · International", mobileMeta: "Kandy • Cafe", location: "Kandy", rating: "4.6", reviews: "210", price: "LKR 2,000 – 4,000", mobilePrice: "LKR 2k–4k", color: "#3d6633" },
-  { name: "Pedlar’s Inn", mobileName: "Pedlar’s Inn", cuisine: "Seafood · International", mobileMeta: "Galle • Seafood", location: "Galle", rating: "4.5", reviews: "180", price: "LKR 5,000 – 8,000", mobilePrice: "LKR 5k–8k", color: "#78a1ab" },
-  { name: "Nuga Gama", mobileName: "Nuga Gama", cuisine: "Sri Lankan · Authentic", mobileMeta: "Colombo • Sri Lankan", location: "Colombo", rating: "4.4", reviews: "150", price: "LKR 3,000 – 5,000", mobilePrice: "LKR 3k–5k", color: "#592e1f" },
+  { slug: "ministry-of-crab", name: "Ministry of Crab", mobileName: "Ministry of Crab", cuisine: "Seafood · Sri Lankan", mobileMeta: "Colombo • Seafood", location: "Colombo", rating: "4.8", reviews: "320", price: "LKR 8,000 – 12,000", mobilePrice: "LKR 8k–12k", color: "#522e14" },
+  { slug: "the-empire-cafe", name: "The Empire Cafe", mobileName: "Empire Cafe", cuisine: "Cafe · International", mobileMeta: "Kandy • Cafe", location: "Kandy", rating: "4.6", reviews: "210", price: "LKR 2,000 – 4,000", mobilePrice: "LKR 2k–4k", color: "#3d6633" },
+  { slug: "pedlars-inn", name: "Pedlar’s Inn", mobileName: "Pedlar’s Inn", cuisine: "Seafood · International", mobileMeta: "Galle • Seafood", location: "Galle", rating: "4.5", reviews: "180", price: "LKR 5,000 – 8,000", mobilePrice: "LKR 5k–8k", color: "#78a1ab" },
+  { slug: "nuga-gama", name: "Nuga Gama", mobileName: "Nuga Gama", cuisine: "Sri Lankan · Authentic", mobileMeta: "Colombo • Sri Lankan", location: "Colombo", rating: "4.4", reviews: "150", price: "LKR 3,000 – 5,000", mobilePrice: "LKR 3k–5k", color: "#592e1f" },
 ] as const;
 
 const requirements = [
@@ -40,17 +40,19 @@ function Brand() {
 
 function DesktopHeader() {
   return (
-    <header className="hidden h-[84px] items-start px-[5vw] py-4 md:flex xl:px-[72px]">
+    <header className="hidden h-[84px] items-center px-[5vw] md:flex xl:px-[72px]">
       <Brand />
-      <nav className="mx-auto flex gap-[30px] text-sm font-medium" aria-label="Main navigation">
+      <span className="min-w-0 flex-1" aria-hidden="true" />
+      <nav className="flex shrink-0 gap-[30px] text-sm leading-[normal] font-medium" aria-label="Main navigation">
         <Link className="font-semibold text-brand" href="/">Home</Link>
         <Link href="/restaurants">Restaurants</Link>
         <Link href="/cuisines">Cuisines</Link>
         <Link href="/about">About</Link>
       </nav>
-      <div className="flex gap-2.5">
-        <Link className="rounded-[10px] border border-soft-border px-[22px] py-[13px] text-sm font-semibold" href="/login">Log In</Link>
-        <Link className="rounded-[10px] bg-brand px-[22px] py-[13px] text-sm font-semibold text-white" href="/signup">Sign Up</Link>
+      <span className="min-w-0 flex-1" aria-hidden="true" />
+      <div className="flex shrink-0 gap-2.5 text-sm leading-[normal] font-semibold">
+        <Link className="rounded-[10px] border border-soft-border px-[22px] py-[13px]" href="/login">Log In</Link>
+        <Link className="rounded-[10px] bg-brand px-[22px] py-[13px] text-white" href="/signup">Sign Up</Link>
       </div>
     </header>
   );
@@ -126,7 +128,7 @@ function DesktopHome() {
         <div className="mt-10"><SectionHeader title="Top Rated Restaurants" link="View All Restaurants →" href="/restaurants" /></div>
         <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {restaurants.map((restaurant) => (
-            <Link href="/restaurants/ministry-of-crab" key={restaurant.name} className="h-[312px] overflow-hidden rounded-[14px] border border-soft-border transition hover:-translate-y-0.5 hover:shadow-md">
+            <Link href={`/restaurants/${restaurant.slug}`} key={restaurant.name} className="h-[312px] overflow-hidden rounded-[14px] border border-soft-border transition hover:-translate-y-0.5 hover:shadow-md">
               <div className="h-36" style={{ backgroundColor: restaurant.color }} />
               <div className="p-3.5">
                 <p className="text-sm font-semibold text-[#f57814]">★ {restaurant.rating} <span className="ml-1 text-[11px] font-normal text-muted">({restaurant.reviews} reviews)</span></p>
@@ -176,7 +178,7 @@ function MobileHome() {
           <h2 className="text-lg font-bold">Top rated</h2>
           <div className="mt-4 space-y-[22px]">
             {restaurants.slice(0, 2).map((restaurant) => (
-              <Link href="/restaurants/ministry-of-crab" key={restaurant.name} className="flex h-[148px] items-center overflow-hidden rounded-xl border border-[#ded9cf] p-[11px]">
+              <Link href={`/restaurants/${restaurant.slug}`} key={restaurant.name} className="flex h-[148px] items-center overflow-hidden rounded-xl border border-[#ded9cf] p-[11px]">
                 <div className="h-[124px] w-28 shrink-0 rounded-[10px]" style={{ backgroundColor: restaurant.color }} />
                 <div className="ml-4 self-start pt-2"><h3 className="text-[15px] font-bold">{restaurant.mobileName}</h3><p className="mt-[11px] text-[11px] text-[#6b6b63]">{restaurant.mobileMeta}</p><p className="mt-[13px] text-xs font-semibold text-[#f2610d]">★ {restaurant.rating}</p><p className="mt-[11px] text-[11px] font-semibold">{restaurant.mobilePrice}</p></div>
               </Link>

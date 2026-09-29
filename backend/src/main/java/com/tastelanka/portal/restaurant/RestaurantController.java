@@ -1,6 +1,5 @@
 package com.tastelanka.portal.restaurant;
 
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,18 +15,29 @@ public class RestaurantController {
     }
 
     @GetMapping
-    public List<Restaurant> list() {
-        return restaurants.findAll(Sort.by(Sort.Direction.DESC, "rating"));
+    public List<RestaurantDto> list(
+            @RequestParam(required = false) String q,
+            @RequestParam(required = false) String location,
+            @RequestParam(required = false) String cuisine,
+            @RequestParam(defaultValue = "false") boolean vegetarian,
+            @RequestParam(defaultValue = "false") boolean vegan,
+            @RequestParam(defaultValue = "false") boolean halal) {
+        return restaurants.search(clean(q), clean(location), clean(cuisine), vegetarian, vegan, halal)
+                .stream().map(RestaurantDto::from).toList();
     }
 
     @GetMapping("/top-rated")
-    public List<Restaurant> topRated() {
-        return restaurants.findTop4ByOrderByRatingDescReviewCountDesc();
+    public List<RestaurantDto> topRated() {
+        return restaurants.findTop4ByOrderByRatingDescReviewCountDesc().stream().map(RestaurantDto::from).toList();
     }
 
     @GetMapping("/{slug}")
-    public Restaurant get(@PathVariable String slug) {
-        return restaurants.findBySlug(slug)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Restaurant not found"));
+    public RestaurantDto get(@PathVariable String slug) {
+        return RestaurantDto.from(restaurants.findBySlug(slug)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Restaurant not found")));
+    }
+
+    private String clean(String value) {
+        return value == null || value.isBlank() ? null : value.trim();
     }
 }

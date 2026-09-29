@@ -7,7 +7,7 @@ spring:
     password: ${DB_PASSWORD:tastelanka_dev}
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     open-in-view: false
     properties:
       hibernate:
@@ -30,3 +30,6 @@ app:
   jwt:
     secret: ${JWT_SECRET:change-this-development-secret-before-production-32-bytes-minimum}
     expiration: ${JWT_EXPIRATION:86400000}
+  bootstrap:
+    admin-email: ${ADMIN_EMAIL:}
+    admin-password: ${ADMIN_PASSWORD:}
