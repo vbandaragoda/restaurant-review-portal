@@ -27,22 +27,6 @@ const requirements = [
   ["Moderated reviews", "Approve before publishing"],
 ] as const;
 
-function Brand() {
-  return (
-    <Link href="/" className="flex items-start gap-3" aria-label="TasteLanka home">
-      <span className="hidden size-11 shrink-0 rounded-full bg-brand md:block" />
-      <span className="flex flex-col gap-0.5">
-        <strong className="text-[18px] leading-[22px] md:text-2xl md:leading-[29px]">TasteLanka</strong>
-        <span className="hidden text-[11px] font-medium text-muted md:block">Discover · Dine · Review</span>
-      </span>
-    </Link>
-  );
-}
-
-function DesktopHeader() {
-  return <SiteHeader active="home" />;
-}
-
 function SearchForm({ mobile = false }: { mobile?: boolean }) {
   const [query, setQuery] = useState("");
   const submit = (event: FormEvent<HTMLFormElement>) => {
@@ -85,7 +69,6 @@ function SectionHeader({ title, link, href = "#" }: { title: string; link: strin
 function DesktopHome() {
   return (
     <div className="hidden md:block">
-      <DesktopHeader />
       <section className="h-[510px] bg-[#1f1f17] px-[5vw] pt-[58px] text-white xl:px-[72px]">
         <p className="text-[11px] font-semibold text-[#c2baa8]">HERO PHOTO PLACEHOLDER · Sri Lankan coastal dining</p>
         <p className="mt-5 text-[13px] font-semibold text-[#e5d1b0]">EXPLORE. TASTE. SHARE.</p>
@@ -148,7 +131,6 @@ function DesktopHome() {
 function MobileHome() {
   return (
     <div className="min-h-[844px] bg-white pb-24 md:hidden">
-      <header className="h-16 px-5 pt-[22px]"><Brand /></header>
       <main className="px-5 pt-6">
         <h1 className="text-[28px] leading-[34px] font-bold">Find Great Food</h1>
         <p className="mt-1 text-[15px] leading-[18px] font-semibold text-[#e04005]">Colombo, Kandy &amp; Galle</p>
@@ -177,5 +159,5 @@ function MobileHome() {
 }
 
 export function HomePage() {
-  return <><DesktopHome /><MobileHome /></>;
+  return <><SiteHeader active="home" /><DesktopHome /><MobileHome /></>;
 }
