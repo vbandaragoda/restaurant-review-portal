@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { MobileNavigation, SiteHeader } from "@/components/site-shell";
 
 const cuisines = [
   { name: "Sri Lankan", count: "120+ Restaurants", color: "#dbe5d1" },
@@ -39,23 +40,7 @@ function Brand() {
 }
 
 function DesktopHeader() {
-  return (
-    <header className="hidden h-[84px] items-center px-[5vw] md:flex xl:px-[72px]">
-      <Brand />
-      <span className="min-w-0 flex-1" aria-hidden="true" />
-      <nav className="flex shrink-0 gap-[30px] text-sm leading-[normal] font-medium" aria-label="Main navigation">
-        <Link className="font-semibold text-brand" href="/">Home</Link>
-        <Link href="/restaurants">Restaurants</Link>
-        <Link href="/cuisines">Cuisines</Link>
-        <Link href="/about">About</Link>
-      </nav>
-      <span className="min-w-0 flex-1" aria-hidden="true" />
-      <div className="flex shrink-0 gap-2.5 text-sm leading-[normal] font-semibold">
-        <Link className="rounded-[10px] border border-soft-border px-[22px] py-[13px]" href="/login">Log In</Link>
-        <Link className="rounded-[10px] bg-brand px-[22px] py-[13px] text-white" href="/signup">Sign Up</Link>
-      </div>
-    </header>
-  );
+  return <SiteHeader active="home" />;
 }
 
 function SearchForm({ mobile = false }: { mobile?: boolean }) {
@@ -186,9 +171,7 @@ function MobileHome() {
           </div>
         </section>
       </main>
-      <nav className="fixed inset-x-0 bottom-0 z-20 grid h-16 grid-cols-4 border border-[#ded9cf] bg-white text-center text-[10px]" aria-label="Mobile navigation">
-        <Link className="pt-[26px] font-semibold text-[#e04005]" href="/">Home</Link><Link className="pt-[26px] text-[#6b6b63]" href="/restaurants">Search</Link><Link className="pt-[26px] text-[#6b6b63]" href="/reviews">Reviews</Link><Link className="pt-[26px] text-[#6b6b63]" href="/profile">Profile</Link>
-      </nav>
+      <MobileNavigation active="home" />
     </div>
   );
 }

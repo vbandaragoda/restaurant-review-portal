@@ -27,24 +27,24 @@ export function SiteHeader({ active }: { active?: ActivePage }) {
   ];
   return (
     <>
-      <header className="hidden h-[84px] items-center px-[5vw] md:flex xl:px-16">
-        <Brand compact />
+      <header className="hidden h-[84px] items-center px-[5vw] md:flex xl:px-[72px]">
+        <Brand />
         <span className="min-w-0 flex-1" aria-hidden="true" />
-        <nav className="flex shrink-0 gap-[42px] text-[13px] leading-normal" aria-label="Main navigation">
+        <nav className="flex shrink-0 gap-[30px] text-sm leading-normal font-medium" aria-label="Main navigation">
           {links.map(([key, label, href]) => (
             <Link key={key} className={active === key ? "font-semibold text-brand" : ""} href={href}>{label}</Link>
           ))}
         </nav>
         <span className="min-w-0 flex-1" aria-hidden="true" />
-        <div className="flex shrink-0 gap-3 text-[13px] font-semibold">
+        <div className="flex shrink-0 gap-2.5 text-sm leading-normal font-semibold">
           {session ? (
-            <Link className="rounded-lg border border-soft-border px-[18px] py-3" href={session.role === "ADMIN" || session.role === "MODERATOR" ? "/admin" : "/profile"}>
+            <Link className="rounded-[10px] border border-soft-border px-[22px] py-[13px]" href={session.role === "ADMIN" || session.role === "MODERATOR" ? "/admin" : "/profile"}>
               {session.role === "USER" ? "Profile" : "Dashboard"}
             </Link>
           ) : (
             <>
-              <Link className="rounded-lg border border-soft-border px-[18px] py-3" href="/login">Log In</Link>
-              <Link className="rounded-lg bg-brand px-6 py-3 text-white" href="/signup">Sign Up</Link>
+              <Link className="rounded-[10px] border border-soft-border px-[22px] py-[13px]" href="/login">Log In</Link>
+              <Link className="rounded-[10px] bg-brand px-[22px] py-[13px] text-white" href="/signup">Sign Up</Link>
             </>
           )}
         </div>
