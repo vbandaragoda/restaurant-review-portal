@@ -1,0 +1,36 @@
+{
+  "testId": "TC-SEC-006",
+  "title": "INFO: previously issued token still accepted (logout is client-side only; no revocation endpoint)",
+  "category": "security",
+  "executedAt": "2026-09-30T19:05:19+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/users/me",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 22.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "145"
+    },
+    "body": {
+      "id": 2,
+      "fullName": "QA User A",
+      "email": "qa.usera.190512@tastelanka.test",
+      "role": "USER",
+      "language": "en",
+      "createdAt": "2026-09-30T13:35:12.946178Z"
+    }
+  },
+  "expected": "Informational observation – records actual behaviour; no logout/revocation requirement exists",
+  "actual": "HTTP 200",
+  "verdict": "PASS"
+}

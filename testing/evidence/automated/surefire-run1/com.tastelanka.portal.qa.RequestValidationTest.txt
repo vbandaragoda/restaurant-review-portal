@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.tastelanka.portal.qa.RequestValidationTest
+-------------------------------------------------------------------------------
+Tests run: 35, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.292 s <<< FAILURE! -- in com.tastelanka.portal.qa.RequestValidationTest
+com.tastelanka.portal.qa.RequestValidationTest.priceRangeOrder -- Time elapsed: 0.004 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+[priceMin 9000 > priceMax 100 should fail validation] 
+Expecting value to be false but was true
+	at com.tastelanka.portal.qa.RequestValidationTest.priceRangeOrder(RequestValidationTest.java:118)
+

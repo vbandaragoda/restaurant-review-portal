@@ -1,0 +1,43 @@
+{
+  "testId": "TC-DATA-003a",
+  "title": "Find seeded dish seafood-kottu",
+  "category": "database",
+  "executedAt": "2026-09-30T19:10:35+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/dishes/seafood-kottu",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 27.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "342"
+    },
+    "body": {
+      "id": 4,
+      "slug": "seafood-kottu",
+      "name": "Seafood Kottu",
+      "description": "Sri Lankan kottu prepared with fresh seafood.",
+      "price": 3800,
+      "spiceLevel": "Hot",
+      "vegetarian": false,
+      "halal": true,
+      "imageColor": "#734d2e",
+      "rating": 4.6,
+      "foodRating": 4.7,
+      "serviceRating": 4.4,
+      "reviewCount": 74,
+      "restaurantSlug": "ministry-of-crab",
+      "restaurantName": "Ministry of Crab"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200",
+  "verdict": "PASS"
+}

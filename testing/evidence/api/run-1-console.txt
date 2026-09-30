@@ -1,0 +1,162 @@
+== Authentication
+PASS TC-AUTH-001    POST   /auth/register                                               -> 201 role=USER, token issued=True, passwordHash exposed=False
+FAIL TC-AUTH-002    POST   /auth/register                                               -> 403 
+FAIL TC-AUTH-003    POST   /auth/register                                               -> 403 
+FAIL TC-AUTH-004    POST   /auth/register                                               -> 403 
+FAIL TC-AUTH-005    POST   /auth/register                                               -> 403 
+PASS TC-AUTH-006    POST   /auth/register                                               -> 201 
+FAIL TC-AUTH-007    POST   /auth/register                                               -> 403 
+PASS TC-AUTH-008    POST   /auth/register                                               -> 201 
+FAIL TC-AUTH-009    POST   /auth/register                                               -> 403 
+FAIL TC-AUTH-010    POST   /auth/register                                               -> 403 
+PASS TC-AUTH-011    POST   /auth/register                                               -> 201 role assigned=USER
+PASS TC-AUTH-012    POST   /auth/register                                               -> 201 fullName round-trip=නිමල් පෙරේරා, language=si
+PASS TC-AUTH-013    POST   /auth/login                                                  -> 200 keys present: ['token', 'role']
+FAIL TC-AUTH-014    POST   /auth/login                                                  -> 403 
+FAIL TC-AUTH-015    POST   /auth/login                                                  -> 403 
+PASS TC-AUTH-016    POST   /auth/login                                                  -> 200 
+FAIL TC-AUTH-017    POST   /auth/login                                                  -> 403 
+PASS TC-AUTH-018    POST   /auth/register                                               -> 201 
+PASS TC-AUTH-019    POST   /auth/register                                               -> 201 
+PASS TC-AUTH-020    POST   /auth/login                                                  -> 200 role=ADMIN
+== Profile
+PASS TC-API-001     GET    /users/me                                                    -> 200 email matches=True, fields=['createdAt', 'email', 'fullName', 'id', 'language', 'role']
+== Restaurants, search, filters
+PASS TC-API-010     GET    /restaurants                                                 -> 200 count=5 slugs=['green-leaf-kitchen', 'ministry-of-crab', 'nuga-gama', 'pedlars-inn', 'the-
+PASS TC-API-011     GET    /restaurants                                                 -> 200 slugs=['ministry-of-crab']
+PASS TC-API-012     GET    /restaurants                                                 -> 200 slugs=['nuga-gama']
+PASS TC-API-013     GET    /restaurants                                                 -> 200 slugs=['pedlars-inn']
+PASS TC-API-014     GET    /restaurants                                                 -> 200 count=0
+PASS TC-API-015     GET    /restaurants                                                 -> 200 slugs=['green-leaf-kitchen', 'the-empire-cafe']
+PASS TC-API-016     GET    /restaurants                                                 -> 200 slugs=['ministry-of-crab']
+PASS TC-API-017     GET    /restaurants                                                 -> 200 slugs=['green-leaf-kitchen', 'nuga-gama', 'the-empire-cafe']
+PASS TC-API-018     GET    /restaurants                                                 -> 200 slugs=['green-leaf-kitchen', 'nuga-gama', 'pedlars-inn', 'the-empire-cafe']
+PASS TC-API-019     GET    /restaurants                                                 -> 200 slugs=['green-leaf-kitchen', 'ministry-of-crab', 'nuga-gama', 'pedlars-inn', 'the-empire-c
+PASS TC-API-020     GET    /restaurants                                                 -> 200 slugs=['nuga-gama']
+FAIL TC-API-021     GET    /restaurants                                                 -> 403 
+PASS TC-API-022     GET    /restaurants/top-rated                                       -> 200 ratings=[4.8, 4.6, 4.5, 4.4]
+PASS TC-API-023     GET    /restaurants/ministry-of-crab                                -> 200 name=Ministry of Crab
+FAIL TC-API-024     GET    /restaurants/does-not-exist                                  -> 403 
+PASS TC-API-025     GET    /dishes                                                      -> 200 count=4
+PASS TC-API-026     GET    /dishes/chilli-crab                                          -> 200 spice=Hot price=9500
+FAIL TC-API-027     GET    /dishes/no-such-dish                                         -> 403 
+FAIL TC-API-028     DELETE /restaurants                                                 -> 403 
+FAIL TC-API-029     PUT    /health                                                      -> 403 
+== Reviews
+PASS TC-REV-001     POST   /reviews                                                     -> 201 status=PENDING id=1
+FAIL TC-REV-002     POST   /reviews                                                     -> 403 
+FAIL TC-REV-003     POST   /reviews                                                     -> 403 
+FAIL TC-REV-004     POST   /reviews                                                     -> 403 
+PASS TC-REV-005     POST   /reviews                                                     -> 201 
+FAIL TC-REV-006     POST   /reviews                                                     -> 403 
+FAIL TC-REV-007     POST   /reviews                                                     -> 403 
+FAIL TC-REV-008     POST   /reviews                                                     -> 403 
+FAIL TC-REV-009     POST   /reviews                                                     -> 403 
+FAIL TC-REV-010     POST   /reviews                                                     -> 403 
+FAIL TC-REV-011     POST   /reviews                                                     -> 403 
+FAIL TC-REV-012     POST   /reviews                                                     -> 403 
+PASS TC-REV-013     POST   /reviews                                                     -> 201 stored length=5000
+FAIL TC-REV-014     POST   /reviews                                                     -> 403 
+PASS TC-REV-015     POST   /reviews                                                     -> 201 Sinhala text round-trip exact
+PASS TC-REV-016     POST   /reviews                                                     -> 201 Tamil text round-trip exact
+PASS TC-SEC-020     POST   /reviews                                                     -> 201 status=PENDING note=None
+PASS TC-SEC-030     POST   /reviews                                                     -> 201 
+PASS TC-REV-017     GET    /reviews/mine                                                -> 200 count=3 authors=['QA User A']
+FAIL TC-REV-018     GET    /reviews/mine                                                -> 403 
+FAIL TC-REV-019     GET    /reviews                                                     -> 403 
+PASS TC-REV-020     GET    /reviews                                                     -> 200 public ids=[] pending id=1
+== Moderation
+PASS TC-MOD-001     GET    /admin/reviews                                               -> 200 count=7
+PASS TC-MOD-002     PATCH  /admin/reviews/1                                             -> 200 status=APPROVED
+PASS TC-MOD-003     GET    /reviews                                                     -> 200 public ids=[1]
+PASS TC-MOD-004     PATCH  /admin/reviews/6                                             -> 200 status=REJECTED
+PASS TC-MOD-005     GET    /reviews                                                     -> 200 public ids=[]
+FAIL TC-MOD-006     PATCH  /admin/reviews/1                                             -> 403 
+FAIL TC-MOD-007     PATCH  /admin/reviews/999999                                        -> 403 
+FAIL TC-MOD-008     PATCH  /admin/reviews/1                                             -> 403 
+PASS TC-MOD-009     GET    /admin/reviews                                               -> 200 count=1
+FAIL TC-MOD-010     GET    /admin/reviews                                               -> 403 
+PASS TC-MOD-011     GET    /reviews/mine                                                -> 200 approved status visible to author
+PASS TC-MOD-012a    GET    /restaurants/ministry-of-crab                                -> 200 rating=4.8 reviewCount=320
+PASS TC-MOD-012b    PATCH  /admin/reviews/4                                             -> 200 
+FAIL TC-MOD-012     GET    /restaurants/ministry-of-crab                                -> 200 reviewCount before=320 after=320; rating before=4.8 after=4.8
+PASS TC-MOD-013     PATCH  /admin/reviews/5                                             -> 200 
+PASS TC-MOD-014     PATCH  /admin/reviews/7                                             -> 200 
+== Saved restaurants
+PASS TC-SAV-001     POST   /users/me/saved-restaurants/green-leaf-kitchen               -> 201 slug=green-leaf-kitchen
+PASS TC-SAV-002     POST   /users/me/saved-restaurants/green-leaf-kitchen               -> 201 
+PASS TC-SAV-003     GET    /users/me/saved-restaurants                                  -> 200 slugs=['green-leaf-kitchen']
+FAIL TC-SAV-004     POST   /users/me/saved-restaurants/no-such-restaurant               -> 403 
+FAIL TC-SAV-005     POST   /users/me/saved-restaurants/nuga-gama                        -> 403 
+PASS TC-SEC-040     DELETE /users/me/saved-restaurants/green-leaf-kitchen               -> 204 
+PASS TC-SEC-041     GET    /users/me/saved-restaurants                                  -> 200 User A slugs=['green-leaf-kitchen']
+PASS TC-SEC-042     GET    /users/me/saved-restaurants                                  -> 200 User B slugs=[]
+PASS TC-SEC-043     GET    /reviews/mine                                                -> 200 authors=['QA User B']
+PASS TC-SAV-006     DELETE /users/me/saved-restaurants/green-leaf-kitchen               -> 204 
+PASS TC-SAV-007     GET    /users/me/saved-restaurants                                  -> 200 slugs=[]
+== Admin restaurant CRUD
+PASS TC-ADM-000     GET    /admin/dashboard                                             -> 200 keys present: ['restaurants', 'dishes', 'users', 'pendingReviews', 'approvedReviews']
+PASS TC-ADM-001     POST   /admin/restaurants                                           -> 201 id=6 rating=0
+PASS TC-ADM-002     GET    /restaurants/qa-rest-190512                                  -> 200 name=QA Test Bistro
+FAIL TC-ADM-003     POST   /admin/restaurants                                           -> 403 
+FAIL TC-ADM-004     POST   /admin/restaurants                                           -> 403 
+FAIL TC-ADM-005     POST   /admin/restaurants                                           -> 403 
+FAIL TC-ADM-006     POST   /admin/restaurants                                           -> 403 
+FAIL TC-ADM-007     POST   /admin/restaurants                                           -> 201 
+FAIL TC-ADM-008     POST   /admin/restaurants                                           -> 403 
+PASS TC-ADM-009     PUT    /admin/restaurants/6                                         -> 200 name=QA Test Bistro Updated location=Kandy
+PASS TC-ADM-010     GET    /restaurants/qa-rest-190512                                  -> 200 name=QA Test Bistro Updated
+FAIL TC-ADM-011     PUT    /admin/restaurants/6                                         -> 403 
+FAIL TC-ADM-012     PUT    /admin/restaurants/999999                                    -> 403 
+FAIL TC-ADM-013     PUT    /admin/restaurants/abc                                       -> 403 
+FAIL TC-ADM-014     POST   /admin/restaurants                                           -> 403 
+FAIL TC-ADM-015     POST   /admin/restaurants                                           -> 403 
+== Admin dish CRUD
+PASS TC-ADM-020     POST   /admin/dishes                                                -> 201 id=8
+PASS TC-ADM-021     GET    /dishes                                                      -> 200 slugs=['qa-dish-190512']
+FAIL TC-ADM-022     POST   /admin/dishes                                                -> 403 
+FAIL TC-ADM-023     POST   /admin/dishes                                                -> 403 
+FAIL TC-ADM-024     POST   /admin/dishes                                                -> 403 
+FAIL TC-ADM-025     POST   /admin/dishes                                                -> 403 
+PASS TC-ADM-026     PUT    /admin/dishes/8                                              -> 200 price=990 spice=Hot
+PASS TC-ADM-027     GET    /dishes/qa-dish-190512                                       -> 200 price=990
+FAIL TC-ADM-028     PUT    /admin/dishes/8                                              -> 403 
+FAIL TC-ADM-029     PUT    /admin/dishes/999999                                         -> 403 
+FAIL TC-ADM-030     DELETE /admin/dishes/999999                                         -> 403 
+PASS TC-ADM-031     DELETE /admin/dishes/8                                              -> 204 
+FAIL TC-ADM-032     GET    /dishes/qa-dish-190512                                       -> 403 
+FAIL TC-ADM-033     DELETE /admin/restaurants/999999                                    -> 403 
+PASS TC-ADM-034a    POST   /admin/dishes                                                -> 201 
+PASS TC-ADM-034     DELETE /admin/restaurants/6                                         -> 204 
+FAIL TC-ADM-035     GET    /restaurants/qa-rest-190512                                  -> 403 
+FAIL TC-ADM-036     GET    /dishes/qa-dish-cascade-190512                               -> 403 
+PASS TC-ADM-037a    POST   /admin/restaurants                                           -> 201 
+PASS TC-ADM-037b    POST   /reviews                                                     -> 201 
+FAIL TC-ADM-037     DELETE /admin/restaurants/8                                         -> 403 
+== Authorization & token security
+FAIL TC-SEC-001     GET    /users/me                                                    -> 403 
+FAIL TC-SEC-002     GET    /users/me                                                    -> 403 
+FAIL TC-SEC-003     GET    /users/me                                                    -> 403 
+FAIL TC-SEC-004     GET    /users/me                                                    -> 403 
+FAIL TC-SEC-005     GET    /admin/dashboard                                             -> 200 
+PASS TC-SEC-006     GET    /users/me                                                    -> 200 
+PASS TC-SEC-010     GET    /admin/dashboard                                             -> 403 
+PASS TC-SEC-011     POST   /admin/restaurants                                           -> 403 
+PASS TC-SEC-012     DELETE /admin/restaurants/1                                         -> 403 
+PASS TC-SEC-013     PATCH  /admin/reviews/7                                             -> 403 
+PASS TC-SEC-014     DELETE /admin/dishes/1                                              -> 403 
+PASS TC-SEC-015     GET    /admin/restaurants                                           -> 200 restaurant id 1 still present
+FAIL TC-SEC-016     GET    /admin/dashboard                                             -> 403 
+FAIL TC-SEC-017     DELETE /admin/restaurants/1                                         -> 403 
+PASS TC-SEC-021     GET    /restaurants                                                 -> 200 rows returned=0
+PASS TC-SEC-022     GET    /restaurants                                                 -> 200 rows returned=0
+FAIL TC-SEC-023     POST   /auth/login                                                  -> 403 
+FAIL TC-SEC-024     GET    /restaurants/x' OR '1'='1                                    -> 403 
+PASS TC-SEC-025     GET    /restaurants                                                 -> 400 
+FAIL TC-SEC-026     POST   /auth/login                                                  -> 403 
+PASS TC-SEC-027     GET    /reviews                                                     -> 200 no email addresses in payload
+PASS TC-SEC-050     OPTIONS /users/me                                                    -> 403 ACAO=None
+PASS TC-SEC-051     OPTIONS /users/me                                                    -> 200 ACAO=http://localhost:3000
+PASS TC-SEC-060     POST   /auth/login                                                  -> 200 preceding 10 failed-attempt statuses=[403]
+
+[api+security] executed=151 pass=83 fail=68

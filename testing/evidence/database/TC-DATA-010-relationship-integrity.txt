@@ -1,0 +1,47 @@
++------------------------------------------------+---+
+| chk                                            | n |
++------------------------------------------------+---+
+| reviews without user                           | 0 |
+| reviews without restaurant                     | 0 |
+| reviews whose dish belongs to other restaurant | 0 |
+| dishes without restaurant                      | 0 |
+| saved rows without user/restaurant             | 0 |
+| duplicate saved rows                           | 0 |
+| ratings outside 1-5                            | 0 |
+| restaurants priceMin>priceMax                  | 1 |
++------------------------------------------------+---+
++----+----------+----------------+----------+------+--------------------+
+| id | status   | moderator_note | language | len  | first_bytes        |
++----+----------+----------------+----------+------+--------------------+
+|  1 | APPROVED | QA approved    | en       |   48 | 514120             |
+|  2 | PENDING  | NULL           | en       |   37 | 514120             |
+|  3 | PENDING  | NULL           | en       | 5000 | 797979             |
+|  4 | APPROVED | NULL           | si       |   35 | E0B6BBE0B783E0B780 |
+|  5 | APPROVED | NULL           | ta       |   43 | E0AEAEE0AEBFE0AE95 |
+|  6 | REJECTED | QA rejected    | en       |   48 | 514120             |
+|  7 | APPROVED | NULL           | en       |   81 | 3C7363             |
+|  8 | PENDING  | NULL           | en       |   47 | 514120             |
++----+----------+----------------+----------+------+--------------------+
++----------------+-----------------+------+-----+----------------------+-------------------+
+| Field          | Type            | Null | Key | Default              | Extra             |
++----------------+-----------------+------+-----+----------------------+-------------------+
+| id             | bigint unsigned | NO   | PRI | NULL                 | auto_increment    |
+| user_id        | bigint unsigned | NO   | MUL | NULL                 |                   |
+| restaurant_id  | bigint unsigned | NO   | MUL | NULL                 |                   |
+| dish_id        | bigint unsigned | YES  | MUL | NULL                 |                   |
+| food_rating    | int             | NO   |     | NULL                 |                   |
+| service_rating | int             | NO   |     | NULL                 |                   |
+| overall_rating | int             | NO   |     | NULL                 |                   |
+| language       | varchar(5)      | NO   |     | en                   |                   |
+| review_text    | text            | NO   |     | NULL                 |                   |
+| status         | varchar(20)     | NO   |     | PENDING              |                   |
+| moderator_note | varchar(500)    | YES  |     | NULL                 |                   |
+| created_at     | datetime(6)     | NO   |     | CURRENT_TIMESTAMP(6) | DEFAULT_GENERATED |
++----------------+-----------------+------+-----+----------------------+-------------------+
++---------------------------------+-------------+----------+
+| email                           | hash_prefix | hash_len |
++---------------------------------+-------------+----------+
+| qa.admin@tastelanka.test        | $2a$10$     |       60 |
+| qa.usera.190512@tastelanka.test | $2a$10$     |       60 |
+| qa.pw8.190512@tastelanka.test   | $2a$10$     |       60 |
++---------------------------------+-------------+----------+

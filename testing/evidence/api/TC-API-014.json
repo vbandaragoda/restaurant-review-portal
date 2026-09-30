@@ -1,0 +1,27 @@
+{
+  "testId": "TC-API-014",
+  "title": "Search with no matches",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:15+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants?q=zzqqxx",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 12.0,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "2"
+    },
+    "body": []
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; count=0",
+  "verdict": "PASS"
+}

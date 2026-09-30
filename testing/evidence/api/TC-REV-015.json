@@ -1,0 +1,52 @@
+{
+  "testId": "TC-REV-015",
+  "title": "Sinhala review text stored and returned intact",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:16+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_B token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "ministry-of-crab",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "si",
+      "reviewText": "රසවත් කකුළුවන් කෑම. සේවය ඉතා හොඳයි.",
+      "dishSlug": "chilli-crab"
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 126.4,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "389"
+    },
+    "body": {
+      "id": 4,
+      "author": "QA User B",
+      "restaurantSlug": "ministry-of-crab",
+      "restaurantName": "Ministry of Crab",
+      "dishSlug": "chilli-crab",
+      "dishName": "Chilli Crab",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "si",
+      "reviewText": "රසවත් කකුළුවන් කෑම. සේවය ඉතා හොඳයි.",
+      "status": "PENDING",
+      "createdAt": "2026-09-30T13:35:16.783729800Z"
+    }
+  },
+  "expected": "HTTP 201",
+  "actual": "HTTP 201; Sinhala text round-trip exact",
+  "verdict": "PASS"
+}

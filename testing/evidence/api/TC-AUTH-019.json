@@ -1,0 +1,40 @@
+{
+  "testId": "TC-AUTH-019",
+  "title": "Register third customer (later promoted to MODERATOR)",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:15+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/register",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "fullName": "QA Moderator",
+      "email": "qa.mod.190512@tastelanka.test",
+      "password": "<redacted test password, length 13>"
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 184.0,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "354"
+    },
+    "body": {
+      "token": "<JWT, 235 chars>",
+      "userId": 8,
+      "fullName": "QA Moderator",
+      "email": "qa.mod.190512@tastelanka.test",
+      "role": "USER",
+      "language": "en"
+    }
+  },
+  "expected": "HTTP 201",
+  "actual": "HTTP 201",
+  "verdict": "PASS"
+}

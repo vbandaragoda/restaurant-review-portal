@@ -1,0 +1,618 @@
+
+Running 64 tests using 1 worker
+
+  ok  1 specs\admin.spec.ts:11:5 › TC-ADM-UI-001 admin login opens dashboard with live metrics (3.8s)
+  ok  2 specs\admin.spec.ts:24:5 › BB-14a customer is denied the admin UI (redirected to login) (3.1s)
+  ok  3 specs\admin.spec.ts:33:5 › BB-14b anonymous visitor is denied the admin UI (2.6s)
+  ok  4 specs\admin.spec.ts:38:5 › BB-14c customer who forges role=ADMIN in localStorage sees no admin data (API enforces role) (3.6s)
+  ok  5 specs\admin.spec.ts:53:5 › BB-15 admin creates, updates and deletes a restaurant through the UI (3.0s)
+  x   6 specs\admin.spec.ts:93:5 › TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews cannot be deleted (4.0s)
+  x   7 specs\admin.spec.ts:112:5 › BB-16 admin creates, updates and deletes a dish through the UI (59.0s)
+  ok  8 specs\admin.spec.ts:148:5 › TC-ADM-UI-003 invalid restaurant input shows validation feedback (5.4s)
+  ok  9 specs\admin.spec.ts:160:5 › BB-13 admin approves and rejects pending reviews; public visibility follows status (21.8s)
+  x  10 specs\admin.spec.ts:195:5 › TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting (3.3s)
+  ok 11 specs\customer.spec.ts:6:5 › TC-UI-001 home page renders hero, search and navigation (3.0s)
+  ok 12 specs\customer.spec.ts:13:5 › BB-01 registration with valid data creates account and opens profile (2.0s)
+  ok 13 specs\customer.spec.ts:22:5 › BB-02a registration rejected when passwords do not match (1.6s)
+  ok 14 specs\customer.spec.ts:33:5 › BB-02b registration rejected for duplicate email with feedback (1.5s)
+  ok 15 specs\customer.spec.ts:40:5 › BB-02c registration blocked client-side for empty fields and short password (1.5s)
+  ok 16 specs\customer.spec.ts:58:5 › BB-03 valid login authenticates and grants access to profile (1.6s)
+  ok 17 specs\customer.spec.ts:67:5 › BB-04 invalid password is rejected with an error message (1.5s)
+  ok 18 specs\customer.spec.ts:74:5 › BB-05 profile shows the user's name, email, reviews and saved sections (1.6s)
+  ok 19 specs\customer.spec.ts:82:5 › TC-UI-002 logout clears the session and protects the profile route (2.7s)
+  ok 20 specs\customer.spec.ts:92:5 › BB-06 restaurant listing displays available restaurants (1.8s)
+  x  21 specs\customer.spec.ts:102:5 › BB-07 search returns matching restaurants (17.3s)
+  ok 22 specs\customer.spec.ts:111:5 › TC-UI-003 search with no matches shows an empty-state message (1.8s)
+  ok 23 specs\customer.spec.ts:117:5 › TC-UI-004 home page search submits to results page (1.6s)
+  ok 24 specs\customer.spec.ts:125:5 › BB-08a filter by location and dietary options reflects criteria (1.7s)
+  x  25 specs\customer.spec.ts:136:5 › BB-08b 'Clear all' resets filters and results (3.6s)
+  x  26 specs\customer.spec.ts:157:5 › BB-08c cuisine category link filters the listing (2.7s)
+  x  27 specs\customer.spec.ts:168:5 › BB-08d price and spice filters are available on restaurant search (1.9s)
+  ok 28 specs\customer.spec.ts:176:5 › BB-09 restaurant details show info, menu and dish details (3.5s)
+  ok 29 specs\customer.spec.ts:190:5 › TC-UI-005 unknown restaurant slug shows an error state (1.6s)
+  ok 30 specs\customer.spec.ts:196:5 › BB-10 authenticated user submits a valid review (stored for moderation) (4.1s)
+  ok 31 specs\customer.spec.ts:208:5 › BB-11a review with text shorter than 10 characters is blocked (5.7s)
+  ok 32 specs\customer.spec.ts:220:5 › BB-11b rating outside 1-5 cannot be entered in the UI (star control limits range) (5.3s)
+  x  33 specs\customer.spec.ts:229:5 › TC-UI-006 'Write a Review' from home page (no restaurant selected) lets the user pick a restaurant (5.5s)
+  ok 34 specs\customer.spec.ts:243:5 › BB-12 user sees own submitted reviews with status (6.3s)
+  ok 35 specs\customer.spec.ts:251:5 › TC-UI-007 saved restaurant: save, view on profile, remove (4.8s)
+  x  36 specs\customer.spec.ts:268:5 › TC-UI-008 saved state is shown when revisiting an already-saved restaurant (4.6s)
+  ok 37 specs\customer.spec.ts:281:5 › TC-UI-009 unauthenticated 'Save' redirects to login (4.5s)
+  ok 38 specs\customer.spec.ts:287:5 › TC-UI-010 unauthenticated review form redirects to login (3.0s)
+  ok 39 specs\customer.spec.ts:292:5 › TC-SEC-031 stored XSS payload in an approved review is rendered as text (no script execution) (3.6s)
+  x  40 specs\customer.spec.ts:305:5 › TC-UI-011 home 'Top Rated' section reflects API data (1.7s)
+  ok 41 specs\customer.spec.ts:314:5 › TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard) (5.2s)
+  x  42 specs\customer.spec.ts:323:5 › TC-UI-013 home page filter chips and location selector affect results (4.1s)
+  ok 43 specs\dry-runs.spec.ts:10:5 › DR-01 new user journey: register -> login -> browse -> search/filter -> view restaurant (7.6s)
+  ok 44 specs\dry-runs.spec.ts:28:5 › DR-02 review journey: login -> select restaurant -> submit review -> admin moderates -> visible (28.0s)
+  ok 45 specs\dry-runs.spec.ts:57:5 › DR-03 saved restaurant journey: login -> select -> save -> profile -> view -> remove (6.1s)
+  ok 46 specs\dry-runs.spec.ts:76:5 › DR-04 administrator restaurant workflow: login -> dashboard -> create/update/delete restaurant (6.4s)
+  ok 47 specs\dry-runs.spec.ts:102:5 › DR-05 administrator dish workflow: login -> manage dishes -> create/update/delete dish (7.7s)
+  ok 48 specs\dry-runs.spec.ts:128:5 › DR-06 administrator moderation workflow: review pending -> approve/reject -> visibility correct (38.7s)
+  ok 49 specs\dry-runs.spec.ts:156:5 › DR-07 language journey: English, Sinhala and Tamil content readable and consistent (9.1s)
+  ok 50 specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at mobile 375x812: no horizontal overflow, content visible (12.8s)
+  x  51 specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at tablet 768x1024: no horizontal overflow, content visible (16.2s)
+  ok 52 specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at desktop 1440x900: no horizontal overflow, content visible (28.0s)
+  ok 53 specs\nonfunctional.spec.ts:40:5 › BB-18b mobile: bottom navigation is present and search works (3.4s)
+  x  54 specs\nonfunctional.spec.ts:51:5 › BB-18c mobile: restaurant filters are available (3.9s)
+  ok 55 specs\nonfunctional.spec.ts:62:5 › BB-18d mobile: profile, review form and admin remain usable (12.1s)
+  x  56 specs\nonfunctional.spec.ts:88:5 › BB-20a automated accessibility scan (axe-core, WCAG 2.1 A/AA) of key pages (34.4s)
+  ok 57 specs\nonfunctional.spec.ts:106:5 › BB-20b keyboard-only login: fields reachable by Tab and form submits with Enter (3.9s)
+  ok 58 specs\nonfunctional.spec.ts:126:5 › BB-20c focus is visibly indicated on interactive elements (3.0s)
+  x  59 specs\nonfunctional.spec.ts:137:5 › BB-20d rating star buttons expose accessible names and selected state (4.4s)
+  x  60 specs\nonfunctional.spec.ts:149:5 › BB-20e search and filter inputs have programmatic labels (4.8s)
+  ok 61 specs\nonfunctional.spec.ts:160:5 › BB-19a approved Sinhala and Tamil reviews display correctly with Unicode fonts (5.0s)
+  ok 62 specs\nonfunctional.spec.ts:175:5 › BB-19b customer can write a review in Sinhala and in Tamil via the language selector (7.8s)
+  x  63 specs\nonfunctional.spec.ts:193:5 › BB-19c interface language can be switched to Sinhala / Tamil (2.5s)
+  ok 64 specs\nonfunctional.spec.ts:203:5 › PERF-UI page load timings (Next.js dev server; indicative only) (17.1s)
+
+
+  1) specs\admin.spec.ts:93:5 › TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews cannot be deleted 
+
+    Error: admin must have a way to act on the instruction 'Remove its menu and reviews first'
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      107 |   const deleteReviewButtons = await page.getByRole("button", { name: /delete/i }).count();
+      108 |   log("TC-ADM-UI-002", `review delete controls available in moderation UI: ${deleteReviewButtons}`);
+    > 109 |   expect(deleteReviewButtons, "admin must have a way to act on the instruction 'Remove its menu and reviews first'").toBeGreaterThan(0);
+          |                                                                                                                      ^
+      110 | });
+      111 |
+      112 | test("BB-16 admin creates, updates and deletes a dish through the UI", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:109:118
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-002-admin--8a4c3-h-reviews-cannot-be-deleted\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-002-admin--8a4c3-h-reviews-cannot-be-deleted\error-context.md
+
+  2) specs\admin.spec.ts:112:5 › BB-16 admin creates, updates and deletes a dish through the UI ────
+
+    TimeoutError: page.waitForURL: Timeout 45000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+      navigated to "http://localhost:3000/login"
+    ============================================================
+
+       at helpers.ts:42
+
+      40 | export async function loginOk(page: Page, email: string, password = PASSWORD) {
+      41 |   await login(page, email, password);
+    > 42 |   await page.waitForURL((url) => !url.pathname.startsWith("/login"));
+         |              ^
+      43 |   await expect.poll(() => page.evaluate(() => localStorage.getItem("tastelanka.token"))).not.toBeNull();
+      44 | }
+      45 |
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:14)
+        at loginAdmin (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:48:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:114:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\admin-BB-16-admin-creates--55927-letes-a-dish-through-the-UI\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\admin-BB-16-admin-creates--55927-letes-a-dish-through-the-UI\error-context.md
+
+  3) specs\admin.spec.ts:195:5 › TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting 
+
+    Error: moderation UI should allow recording a reason (API supports 'note')
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      198 |   const noteFields = await page.locator("textarea, input[type=text]").count();
+      199 |   log("TC-ADM-UI-004", `note/reason inputs in moderation UI: ${noteFields}`);
+    > 200 |   expect(noteFields, "moderation UI should allow recording a reason (API supports 'note')").toBeGreaterThan(0);
+          |                                                                                             ^
+      201 | });
+      202 |
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:200:93
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-004-modera-86743--note-reason-when-rejecting\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-004-modera-86743--note-reason-when-rejecting\error-context.md
+
+  4) specs\customer.spec.ts:102:5 › BB-07 search returns matching restaurants ──────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('1 restaurants found')
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('1 restaurants found') with timeout 15000ms
+      - waiting for getByText('1 restaurants found')
+
+
+      104 |   await page.goto("/restaurants");
+      105 |   await page.getByPlaceholder("restaurants, dishes or cuisines...").fill("crab");
+    > 106 |   await page.getByRole("button", { name: "Search" }).click();
+          |                                                       ^
+      107 |   await expect(page.getByText("1 restaurants found")).toBeVisible();
+      108 |   await expect(page.getByRole("heading", { name: "Ministry of Crab" })).toBeVisible();
+      109 |   await shot(page, "ui", "BB-07-search-crab");
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:106:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-BB-07-search-returns-matching-restaurants\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-BB-07-search-returns-matching-restaurants\error-context.md
+
+  5) specs\customer.spec.ts:136:5 › BB-08b 'Clear all' resets filters and results ──────────────────
+
+    Error: results should reset to the unfiltered count after Clear all
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 8
+    Received: 3
+
+      153 |   log("BB-08b", `after Clear all (no Apply clicked) results text: ${text}`);
+      154 |   await shot(page, "ui", "BB-08b-clear-all");
+    > 155 |   expect(Number(text?.match(/\d+/)?.[0]), "results should reset to the unfiltered count after Clear all").toBe(all);
+          |                                                                                                           ^
+      156 | });
+      157 |
+      158 | test("BB-08c cuisine category link filters the listing", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:155:107
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-BB-08b-Clear-all-resets-filters-and-results\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-BB-08b-Clear-all-resets-filters-and-results\error-context.md
+
+  6) specs\customer.spec.ts:157:5 › BB-08c cuisine category link filters the listing ───────────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 7
+
+      Array [
+        "Ministry of Crab",
+    +   "The Empire Cafe",
+    +   "Pedlar’s Inn",
+    +   "Nuga Gama",
+    +   "Green Leaf Kitchen",
+    +   "QA Test Bistro",
+    +   "QA Reviewed Cafe",
+    +   "QA Persistence Diner",
+      ]
+
+      164 |   log("BB-08c", `cuisine=Seafood listing shows: ${names.join(", ")}`);
+      165 |   await shot(page, "ui", "BB-08c-cuisine-link-seafood");
+    > 166 |   expect(names).toEqual(["Ministry of Crab"]);
+          |                 ^
+      167 | });
+      168 |
+      169 | test("BB-08d price and spice filters are available on restaurant search", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:166:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-BB-08c-cuisine-category-link-filters-the-listing\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-BB-08c-cuisine-category-link-filters-the-listing\error-context.md
+
+  7) specs\customer.spec.ts:168:5 › BB-08d price and spice filters are available on restaurant search 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      172 |   const priceCheckboxes = await page.getByRole("checkbox", { name: /LKR|price|budget/i }).count();
+      173 |   log("BB-08d", `price filter controls found: ${priceControl + priceCheckboxes}`);
+    > 174 |   expect(priceControl + priceCheckboxes).toBeGreaterThan(0);
+          |                                          ^
+      175 | });
+      176 |
+      177 | test("BB-09 restaurant details show info, menu and dish details", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:174:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-BB-08d-price-and--a857a-ilable-on-restaurant-search\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-BB-08d-price-and--a857a-ilable-on-restaurant-search\error-context.md
+
+  8) specs\customer.spec.ts:229:5 › TC-UI-006 'Write a Review' from home page (no restaurant selected) lets the user pick a restaurant 
+
+    Error: a restaurant selector should be offered
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      239 |   await shot(page, "ui", "TC-UI-006-review-without-restaurant");
+      240 |   log("TC-UI-006", `restaurant picker controls=${pickers}`);
+    > 241 |   expect(pickers, "a restaurant selector should be offered").toBeGreaterThan(0);
+          |                                                              ^
+      242 | });
+      243 |
+      244 | test("BB-12 user sees own submitted reviews with status", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:241:62
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-TC-UI-006-Write-a-655b0--the-user-pick-a-restaurant\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-TC-UI-006-Write-a-655b0--the-user-pick-a-restaurant\error-context.md
+
+  9) specs\customer.spec.ts:268:5 › TC-UI-008 saved state is shown when revisiting an already-saved restaurant 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Saved"
+    Received: "Save"
+
+      277 |   log("TC-UI-008", `button label after reload of saved restaurant: ${label}`);
+      278 |   await shot(page, "ui", "TC-UI-008-saved-state-after-reload", false);
+    > 279 |   expect(label).toBe("Saved");
+          |                 ^
+      280 | });
+      281 |
+      282 | test("TC-UI-009 unauthenticated 'Save' redirects to login", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:279:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-TC-UI-008-saved-s-9e40d-an-already-saved-restaurant\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-TC-UI-008-saved-s-9e40d-an-already-saved-restaurant\error-context.md
+
+  10) specs\customer.spec.ts:305:5 › TC-UI-011 home 'Top Rated' section reflects API data ──────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "(220 reviews)"
+    Received string:    "★ 4.6 (210 reviews)The Empire CafeCafe · International⌖  KandyLKR 2,000 – 4,000"
+
+      310 |   const text = await card.textContent();
+      311 |   log("TC-UI-011", `home card: "${text}"; API reviewCount=${api.reviewCount}`);
+    > 312 |   expect(text).toContain(`(${api.reviewCount} reviews)`);
+          |                ^
+      313 | });
+      314 |
+      315 | test("TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard)", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:312:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-TC-UI-011-home-Top-Rated-section-reflects-API-data\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-TC-UI-011-home-Top-Rated-section-reflects-API-data\error-context.md
+
+  11) specs\customer.spec.ts:323:5 › TC-UI-013 home page filter chips and location selector affect results 
+
+    Error: clicking a filter chip should apply a filter
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "http://localhost:3000/"
+
+      335 |   log("TC-UI-013", `URL after clicking 'Vegan' chip: ${afterChip}; search 'cafe' + location Galle -> URL ${page.url()} results: ${names.join(", ")}`);
+      336 |   await shot(page, "ui", "TC-UI-013-home-location-ignored");
+    > 337 |   expect(afterChip, "clicking a filter chip should apply a filter").not.toBe("http://localhost:3000/");
+          |                                                                         ^
+      338 |   expect(names.every((n) => n === "Pedlar’s Inn"), "location Galle should restrict results").toBe(true);
+      339 | });
+      340 |
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:337:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-TC-UI-013-home-pa-e723b-ion-selector-affect-results\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-TC-UI-013-home-pa-e723b-ion-selector-affect-results\error-context.md
+
+  12) specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at tablet 768x1024: no horizontal overflow, content visible 
+
+    Error: restaurants must not scroll horizontally at tablet
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 0
+    Received:    153
+
+      32 |       results.push(`${name}: horizontal overflow=${ov}px`);
+      33 |       await shot(page, "ui/responsive", `BB-18-${vpName}-${name}`);
+    > 34 |       expect.soft(ov, `${name} must not scroll horizontally at ${vpName}`).toBeLessThanOrEqual(0);
+         |                                                                            ^
+      35 |     }
+      36 |     log(`BB-18-${vpName}`, results.join("; "));
+      37 |   });
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:34:76
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\test-failed-4.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\test-failed-5.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\error-context.md
+
+  13) specs\nonfunctional.spec.ts:51:5 › BB-18c mobile: restaurant filters are available ───────────
+
+    Error: dietary/location filters should be usable on mobile
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      57 |   log("BB-18c", `mobile visible filter checkboxes=${visibleFilterControls}; Apply Filters visible=${applyVisible}`);
+      58 |   await shot(page, "ui/responsive", "BB-18c-mobile-restaurants-no-filters", false);
+    > 59 |   expect(visibleFilterControls + (applyVisible ? 1 : 0), "dietary/location filters should be usable on mobile").toBeGreaterThan(0);
+         |                                                                                                                 ^
+      60 | });
+      61 |
+      62 | test("BB-18d mobile: profile, review form and admin remain usable", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:59:113
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18c-mobile-restaurant-filters-are-available\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18c-mobile-restaurant-filters-are-available\error-context.md
+
+  14) specs\nonfunctional.spec.ts:88:5 › BB-20a automated accessibility scan (axe-core, WCAG 2.1 A/AA) of key pages 
+
+    Error: no serious/critical WCAG A/AA violations
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 90
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 12,
+    +     "page": "home",
+    +     "sample": ".gap-\\[30px\\] > .text-brand.font-semibold[href=\"/\"]",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 29,
+    +     "page": "restaurants",
+    +     "sample": ".gap-\\[30px\\] > .text-brand[href$=\"restaurants\"]",
+    +   },
+    +   Object {
+    +     "help": "Select element must have an accessible name",
+    +     "id": "select-name",
+    +     "impact": "critical",
+    +     "nodes": 2,
+    +     "page": "restaurants",
+    +     "sample": "form > select",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 7,
+    +     "page": "restaurant-details",
+    +     "sample": ".gap-\\[30px\\] > .text-brand[href$=\"restaurants\"]",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 5,
+    +     "page": "dish-details",
+    +     "sample": ".gap-\\[30px\\] > .text-brand.font-semibold[href$=\"restaurants\"]",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 3,
+    +     "page": "login",
+    +     "sample": "a[href$=\"contact\"]",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 2,
+    +     "page": "signup",
+    +     "sample": ".mt-4",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 3,
+    +     "page": "review-form",
+    +     "sample": ".text-brand[href$=\"nuga-gama\"]",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 1,
+    +     "page": "profile",
+    +     "sample": ".mt-9",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 5,
+    +     "page": "admin-dashboard",
+    +     "sample": ".rounded-xl.p-6[href$=\"restaurants\"] > .mt-5.text-xs.text-brand",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 1,
+    +     "page": "admin-reviews",
+    +     "sample": ".bg-brand.text-white.rounded-full",
+    +   },
+    + ]
+
+      101 |   const serious = summary.filter((v) => v.impact === "serious" || v.impact === "critical");
+      102 |   log("BB-20a", `axe violations total=${summary.length}; serious/critical=${serious.length}; rules=${[...new Set(summary.map((v) => `${v.id}(${v.impact})`))].join(", ")}`);
+    > 103 |   expect(serious, "no serious/critical WCAG A/AA violations").toEqual([]);
+          |                                                               ^
+      104 | });
+      105 |
+      106 | test("BB-20b keyboard-only login: fields reachable by Tab and form submits with Enter", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:103:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20a-autom-db96a--WCAG-2-1-A-AA-of-key-pages\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20a-autom-db96a--WCAG-2-1-A-AA-of-key-pages\error-context.md
+
+  15) specs\nonfunctional.spec.ts:137:5 › BB-20d rating star buttons expose accessible names and selected state 
+
+    Error: each star should be announced with its value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      144 |     els.map((e) => `${e.getAttribute("aria-label") ?? e.textContent}|pressed=${e.getAttribute("aria-pressed")}`));
+      145 |   log("BB-20d", `food-quality star buttons: ${names.join(", ")}`);
+    > 146 |   expect(names.every((n) => /[1-5]/.test(n.split("|")[0])), "each star should be announced with its value").toBe(true);
+          |                                                                                                             ^
+      147 | });
+      148 |
+      149 | test("BB-20e search and filter inputs have programmatic labels", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:146:109
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20d-ratin-b0047-le-names-and-selected-state\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20d-ratin-b0047-le-names-and-selected-state\error-context.md
+
+  16) specs\nonfunctional.spec.ts:149:5 › BB-20e search and filter inputs have programmatic labels ─
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "input[restaurants, dishes or cuisines...]",
+    +   "select[]",
+    +   "select[]",
+    + ]
+
+      154 |     .map((el) => `${el.tagName.toLowerCase()}[${el.getAttribute("placeholder") ?? el.getAttribute("type") ?? ""}]`));
+      155 |   log("BB-20e", `unlabeled controls on /restaurants: ${unlabeled.join(", ") || "none"}`);
+    > 156 |   expect(unlabeled).toEqual([]);
+          |                     ^
+      157 | });
+      158 |
+      159 | // ------------------------------------------------------------------------------------------------ multilingual (BB-19)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:156:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20e-searc-60e67-ts-have-programmatic-labels\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20e-searc-60e67-ts-have-programmatic-labels\error-context.md
+
+  17) specs\nonfunctional.spec.ts:193:5 › BB-19c interface language can be switched to Sinhala / Tamil 
+
+    Error: a UI language selector (EN/SI/TA)
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      197 |   const htmlLang = await page.evaluate(() => document.documentElement.lang);
+      198 |   log("BB-19c", `language switch controls on home page=${switcher}; <html lang>=${htmlLang}`);
+    > 199 |   expect(switcher, "a UI language selector (EN/SI/TA)").toBeGreaterThan(0);
+          |                                                         ^
+      200 | });
+      201 |
+      202 | // ------------------------------------------------------------------------------------------------ UI performance (dev server)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:199:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-19c-inter-fe272-e-switched-to-Sinhala-Tamil\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-19c-inter-fe272-e-switched-to-Sinhala-Tamil\error-context.md
+
+  17 failed
+    specs\admin.spec.ts:93:5 › TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews cannot be deleted 
+    specs\admin.spec.ts:112:5 › BB-16 admin creates, updates and deletes a dish through the UI ─────
+    specs\admin.spec.ts:195:5 › TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting 
+    specs\customer.spec.ts:102:5 › BB-07 search returns matching restaurants ───────────────────────
+    specs\customer.spec.ts:136:5 › BB-08b 'Clear all' resets filters and results ───────────────────
+    specs\customer.spec.ts:157:5 › BB-08c cuisine category link filters the listing ────────────────
+    specs\customer.spec.ts:168:5 › BB-08d price and spice filters are available on restaurant search 
+    specs\customer.spec.ts:229:5 › TC-UI-006 'Write a Review' from home page (no restaurant selected) lets the user pick a restaurant 
+    specs\customer.spec.ts:268:5 › TC-UI-008 saved state is shown when revisiting an already-saved restaurant 
+    specs\customer.spec.ts:305:5 › TC-UI-011 home 'Top Rated' section reflects API data ────────────
+    specs\customer.spec.ts:323:5 › TC-UI-013 home page filter chips and location selector affect results 
+    specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at tablet 768x1024: no horizontal overflow, content visible 
+    specs\nonfunctional.spec.ts:51:5 › BB-18c mobile: restaurant filters are available ─────────────
+    specs\nonfunctional.spec.ts:88:5 › BB-20a automated accessibility scan (axe-core, WCAG 2.1 A/AA) of key pages 
+    specs\nonfunctional.spec.ts:137:5 › BB-20d rating star buttons expose accessible names and selected state 
+    specs\nonfunctional.spec.ts:149:5 › BB-20e search and filter inputs have programmatic labels ───
+    specs\nonfunctional.spec.ts:193:5 › BB-19c interface language can be switched to Sinhala / Tamil 
+  47 passed (9.4m)

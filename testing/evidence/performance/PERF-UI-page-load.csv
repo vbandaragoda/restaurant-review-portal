@@ -1,0 +1,5 @@
+page,url,domContentLoadedMs,loadMs,contentReadyMs
+home,/,303,364,1539
+restaurants,/restaurants,282,403,1806
+restaurant-details,/restaurants/ministry-of-crab,275,354,1509
+search,/restaurants?q=crab,302,412,1573

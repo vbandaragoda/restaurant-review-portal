@@ -1,0 +1,39 @@
+{
+  "testId": "TC-AUTH-013",
+  "title": "Login with valid credentials",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:14+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/login",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "qa.usera.190512@tastelanka.test",
+      "password": "<redacted test password, length 13>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 112.2,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "356"
+    },
+    "body": {
+      "token": "<JWT, 238 chars>",
+      "userId": 2,
+      "fullName": "QA User A",
+      "email": "qa.usera.190512@tastelanka.test",
+      "role": "USER",
+      "language": "en"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; keys present: ['token', 'role']",
+  "verdict": "PASS"
+}

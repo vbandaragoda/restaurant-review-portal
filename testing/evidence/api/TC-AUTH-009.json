@@ -1,0 +1,33 @@
+{
+  "testId": "TC-AUTH-009",
+  "title": "Register unsupported language 'fr'",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:14+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/register",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "fullName": "Lang",
+      "email": "qa.lang.190512@tastelanka.test",
+      "password": "<redacted test password, length 13>",
+      "language": "fr"
+    }
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 8.7,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 403",
+  "verdict": "FAIL"
+}

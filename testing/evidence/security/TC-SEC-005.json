@@ -1,0 +1,35 @@
+{
+  "testId": "TC-SEC-005",
+  "title": "Forged admin token signed with default JWT secret (JWT_SECRET not set, as in README run steps)",
+  "category": "security",
+  "executedAt": "2026-09-30T19:05:19+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/admin/dashboard",
+    "headers": {
+      "Authorization": "Bearer <token forged offline with the default JWT secret from application.yml>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 27.8,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "77"
+    },
+    "body": {
+      "restaurants": 7,
+      "dishes": 4,
+      "users": 8,
+      "pendingReviews": 3,
+      "approvedReviews": 4
+    }
+  },
+  "expected": "HTTP 401/403 – tokens not issued by the server must be rejected",
+  "actual": "HTTP 200",
+  "verdict": "FAIL"
+}

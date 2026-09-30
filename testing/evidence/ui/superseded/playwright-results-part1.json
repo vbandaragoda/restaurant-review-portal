@@ -1,0 +1,1835 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "specs/admin.spec.ts",
+      "specs/customer.spec.ts",
+      "--reporter=list,json"
+    ],
+    "configFile": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\playwright.config.ts",
+    "rootDir": "D:/restaurent/restaurant-review-portal/testing/e2e/specs",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/restaurent/restaurant-review-portal/testing/evidence/ui/playwright-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "D:/restaurent/restaurant-review-portal/testing/e2e/specs",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "admin.spec.ts",
+      "file": "admin.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-ADM-UI-001 admin login opens dashboard with live metrics",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8109,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:37:23.393Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4043a9dd1ab94463227-131887d4858bb3a08f1e",
+          "file": "admin.spec.ts",
+          "line": 11,
+          "column": 5
+        },
+        {
+          "title": "BB-14a customer is denied the admin UI (redirected to login)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6803,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:37:34.382Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4043a9dd1ab94463227-d9631ba4db17ef0dafb5",
+          "file": "admin.spec.ts",
+          "line": 24,
+          "column": 5
+        },
+        {
+          "title": "BB-14b anonymous visitor is denied the admin UI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2357,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:37:41.225Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4043a9dd1ab94463227-7f3a5665e13e1824a11b",
+          "file": "admin.spec.ts",
+          "line": 33,
+          "column": 5
+        },
+        {
+          "title": "BB-14c customer who forges role=ADMIN in localStorage sees no admin data (API enforces role)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3980,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:37:43.627Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4043a9dd1ab94463227-c61890b68625d935b450",
+          "file": "admin.spec.ts",
+          "line": 38,
+          "column": 5
+        },
+        {
+          "title": "BB-15 admin creates, updates and deletes a restaurant through the UI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6610,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:37:47.645Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4043a9dd1ab94463227-59d0635c13dc42bf71e7",
+          "file": "admin.spec.ts",
+          "line": 53,
+          "column": 5
+        },
+        {
+          "title": "TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews cannot be deleted",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7692,
+                  "error": {
+                    "message": "Error: admin must have a way to act on the instruction 'Remove its menu and reviews first'\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                    "stack": "Error: admin must have a way to act on the instruction 'Remove its menu and reviews first'\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\admin.spec.ts:109:118",
+                    "location": {
+                      "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\admin.spec.ts",
+                      "column": 118,
+                      "line": 109
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 107 |\u001b[39m   \u001b[36mconst\u001b[39m deleteReviewButtons \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"button\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/delete/i\u001b[39m })\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n \u001b[90m 108 |\u001b[39m   log(\u001b[32m\"TC-ADM-UI-002\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m`review delete controls available in moderation UI: ${deleteReviewButtons}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 109 |\u001b[39m   expect(deleteReviewButtons\u001b[33m,\u001b[39m \u001b[32m\"admin must have a way to act on the instruction 'Remove its menu and reviews first'\"\u001b[39m)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 110 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 111 |\u001b[39m\n \u001b[90m 112 |\u001b[39m test(\u001b[32m\"BB-16 admin creates, updates and deletes a dish through the UI\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\admin.spec.ts",
+                        "column": 118,
+                        "line": 109
+                      },
+                      "message": "Error: admin must have a way to act on the instruction 'Remove its menu and reviews first'\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  107 |   const deleteReviewButtons = await page.getByRole(\"button\", { name: /delete/i }).count();\n  108 |   log(\"TC-ADM-UI-002\", `review delete controls available in moderation UI: ${deleteReviewButtons}`);\n> 109 |   expect(deleteReviewButtons, \"admin must have a way to act on the instruction 'Remove its menu and reviews first'\").toBeGreaterThan(0);\n      |                                                                                                                      ^\n  110 | });\n  111 |\n  112 | test(\"BB-16 admin creates, updates and deletes a dish through the UI\", async ({ page }) => {\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\admin.spec.ts:109:118"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:37:54.288Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\admin-TC-ADM-UI-002-admin--8a4c3-h-reviews-cannot-be-deleted\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\admin-TC-ADM-UI-002-admin--8a4c3-h-reviews-cannot-be-deleted\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\admin.spec.ts",
+                    "column": 118,
+                    "line": 109
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d4043a9dd1ab94463227-fc16dffd07a8367536cf",
+          "file": "admin.spec.ts",
+          "line": 93,
+          "column": 5
+        },
+        {
+          "title": "BB-16 admin creates, updates and deletes a dish through the UI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9621,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:38:04.403Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4043a9dd1ab94463227-d244e1db16cbe60aa321",
+          "file": "admin.spec.ts",
+          "line": 112,
+          "column": 5
+        },
+        {
+          "title": "TC-ADM-UI-003 invalid restaurant input shows validation feedback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5244,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:38:14.910Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4043a9dd1ab94463227-85f2b079bbbd7338f3b3",
+          "file": "admin.spec.ts",
+          "line": 148,
+          "column": 5
+        },
+        {
+          "title": "BB-13 admin approves and rejects pending reviews; public visibility follows status",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 40439,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:38:20.209Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4043a9dd1ab94463227-c1844749db5e3846e7ad",
+          "file": "admin.spec.ts",
+          "line": 160,
+          "column": 5
+        },
+        {
+          "title": "TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8524,
+                  "error": {
+                    "message": "Error: moderation UI should allow recording a reason (API supports 'note')\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                    "stack": "Error: moderation UI should allow recording a reason (API supports 'note')\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\admin.spec.ts:200:93",
+                    "location": {
+                      "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\admin.spec.ts",
+                      "column": 93,
+                      "line": 200
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 198 |\u001b[39m   \u001b[36mconst\u001b[39m noteFields \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m\"textarea, input[type=text]\"\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n \u001b[90m 199 |\u001b[39m   log(\u001b[32m\"TC-ADM-UI-004\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m`note/reason inputs in moderation UI: ${noteFields}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 200 |\u001b[39m   expect(noteFields\u001b[33m,\u001b[39m \u001b[32m\"moderation UI should allow recording a reason (API supports 'note')\"\u001b[39m)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 201 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 202 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\admin.spec.ts",
+                        "column": 93,
+                        "line": 200
+                      },
+                      "message": "Error: moderation UI should allow recording a reason (API supports 'note')\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  198 |   const noteFields = await page.locator(\"textarea, input[type=text]\").count();\n  199 |   log(\"TC-ADM-UI-004\", `note/reason inputs in moderation UI: ${noteFields}`);\n> 200 |   expect(noteFields, \"moderation UI should allow recording a reason (API supports 'note')\").toBeGreaterThan(0);\n      |                                                                                             ^\n  201 | });\n  202 |\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\admin.spec.ts:200:93"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:00.718Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\admin-TC-ADM-UI-004-modera-86743--note-reason-when-rejecting\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\admin-TC-ADM-UI-004-modera-86743--note-reason-when-rejecting\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\admin.spec.ts",
+                    "column": 93,
+                    "line": 200
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d4043a9dd1ab94463227-5fd88b133ccde56ba6c9",
+          "file": "admin.spec.ts",
+          "line": 195,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "customer.spec.ts",
+      "file": "customer.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-UI-001 home page renders hero, search and navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4820,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:19.108Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-1b6d7435595da5ae31ff",
+          "file": "customer.spec.ts",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "title": "BB-01 registration with valid data creates account and opens profile",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2904,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:24.887Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-4d1aaae3c22e417effae",
+          "file": "customer.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "BB-02a registration rejected when passwords do not match",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2116,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:27.847Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-107ecd54bde9eb0fa9fa",
+          "file": "customer.spec.ts",
+          "line": 22,
+          "column": 5
+        },
+        {
+          "title": "BB-02b registration rejected for duplicate email with feedback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2125,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:29.997Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-6230b7676bfe250b9d08",
+          "file": "customer.spec.ts",
+          "line": 33,
+          "column": 5
+        },
+        {
+          "title": "BB-02c registration blocked client-side for empty fields and short password",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2400,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:32.159Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-7256487df37c91e4bf0c",
+          "file": "customer.spec.ts",
+          "line": 40,
+          "column": 5
+        },
+        {
+          "title": "BB-03 valid login authenticates and grants access to profile",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2836,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:34.596Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-58f32ae90c0493dfe9b8",
+          "file": "customer.spec.ts",
+          "line": 58,
+          "column": 5
+        },
+        {
+          "title": "BB-04 invalid password is rejected with an error message",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2077,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:37.477Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-4a3231ebd135b138346d",
+          "file": "customer.spec.ts",
+          "line": 67,
+          "column": 5
+        },
+        {
+          "title": "BB-05 profile shows the user's name, email, reviews and saved sections",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2605,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:39.599Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-1ca19d402406e329a40d",
+          "file": "customer.spec.ts",
+          "line": 74,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-002 logout clears the session and protects the profile route",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4888,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:42.235Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-06877eed1bde1cbf7455",
+          "file": "customer.spec.ts",
+          "line": 82,
+          "column": 5
+        },
+        {
+          "title": "BB-06 restaurant listing displays available restaurants",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2323,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:47.153Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-2048894c0b446b247ca6",
+          "file": "customer.spec.ts",
+          "line": 93,
+          "column": 5
+        },
+        {
+          "title": "BB-07 search returns matching restaurants",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2376,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:49.518Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-23aa68790d6121b4c9a2",
+          "file": "customer.spec.ts",
+          "line": 103,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-003 search with no matches shows an empty-state message",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1921,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:51.948Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-40c1f1b1d748c265ac05",
+          "file": "customer.spec.ts",
+          "line": 112,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-004 home page search submits to results page",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3161,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:53.942Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-bf9221bde541f36c2be8",
+          "file": "customer.spec.ts",
+          "line": 118,
+          "column": 5
+        },
+        {
+          "title": "BB-08a filter by location and dietary options reflects criteria",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2780,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:57.140Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-e81a2ded759a75f06755",
+          "file": "customer.spec.ts",
+          "line": 126,
+          "column": 5
+        },
+        {
+          "title": "BB-08b 'Clear all' resets filters and results",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 4160,
+                  "error": {
+                    "message": "Error: results should reset to the unfiltered count after Clear all\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m8\u001b[39m\nReceived: \u001b[31m3\u001b[39m",
+                    "stack": "Error: results should reset to the unfiltered count after Clear all\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m8\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:155:107",
+                    "location": {
+                      "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                      "column": 107,
+                      "line": 155
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 153 |\u001b[39m   log(\u001b[32m\"BB-08b\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m`after Clear all (no Apply clicked) results text: ${text}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 154 |\u001b[39m   \u001b[36mawait\u001b[39m shot(page\u001b[33m,\u001b[39m \u001b[32m\"ui\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"BB-08b-clear-all\"\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 155 |\u001b[39m   expect(\u001b[33mNumber\u001b[39m(text\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mmatch(\u001b[35m/\\d+/\u001b[39m)\u001b[33m?\u001b[39m\u001b[33m.\u001b[39m[\u001b[35m0\u001b[39m])\u001b[33m,\u001b[39m \u001b[32m\"results should reset to the unfiltered count after Clear all\"\u001b[39m)\u001b[33m.\u001b[39mtoBe(all)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 156 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 157 |\u001b[39m\n \u001b[90m 158 |\u001b[39m test(\u001b[32m\"BB-08c cuisine category link filters the listing\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                        "column": 107,
+                        "line": 155
+                      },
+                      "message": "Error: results should reset to the unfiltered count after Clear all\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m8\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n\n  153 |   log(\"BB-08b\", `after Clear all (no Apply clicked) results text: ${text}`);\n  154 |   await shot(page, \"ui\", \"BB-08b-clear-all\");\n> 155 |   expect(Number(text?.match(/\\d+/)?.[0]), \"results should reset to the unfiltered count after Clear all\").toBe(all);\n      |                                                                                                           ^\n  156 | });\n  157 |\n  158 | test(\"BB-08c cuisine category link filters the listing\", async ({ page }) => {\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:155:107"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:39:59.962Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-BB-08b-Clear-all-resets-filters-and-results\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-BB-08b-Clear-all-resets-filters-and-results\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                    "column": 107,
+                    "line": 155
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-e0aad15281b69d2159a5",
+          "file": "customer.spec.ts",
+          "line": 137,
+          "column": 5
+        },
+        {
+          "title": "BB-08c cuisine category link filters the listing",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3866,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 0\u001b[39m\n\u001b[31m+ Received  + 7\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[2m    \"Ministry of Crab\",\u001b[22m\n\u001b[31m+   \"The Empire Cafe\",\u001b[39m\n\u001b[31m+   \"Pedlar’s Inn\",\u001b[39m\n\u001b[31m+   \"Nuga Gama\",\u001b[39m\n\u001b[31m+   \"Green Leaf Kitchen\",\u001b[39m\n\u001b[31m+   \"QA Test Bistro\",\u001b[39m\n\u001b[31m+   \"QA Reviewed Cafe\",\u001b[39m\n\u001b[31m+   \"QA Persistence Diner\",\u001b[39m\n\u001b[2m  ]\u001b[22m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 0\u001b[39m\n\u001b[31m+ Received  + 7\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[2m    \"Ministry of Crab\",\u001b[22m\n\u001b[31m+   \"The Empire Cafe\",\u001b[39m\n\u001b[31m+   \"Pedlar’s Inn\",\u001b[39m\n\u001b[31m+   \"Nuga Gama\",\u001b[39m\n\u001b[31m+   \"Green Leaf Kitchen\",\u001b[39m\n\u001b[31m+   \"QA Test Bistro\",\u001b[39m\n\u001b[31m+   \"QA Reviewed Cafe\",\u001b[39m\n\u001b[31m+   \"QA Persistence Diner\",\u001b[39m\n\u001b[2m  ]\u001b[22m\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:166:17",
+                    "location": {
+                      "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                      "column": 17,
+                      "line": 166
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 164 |\u001b[39m   log(\u001b[32m\"BB-08c\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m`cuisine=Seafood listing shows: ${names.join(\", \")}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 165 |\u001b[39m   \u001b[36mawait\u001b[39m shot(page\u001b[33m,\u001b[39m \u001b[32m\"ui\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"BB-08c-cuisine-link-seafood\"\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 166 |\u001b[39m   expect(names)\u001b[33m.\u001b[39mtoEqual([\u001b[32m\"Ministry of Crab\"\u001b[39m])\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 167 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 168 |\u001b[39m\n \u001b[90m 169 |\u001b[39m test(\u001b[32m\"BB-08d price and spice filters are available on restaurant search\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                        "column": 17,
+                        "line": 166
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 0\u001b[39m\n\u001b[31m+ Received  + 7\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[2m    \"Ministry of Crab\",\u001b[22m\n\u001b[31m+   \"The Empire Cafe\",\u001b[39m\n\u001b[31m+   \"Pedlar’s Inn\",\u001b[39m\n\u001b[31m+   \"Nuga Gama\",\u001b[39m\n\u001b[31m+   \"Green Leaf Kitchen\",\u001b[39m\n\u001b[31m+   \"QA Test Bistro\",\u001b[39m\n\u001b[31m+   \"QA Reviewed Cafe\",\u001b[39m\n\u001b[31m+   \"QA Persistence Diner\",\u001b[39m\n\u001b[2m  ]\u001b[22m\n\n  164 |   log(\"BB-08c\", `cuisine=Seafood listing shows: ${names.join(\", \")}`);\n  165 |   await shot(page, \"ui\", \"BB-08c-cuisine-link-seafood\");\n> 166 |   expect(names).toEqual([\"Ministry of Crab\"]);\n      |                 ^\n  167 | });\n  168 |\n  169 | test(\"BB-08d price and spice filters are available on restaurant search\", async ({ page }) => {\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:166:17"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:40:05.792Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-BB-08c-cuisine-category-link-filters-the-listing\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-BB-08c-cuisine-category-link-filters-the-listing\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                    "column": 17,
+                    "line": 166
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-5a08c5f17c2d4b977e42",
+          "file": "customer.spec.ts",
+          "line": 158,
+          "column": 5
+        },
+        {
+          "title": "BB-08d price and spice filters are available on restaurant search",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3363,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:174:42",
+                    "location": {
+                      "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                      "column": 42,
+                      "line": 174
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 172 |\u001b[39m   \u001b[36mconst\u001b[39m priceCheckboxes \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"checkbox\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/LKR|price|budget/i\u001b[39m })\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n \u001b[90m 173 |\u001b[39m   log(\u001b[32m\"BB-08d\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m`price filter controls found: ${priceControl + priceCheckboxes}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 174 |\u001b[39m   expect(priceControl \u001b[33m+\u001b[39m priceCheckboxes)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 175 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 176 |\u001b[39m\n \u001b[90m 177 |\u001b[39m test(\u001b[32m\"BB-09 restaurant details show info, menu and dish details\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                        "column": 42,
+                        "line": 174
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  172 |   const priceCheckboxes = await page.getByRole(\"checkbox\", { name: /LKR|price|budget/i }).count();\n  173 |   log(\"BB-08d\", `price filter controls found: ${priceControl + priceCheckboxes}`);\n> 174 |   expect(priceControl + priceCheckboxes).toBeGreaterThan(0);\n      |                                          ^\n  175 | });\n  176 |\n  177 | test(\"BB-09 restaurant details show info, menu and dish details\", async ({ page }) => {\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:174:42"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:40:13.319Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-BB-08d-price-and--a857a-ilable-on-restaurant-search\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-BB-08d-price-and--a857a-ilable-on-restaurant-search\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                    "column": 42,
+                    "line": 174
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-06d98184308b2b4c9b23",
+          "file": "customer.spec.ts",
+          "line": 169,
+          "column": 5
+        },
+        {
+          "title": "BB-09 restaurant details show info, menu and dish details",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5147,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:40:19.215Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-c74a9bac0685ae73ded7",
+          "file": "customer.spec.ts",
+          "line": 177,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-005 unknown restaurant slug shows an error state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4333,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:40:25.178Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-762cf493ff857d75f219",
+          "file": "customer.spec.ts",
+          "line": 191,
+          "column": 5
+        },
+        {
+          "title": "BB-10 authenticated user submits a valid review (stored for moderation)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3929,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:40:29.569Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-d8b03d689d2e8bd59398",
+          "file": "customer.spec.ts",
+          "line": 197,
+          "column": 5
+        },
+        {
+          "title": "BB-11a review with text shorter than 10 characters is blocked",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4659,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:40:33.537Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-7edd410863b36177f66d",
+          "file": "customer.spec.ts",
+          "line": 209,
+          "column": 5
+        },
+        {
+          "title": "BB-11b rating outside 1-5 cannot be entered in the UI (star control limits range)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2800,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:40:38.302Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-cd8d352f29cd380aeceb",
+          "file": "customer.spec.ts",
+          "line": 221,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-006 'Write a Review' from home page (no restaurant selected) lets the user pick a restaurant",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5778,
+                  "error": {
+                    "message": "Error: a restaurant selector should be offered\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                    "stack": "Error: a restaurant selector should be offered\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:241:62",
+                    "location": {
+                      "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                      "column": 62,
+                      "line": 241
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 239 |\u001b[39m   \u001b[36mawait\u001b[39m shot(page\u001b[33m,\u001b[39m \u001b[32m\"ui\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"TC-UI-006-review-without-restaurant\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 240 |\u001b[39m   log(\u001b[32m\"TC-UI-006\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m`restaurant picker controls=${pickers}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 241 |\u001b[39m   expect(pickers\u001b[33m,\u001b[39m \u001b[32m\"a restaurant selector should be offered\"\u001b[39m)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 242 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 243 |\u001b[39m\n \u001b[90m 244 |\u001b[39m test(\u001b[32m\"BB-12 user sees own submitted reviews with status\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                        "column": 62,
+                        "line": 241
+                      },
+                      "message": "Error: a restaurant selector should be offered\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  239 |   await shot(page, \"ui\", \"TC-UI-006-review-without-restaurant\");\n  240 |   log(\"TC-UI-006\", `restaurant picker controls=${pickers}`);\n> 241 |   expect(pickers, \"a restaurant selector should be offered\").toBeGreaterThan(0);\n      |                                                              ^\n  242 | });\n  243 |\n  244 | test(\"BB-12 user sees own submitted reviews with status\", async ({ page }) => {\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:241:62"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:40:41.164Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-TC-UI-006-Write-a-655b0--the-user-pick-a-restaurant\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-TC-UI-006-Write-a-655b0--the-user-pick-a-restaurant\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                    "column": 62,
+                    "line": 241
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-d20333e5a8e7e741ddeb",
+          "file": "customer.spec.ts",
+          "line": 230,
+          "column": 5
+        },
+        {
+          "title": "BB-12 user sees own submitted reviews with status",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3107,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:40:48.649Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-af73cf5a0ccea83a5fdb",
+          "file": "customer.spec.ts",
+          "line": 244,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-007 saved restaurant: save, view on profile, remove",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6823,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:40:52.441Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-43313dabd4940a5c9f38",
+          "file": "customer.spec.ts",
+          "line": 252,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-008 saved state is shown when revisiting an already-saved restaurant",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 4714,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Save\u001b[7md\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"Save\"\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Save\u001b[7md\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"Save\"\u001b[39m\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:279:17",
+                    "location": {
+                      "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                      "column": 17,
+                      "line": 279
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 277 |\u001b[39m   log(\u001b[32m\"TC-UI-008\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m`button label after reload of saved restaurant: ${label}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 278 |\u001b[39m   \u001b[36mawait\u001b[39m shot(page\u001b[33m,\u001b[39m \u001b[32m\"ui\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"TC-UI-008-saved-state-after-reload\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36mfalse\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 279 |\u001b[39m   expect(label)\u001b[33m.\u001b[39mtoBe(\u001b[32m\"Saved\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 280 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 281 |\u001b[39m\n \u001b[90m 282 |\u001b[39m test(\u001b[32m\"TC-UI-009 unauthenticated 'Save' redirects to login\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                        "column": 17,
+                        "line": 279
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Save\u001b[7md\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"Save\"\u001b[39m\n\n  277 |   log(\"TC-UI-008\", `button label after reload of saved restaurant: ${label}`);\n  278 |   await shot(page, \"ui\", \"TC-UI-008-saved-state-after-reload\", false);\n> 279 |   expect(label).toBe(\"Saved\");\n      |                 ^\n  280 | });\n  281 |\n  282 | test(\"TC-UI-009 unauthenticated 'Save' redirects to login\", async ({ page }) => {\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:279:17"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:40:59.306Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-TC-UI-008-saved-s-9e40d-an-already-saved-restaurant\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-TC-UI-008-saved-s-9e40d-an-already-saved-restaurant\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                    "column": 17,
+                    "line": 279
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-7230c64da247ec4aee90",
+          "file": "customer.spec.ts",
+          "line": 269,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-009 unauthenticated 'Save' redirects to login",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4072,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:41:06.135Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-907dfd38009735a2a6f2",
+          "file": "customer.spec.ts",
+          "line": 282,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-010 unauthenticated review form redirects to login",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1900,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:41:10.996Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-432028c349837e731d83",
+          "file": "customer.spec.ts",
+          "line": 288,
+          "column": 5
+        },
+        {
+          "title": "TC-SEC-031 stored XSS payload in an approved review is rendered as text (no script execution)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3664,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:41:12.949Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-3b246f5925b4c691a440",
+          "file": "customer.spec.ts",
+          "line": 293,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-011 home 'Top Rated' section reflects API data",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1878,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"(220 reviews)\"\u001b[39m\nReceived string:    \u001b[31m\"★ 4.6 (210 reviews)The Empire CafeCafe · International⌖  KandyLKR 2,000 – 4,000\"\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"(220 reviews)\"\u001b[39m\nReceived string:    \u001b[31m\"★ 4.6 (210 reviews)The Empire CafeCafe · International⌖  KandyLKR 2,000 – 4,000\"\u001b[39m\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:312:16",
+                    "location": {
+                      "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                      "column": 16,
+                      "line": 312
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 310 |\u001b[39m   \u001b[36mconst\u001b[39m text \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m card\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\n \u001b[90m 311 |\u001b[39m   log(\u001b[32m\"TC-UI-011\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m`home card: \"${text}\"; API reviewCount=${api.reviewCount}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 312 |\u001b[39m   expect(text)\u001b[33m.\u001b[39mtoContain(\u001b[32m`(${api.reviewCount} reviews)`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 313 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 314 |\u001b[39m\n \u001b[90m 315 |\u001b[39m test(\u001b[32m\"TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard)\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                        "column": 16,
+                        "line": 312
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"(220 reviews)\"\u001b[39m\nReceived string:    \u001b[31m\"★ 4.6 (210 reviews)The Empire CafeCafe · International⌖  KandyLKR 2,000 – 4,000\"\u001b[39m\n\n  310 |   const text = await card.textContent();\n  311 |   log(\"TC-UI-011\", `home card: \"${text}\"; API reviewCount=${api.reviewCount}`);\n> 312 |   expect(text).toContain(`(${api.reviewCount} reviews)`);\n      |                ^\n  313 | });\n  314 |\n  315 | test(\"TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard)\", async ({ page }) => {\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:312:16"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:41:16.665Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-TC-UI-011-home-Top-Rated-section-reflects-API-data\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-TC-UI-011-home-Top-Rated-section-reflects-API-data\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                    "column": 16,
+                    "line": 312
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-f56a85901e331629a65b",
+          "file": "customer.spec.ts",
+          "line": 306,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4064,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:41:20.477Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-8d8e360027e60910a152",
+          "file": "customer.spec.ts",
+          "line": 315,
+          "column": 5
+        },
+        {
+          "title": "TC-UI-013 home page filter chips and location selector affect results",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 4210,
+                  "error": {
+                    "message": "Error: clicking a filter chip should apply a filter\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m\"http://localhost:3000/\"\u001b[39m",
+                    "stack": "Error: clicking a filter chip should apply a filter\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m\"http://localhost:3000/\"\u001b[39m\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:337:73",
+                    "location": {
+                      "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                      "column": 73,
+                      "line": 337
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 335 |\u001b[39m   log(\u001b[32m\"TC-UI-013\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m`URL after clicking 'Vegan' chip: ${afterChip}; search 'cafe' + location Galle -> URL ${page.url()} results: ${names.join(\", \")}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 336 |\u001b[39m   \u001b[36mawait\u001b[39m shot(page\u001b[33m,\u001b[39m \u001b[32m\"ui\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"TC-UI-013-home-location-ignored\"\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 337 |\u001b[39m   expect(afterChip\u001b[33m,\u001b[39m \u001b[32m\"clicking a filter chip should apply a filter\"\u001b[39m)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBe(\u001b[32m\"http://localhost:3000/\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 338 |\u001b[39m   expect(names\u001b[33m.\u001b[39mevery((n) \u001b[33m=>\u001b[39m n \u001b[33m===\u001b[39m \u001b[32m\"Pedlar’s Inn\"\u001b[39m)\u001b[33m,\u001b[39m \u001b[32m\"location Galle should restrict results\"\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 339 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 340 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                        "column": 73,
+                        "line": 337
+                      },
+                      "message": "Error: clicking a filter chip should apply a filter\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m\"http://localhost:3000/\"\u001b[39m\n\n  335 |   log(\"TC-UI-013\", `URL after clicking 'Vegan' chip: ${afterChip}; search 'cafe' + location Galle -> URL ${page.url()} results: ${names.join(\", \")}`);\n  336 |   await shot(page, \"ui\", \"TC-UI-013-home-location-ignored\");\n> 337 |   expect(afterChip, \"clicking a filter chip should apply a filter\").not.toBe(\"http://localhost:3000/\");\n      |                                                                         ^\n  338 |   expect(names.every((n) => n === \"Pedlar’s Inn\"), \"location Galle should restrict results\").toBe(true);\n  339 | });\n  340 |\n    at D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts:337:73"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T14:41:25.259Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-TC-UI-013-home-pa-e723b-ion-selector-affect-results\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\restaurent\\restaurant-review-portal\\testing\\evidence\\ui\\playwright-artifacts\\customer-TC-UI-013-home-pa-e723b-ion-selector-affect-results\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\restaurent\\restaurant-review-portal\\testing\\e2e\\specs\\customer.spec.ts",
+                    "column": 73,
+                    "line": 337
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a47e7b5d353475863a75-72e168c91a3324c77c75",
+          "file": "customer.spec.ts",
+          "line": 324,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-30T14:37:20.976Z",
+    "duration": 249174.907,
+    "expected": 33,
+    "skipped": 0,
+    "unexpected": 9,
+    "flaky": 0
+  }
+}

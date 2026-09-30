@@ -1,0 +1,46 @@
+{
+  "testId": "TC-MOD-012b",
+  "title": "Approve Sinhala 5/4/5 review for ministry-of-crab",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:17+05:30",
+  "request": {
+    "method": "PATCH",
+    "url": "http://localhost:8080/api/v1/admin/reviews/4",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": "APPROVED"
+    }
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 22.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "387"
+    },
+    "body": {
+      "id": 4,
+      "author": "QA User B",
+      "restaurantSlug": "ministry-of-crab",
+      "restaurantName": "Ministry of Crab",
+      "dishSlug": "chilli-crab",
+      "dishName": "Chilli Crab",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "si",
+      "reviewText": "රසවත් කකුළුවන් කෑම. සේවය ඉතා හොඳයි.",
+      "status": "APPROVED",
+      "createdAt": "2026-09-30T13:35:16.783730Z"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200",
+  "verdict": "PASS"
+}

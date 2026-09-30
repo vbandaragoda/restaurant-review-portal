@@ -1,0 +1,39 @@
+{
+  "testId": "TC-DATA-pre-loginA",
+  "title": "User A login",
+  "category": "database",
+  "executedAt": "2026-09-30T19:10:35+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/login",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "qa.usera.190512@tastelanka.test",
+      "password": "<redacted test password, length 13>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 105.6,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "356"
+    },
+    "body": {
+      "token": "<JWT, 238 chars>",
+      "userId": 2,
+      "fullName": "QA User A",
+      "email": "qa.usera.190512@tastelanka.test",
+      "role": "USER",
+      "language": "en"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200",
+  "verdict": "PASS"
+}

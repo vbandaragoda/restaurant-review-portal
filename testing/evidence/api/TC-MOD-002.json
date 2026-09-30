@@ -1,0 +1,46 @@
+{
+  "testId": "TC-MOD-002",
+  "title": "Admin approves review",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:17+05:30",
+  "request": {
+    "method": "PATCH",
+    "url": "http://localhost:8080/api/v1/admin/reviews/1",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": "APPROVED",
+      "note": "QA approved"
+    }
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 57.7,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "310"
+    },
+    "body": {
+      "id": 1,
+      "author": "QA User A",
+      "restaurantSlug": "nuga-gama",
+      "restaurantName": "Nuga Gama",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "QA review: tasty rice and curry, friendly staff.",
+      "status": "APPROVED",
+      "moderatorNote": "QA approved",
+      "createdAt": "2026-09-30T13:35:16.191293Z"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; status=APPROVED",
+  "verdict": "PASS"
+}

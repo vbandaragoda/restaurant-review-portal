@@ -1,0 +1,57 @@
+{
+  "testId": "TC-ADM-007",
+  "title": "Create restaurant with priceMin > priceMax",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:18+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/admin/restaurants",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "slug": "qa-inverted-190512",
+      "name": "QA Test Bistro",
+      "cuisine": "Sri Lankan · Fusion",
+      "location": "Galle",
+      "priceMin": 9000,
+      "priceMax": 100,
+      "vegetarian": true,
+      "vegan": false,
+      "halal": true,
+      "description": "Created by QA API test.",
+      "imageColor": "#123456"
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 19.5,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "278"
+    },
+    "body": {
+      "id": 7,
+      "slug": "qa-inverted-190512",
+      "name": "QA Test Bistro",
+      "cuisine": "Sri Lankan · Fusion",
+      "location": "Galle",
+      "rating": 0,
+      "reviewCount": 0,
+      "priceMin": 9000,
+      "priceMax": 100,
+      "vegetarian": true,
+      "vegan": false,
+      "halal": true,
+      "description": "Created by QA API test.",
+      "imageColor": "#123456"
+    }
+  },
+  "expected": "HTTP 400 (minimum price must not exceed maximum price)",
+  "actual": "HTTP 201",
+  "verdict": "FAIL"
+}

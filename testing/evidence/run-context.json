@@ -1,0 +1,15 @@
+{
+  "run": "190512",
+  "userA": "qa.usera.190512@tastelanka.test",
+  "userB": "qa.userb.190512@tastelanka.test",
+  "moderator": "qa.mod.190512@tastelanka.test",
+  "password": "see scripts (test value)",
+  "reviewPendingOrApproved": 1,
+  "reviewSinhala": 4,
+  "reviewTamil": 5,
+  "reviewXss": 7,
+  "reviewRejected": 6,
+  "restaurantWithReviews": 8,
+  "restaurantWithReviewsSlug": "qa-rest2-190512",
+  "invertedPriceRestaurantId": 7
+}

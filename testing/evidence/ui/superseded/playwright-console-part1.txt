@@ -1,0 +1,276 @@
+
+Running 42 tests using 1 worker
+
+  ok  1 specs\admin.spec.ts:11:5 › TC-ADM-UI-001 admin login opens dashboard with live metrics (8.1s)
+  ok  2 specs\admin.spec.ts:24:5 › BB-14a customer is denied the admin UI (redirected to login) (6.8s)
+  ok  3 specs\admin.spec.ts:33:5 › BB-14b anonymous visitor is denied the admin UI (2.4s)
+  ok  4 specs\admin.spec.ts:38:5 › BB-14c customer who forges role=ADMIN in localStorage sees no admin data (API enforces role) (4.0s)
+  ok  5 specs\admin.spec.ts:53:5 › BB-15 admin creates, updates and deletes a restaurant through the UI (6.6s)
+  x   6 specs\admin.spec.ts:93:5 › TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews cannot be deleted (7.7s)
+  ok  7 specs\admin.spec.ts:112:5 › BB-16 admin creates, updates and deletes a dish through the UI (9.6s)
+  ok  8 specs\admin.spec.ts:148:5 › TC-ADM-UI-003 invalid restaurant input shows validation feedback (5.2s)
+  ok  9 specs\admin.spec.ts:160:5 › BB-13 admin approves and rejects pending reviews; public visibility follows status (40.4s)
+  x  10 specs\admin.spec.ts:195:5 › TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting (8.5s)
+  ok 11 specs\customer.spec.ts:6:5 › TC-UI-001 home page renders hero, search and navigation (4.8s)
+  ok 12 specs\customer.spec.ts:13:5 › BB-01 registration with valid data creates account and opens profile (2.9s)
+  ok 13 specs\customer.spec.ts:22:5 › BB-02a registration rejected when passwords do not match (2.1s)
+  ok 14 specs\customer.spec.ts:33:5 › BB-02b registration rejected for duplicate email with feedback (2.1s)
+  ok 15 specs\customer.spec.ts:40:5 › BB-02c registration blocked client-side for empty fields and short password (2.4s)
+  ok 16 specs\customer.spec.ts:58:5 › BB-03 valid login authenticates and grants access to profile (2.8s)
+  ok 17 specs\customer.spec.ts:67:5 › BB-04 invalid password is rejected with an error message (2.1s)
+  ok 18 specs\customer.spec.ts:74:5 › BB-05 profile shows the user's name, email, reviews and saved sections (2.6s)
+  ok 19 specs\customer.spec.ts:82:5 › TC-UI-002 logout clears the session and protects the profile route (4.9s)
+  ok 20 specs\customer.spec.ts:93:5 › BB-06 restaurant listing displays available restaurants (2.3s)
+  ok 21 specs\customer.spec.ts:103:5 › BB-07 search returns matching restaurants (2.4s)
+  ok 22 specs\customer.spec.ts:112:5 › TC-UI-003 search with no matches shows an empty-state message (1.9s)
+  ok 23 specs\customer.spec.ts:118:5 › TC-UI-004 home page search submits to results page (3.2s)
+  ok 24 specs\customer.spec.ts:126:5 › BB-08a filter by location and dietary options reflects criteria (2.8s)
+  x  25 specs\customer.spec.ts:137:5 › BB-08b 'Clear all' resets filters and results (4.2s)
+  x  26 specs\customer.spec.ts:158:5 › BB-08c cuisine category link filters the listing (3.9s)
+  x  27 specs\customer.spec.ts:169:5 › BB-08d price and spice filters are available on restaurant search (3.4s)
+  ok 28 specs\customer.spec.ts:177:5 › BB-09 restaurant details show info, menu and dish details (5.1s)
+  ok 29 specs\customer.spec.ts:191:5 › TC-UI-005 unknown restaurant slug shows an error state (4.3s)
+  ok 30 specs\customer.spec.ts:197:5 › BB-10 authenticated user submits a valid review (stored for moderation) (3.9s)
+  ok 31 specs\customer.spec.ts:209:5 › BB-11a review with text shorter than 10 characters is blocked (4.7s)
+  ok 32 specs\customer.spec.ts:221:5 › BB-11b rating outside 1-5 cannot be entered in the UI (star control limits range) (2.8s)
+  x  33 specs\customer.spec.ts:230:5 › TC-UI-006 'Write a Review' from home page (no restaurant selected) lets the user pick a restaurant (5.8s)
+  ok 34 specs\customer.spec.ts:244:5 › BB-12 user sees own submitted reviews with status (3.1s)
+  ok 35 specs\customer.spec.ts:252:5 › TC-UI-007 saved restaurant: save, view on profile, remove (6.8s)
+  x  36 specs\customer.spec.ts:269:5 › TC-UI-008 saved state is shown when revisiting an already-saved restaurant (4.7s)
+  ok 37 specs\customer.spec.ts:282:5 › TC-UI-009 unauthenticated 'Save' redirects to login (4.1s)
+  ok 38 specs\customer.spec.ts:288:5 › TC-UI-010 unauthenticated review form redirects to login (1.9s)
+  ok 39 specs\customer.spec.ts:293:5 › TC-SEC-031 stored XSS payload in an approved review is rendered as text (no script execution) (3.7s)
+  x  40 specs\customer.spec.ts:306:5 › TC-UI-011 home 'Top Rated' section reflects API data (1.9s)
+  ok 41 specs\customer.spec.ts:315:5 › TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard) (4.1s)
+  x  42 specs\customer.spec.ts:324:5 › TC-UI-013 home page filter chips and location selector affect results (4.2s)
+
+
+  1) specs\admin.spec.ts:93:5 › TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews cannot be deleted 
+
+    Error: admin must have a way to act on the instruction 'Remove its menu and reviews first'
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      107 |   const deleteReviewButtons = await page.getByRole("button", { name: /delete/i }).count();
+      108 |   log("TC-ADM-UI-002", `review delete controls available in moderation UI: ${deleteReviewButtons}`);
+    > 109 |   expect(deleteReviewButtons, "admin must have a way to act on the instruction 'Remove its menu and reviews first'").toBeGreaterThan(0);
+          |                                                                                                                      ^
+      110 | });
+      111 |
+      112 | test("BB-16 admin creates, updates and deletes a dish through the UI", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:109:118
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-002-admin--8a4c3-h-reviews-cannot-be-deleted\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-002-admin--8a4c3-h-reviews-cannot-be-deleted\error-context.md
+
+  2) specs\admin.spec.ts:195:5 › TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting 
+
+    Error: moderation UI should allow recording a reason (API supports 'note')
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      198 |   const noteFields = await page.locator("textarea, input[type=text]").count();
+      199 |   log("TC-ADM-UI-004", `note/reason inputs in moderation UI: ${noteFields}`);
+    > 200 |   expect(noteFields, "moderation UI should allow recording a reason (API supports 'note')").toBeGreaterThan(0);
+          |                                                                                             ^
+      201 | });
+      202 |
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:200:93
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-004-modera-86743--note-reason-when-rejecting\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-004-modera-86743--note-reason-when-rejecting\error-context.md
+
+  3) specs\customer.spec.ts:137:5 › BB-08b 'Clear all' resets filters and results ──────────────────
+
+    Error: results should reset to the unfiltered count after Clear all
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 8
+    Received: 3
+
+      153 |   log("BB-08b", `after Clear all (no Apply clicked) results text: ${text}`);
+      154 |   await shot(page, "ui", "BB-08b-clear-all");
+    > 155 |   expect(Number(text?.match(/\d+/)?.[0]), "results should reset to the unfiltered count after Clear all").toBe(all);
+          |                                                                                                           ^
+      156 | });
+      157 |
+      158 | test("BB-08c cuisine category link filters the listing", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:155:107
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-BB-08b-Clear-all-resets-filters-and-results\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-BB-08b-Clear-all-resets-filters-and-results\error-context.md
+
+  4) specs\customer.spec.ts:158:5 › BB-08c cuisine category link filters the listing ───────────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 7
+
+      Array [
+        "Ministry of Crab",
+    +   "The Empire Cafe",
+    +   "Pedlar’s Inn",
+    +   "Nuga Gama",
+    +   "Green Leaf Kitchen",
+    +   "QA Test Bistro",
+    +   "QA Reviewed Cafe",
+    +   "QA Persistence Diner",
+      ]
+
+      164 |   log("BB-08c", `cuisine=Seafood listing shows: ${names.join(", ")}`);
+      165 |   await shot(page, "ui", "BB-08c-cuisine-link-seafood");
+    > 166 |   expect(names).toEqual(["Ministry of Crab"]);
+          |                 ^
+      167 | });
+      168 |
+      169 | test("BB-08d price and spice filters are available on restaurant search", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:166:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-BB-08c-cuisine-category-link-filters-the-listing\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-BB-08c-cuisine-category-link-filters-the-listing\error-context.md
+
+  5) specs\customer.spec.ts:169:5 › BB-08d price and spice filters are available on restaurant search 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      172 |   const priceCheckboxes = await page.getByRole("checkbox", { name: /LKR|price|budget/i }).count();
+      173 |   log("BB-08d", `price filter controls found: ${priceControl + priceCheckboxes}`);
+    > 174 |   expect(priceControl + priceCheckboxes).toBeGreaterThan(0);
+          |                                          ^
+      175 | });
+      176 |
+      177 | test("BB-09 restaurant details show info, menu and dish details", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:174:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-BB-08d-price-and--a857a-ilable-on-restaurant-search\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-BB-08d-price-and--a857a-ilable-on-restaurant-search\error-context.md
+
+  6) specs\customer.spec.ts:230:5 › TC-UI-006 'Write a Review' from home page (no restaurant selected) lets the user pick a restaurant 
+
+    Error: a restaurant selector should be offered
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      239 |   await shot(page, "ui", "TC-UI-006-review-without-restaurant");
+      240 |   log("TC-UI-006", `restaurant picker controls=${pickers}`);
+    > 241 |   expect(pickers, "a restaurant selector should be offered").toBeGreaterThan(0);
+          |                                                              ^
+      242 | });
+      243 |
+      244 | test("BB-12 user sees own submitted reviews with status", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:241:62
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-TC-UI-006-Write-a-655b0--the-user-pick-a-restaurant\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-TC-UI-006-Write-a-655b0--the-user-pick-a-restaurant\error-context.md
+
+  7) specs\customer.spec.ts:269:5 › TC-UI-008 saved state is shown when revisiting an already-saved restaurant 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Saved"
+    Received: "Save"
+
+      277 |   log("TC-UI-008", `button label after reload of saved restaurant: ${label}`);
+      278 |   await shot(page, "ui", "TC-UI-008-saved-state-after-reload", false);
+    > 279 |   expect(label).toBe("Saved");
+          |                 ^
+      280 | });
+      281 |
+      282 | test("TC-UI-009 unauthenticated 'Save' redirects to login", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:279:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-TC-UI-008-saved-s-9e40d-an-already-saved-restaurant\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-TC-UI-008-saved-s-9e40d-an-already-saved-restaurant\error-context.md
+
+  8) specs\customer.spec.ts:306:5 › TC-UI-011 home 'Top Rated' section reflects API data ───────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "(220 reviews)"
+    Received string:    "★ 4.6 (210 reviews)The Empire CafeCafe · International⌖  KandyLKR 2,000 – 4,000"
+
+      310 |   const text = await card.textContent();
+      311 |   log("TC-UI-011", `home card: "${text}"; API reviewCount=${api.reviewCount}`);
+    > 312 |   expect(text).toContain(`(${api.reviewCount} reviews)`);
+          |                ^
+      313 | });
+      314 |
+      315 | test("TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard)", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:312:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-TC-UI-011-home-Top-Rated-section-reflects-API-data\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-TC-UI-011-home-Top-Rated-section-reflects-API-data\error-context.md
+
+  9) specs\customer.spec.ts:324:5 › TC-UI-013 home page filter chips and location selector affect results 
+
+    Error: clicking a filter chip should apply a filter
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "http://localhost:3000/"
+
+      335 |   log("TC-UI-013", `URL after clicking 'Vegan' chip: ${afterChip}; search 'cafe' + location Galle -> URL ${page.url()} results: ${names.join(", ")}`);
+      336 |   await shot(page, "ui", "TC-UI-013-home-location-ignored");
+    > 337 |   expect(afterChip, "clicking a filter chip should apply a filter").not.toBe("http://localhost:3000/");
+          |                                                                         ^
+      338 |   expect(names.every((n) => n === "Pedlar’s Inn"), "location Galle should restrict results").toBe(true);
+      339 | });
+      340 |
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:337:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\customer-TC-UI-013-home-pa-e723b-ion-selector-affect-results\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\customer-TC-UI-013-home-pa-e723b-ion-selector-affect-results\error-context.md
+
+  9 failed
+    specs\admin.spec.ts:93:5 › TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews cannot be deleted 
+    specs\admin.spec.ts:195:5 › TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting 
+    specs\customer.spec.ts:137:5 › BB-08b 'Clear all' resets filters and results ───────────────────
+    specs\customer.spec.ts:158:5 › BB-08c cuisine category link filters the listing ────────────────
+    specs\customer.spec.ts:169:5 › BB-08d price and spice filters are available on restaurant search 
+    specs\customer.spec.ts:230:5 › TC-UI-006 'Write a Review' from home page (no restaurant selected) lets the user pick a restaurant 
+    specs\customer.spec.ts:269:5 › TC-UI-008 saved state is shown when revisiting an already-saved restaurant 
+    specs\customer.spec.ts:306:5 › TC-UI-011 home 'Top Rated' section reflects API data ────────────
+    specs\customer.spec.ts:324:5 › TC-UI-013 home page filter chips and location selector affect results 
+  33 passed (4.2m)
+exit=1 elapsed=258s QA_RUN=200712
