@@ -19,10 +19,12 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/admin")
@@ -54,6 +56,7 @@ public class AdminController {
     @PostMapping("/restaurants")
     @ResponseStatus(HttpStatus.CREATED)
     public RestaurantDto createRestaurant(@Valid @RequestBody RestaurantRequest request) {
+        validatePriceRange(request);
         if (restaurants.findBySlug(request.slug()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Restaurant slug already exists");
         }
@@ -65,8 +68,12 @@ public class AdminController {
     @PutMapping("/restaurants/{id}")
     @Transactional
     public RestaurantDto updateRestaurant(@PathVariable Long id, @Valid @RequestBody RestaurantRequest request) {
+        validatePriceRange(request);
         Restaurant restaurant = restaurants.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Restaurant not found"));
+        restaurants.findBySlug(request.slug()).filter(existing -> !Objects.equals(existing.getId(), id))
+                .ifPresent(existing -> { throw new ResponseStatusException(HttpStatus.CONFLICT,
+                        "Restaurant slug already exists"); });
         restaurant.update(request.slug(), request.name(), request.cuisine(), request.location(), request.priceMin(),
                 request.priceMax(), request.vegetarian(), request.vegan(), request.halal(), request.description(),
                 request.imageColor());
@@ -77,6 +84,10 @@ public class AdminController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRestaurant(@PathVariable Long id) {
         if (!restaurants.existsById(id)) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Restaurant not found");
+        if (reviews.existsByRestaurantId(id)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "Restaurant has customer reviews and cannot be deleted");
+        }
         restaurants.deleteById(id);
     }
 
@@ -101,6 +112,9 @@ public class AdminController {
     public DishDto updateDish(@PathVariable Long id, @Valid @RequestBody DishRequest request) {
         Dish dish = dishes.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Dish not found"));
+        dishes.findBySlug(request.slug()).filter(existing -> !Objects.equals(existing.getId(), id))
+                .ifPresent(existing -> { throw new ResponseStatusException(HttpStatus.CONFLICT,
+                        "Dish slug already exists"); });
         dish.setRestaurant(restaurant(request.restaurantSlug()));
         dish.update(request.slug(), request.name(), request.description(), request.price(), request.spiceLevel(),
                 request.vegetarian(), request.halal(), request.imageColor());
@@ -121,11 +135,39 @@ public class AdminController {
 
     @PatchMapping("/reviews/{id}")
     @Transactional
-    public ReviewDto moderate(@PathVariable Long id, @Valid @RequestBody ModerationRequest request) {
+    public ReviewDto moderate(Authentication authentication, @PathVariable Long id,
+                              @Valid @RequestBody ModerationRequest request) {
         Review review = reviews.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Review not found"));
-        review.moderate(request.status(), request.note());
+        if (request.status() == ReviewStatus.PENDING) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Review must be approved or rejected");
+        }
+        if (request.status() == ReviewStatus.REJECTED && (request.note() == null || request.note().isBlank())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A rejection reason is required");
+        }
+        var moderator = users.findByEmailIgnoreCase(authentication.getName())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Moderator not found"));
+        if (review.getStatus() != request.status()) {
+            if (review.getStatus() == ReviewStatus.APPROVED) {
+                review.getRestaurant().removeApprovedReview(review.getOverallRating());
+                if (review.getDish() != null) review.getDish().removeApprovedReview(review.getOverallRating(),
+                        review.getFoodRating(), review.getServiceRating());
+            }
+            if (request.status() == ReviewStatus.APPROVED) {
+                review.getRestaurant().addApprovedReview(review.getOverallRating());
+                if (review.getDish() != null) review.getDish().addApprovedReview(review.getOverallRating(),
+                        review.getFoodRating(), review.getServiceRating());
+            }
+        }
+        review.moderate(request.status(), request.note(), moderator);
         return ReviewDto.from(review);
+    }
+
+    private void validatePriceRange(RestaurantRequest request) {
+        if (request.priceMin() > request.priceMax()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "Minimum price must not exceed maximum price");
+        }
     }
 
     private Restaurant restaurant(String slug) {

@@ -1,10 +1,13 @@
 package com.tastelanka.portal.config;
 
 import com.tastelanka.portal.security.JwtAuthenticationFilter;
+import jakarta.servlet.DispatcherType;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,7 +30,19 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> { })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(errors -> errors
+                        .authenticationEntryPoint((request, response, exception) -> {
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.setContentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE);
+                            response.getWriter().write("{\"status\":401,\"detail\":\"Authentication is required\"}");
+                        })
+                        .accessDeniedHandler((request, response, exception) -> {
+                            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                            response.setContentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE);
+                            response.getWriter().write("{\"status\":403,\"detail\":\"Access is denied\"}");
+                        }))
                 .authorizeHttpRequests(auth -> auth
+                        .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                         .requestMatchers("/api/v1/auth/**", "/api/v1/health").permitAll()
                         .requestMatchers("/api/v1/admin/**").hasAnyRole("ADMIN", "MODERATOR")
                         .requestMatchers(HttpMethod.GET, "/api/v1/restaurants/**", "/api/v1/cuisines/**",

@@ -16,12 +16,16 @@ public record ReviewDto(
         String reviewText,
         String status,
         String moderatorNote,
+        String moderatedBy,
+        Instant moderatedAt,
         Instant createdAt) {
     public static ReviewDto from(Review review) {
         return new ReviewDto(review.getId(), review.getUser().getFullName(), review.getRestaurant().getSlug(),
                 review.getRestaurant().getName(), review.getDish() == null ? null : review.getDish().getSlug(),
                 review.getDish() == null ? null : review.getDish().getName(), review.getFoodRating(),
                 review.getServiceRating(), review.getOverallRating(), review.getLanguage(), review.getReviewText(),
-                review.getStatus().name(), review.getModeratorNote(), review.getCreatedAt());
+                review.getStatus().name(), review.getModeratorNote(),
+                review.getModeratedBy() == null ? null : review.getModeratedBy().getFullName(),
+                review.getModeratedAt(), review.getCreatedAt());
     }
 }

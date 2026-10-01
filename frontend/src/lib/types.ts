@@ -47,6 +47,8 @@ export type Review = {
   reviewText: string;
   status: "PENDING" | "APPROVED" | "REJECTED";
   moderatorNote?: string;
+  moderatedBy?: string;
+  moderatedAt?: string;
   createdAt: string;
 };
 

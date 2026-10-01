@@ -39,6 +39,11 @@ public class Review {
     private ReviewStatus status = ReviewStatus.PENDING;
     @Column(name = "moderator_note", length = 500)
     private String moderatorNote;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "moderated_by", columnDefinition = "BIGINT UNSIGNED")
+    private User moderatedBy;
+    @Column(name = "moderated_at")
+    private Instant moderatedAt;
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
 
@@ -56,9 +61,11 @@ public class Review {
         this.reviewText = reviewText;
     }
 
-    public void moderate(ReviewStatus status, String moderatorNote) {
+    public void moderate(ReviewStatus status, String moderatorNote, User moderator) {
         this.status = status;
-        this.moderatorNote = moderatorNote;
+        this.moderatorNote = moderatorNote == null || moderatorNote.isBlank() ? null : moderatorNote.trim();
+        this.moderatedBy = moderator;
+        this.moderatedAt = Instant.now();
     }
 
     public Long getId() { return id; }
@@ -72,5 +79,7 @@ public class Review {
     public String getReviewText() { return reviewText; }
     public ReviewStatus getStatus() { return status; }
     public String getModeratorNote() { return moderatorNote; }
+    public User getModeratedBy() { return moderatedBy; }
+    public Instant getModeratedAt() { return moderatedAt; }
     public Instant getCreatedAt() { return createdAt; }
 }

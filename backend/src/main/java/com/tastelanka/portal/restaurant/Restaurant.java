@@ -2,6 +2,7 @@ package com.tastelanka.portal.restaurant;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Entity
 @Table(name = "restaurants")
@@ -64,6 +65,23 @@ public class Restaurant {
     public void updateRating(BigDecimal rating, int reviewCount) {
         this.rating = rating;
         this.reviewCount = reviewCount;
+    }
+
+    public void addApprovedReview(int overallRating) {
+        BigDecimal total = rating.multiply(BigDecimal.valueOf(reviewCount)).add(BigDecimal.valueOf(overallRating));
+        reviewCount++;
+        rating = total.divide(BigDecimal.valueOf(reviewCount), 1, RoundingMode.HALF_UP);
+    }
+
+    public void removeApprovedReview(int overallRating) {
+        if (reviewCount <= 1) {
+            rating = BigDecimal.ZERO.setScale(1);
+            reviewCount = 0;
+            return;
+        }
+        BigDecimal total = rating.multiply(BigDecimal.valueOf(reviewCount)).subtract(BigDecimal.valueOf(overallRating));
+        reviewCount--;
+        rating = total.max(BigDecimal.ZERO).divide(BigDecimal.valueOf(reviewCount), 1, RoundingMode.HALF_UP);
     }
     public Long getId() { return id; }
     public String getSlug() { return slug; }

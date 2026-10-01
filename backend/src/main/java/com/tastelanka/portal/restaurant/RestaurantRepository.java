@@ -20,6 +20,11 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
               and (:vegetarian = false or r.vegetarian = true)
               and (:vegan = false or r.vegan = true)
               and (:halal = false or r.halal = true)
+              and (:maxPrice is null or r.priceMin <= :maxPrice)
+              and (:spiceLevel is null or exists (
+                    select d.id from Dish d
+                    where d.restaurant = r and lower(d.spiceLevel) = lower(:spiceLevel)
+              ))
             order by r.rating desc, r.reviewCount desc
             """)
     List<Restaurant> search(@Param("query") String query,
@@ -27,5 +32,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
                             @Param("cuisine") String cuisine,
                             @Param("vegetarian") boolean vegetarian,
                             @Param("vegan") boolean vegan,
-                            @Param("halal") boolean halal);
+                            @Param("halal") boolean halal,
+                            @Param("maxPrice") Integer maxPrice,
+                            @Param("spiceLevel") String spiceLevel);
 }

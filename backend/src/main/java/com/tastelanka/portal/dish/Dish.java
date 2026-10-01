@@ -3,6 +3,7 @@ package com.tastelanka.portal.dish;
 import com.tastelanka.portal.restaurant.Restaurant;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Entity
 @Table(name = "dishes")
@@ -67,6 +68,33 @@ public class Dish {
         this.foodRating = foodRating;
         this.serviceRating = serviceRating;
         this.reviewCount = reviewCount;
+    }
+    public void addApprovedReview(int overall, int food, int service) {
+        rating = addToAverage(rating, overall);
+        foodRating = addToAverage(foodRating, food);
+        serviceRating = addToAverage(serviceRating, service);
+        reviewCount++;
+    }
+    public void removeApprovedReview(int overall, int food, int service) {
+        if (reviewCount <= 1) {
+            rating = BigDecimal.ZERO.setScale(1);
+            foodRating = BigDecimal.ZERO.setScale(1);
+            serviceRating = BigDecimal.ZERO.setScale(1);
+            reviewCount = 0;
+            return;
+        }
+        rating = removeFromAverage(rating, overall);
+        foodRating = removeFromAverage(foodRating, food);
+        serviceRating = removeFromAverage(serviceRating, service);
+        reviewCount--;
+    }
+    private BigDecimal addToAverage(BigDecimal average, int score) {
+        BigDecimal total = average.multiply(BigDecimal.valueOf(reviewCount)).add(BigDecimal.valueOf(score));
+        return total.divide(BigDecimal.valueOf(reviewCount + 1L), 1, RoundingMode.HALF_UP);
+    }
+    private BigDecimal removeFromAverage(BigDecimal average, int score) {
+        BigDecimal total = average.multiply(BigDecimal.valueOf(reviewCount)).subtract(BigDecimal.valueOf(score));
+        return total.max(BigDecimal.ZERO).divide(BigDecimal.valueOf(reviewCount - 1L), 1, RoundingMode.HALF_UP);
     }
     public Long getId() { return id; }
     public Restaurant getRestaurant() { return restaurant; }

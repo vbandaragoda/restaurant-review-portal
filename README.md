@@ -22,10 +22,11 @@ Spring Boot 4.1 + Spring Security + JWT
 
 1. Copy `.env.example` to `.env` and change the development secrets. Docker Compose reads this file for MySQL.
 2. Start MySQL: `docker compose up -d mysql`
-3. Optionally set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in the API terminal to create or promote the first administrator on startup. In PowerShell, use `$env:ADMIN_EMAIL="admin@example.com"` and `$env:ADMIN_PASSWORD="change-me"`.
-4. Start the API: `cd backend` then `./mvnw spring-boot:run` (Windows: `.\mvnw.cmd spring-boot:run`).
-5. Start the UI: `cd frontend`, run `npm install`, then `npm run dev`.
-6. Open `http://localhost:3000`.
+3. Set a private JWT signing secret of at least 32 bytes in the API terminal. In PowerShell, use `$env:JWT_SECRET="replace-this-with-a-long-random-private-value"`.
+4. Optionally set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in the API terminal to create, promote, or reset the bootstrap administrator. In PowerShell, use `$env:ADMIN_EMAIL="admin@example.com"` and `$env:ADMIN_PASSWORD="change-me"`.
+5. Start the API: `cd backend` then `./mvnw spring-boot:run` (Windows: `.\mvnw.cmd spring-boot:run`).
+6. Start the UI: `cd frontend`, run `npm install`, then `npm run dev`.
+7. Open `http://localhost:3000`.
 
 The API defaults to `http://localhost:8080/api/v1`. Override it with `NEXT_PUBLIC_API_URL`.
 
@@ -39,6 +40,7 @@ The API defaults to `http://localhost:8080/api/v1`. Override it with `NEXT_PUBLI
 - `GET /api/v1/dishes/{slug}`
 - `GET /api/v1/reviews?restaurant={slug}`
 - `POST /api/v1/reviews`
+- `DELETE /api/v1/reviews/{id}` (review owner only)
 - `GET /api/v1/reviews/mine`
 - `GET /api/v1/users/me`
 - `GET|POST|DELETE /api/v1/users/me/saved-restaurants/**`

@@ -1,7 +1,19 @@
 import { RestaurantSearch } from "@/components/restaurant-search";
 
-export default async function RestaurantsPage({ searchParams }: { searchParams: Promise<{ q?: string | string[] }> }) {
+function first(value?: string | string[]) {
+  return Array.isArray(value) ? value[0] ?? "" : value ?? "";
+}
+
+export default async function RestaurantsPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const params = await searchParams;
-  const initialQuery = Array.isArray(params.q) ? params.q[0] ?? "" : params.q ?? "";
-  return <RestaurantSearch initialQuery={initialQuery} />;
+  return <RestaurantSearch
+    initialQuery={first(params.q)}
+    initialLocation={first(params.location)}
+    initialCuisine={first(params.cuisine)}
+    initialVegetarian={first(params.vegetarian) === "true"}
+    initialVegan={first(params.vegan) === "true"}
+    initialHalal={first(params.halal) === "true"}
+    initialMaxPrice={first(params.maxPrice)}
+    initialSpiceLevel={first(params.spiceLevel)}
+  />;
 }

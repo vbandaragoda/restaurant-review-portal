@@ -18,6 +18,9 @@ public class JwtService {
     private final long expiration;
 
     public JwtService(@Value("${app.jwt.secret}") String secret, @Value("${app.jwt.expiration}") long expiration) {
+        if (secret == null || secret.isBlank() || secret.equals("replace-with-at-least-32-random-bytes")) {
+            throw new IllegalStateException("JWT_SECRET must be set to a private value of at least 32 bytes");
+        }
         this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
         this.expiration = expiration;
     }

@@ -36,7 +36,8 @@ CREATE TABLE IF NOT EXISTS restaurants (
   UNIQUE KEY uk_restaurants_slug (slug),
   KEY idx_restaurants_location (location),
   KEY idx_restaurants_cuisine (cuisine),
-  KEY idx_restaurants_rating (rating)
+  KEY idx_restaurants_rating (rating),
+  CONSTRAINT chk_restaurants_price_range CHECK (price_min <= price_max)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS dishes (
@@ -73,12 +74,15 @@ CREATE TABLE IF NOT EXISTS reviews (
   review_text TEXT NOT NULL,
   status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
   moderator_note VARCHAR(500) NULL,
+  moderated_by BIGINT UNSIGNED NULL,
+  moderated_at DATETIME(6) NULL,
   created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   PRIMARY KEY (id),
   KEY idx_reviews_restaurant_status (restaurant_id, status),
   CONSTRAINT fk_reviews_user FOREIGN KEY (user_id) REFERENCES users(id),
   CONSTRAINT fk_reviews_restaurant FOREIGN KEY (restaurant_id) REFERENCES restaurants(id),
   CONSTRAINT fk_reviews_dish FOREIGN KEY (dish_id) REFERENCES dishes(id) ON DELETE SET NULL,
+  CONSTRAINT fk_reviews_moderator FOREIGN KEY (moderated_by) REFERENCES users(id) ON DELETE SET NULL,
   CONSTRAINT chk_reviews_language CHECK (language IN ('en', 'si', 'ta')),
   CONSTRAINT chk_reviews_status CHECK (status IN ('PENDING', 'APPROVED', 'REJECTED')),
   CONSTRAINT chk_reviews_food_rating CHECK (food_rating BETWEEN 1 AND 5),

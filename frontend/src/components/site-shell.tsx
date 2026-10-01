@@ -27,7 +27,7 @@ export function SiteHeader({ active }: { active?: ActivePage }) {
   ];
   return (
     <>
-      <header className="hidden h-[84px] items-center px-[5vw] md:flex xl:px-[72px]">
+      <header className="relative z-20 hidden h-[84px] items-center px-[5vw] shadow-[0_2px_8px_rgba(26,26,23,0.06)] md:flex xl:px-[72px]">
         <Brand />
         <span className="min-w-0 flex-1" aria-hidden="true" />
         <nav className="flex shrink-0 gap-[30px] text-sm leading-normal font-medium" aria-label="Main navigation">
@@ -49,7 +49,7 @@ export function SiteHeader({ active }: { active?: ActivePage }) {
           )}
         </div>
       </header>
-      <header className="flex h-16 items-center border-b border-soft-border px-5 md:hidden">
+      <header className="relative z-20 flex h-16 items-center border-b border-soft-border px-5 shadow-[0_2px_8px_rgba(26,26,23,0.06)] md:hidden">
         <Link href="/" className="text-xl font-bold">TasteLanka</Link>
         {session ? <Link className="ml-auto text-xs font-semibold text-brand" href="/profile">{session.fullName.split(" ")[0]}</Link> : <Link className="ml-auto text-xs font-semibold text-brand" href="/login">Log In</Link>}
       </header>

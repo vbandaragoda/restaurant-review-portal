@@ -14,6 +14,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
@@ -61,6 +62,25 @@ public class ReviewController {
         }
         return ReviewDto.from(reviews.save(new Review(user, restaurant, dish, request.foodRating(),
                 request.serviceRating(), request.overallRating(), request.language(), request.reviewText().trim())));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Transactional
+    public void delete(Authentication authentication, @PathVariable Long id) {
+        Review review = reviews.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Review not found"));
+        if (!review.getUser().getEmail().equalsIgnoreCase(authentication.getName())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You can only delete your own reviews");
+        }
+        if (review.getStatus() == ReviewStatus.APPROVED) {
+            review.getRestaurant().removeApprovedReview(review.getOverallRating());
+            if (review.getDish() != null) {
+                review.getDish().removeApprovedReview(review.getOverallRating(), review.getFoodRating(),
+                        review.getServiceRating());
+            }
+        }
+        reviews.delete(review);
     }
 
     public record CreateReviewRequest(

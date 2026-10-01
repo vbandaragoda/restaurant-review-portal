@@ -5,6 +5,7 @@ frontend/dist/
 frontend/build/
 frontend/.next/
 frontend/out/
+.tmp/
 .env
 .env.local
 

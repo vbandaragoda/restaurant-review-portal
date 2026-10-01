@@ -28,7 +28,7 @@ app:
   cors:
     allowed-origin: ${FRONTEND_URL:http://localhost:3000}
   jwt:
-    secret: ${JWT_SECRET:change-this-development-secret-before-production-32-bytes-minimum}
+    secret: ${JWT_SECRET}
     expiration: ${JWT_EXPIRATION:86400000}
   bootstrap:
     admin-email: ${ADMIN_EMAIL:}

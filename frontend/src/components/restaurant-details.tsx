@@ -19,14 +19,17 @@ export function RestaurantDetails({ slug }: { slug: string }) {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    Promise.all([
+    const requests: Promise<unknown>[] = [
       api.get<Restaurant>(`/restaurants/${slug}`),
       api.get<Dish[]>("/dishes", { params: { restaurant: slug } }),
       api.get<Review[]>("/reviews", { params: { restaurant: slug } }),
-    ]).then(([restaurantResponse, dishesResponse, reviewsResponse]) => {
-      setRestaurant(restaurantResponse.data);
-      setDishes(dishesResponse.data);
-      setReviews(reviewsResponse.data);
+    ];
+    if (getSession()) requests.push(api.get<Restaurant[]>("/users/me/saved-restaurants"));
+    Promise.all(requests).then(([restaurantResponse, dishesResponse, reviewsResponse, savedResponse]) => {
+      setRestaurant((restaurantResponse as { data: Restaurant }).data);
+      setDishes((dishesResponse as { data: Dish[] }).data);
+      setReviews((reviewsResponse as { data: Review[] }).data);
+      if (savedResponse) setSaved((savedResponse as { data: Restaurant[] }).data.some((item) => item.slug === slug));
     }).catch(() => setError("Restaurant details could not be loaded. Confirm that the API is running."));
   }, [slug]);
 
@@ -42,10 +45,10 @@ export function RestaurantDetails({ slug }: { slug: string }) {
   return (
     <div className="min-h-screen bg-white pb-20 md:pb-0">
       <SiteHeader active="restaurants" />
-      <section className="relative flex h-[280px] items-end bg-[#332417] px-5 pb-8 text-white md:h-[360px] md:px-16 md:pb-16" style={{ backgroundColor: restaurant.imageColor }}>
+      <section className="relative flex h-[320px] flex-col justify-end gap-5 bg-[#332417] px-5 pb-8 text-white sm:flex-row sm:items-end sm:justify-start md:h-[360px] md:px-16 md:pb-16" style={{ backgroundColor: restaurant.imageColor }}>
         <div><h1 className="text-[30px] font-bold md:text-[38px]">{restaurant.name}</h1><p className="mt-2 text-sm md:text-[15px]">{restaurant.cuisine} • {restaurant.location}</p><p className="mt-3 text-[15px] font-semibold text-[#ffbf33]">★ {restaurant.rating} &nbsp; {restaurant.reviewCount} reviews</p></div>
-        <div className="ml-auto flex gap-2">
-          <button onClick={saveRestaurant} className="rounded-lg border border-white/50 px-4 py-3 text-xs font-semibold" type="button">{saved ? "Saved" : "Save"}</button>
+        <div className="flex gap-2 sm:ml-auto">
+          <button onClick={saveRestaurant} disabled={saved} aria-pressed={saved} className="rounded-lg border border-white/50 px-4 py-3 text-xs font-semibold disabled:cursor-default disabled:bg-white/15" type="button">{saved ? "Saved" : "Save"}</button>
           <Link href={`/reviews/new?restaurant=${restaurant.slug}`} className="rounded-lg bg-brand px-5 py-3 text-xs font-semibold">Write a Review</Link>
         </div>
       </section>
@@ -88,5 +91,5 @@ function DishCard({ dish }: { dish: Dish }) {
 }
 
 function ReviewCard({ review }: { review: Review }) {
-  return <article className="min-h-[146px] rounded-xl border border-soft-border p-5"><h3 className="text-[15px] font-bold">{review.author}</h3><p className="mt-2 text-[15px] text-[#f2610d]">{"★".repeat(review.overallRating)}{"☆".repeat(5 - review.overallRating)}</p><p className="mt-3 text-[13px] text-muted">{review.reviewText}</p><p className="mt-4 text-xs font-semibold">Food {review.foodRating}.0 • Service {review.serviceRating}.0</p></article>;
+  return <article className="min-h-[146px] rounded-xl border border-soft-border p-5"><h3 className="text-[15px] font-bold">{review.author}</h3><p className="mt-2 text-[15px] text-brand">{"★".repeat(review.overallRating)}{"☆".repeat(5 - review.overallRating)}</p><p className="mt-3 text-[13px] text-muted">{review.reviewText}</p><p className="mt-4 text-xs font-semibold">Food {review.foodRating}.0 • Service {review.serviceRating}.0</p></article>;
 }
