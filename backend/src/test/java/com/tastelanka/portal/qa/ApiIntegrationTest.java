@@ -287,4 +287,64 @@ class ApiIntegrationTest {
         listA = perform(auth(get("/api/v1/users/me/saved-restaurants"), a)).getResponse().getContentAsString();
         assertThat(JsonPath.<java.util.List<String>>read(listA, "$[*].slug")).containsExactly("nuga-gama");
     }
+
+    // ------------------------------------------------------------------ cycle 2: tests for fixes and new behaviour (commit eed62c2)
+    @Test
+    @DisplayName("TC-INT-023 rejecting a review without a reason returns 400; with a reason it is stored (DEF-020 retest)")
+    void rejectionRequiresReason() throws Exception {
+        long id = review(register("rej"), "nuga-gama", 2);
+        assertThat(status(json(auth(patch("/api/v1/admin/reviews/" + id), adminToken), "{\"status\":\"REJECTED\"}"))).isEqualTo(400);
+        assertThat(status(json(auth(patch("/api/v1/admin/reviews/" + id), adminToken), "{\"status\":\"REJECTED\",\"note\":\"   \"}"))).isEqualTo(400);
+        MvcResult ok = perform(json(auth(patch("/api/v1/admin/reviews/" + id), adminToken), "{\"status\":\"REJECTED\",\"note\":\"Off-topic\"}"));
+        assertThat(ok.getResponse().getStatus()).isEqualTo(200);
+        assertThat((String) JsonPath.read(ok.getResponse().getContentAsString(), "$.moderatorNote")).isEqualTo("Off-topic");
+    }
+
+    @Test
+    @DisplayName("TC-INT-024 moderation records the moderator and the moderation time (DEF-020 retest)")
+    void moderationIsTraceable() throws Exception {
+        long id = review(register("trace"), "nuga-gama", 4);
+        String body = perform(json(auth(patch("/api/v1/admin/reviews/" + id), adminToken), "{\"status\":\"APPROVED\"}")).getResponse().getContentAsString();
+        assertThat((String) JsonPath.read(body, "$.moderatedBy")).isEqualTo("JUnit Admin");
+        assertThat((String) JsonPath.read(body, "$.moderatedAt")).isNotBlank();
+    }
+
+    @Test
+    @DisplayName("TC-INT-025 a review cannot be moved back to PENDING")
+    void cannotModerateToPending() throws Exception {
+        long id = review(register("pend"), "nuga-gama", 3);
+        assertThat(status(json(auth(patch("/api/v1/admin/reviews/" + id), adminToken), "{\"status\":\"PENDING\"}"))).isEqualTo(400);
+    }
+
+    @Test
+    @DisplayName("TC-INT-026 only the author can delete a review; deleting an approved review updates the rating")
+    void reviewDeletionOwnerOnlyAndRatingAdjusted() throws Exception {
+        String slug = "junit-del-" + run;
+        createRestaurant(slug);
+        String owner = register("owner");
+        String other = register("other");
+        long id = review(owner, slug, 5);
+        perform(json(auth(patch("/api/v1/admin/reviews/" + id), adminToken), "{\"status\":\"APPROVED\"}"));
+        String before = perform(get("/api/v1/restaurants/" + slug)).getResponse().getContentAsString();
+        assertThat(((Number) JsonPath.read(before, "$.reviewCount")).intValue()).isEqualTo(1);
+        assertThat(status(auth(delete("/api/v1/reviews/" + id), other))).as("non-owner delete").isEqualTo(403);
+        assertThat(status(delete("/api/v1/reviews/" + id))).as("anonymous delete").isEqualTo(401);
+        assertThat(status(auth(delete("/api/v1/reviews/" + id), owner))).as("owner delete").isEqualTo(204);
+        assertThat(status(auth(delete("/api/v1/reviews/" + id), owner))).as("delete again").isEqualTo(404);
+        String after = perform(get("/api/v1/restaurants/" + slug)).getResponse().getContentAsString();
+        assertThat(((Number) JsonPath.read(after, "$.reviewCount")).intValue()).isZero();
+    }
+
+    @Test
+    @DisplayName("TC-INT-042 price and spice-level filters return matching restaurants and reject invalid values (DEF-010 retest)")
+    void priceAndSpiceFilters() throws Exception {
+        String byPrice = perform(get("/api/v1/restaurants").param("maxPrice", "2000")).getResponse().getContentAsString();
+        java.util.List<Integer> mins = JsonPath.read(byPrice, "$[*].priceMin");
+        assertThat(mins).isNotEmpty().allMatch(p -> p <= 2000);
+        assertThat(JsonPath.<java.util.List<String>>read(byPrice, "$[*].slug")).contains("green-leaf-kitchen").doesNotContain("ministry-of-crab");
+        String bySpice = perform(get("/api/v1/restaurants").param("spiceLevel", "Hot")).getResponse().getContentAsString();
+        assertThat(JsonPath.<java.util.List<String>>read(bySpice, "$[*].slug")).contains("ministry-of-crab").doesNotContain("green-leaf-kitchen");
+        assertThat(status(get("/api/v1/restaurants").param("spiceLevel", "Extreme"))).isEqualTo(400);
+        assertThat(status(get("/api/v1/restaurants").param("maxPrice", "-1"))).isEqualTo(400);
+    }
 }

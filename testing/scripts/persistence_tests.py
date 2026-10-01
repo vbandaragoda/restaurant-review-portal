@@ -8,11 +8,11 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
-from qa_lib import ROOT, Runner, label_token, load_env  # noqa: E402
+from qa_lib import OUT, Runner, label_token, load_env  # noqa: E402
 
 env = load_env()
 phase = sys.argv[1]
-ctx_path = os.path.join(ROOT, "evidence", "run-context.json")
+ctx_path = os.path.join(OUT, "evidence", "run-context.json")
 ctx = json.load(open(ctx_path, encoding="utf-8"))
 R = Runner(f"persistence-{phase}")
 D = "database"
@@ -32,7 +32,7 @@ if phase == "pre":
     R.call("TC-DATA-001a", "Create restaurant before restart", D, "POST", "/admin/restaurants", 201, token=adm, body=rest)
     r, b = R.call("TC-DATA-002a", "Read seeded restaurant nuga-gama", D, "GET", "/restaurants/nuga-gama", 200)
     seeded = b
-    body = {k: seeded[k] for k in ("slug", "name", "cuisine", "location", "priceMin", "priceMax", "vegetarian", "vegan", "halal", "imageColor")}
+    body = {k: seeded[k] for k in ("slug", "name", "cuisine", "location", "priceMin", "priceMax", "vegetarian", "vegan", "halal", "imageUrl")}
     body.update(description=EDIT, priceMin=3500)
     R.call("TC-DATA-002b", "Admin edits seeded restaurant nuga-gama (description, priceMin=3500)", D, "PUT",
            f"/admin/restaurants/{seeded['id']}", 200, token=adm, body=body,

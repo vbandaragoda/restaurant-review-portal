@@ -13,7 +13,7 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(__file__))
-from qa_lib import ROOT, Runner, label_token, load_env  # noqa: E402
+from qa_lib import OUT, ROOT, Runner, label_token, load_env  # noqa: E402
 
 env = load_env()
 RUN = time.strftime("%H%M%S")
@@ -259,7 +259,7 @@ R.call("TC-SAV-007", "Saved list empty after removal", A, "GET", "/users/me/save
 print("== Admin restaurant CRUD")
 rest = lambda **kw: {"slug": f"qa-rest-{RUN}", "name": "QA Test Bistro", "cuisine": "Sri Lankan · Fusion", "location": "Galle",
                      "priceMin": 1000, "priceMax": 2500, "vegetarian": True, "vegan": False, "halal": True,
-                     "description": "Created by QA API test.", "imageColor": "#123456", **kw}
+                     "description": "Created by QA API test.", **kw}
 R.call("TC-ADM-000", "Admin dashboard stats", A, "GET", "/admin/dashboard", 200, token=tokAdm,
        check=has("restaurants", "dishes", "users", "pendingReviews", "approvedReviews"))
 r, b = R.call("TC-ADM-001", "Create restaurant (valid)", A, "POST", "/admin/restaurants", 201, token=tokAdm, body=rest(),
@@ -278,8 +278,8 @@ r, b = R.call("TC-ADM-007", "Create restaurant with priceMin > priceMax", A, "PO
               body=rest(slug=f"qa-inverted-{RUN}", priceMin=9000, priceMax=100),
               expected_text="HTTP 400 (minimum price must not exceed maximum price)")
 invertedId = b.get("id") if isinstance(b, dict) else None
-R.call("TC-ADM-008", "Create restaurant with invalid colour 'red'", A, "POST", "/admin/restaurants", 400, token=tokAdm,
-       body=rest(slug=f"qa-colour-{RUN}", imageColor="red"))
+R.call("TC-ADM-008", "Create restaurant with an invalid image URL", A, "POST", "/admin/restaurants", 400, token=tokAdm,
+       body=rest(slug=f"qa-image-{RUN}", imageUrl="https://example.test/untrusted.jpg"))
 R.call("TC-ADM-009", "Update restaurant (valid)", A, "PUT", f"/admin/restaurants/{restId}", 200, token=tokAdm,
        body=rest(name="QA Test Bistro Updated", location="Kandy"),
        check=lambda r, b: (b.get("name") == "QA Test Bistro Updated" and b.get("location") == "Kandy", f"name={b.get('name')} location={b.get('location')}"))
@@ -298,7 +298,7 @@ R.call("TC-ADM-015", "Unsupported content type text/plain", A, "POST", "/admin/r
 # ---------------------------------------------------------------- ADMIN DISH CRUD
 print("== Admin dish CRUD")
 dish = lambda **kw: {"restaurantSlug": f"qa-rest-{RUN}", "slug": f"qa-dish-{RUN}", "name": "QA Hoppers", "description": "Egg hoppers.",
-                     "price": 850, "spiceLevel": "Mild", "vegetarian": True, "halal": True, "imageColor": "#aa5500", **kw}
+                     "price": 850, "spiceLevel": "Mild", "vegetarian": True, "halal": True, **kw}
 r, b = R.call("TC-ADM-020", "Create dish (valid)", A, "POST", "/admin/dishes", 201, token=tokAdm, body=dish(),
               check=lambda r, b: (b.get("restaurantSlug") == f"qa-rest-{RUN}", f"id={b.get('id')}"))
 dishId = b["id"]
@@ -416,5 +416,5 @@ ctx = {"run": RUN, "userA": email("usera"), "userB": email("userb"), "moderator"
        "reviewPendingOrApproved": rev1, "reviewSinhala": revSi, "reviewTamil": revTa, "reviewXss": revXss,
        "reviewRejected": revMass, "restaurantWithReviews": rest2Id, "restaurantWithReviewsSlug": f"qa-rest2-{RUN}",
        "invertedPriceRestaurantId": invertedId}
-with open(os.path.join(ROOT, "evidence", "run-context.json"), "w", encoding="utf-8") as fh:
+with open(os.path.join(OUT, "evidence", "run-context.json"), "w", encoding="utf-8") as fh:
     json.dump(ctx, fh, indent=2)

@@ -1,0 +1,40 @@
+{
+  "testId": "TC-AUTH-018",
+  "title": "Register second customer (User B)",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:01+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/register",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "fullName": "QA User B",
+      "email": "qa.userb.112400@tastelanka.test",
+      "password": "<redacted test password, length 13>"
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 140.6,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "356"
+    },
+    "body": {
+      "token": "<JWT, 238 chars>",
+      "userId": 7,
+      "fullName": "QA User B",
+      "email": "qa.userb.112400@tastelanka.test",
+      "role": "USER",
+      "language": "en"
+    }
+  },
+  "expected": "HTTP 201",
+  "actual": "HTTP 201",
+  "verdict": "PASS"
+}

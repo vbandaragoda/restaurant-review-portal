@@ -1,0 +1,46 @@
+{
+  "testId": "TC-MOD-009",
+  "title": "Filter moderation queue by APPROVED",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:03+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/admin/reviews?status=APPROVED",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 23.5,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "389"
+    },
+    "body": [
+      {
+        "id": 1,
+        "author": "QA User A",
+        "restaurantSlug": "nuga-gama",
+        "restaurantName": "Nuga Gama",
+        "foodRating": 4,
+        "serviceRating": 5,
+        "overallRating": 4,
+        "language": "en",
+        "reviewText": "QA review: tasty rice and curry, friendly staff.",
+        "status": "APPROVED",
+        "moderatorNote": "QA approved",
+        "moderatedBy": "TasteLanka Admin",
+        "moderatedAt": "2026-10-01T05:54:03.525497Z",
+        "createdAt": "2026-10-01T05:54:02.887672Z"
+      }
+    ]
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; count=1",
+  "verdict": "PASS"
+}

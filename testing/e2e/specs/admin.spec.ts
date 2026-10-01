@@ -97,16 +97,14 @@ test("TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews ca
   const row = page.getByRole("article").filter({ hasText: "QA Reviewed Cafe" });
   await expect(row).toBeVisible();
   await row.getByRole("button", { name: "Delete" }).click();
-  const msg = page.getByText(/could not be deleted/);
+  // Cycle 2 (retest of DEF-007): expected result = deletion refused with a clear message, no impossible instruction.
+  const msg = page.getByText(/cannot be deleted|could not be deleted/);
   await expect(msg).toBeVisible();
   log("TC-ADM-UI-002", `message shown: ${await msg.textContent()}`);
   await shot(page, "ui", "TC-ADM-UI-002-delete-restaurant-with-reviews");
-  // The message tells the admin to remove reviews first; check whether the admin UI offers any way to delete reviews.
-  await page.goto("/admin/reviews");
-  await page.getByRole("button", { name: "APPROVED" }).click();
-  const deleteReviewButtons = await page.getByRole("button", { name: /delete/i }).count();
-  log("TC-ADM-UI-002", `review delete controls available in moderation UI: ${deleteReviewButtons}`);
-  expect(deleteReviewButtons, "admin must have a way to act on the instruction 'Remove its menu and reviews first'").toBeGreaterThan(0);
+  const text = (await msg.textContent()) ?? "";
+  expect(text, "message must not instruct an action the admin cannot perform").not.toMatch(/remove its menu and reviews first/i);
+  await expect(page.getByRole("article").filter({ hasText: "QA Reviewed Cafe" })).toBeVisible();
 });
 
 test("BB-16 admin creates, updates and deletes a dish through the UI", async ({ page }) => {
@@ -175,6 +173,10 @@ test("BB-13 admin approves and rejects pending reviews; public visibility follow
   await shot(page, "ui", "BB-13a-moderation-pending-queue");
   await approve.getByRole("button", { name: "Approve" }).click();
   await expect(page.getByText("Review approved.")).toBeVisible();
+  // Cycle 2 maintenance: a rejection reason is now required (eed62c2, DEF-020 fix). First check it is enforced, then give one.
+  await reject.getByRole("button", { name: "Reject" }).click();
+  await expect(page.getByText("Add a reason before rejecting a review.")).toBeVisible();
+  await reject.getByLabel(/Moderation note/).fill("Spam / not a genuine dining experience");
   await reject.getByRole("button", { name: "Reject" }).click();
   await expect(page.getByText("Review rejected.")).toBeVisible();
   await page.getByRole("button", { name: "APPROVED" }).click();
@@ -195,6 +197,9 @@ test("BB-13 admin approves and rejects pending reviews; public visibility follow
 test("TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting", async ({ page }) => {
   await loginAdmin(page);
   await page.goto("/admin/reviews");
+  // Cycle 2 test fix: wait for the review list before counting (the count previously ran before rendering).
+  // (the empty-state text shows briefly before loading, so wait for the review cards themselves; QA data guarantees pending reviews)
+  await expect(page.getByRole("article").first()).toBeVisible();
   const noteFields = await page.locator("textarea, input[type=text]").count();
   log("TC-ADM-UI-004", `note/reason inputs in moderation UI: ${noteFields}`);
   expect(noteFields, "moderation UI should allow recording a reason (API supports 'note')").toBeGreaterThan(0);

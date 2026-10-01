@@ -39,8 +39,8 @@ class RequestValidationTest {
         return validator.validate(o).isEmpty();
     }
 
-    private static RestaurantRequest restaurant(String slug, Integer min, Integer max, String colour) {
-        return new RestaurantRequest(slug, "Name", "Cuisine", "Galle", min, max, true, false, true, "desc", colour);
+    private static RestaurantRequest restaurant(String slug, Integer min, Integer max, String imageUrl) {
+        return new RestaurantRequest(slug, "Name", "Cuisine", "Galle", min, max, true, false, true, "desc", imageUrl);
     }
 
     private static CreateReviewRequest review(int food, int service, int overall, String lang, String text) {
@@ -98,22 +98,24 @@ class RequestValidationTest {
     @ParameterizedTest(name = "TC-UNIT-VAL-008 restaurant slug ''{0}'' valid={1}")
     @CsvSource({"green-leaf,true", "a1,true", "Bad Slug,false", "-lead,false", "trail-,false", "double--dash,false", "UPPER,false"})
     void restaurantSlug(String slug, boolean expected) {
-        assertThat(valid(restaurant(slug, 100, 200, "#123456"))).isEqualTo(expected);
+        assertThat(valid(restaurant(slug, 100, 200, null))).isEqualTo(expected);
     }
 
     @Test
-    @DisplayName("TC-UNIT-VAL-009 restaurant prices must be non-negative and colour must be #RRGGBB")
-    void restaurantPricesAndColour() {
-        assertThat(valid(restaurant("ok", -1, 200, "#123456"))).isFalse();
-        assertThat(valid(restaurant("ok", 0, 0, "#123456"))).isTrue();
+    @DisplayName("TC-UNIT-VAL-009 restaurant prices must be non-negative and image paths must reference an uploaded image")
+    void restaurantPricesAndImageUrl() {
+        assertThat(valid(restaurant("ok", -1, 200, "/uploads/123e4567-e89b-12d3-a456-426614174000.jpg"))).isFalse();
+        assertThat(valid(restaurant("ok", 0, 0, "/uploads/123e4567-e89b-12d3-a456-426614174000.png"))).isTrue();
         assertThat(valid(restaurant("ok", 100, 200, "red"))).isFalse();
         assertThat(valid(restaurant("ok", 100, 200, null))).isTrue();
     }
 
     @Test
+    @org.junit.jupiter.api.Disabled("Cycle 2: obsolete premise - commit eed62c2 validates the price range in AdminController and a DB "
+            + "CHECK constraint instead of Bean Validation. Behaviour is verified by TC-INT-034 and API test TC-ADM-007.")
     @DisplayName("TC-UNIT-VAL-010 restaurant with minimum price above maximum price is rejected (DEF-005)")
     void priceRangeOrder() {
-        assertThat(valid(restaurant("inverted", 9000, 100, "#123456")))
+        assertThat(valid(restaurant("inverted", 9000, 100, null)))
                 .as("priceMin 9000 > priceMax 100 should fail validation")
                 .isFalse();
     }

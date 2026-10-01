@@ -1,0 +1,42 @@
+{
+  "testId": "TC-DATA-002",
+  "title": "Admin edit to seeded restaurant survives restart",
+  "category": "database",
+  "executedAt": "2026-10-01T11:25:36+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants/nuga-gama",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 31.5,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "278"
+    },
+    "body": {
+      "id": 4,
+      "slug": "nuga-gama",
+      "name": "Nuga Gama",
+      "cuisine": "Sri Lankan · Authentic",
+      "location": "Colombo",
+      "rating": 4.4,
+      "reviewCount": 152,
+      "priceMin": 3500,
+      "priceMax": 5000,
+      "vegetarian": true,
+      "vegan": true,
+      "halal": true,
+      "description": "QA-EDITED description 112400",
+      "imageColor": "#662e1a"
+    }
+  },
+  "expected": "HTTP 200; description='QA-EDITED description 112400', priceMin=3500",
+  "actual": "HTTP 200; description after restart='QA-EDITED description 112400'; priceMin=3500",
+  "verdict": "PASS"
+}

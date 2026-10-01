@@ -53,16 +53,33 @@ class DomainModelTest {
     }
 
     @Test
-    @DisplayName("TC-UNIT-DOM-005 new review is PENDING and moderation sets status and note")
+    @DisplayName("TC-UNIT-DOM-005 new review is PENDING and moderation sets status, note, moderator and time")
     void reviewModeration() {
+        // Cycle 2: Review.moderate() gained a moderator parameter in commit eed62c2 (DEF-020 fix); test updated to the new API.
         Review review = new Review(new User("A", "a@b.test", "h", "en"), restaurant(), null, 5, 4, 5, "en", "Great");
+        User moderator = new User("Mod", "mod@b.test", "h", "en");
         assertThat(review.getStatus()).isEqualTo(ReviewStatus.PENDING);
-        User moderator = new User("Moderator", "moderator@b.test", "h", "en");
-        review.moderate(ReviewStatus.APPROVED, "ok", moderator);
+        review.moderate(ReviewStatus.APPROVED, " ok ", moderator);
         assertThat(review.getStatus()).isEqualTo(ReviewStatus.APPROVED);
         assertThat(review.getModeratorNote()).isEqualTo("ok");
-        assertThat(review.getModeratedBy()).isEqualTo(moderator);
+        assertThat(review.getModeratedBy()).isSameAs(moderator);
         assertThat(review.getModeratedAt()).isNotNull();
         assertThat(review.getCreatedAt()).isNotNull();
+    }
+
+    @Test
+    @DisplayName("TC-UNIT-DOM-006 restaurant rating is recalculated when approved reviews are added and removed")
+    void restaurantRatingAggregation() {
+        Restaurant r = restaurant();
+        r.addApprovedReview(4);
+        r.addApprovedReview(5);
+        assertThat(r.getReviewCount()).isEqualTo(2);
+        assertThat(r.getRating()).isEqualByComparingTo("4.5");
+        r.removeApprovedReview(5);
+        assertThat(r.getReviewCount()).isEqualTo(1);
+        assertThat(r.getRating()).isEqualByComparingTo("4.0");
+        r.removeApprovedReview(4);
+        assertThat(r.getReviewCount()).isZero();
+        assertThat(r.getRating()).isEqualByComparingTo("0.0");
     }
 }

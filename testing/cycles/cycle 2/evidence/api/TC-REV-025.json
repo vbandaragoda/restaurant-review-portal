@@ -1,0 +1,41 @@
+{
+  "testId": "TC-REV-025",
+  "title": "Deleted approved review is removed from rating and count",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants/qa-agg-112400c2",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 8.2,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "232"
+    },
+    "body": {
+      "id": 8,
+      "slug": "qa-agg-112400c2",
+      "name": "QA Aggregation Cafe",
+      "cuisine": "Sri Lankan",
+      "location": "Kandy",
+      "rating": 0.0,
+      "reviewCount": 0,
+      "priceMin": 500,
+      "priceMax": 900,
+      "vegetarian": true,
+      "vegan": false,
+      "halal": false,
+      "imageColor": "#332417"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; rating=0.0 count=0",
+  "verdict": "PASS"
+}

@@ -1,0 +1,45 @@
+{
+  "testId": "TC-ADM-021",
+  "title": "Created dish appears in restaurant menu",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:04+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/dishes?restaurant=qa-rest-112400",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 34.2,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "311"
+    },
+    "body": [
+      {
+        "id": 8,
+        "slug": "qa-dish-112400",
+        "name": "QA Hoppers",
+        "description": "Egg hoppers.",
+        "price": 850,
+        "spiceLevel": "Mild",
+        "vegetarian": true,
+        "halal": true,
+        "imageColor": "#aa5500",
+        "rating": 0.0,
+        "foodRating": 0.0,
+        "serviceRating": 0.0,
+        "reviewCount": 0,
+        "restaurantSlug": "qa-rest-112400",
+        "restaurantName": "QA Test Bistro Updated"
+      }
+    ]
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; slugs=['qa-dish-112400']",
+  "verdict": "PASS"
+}

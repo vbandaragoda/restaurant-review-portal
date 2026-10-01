@@ -1,0 +1,59 @@
+{
+  "testId": "TC-SEC-027",
+  "title": "Public review list does not leak emails",
+  "category": "security",
+  "executedAt": "2026-10-01T11:24:05+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/reviews?restaurant=nuga-gama",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 36.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "780"
+    },
+    "body": [
+      {
+        "id": 7,
+        "author": "QA User B",
+        "restaurantSlug": "nuga-gama",
+        "restaurantName": "Nuga Gama",
+        "foodRating": 4,
+        "serviceRating": 5,
+        "overallRating": 4,
+        "language": "en",
+        "reviewText": "<script>alert('xss-qa')</script><img src=x onerror=alert('xss-img')> QA XSS probe",
+        "status": "APPROVED",
+        "moderatedBy": "TasteLanka Admin",
+        "moderatedAt": "2026-10-01T05:54:03.901276Z",
+        "createdAt": "2026-10-01T05:54:03.320322Z"
+      },
+      {
+        "id": 1,
+        "author": "QA User A",
+        "restaurantSlug": "nuga-gama",
+        "restaurantName": "Nuga Gama",
+        "foodRating": 4,
+        "serviceRating": 5,
+        "overallRating": 4,
+        "language": "en",
+        "reviewText": "QA review: tasty rice and curry, friendly staff.",
+        "status": "APPROVED",
+        "moderatorNote": "QA approved",
+        "moderatedBy": "TasteLanka Admin",
+        "moderatedAt": "2026-10-01T05:54:03.525497Z",
+        "createdAt": "2026-10-01T05:54:02.887672Z"
+      }
+    ]
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; no email addresses in payload",
+  "verdict": "PASS"
+}

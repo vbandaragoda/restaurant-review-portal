@@ -1,0 +1,37 @@
+== DEF-001 retest: error responses carry status and a problem body
+PASS TC-API-040     POST   /auth/register                                               -> 400 Content-Type=application/problem+json; detail='fullName: must not be blank'
+PASS TC-API-041     POST   /auth/login                                                  -> 401 Content-Type=application/problem+json; detail='Invalid email or password'
+PASS TC-API-042     GET    /restaurants/no-such-restaurant                              -> 404 Content-Type=application/problem+json; detail='Restaurant not found'
+PASS TC-API-043     POST   /admin/restaurants                                           -> 409 Content-Type=application/problem+json; detail='Restaurant slug already exists'
+PASS TC-API-044     GET    /users/me                                                    -> 401 Content-Type=application/problem+json;charset=ISO-8859-1; detail='Authentication is requir
+PASS TC-API-045     GET    /admin/dashboard                                             -> 403 Content-Type=application/problem+json;charset=ISO-8859-1; detail='Access is denied'
+PASS TC-API-046     GET    /no-such-endpoint                                            -> 401 
+== DEF-010 retest: price and spice-level filters
+PASS TC-API-030     GET    /restaurants                                                 -> 200 slugs=['green-leaf-kitchen', 'qa-rest2-112400', 'the-empire-cafe']
+PASS TC-API-031     GET    /restaurants                                                 -> 200 slugs=['ministry-of-crab']
+PASS TC-API-032     GET    /restaurants                                                 -> 200 slugs=['green-leaf-kitchen', 'nuga-gama', 'the-empire-cafe']
+PASS TC-API-033     GET    /restaurants                                                 -> 400 Content-Type=application/problem+json; detail='Spice level must be Mild, Medium, or Hot'
+PASS TC-API-034     GET    /restaurants                                                 -> 400 Content-Type=application/problem+json; detail='Maximum price must not be negative'
+PASS TC-API-035     GET    /restaurants                                                 -> 400 
+== DEF-020 retest: moderation rules and audit trail
+PASS TC-MOD-015     PATCH  /admin/reviews/9                                             -> 400 Content-Type=application/problem+json; detail='A rejection reason is required'
+PASS TC-MOD-016     PATCH  /admin/reviews/9                                             -> 400 
+PASS TC-MOD-017     PATCH  /admin/reviews/9                                             -> 400 
+PASS TC-MOD-018     PATCH  /admin/reviews/9                                             -> 200 note='Duplicate content' moderatedBy='TasteLanka Admin' moderatedAt='2026-10-01T05:54:19.5
+PASS TC-MOD-019     GET    /reviews/mine                                                -> 200 reason visible to author
+== DEF-004 retest: rating aggregation on approve / re-moderate / delete
+PASS TC-MOD-020     GET    /restaurants/qa-agg-112400c2                                 -> 200 rating=3.0 count=2
+PASS TC-MOD-021     GET    /restaurants/qa-agg-112400c2                                 -> 200 rating=4.0 count=1
+== New: review deletion by author
+PASS TC-REV-022     DELETE /reviews/10                                                  -> 403 Content-Type=application/problem+json; detail='You can only delete your own reviews'
+PASS TC-REV-023     DELETE /reviews/10                                                  -> 401 
+PASS TC-REV-024     DELETE /reviews/10                                                  -> 403 
+PASS TC-REV-021     DELETE /reviews/10                                                  -> 204 
+PASS TC-REV-025     GET    /restaurants/qa-agg-112400c2                                 -> 200 rating=0.0 count=0
+PASS TC-REV-026     DELETE /reviews/999999                                              -> 404 
+PASS TC-REV-027     GET    /reviews/mine                                                -> 200 ids=[11, 7, 6, 5, 4]
+== DEF-006/007 retests
+PASS TC-ADM-038     DELETE /admin/restaurants/7                                         -> 409 Content-Type=application/problem+json; detail='Restaurant has customer reviews and cannot 
+PASS TC-ADM-039     PUT    /admin/restaurants/7                                         -> 400 Content-Type=application/problem+json; detail='Minimum price must not exceed maximum price
+
+[cycle2-additions] executed=39 pass=39 fail=0

@@ -12,9 +12,12 @@ import time
 
 import requests
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))  # testing/ (shared config: qa.env)
+if not os.environ.get("QA_OUT"):
+    raise SystemExit("Set QA_OUT to the cycle folder (e.g. testing/cycles/cycle 2) so results never overwrite another cycle")
+OUT = os.path.abspath(os.environ["QA_OUT"])  # all evidence/results for the current cycle
 API = os.environ.get("API", "http://localhost:8080/api/v1")
-RESULTS_CSV = os.path.join(ROOT, "evidence", "api-security-results.csv")
+RESULTS_CSV = os.path.join(OUT, "evidence", "api-security-results.csv")
 _TOKEN_LABELS = {}
 
 
@@ -91,7 +94,7 @@ class Runner:
             "actual": f"HTTP {resp.status_code}" + (f"; {check_msg}" if check_msg else ""),
             "verdict": verdict,
         }
-        folder = os.path.join(ROOT, "evidence", category)
+        folder = os.path.join(OUT, "evidence", category)
         os.makedirs(folder, exist_ok=True)
         name = fname or f"{tid}.json"
         with open(os.path.join(folder, name), "w", encoding="utf-8") as fh:

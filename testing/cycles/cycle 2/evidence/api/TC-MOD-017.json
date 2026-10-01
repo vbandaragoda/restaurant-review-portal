@@ -1,0 +1,36 @@
+{
+  "testId": "TC-MOD-017",
+  "title": "Moving a review back to PENDING is refused",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "PATCH",
+    "url": "http://localhost:8080/api/v1/admin/reviews/9",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": "PENDING"
+    }
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 16.0,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Review must be approved or rejected",
+      "instance": "/api/v1/admin/reviews/9",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 400",
+  "verdict": "PASS"
+}

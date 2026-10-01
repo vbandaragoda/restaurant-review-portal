@@ -1,0 +1,46 @@
+{
+  "testId": "TC-ADM-006",
+  "title": "Create restaurant with negative price",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:04+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/admin/restaurants",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "slug": "qa-neg-112400",
+      "name": "QA Test Bistro",
+      "cuisine": "Sri Lankan · Fusion",
+      "location": "Galle",
+      "priceMin": -5,
+      "priceMax": 2500,
+      "vegetarian": true,
+      "vegan": false,
+      "halal": true,
+      "description": "Created by QA API test.",
+      "imageColor": "#123456"
+    }
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 13.4,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "priceMin: must be greater than or equal to 0",
+      "instance": "/api/v1/admin/restaurants",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 400",
+  "verdict": "PASS"
+}

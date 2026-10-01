@@ -49,6 +49,16 @@ class JwtServiceTest {
     }
 
     @Test
+    @DisplayName("TC-UNIT-JWT-006 missing or blank secrets use an ephemeral key, while the example placeholder is refused")
+    void missingOrBlankSecretUsesEphemeralKey() {
+        JwtService missingSecret = new JwtService(null, 60_000);
+        JwtService blankSecret = new JwtService("  ", 60_000);
+        assertThat(missingSecret.subject(missingSecret.generate(user))).isEqualTo(user.getEmail());
+        assertThat(blankSecret.subject(blankSecret.generate(user))).isEqualTo(user.getEmail());
+        assertThatThrownBy(() -> new JwtService("replace-with-at-least-32-random-bytes", 60_000)).isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
     @DisplayName("TC-UNIT-JWT-005 secret shorter than 32 bytes is refused at construction")
     void shortSecretRefused() {
         assertThatThrownBy(() -> new JwtService("too-short", 60_000)).isInstanceOf(RuntimeException.class);

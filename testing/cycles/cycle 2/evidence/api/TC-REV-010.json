@@ -1,0 +1,41 @@
+{
+  "testId": "TC-REV-010",
+  "title": "Review for non-existent restaurant",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:03+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "no-such-restaurant",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "QA review: tasty rice and curry, friendly staff."
+    }
+  },
+  "response": {
+    "status": 404,
+    "elapsedMs": 16.9,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Restaurant not found",
+      "instance": "/api/v1/reviews",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  "expected": "HTTP 404",
+  "actual": "HTTP 404",
+  "verdict": "PASS"
+}

@@ -1,0 +1,44 @@
+{
+  "testId": "TC-DATA-004a",
+  "title": "User A saves restaurant before restart",
+  "category": "database",
+  "executedAt": "2026-10-01T11:24:51+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/users/me/saved-restaurants/pedlars-inn",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 39.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "298"
+    },
+    "body": {
+      "id": 3,
+      "slug": "pedlars-inn",
+      "name": "Pedlar’s Inn",
+      "cuisine": "Cafe · International",
+      "location": "Galle",
+      "rating": 4.5,
+      "reviewCount": 490,
+      "priceMin": 5000,
+      "priceMax": 8000,
+      "vegetarian": true,
+      "vegan": false,
+      "halal": true,
+      "description": "Relaxed cafe-style dining in the Galle area.",
+      "imageColor": "#61949e"
+    }
+  },
+  "expected": "HTTP 201",
+  "actual": "HTTP 201",
+  "verdict": "PASS"
+}

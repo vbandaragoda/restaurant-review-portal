@@ -1,0 +1,36 @@
+{
+  "testId": "TC-SEC-023",
+  "title": "SQL injection probe in login email",
+  "category": "security",
+  "executedAt": "2026-10-01T11:24:05+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/login",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "' OR 1=1 -- @x.com",
+      "password": "<redacted test password, length 1>"
+    }
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 23.7,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "email: must be a well-formed email address",
+      "instance": "/api/v1/auth/login",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400/401; no authentication",
+  "actual": "HTTP 400",
+  "verdict": "PASS"
+}

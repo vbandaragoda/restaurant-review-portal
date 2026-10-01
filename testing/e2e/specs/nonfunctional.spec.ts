@@ -52,6 +52,9 @@ test("BB-18c mobile: restaurant filters are available", async ({ page }) => {
   await page.setViewportSize(viewports.mobile);
   await page.goto("/restaurants");
   await settle(page);
+  // Cycle 2 maintenance: mobile filters are inside a collapsible "Filters" panel (eed62c2) – open it like a user would.
+  const disclosure = page.locator("details summary", { hasText: "Filters" });
+  if (await disclosure.isVisible()) await disclosure.click();
   const visibleFilterControls = await page.getByRole("checkbox").filter({ visible: true }).count();
   const applyVisible = await page.getByRole("button", { name: "Apply Filters" }).isVisible();
   log("BB-18c", `mobile visible filter checkboxes=${visibleFilterControls}; Apply Filters visible=${applyVisible}`);

@@ -1,0 +1,27 @@
+{
+  "testId": "TC-SEC-021",
+  "title": "SQL injection probe in search q",
+  "category": "security",
+  "executedAt": "2026-10-01T11:24:05+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants?q=%27+OR+%271%27%3D%271",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 22.5,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "2"
+    },
+    "body": []
+  },
+  "expected": "HTTP 200 and empty list (input treated as literal)",
+  "actual": "HTTP 200; rows returned=0",
+  "verdict": "PASS"
+}

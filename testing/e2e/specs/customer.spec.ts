@@ -23,8 +23,8 @@ test("BB-02a registration rejected when passwords do not match", async ({ page }
   await page.goto("/signup");
   await page.getByLabel("Full name").fill("Mismatch");
   await page.getByLabel("Email").fill(email("mismatch"));
-  await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
-  await page.getByLabel("Confirm password").fill(PASSWORD + "x");
+  await page.getByRole("textbox", { name: /^Password/ }).fill(PASSWORD); // Cycle 2 maintenance: Show/Hide toggle
+  await page.getByRole("textbox", { name: /^Confirm password/ }).fill(PASSWORD + "x");
   await page.getByRole("button", { name: "Create Account" }).click();
   await expect(page.getByText("Passwords do not match.")).toBeVisible();
   await shot(page, "ui", "BB-02a-registration-password-mismatch");
@@ -43,9 +43,9 @@ test("BB-02c registration blocked client-side for empty fields and short passwor
   const nameValid = await page.getByLabel("Full name").evaluate((el: HTMLInputElement) => el.validity.valid);
   await page.getByLabel("Full name").fill("Short");
   await page.getByLabel("Email").fill("not-an-email");
-  await page.getByLabel("Password", { exact: true }).fill("short");
+  await page.getByRole("textbox", { name: /^Password/ }).fill("short"); // Cycle 2 maintenance: Show/Hide toggle
   const emailMsg = await page.getByLabel("Email").evaluate((el: HTMLInputElement) => el.validationMessage);
-  const pwMsg = await page.getByLabel("Password", { exact: true }).evaluate((el: HTMLInputElement) => el.validationMessage);
+  const pwMsg = await page.getByRole("textbox", { name: /^Password/ }).evaluate((el: HTMLInputElement) => el.validationMessage);
   log("BB-02c", `empty name valid=${nameValid}; email message="${emailMsg}"; password message="${pwMsg}"`);
   expect(nameValid).toBe(false);
   expect(emailMsg).not.toBe("");
@@ -233,12 +233,16 @@ test("TC-UI-006 'Write a Review' from home page (no restaurant selected) lets th
   await page.getByRole("link", { name: "Write a Review" }).click();
   await expect(page).toHaveURL(/\/reviews\/new$/);
   const pickers = await page.locator("select, input[list], [role=combobox]").count();
-  await page.getByLabel("Review").fill("QA review submitted without choosing a restaurant.");
-  await page.getByRole("button", { name: "Submit Review" }).click();
-  await page.waitForTimeout(1500);
-  await shot(page, "ui", "TC-UI-006-review-without-restaurant");
   log("TC-UI-006", `restaurant picker controls=${pickers}`);
   expect(pickers, "a restaurant selector should be offered").toBeGreaterThan(0);
+  // Cycle 2 (retest of DEF-014): complete the journey using the new selector.
+  await page.getByLabel("Review", { exact: true }).fill("QA review submitted after choosing a restaurant from the home page.");
+  await page.getByRole("button", { name: "Submit Review" }).click();
+  await expect(page.getByText("Please select a restaurant before submitting your review.").or(page.locator("#review-restaurant:invalid"))).toHaveCount(1);
+  await page.locator("#review-restaurant").selectOption("nuga-gama");
+  await page.getByRole("button", { name: "Submit Review" }).click();
+  await expect(page.getByText("Thank you. Your review is pending moderator approval.")).toBeVisible();
+  await shot(page, "ui", "TC-UI-006-review-without-restaurant");
 });
 
 test("BB-12 user sees own submitted reviews with status", async ({ page }) => {
@@ -323,9 +327,16 @@ test("TC-UI-012 customer created via API sees customer header state (Profile, no
 
 test("TC-UI-013 home page filter chips and location selector affect results", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: "Vegan", exact: true }).click();
-  await page.waitForTimeout(1000);
+  // Cycle 2 maintenance: the dietary chips are now links (eed62c2); result check made data-independent (QA data adds Galle cafes).
+  await page.getByRole("link", { name: "Vegan", exact: true }).click();
+  await page.waitForURL(/\/restaurants\?vegan=true/);
   const afterChip = page.url();
+  await expect(page.getByText("Loading restaurants…")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "View Details" }).first()).toBeVisible();
+  const veganTags = await page.locator("article").count();
+  const api = await (await fetch("http://localhost:8080/api/v1/restaurants?vegan=true")).json();
+  expect(veganTags, "Vegan chip page should list the API's vegan restaurants").toBe(api.length);
+  await page.goto("/");
   await page.locator("#location").selectOption("Galle");
   await page.locator("#desktop-search").fill("cafe");
   await page.getByRole("button", { name: "Search" }).click();
@@ -335,5 +346,8 @@ test("TC-UI-013 home page filter chips and location selector affect results", as
   log("TC-UI-013", `URL after clicking 'Vegan' chip: ${afterChip}; search 'cafe' + location Galle -> URL ${page.url()} results: ${names.join(", ")}`);
   await shot(page, "ui", "TC-UI-013-home-location-ignored");
   expect(afterChip, "clicking a filter chip should apply a filter").not.toBe("http://localhost:3000/");
-  expect(names.every((n) => n === "Pedlar’s Inn"), "location Galle should restrict results").toBe(true);
+  const locs = await page.locator("article p.text-muted").filter({ hasText: " · " }).allTextContents();
+  log("TC-UI-013", `vegan chip results=${veganTags}; Galle+cafe result locations: ${locs.join(" | ")}`);
+  expect(names.length, "search should return results").toBeGreaterThan(0);
+  expect(locs.every((t) => t.endsWith("Galle")), "location Galle should restrict results").toBe(true);
 });

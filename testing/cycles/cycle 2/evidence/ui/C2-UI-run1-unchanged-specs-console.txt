@@ -1,0 +1,1190 @@
+
+Running 64 tests using 1 worker
+
+  x   1 specs\admin.spec.ts:11:5 › TC-ADM-UI-001 admin login opens dashboard with live metrics (4.4s)
+  x   2 specs\admin.spec.ts:24:5 › BB-14a customer is denied the admin UI (redirected to login) (2.9s)
+  ok  3 specs\admin.spec.ts:33:5 › BB-14b anonymous visitor is denied the admin UI (19.1s)
+  x   4 specs\admin.spec.ts:38:5 › BB-14c customer who forges role=ADMIN in localStorage sees no admin data (API enforces role) (2.0s)
+  x   5 specs\admin.spec.ts:53:5 › BB-15 admin creates, updates and deletes a restaurant through the UI (2.1s)
+  x   6 specs\admin.spec.ts:93:5 › TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews cannot be deleted (2.1s)
+  x   7 specs\admin.spec.ts:112:5 › BB-16 admin creates, updates and deletes a dish through the UI (2.2s)
+  x   8 specs\admin.spec.ts:148:5 › TC-ADM-UI-003 invalid restaurant input shows validation feedback (2.1s)
+  x   9 specs\admin.spec.ts:160:5 › BB-13 admin approves and rejects pending reviews; public visibility follows status (2.2s)
+  x  10 specs\admin.spec.ts:195:5 › TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting (2.1s)
+  ok 11 specs\customer.spec.ts:6:5 › TC-UI-001 home page renders hero, search and navigation (3.0s)
+  x  12 specs\customer.spec.ts:13:5 › BB-01 registration with valid data creates account and opens profile (16.5s)
+  x  13 specs\customer.spec.ts:22:5 › BB-02a registration rejected when passwords do not match (17.3s)
+  x  14 specs\customer.spec.ts:33:5 › BB-02b registration rejected for duplicate email with feedback (17.1s)
+  x  15 specs\customer.spec.ts:40:5 › BB-02c registration blocked client-side for empty fields and short password (17.4s)
+  x  16 specs\customer.spec.ts:58:5 › BB-03 valid login authenticates and grants access to profile (2.5s)
+  x  17 specs\customer.spec.ts:67:5 › BB-04 invalid password is rejected with an error message (1.9s)
+  x  18 specs\customer.spec.ts:74:5 › BB-05 profile shows the user's name, email, reviews and saved sections (2.1s)
+  x  19 specs\customer.spec.ts:82:5 › TC-UI-002 logout clears the session and protects the profile route (2.1s)
+  ok 20 specs\customer.spec.ts:93:5 › BB-06 restaurant listing displays available restaurants (2.6s)
+  ok 21 specs\customer.spec.ts:103:5 › BB-07 search returns matching restaurants (2.0s)
+  ok 22 specs\customer.spec.ts:112:5 › TC-UI-003 search with no matches shows an empty-state message (1.7s)
+  ok 23 specs\customer.spec.ts:118:5 › TC-UI-004 home page search submits to results page (1.6s)
+  ok 24 specs\customer.spec.ts:126:5 › BB-08a filter by location and dietary options reflects criteria (1.7s)
+  ok 25 specs\customer.spec.ts:137:5 › BB-08b 'Clear all' resets filters and results (3.5s)
+  ok 26 specs\customer.spec.ts:158:5 › BB-08c cuisine category link filters the listing (2.5s)
+  ok 27 specs\customer.spec.ts:169:5 › BB-08d price and spice filters are available on restaurant search (983ms)
+  ok 28 specs\customer.spec.ts:177:5 › BB-09 restaurant details show info, menu and dish details (5.4s)
+  ok 29 specs\customer.spec.ts:191:5 › TC-UI-005 unknown restaurant slug shows an error state (1.2s)
+  x  30 specs\customer.spec.ts:197:5 › BB-10 authenticated user submits a valid review (stored for moderation) (1.0s)
+  x  31 specs\customer.spec.ts:209:5 › BB-11a review with text shorter than 10 characters is blocked (1.7s)
+  x  32 specs\customer.spec.ts:221:5 › BB-11b rating outside 1-5 cannot be entered in the UI (star control limits range) (1.6s)
+  x  33 specs\customer.spec.ts:230:5 › TC-UI-006 'Write a Review' from home page (no restaurant selected) lets the user pick a restaurant (1.7s)
+  x  34 specs\customer.spec.ts:244:5 › BB-12 user sees own submitted reviews with status (1.6s)
+  x  35 specs\customer.spec.ts:252:5 › TC-UI-007 saved restaurant: save, view on profile, remove (1.6s)
+  x  36 specs\customer.spec.ts:269:5 › TC-UI-008 saved state is shown when revisiting an already-saved restaurant (1.7s)
+  ok 37 specs\customer.spec.ts:282:5 › TC-UI-009 unauthenticated 'Save' redirects to login (2.0s)
+  ok 38 specs\customer.spec.ts:288:5 › TC-UI-010 unauthenticated review form redirects to login (1.3s)
+  ok 39 specs\customer.spec.ts:293:5 › TC-SEC-031 stored XSS payload in an approved review is rendered as text (no script execution) (2.9s)
+  ok 40 specs\customer.spec.ts:306:5 › TC-UI-011 home 'Top Rated' section reflects API data (1.2s)
+  x  41 specs\customer.spec.ts:315:5 › TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard) (1.0s)
+  x  42 specs\customer.spec.ts:324:5 › TC-UI-013 home page filter chips and location selector affect results (16.5s)
+  x  43 specs\dry-runs.spec.ts:10:5 › DR-01 new user journey: register -> login -> browse -> search/filter -> view restaurant (16.7s)
+  x  44 specs\dry-runs.spec.ts:28:5 › DR-02 review journey: login -> select restaurant -> submit review -> admin moderates -> visible (16.7s)
+  x  45 specs\dry-runs.spec.ts:57:5 › DR-03 saved restaurant journey: login -> select -> save -> profile -> view -> remove (16.5s)
+  x  46 specs\dry-runs.spec.ts:76:5 › DR-04 administrator restaurant workflow: login -> dashboard -> create/update/delete restaurant (1.8s)
+  x  47 specs\dry-runs.spec.ts:102:5 › DR-05 administrator dish workflow: login -> manage dishes -> create/update/delete dish (1.6s)
+  x  48 specs\dry-runs.spec.ts:128:5 › DR-06 administrator moderation workflow: review pending -> approve/reject -> visibility correct (16.6s)
+  x  49 specs\dry-runs.spec.ts:156:5 › DR-07 language journey: English, Sinhala and Tamil content readable and consistent (17.5s)
+  ok 50 specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at mobile 375x812: no horizontal overflow, content visible (9.1s)
+  ok 51 specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at tablet 768x1024: no horizontal overflow, content visible (8.7s)
+  ok 52 specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at desktop 1440x900: no horizontal overflow, content visible (8.9s)
+  ok 53 specs\nonfunctional.spec.ts:40:5 › BB-18b mobile: bottom navigation is present and search works (1.3s)
+  x  54 specs\nonfunctional.spec.ts:51:5 › BB-18c mobile: restaurant filters are available (2.1s)
+  x  55 specs\nonfunctional.spec.ts:62:5 › BB-18d mobile: profile, review form and admin remain usable (1.6s)
+  x  56 specs\nonfunctional.spec.ts:88:5 › BB-20a automated accessibility scan (axe-core, WCAG 2.1 A/AA) of key pages (12.9s)
+  ok 57 specs\nonfunctional.spec.ts:106:5 › BB-20b keyboard-only login: fields reachable by Tab and form submits with Enter (3.4s)
+  ok 58 specs\nonfunctional.spec.ts:126:5 › BB-20c focus is visibly indicated on interactive elements (986ms)
+  x  59 specs\nonfunctional.spec.ts:137:5 › BB-20d rating star buttons expose accessible names and selected state (1.1s)
+  ok 60 specs\nonfunctional.spec.ts:149:5 › BB-20e search and filter inputs have programmatic labels (2.2s)
+  ok 61 specs\nonfunctional.spec.ts:160:5 › BB-19a approved Sinhala and Tamil reviews display correctly with Unicode fonts (1.9s)
+  x  62 specs\nonfunctional.spec.ts:175:5 › BB-19b customer can write a review in Sinhala and in Tamil via the language selector (1.1s)
+  x  63 specs\nonfunctional.spec.ts:193:5 › BB-19c interface language can be switched to Sinhala / Tamil (2.3s)
+  ok 64 specs\nonfunctional.spec.ts:203:5 › PERF-UI page load timings (Next.js dev server; indicative only) (11.0s)
+
+
+  1) specs\admin.spec.ts:11:5 › TC-ADM-UI-001 admin login opens dashboard with live metrics ────────
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at loginAdmin (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:49:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:12:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-001-admin--f2fde-dashboard-with-live-metrics\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-001-admin--f2fde-dashboard-with-live-metrics\error-context.md
+
+  2) specs\admin.spec.ts:24:5 › BB-14a customer is denied the admin UI (redirected to login) ───────
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:27:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-BB-14a-customer-is-d-89397-min-UI-redirected-to-login-\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-BB-14a-customer-is-d-89397-min-UI-redirected-to-login-\error-context.md
+
+  3) specs\admin.spec.ts:38:5 › BB-14c customer who forges role=ADMIN in localStorage sees no admin data (API enforces role) 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:41:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-BB-14c-customer-who--ba1de-min-data-API-enforces-role-\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-BB-14c-customer-who--ba1de-min-data-API-enforces-role-\error-context.md
+
+  4) specs\admin.spec.ts:53:5 › BB-15 admin creates, updates and deletes a restaurant through the UI 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at loginAdmin (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:49:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:55:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-BB-15-admin-creates--c6bc4-a-restaurant-through-the-UI\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-BB-15-admin-creates--c6bc4-a-restaurant-through-the-UI\error-context.md
+
+  5) specs\admin.spec.ts:93:5 › TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews cannot be deleted 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at loginAdmin (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:49:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:95:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-002-admin--8a4c3-h-reviews-cannot-be-deleted\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-002-admin--8a4c3-h-reviews-cannot-be-deleted\error-context.md
+
+  6) specs\admin.spec.ts:112:5 › BB-16 admin creates, updates and deletes a dish through the UI ────
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at loginAdmin (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:49:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:114:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-BB-16-admin-creates--55927-letes-a-dish-through-the-UI\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-BB-16-admin-creates--55927-letes-a-dish-through-the-UI\error-context.md
+
+  7) specs\admin.spec.ts:148:5 › TC-ADM-UI-003 invalid restaurant input shows validation feedback ──
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at loginAdmin (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:49:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:149:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-003-invali-fcfe1-t-shows-validation-feedback\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-003-invali-fcfe1-t-shows-validation-feedback\error-context.md
+
+  8) specs\admin.spec.ts:160:5 › BB-13 admin approves and rejects pending reviews; public visibility follows status 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at loginAdmin (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:49:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:169:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-BB-13-admin-approves-0a3bc-c-visibility-follows-status\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-BB-13-admin-approves-0a3bc-c-visibility-follows-status\error-context.md
+
+  9) specs\admin.spec.ts:195:5 › TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at loginAdmin (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:49:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\admin.spec.ts:196:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-004-modera-86743--note-reason-when-rejecting\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\admin-TC-ADM-UI-004-modera-86743--note-reason-when-rejecting\error-context.md
+
+  10) specs\customer.spec.ts:13:5 › BB-01 registration with valid data creates account and opens profile 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Password', { exact: true })
+
+
+       at helpers.ts:28
+
+      26 |   await page.getByLabel("Full name").fill(name);
+      27 |   await page.getByLabel("Email").fill(email);
+    > 28 |   await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
+         |                                                      ^
+      29 |   await page.getByLabel("Confirm password").fill(PASSWORD);
+      30 |   await page.getByRole("button", { name: "Create Account" }).click();
+      31 | }
+        at signup (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:28:54)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:14:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-01-registratio-fc1be-s-account-and-opens-profile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-01-registratio-fc1be-s-account-and-opens-profile\error-context.md
+
+  11) specs\customer.spec.ts:22:5 › BB-02a registration rejected when passwords do not match ───────
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Password', { exact: true })
+
+
+      24 |   await page.getByLabel("Full name").fill("Mismatch");
+      25 |   await page.getByLabel("Email").fill(email("mismatch"));
+    > 26 |   await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
+         |                                                      ^
+      27 |   await page.getByLabel("Confirm password").fill(PASSWORD + "x");
+      28 |   await page.getByRole("button", { name: "Create Account" }).click();
+      29 |   await expect(page.getByText("Passwords do not match.")).toBeVisible();
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:26:54
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-02a-registrati-2f5c1-when-passwords-do-not-match\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-02a-registrati-2f5c1-when-passwords-do-not-match\error-context.md
+
+  12) specs\customer.spec.ts:33:5 › BB-02b registration rejected for duplicate email with feedback ─
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Password', { exact: true })
+
+
+       at helpers.ts:28
+
+      26 |   await page.getByLabel("Full name").fill(name);
+      27 |   await page.getByLabel("Email").fill(email);
+    > 28 |   await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
+         |                                                      ^
+      29 |   await page.getByLabel("Confirm password").fill(PASSWORD);
+      30 |   await page.getByRole("button", { name: "Create Account" }).click();
+      31 | }
+        at signup (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:28:54)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:34:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-02b-registrati-40cbd-plicate-email-with-feedback\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-02b-registrati-40cbd-plicate-email-with-feedback\error-context.md
+
+  13) specs\customer.spec.ts:40:5 › BB-02c registration blocked client-side for empty fields and short password 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Password', { exact: true })
+
+
+      44 |   await page.getByLabel("Full name").fill("Short");
+      45 |   await page.getByLabel("Email").fill("not-an-email");
+    > 46 |   await page.getByLabel("Password", { exact: true }).fill("short");
+         |                                                      ^
+      47 |   const emailMsg = await page.getByLabel("Email").evaluate((el: HTMLInputElement) => el.validationMessage);
+      48 |   const pwMsg = await page.getByLabel("Password", { exact: true }).evaluate((el: HTMLInputElement) => el.validationMessage);
+      49 |   log("BB-02c", `empty name valid=${nameValid}; email message="${emailMsg}"; password message="${pwMsg}"`);
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:46:54
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-02c-registrati-1c8da-y-fields-and-short-password\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-02c-registrati-1c8da-y-fields-and-short-password\error-context.md
+
+  14) specs\customer.spec.ts:58:5 › BB-03 valid login authenticates and grants access to profile ───
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:59:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-03-valid-login-49ba2-nd-grants-access-to-profile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-03-valid-login-49ba2-nd-grants-access-to-profile\error-context.md
+
+  15) specs\customer.spec.ts:67:5 › BB-04 invalid password is rejected with an error message ───────
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:68:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-04-invalid-pas-237a2-ected-with-an-error-message\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-04-invalid-pas-237a2-ected-with-an-error-message\error-context.md
+
+  16) specs\customer.spec.ts:74:5 › BB-05 profile shows the user's name, email, reviews and saved sections 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:75:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-05-profile-sho-7dc99--reviews-and-saved-sections\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-05-profile-sho-7dc99--reviews-and-saved-sections\error-context.md
+
+  17) specs\customer.spec.ts:82:5 › TC-UI-002 logout clears the session and protects the profile route 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:84:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-002-logout--2335c--protects-the-profile-route\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-002-logout--2335c--protects-the-profile-route\error-context.md
+
+  18) specs\customer.spec.ts:197:5 › BB-10 authenticated user submits a valid review (stored for moderation) 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:198:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-10-authenticat-b383c-view-stored-for-moderation-\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-10-authenticat-b383c-view-stored-for-moderation-\error-context.md
+
+  19) specs\customer.spec.ts:209:5 › BB-11a review with text shorter than 10 characters is blocked ─
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:210:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-11a-review-wit-c34e4-an-10-characters-is-blocked\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-11a-review-wit-c34e4-an-10-characters-is-blocked\error-context.md
+
+  20) specs\customer.spec.ts:221:5 › BB-11b rating outside 1-5 cannot be entered in the UI (star control limits range) 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:222:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-11b-rating-out-8858d--star-control-limits-range-\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-11b-rating-out-8858d--star-control-limits-range-\error-context.md
+
+  21) specs\customer.spec.ts:230:5 › TC-UI-006 'Write a Review' from home page (no restaurant selected) lets the user pick a restaurant 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:231:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-006-Write-a-655b0--the-user-pick-a-restaurant\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-006-Write-a-655b0--the-user-pick-a-restaurant\error-context.md
+
+  22) specs\customer.spec.ts:244:5 › BB-12 user sees own submitted reviews with status ─────────────
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:245:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-12-user-sees-own-submitted-reviews-with-status\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-BB-12-user-sees-own-submitted-reviews-with-status\error-context.md
+
+  23) specs\customer.spec.ts:252:5 › TC-UI-007 saved restaurant: save, view on profile, remove ─────
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:253:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-007-saved-r-2912c-save-view-on-profile-remove\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-007-saved-r-2912c-save-view-on-profile-remove\error-context.md
+
+  24) specs\customer.spec.ts:269:5 › TC-UI-008 saved state is shown when revisiting an already-saved restaurant 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:270:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-008-saved-s-9e40d-an-already-saved-restaurant\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-008-saved-s-9e40d-an-already-saved-restaurant\error-context.md
+
+  25) specs\customer.spec.ts:315:5 › TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard) 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:317:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-012-custome-8f472-tate-Profile-not-Dashboard-\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-012-custome-8f472-tate-Profile-not-Dashboard-\error-context.md
+
+  26) specs\customer.spec.ts:324:5 › TC-UI-013 home page filter chips and location selector affect results 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Vegan', exact: true })
+
+
+      324 | test("TC-UI-013 home page filter chips and location selector affect results", async ({ page }) => {
+      325 |   await page.goto("/");
+    > 326 |   await page.getByRole("button", { name: "Vegan", exact: true }).click();
+          |                                                                  ^
+      327 |   await page.waitForTimeout(1000);
+      328 |   const afterChip = page.url();
+      329 |   await page.locator("#location").selectOption("Galle");
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\customer.spec.ts:326:66
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-013-home-pa-e723b-ion-selector-affect-results\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\customer-TC-UI-013-home-pa-e723b-ion-selector-affect-results\error-context.md
+
+  27) specs\dry-runs.spec.ts:10:5 › DR-01 new user journey: register -> login -> browse -> search/filter -> view restaurant 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Password', { exact: true })
+
+
+       at helpers.ts:28
+
+      26 |   await page.getByLabel("Full name").fill(name);
+      27 |   await page.getByLabel("Email").fill(email);
+    > 28 |   await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
+         |                                                      ^
+      29 |   await page.getByLabel("Confirm password").fill(PASSWORD);
+      30 |   await page.getByRole("button", { name: "Create Account" }).click();
+      31 | }
+        at signup (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:28:54)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\dry-runs.spec.ts:11:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-01-new-user-jo-20f8a-ch-filter---view-restaurant\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-01-new-user-jo-20f8a-ch-filter---view-restaurant\error-context.md
+
+  28) specs\dry-runs.spec.ts:28:5 › DR-02 review journey: login -> select restaurant -> submit review -> admin moderates -> visible 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Password', { exact: true })
+
+
+       at helpers.ts:28
+
+      26 |   await page.getByLabel("Full name").fill(name);
+      27 |   await page.getByLabel("Email").fill(email);
+    > 28 |   await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
+         |                                                      ^
+      29 |   await page.getByLabel("Confirm password").fill(PASSWORD);
+      30 |   await page.getByRole("button", { name: "Create Account" }).click();
+      31 | }
+        at signup (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:28:54)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\dry-runs.spec.ts:31:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-02-review-jour-2915b---admin-moderates---visible\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-02-review-jour-2915b---admin-moderates---visible\error-context.md
+
+  29) specs\dry-runs.spec.ts:57:5 › DR-03 saved restaurant journey: login -> select -> save -> profile -> view -> remove 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Password', { exact: true })
+
+
+       at helpers.ts:28
+
+      26 |   await page.getByLabel("Full name").fill(name);
+      27 |   await page.getByLabel("Email").fill(email);
+    > 28 |   await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
+         |                                                      ^
+      29 |   await page.getByLabel("Confirm password").fill(PASSWORD);
+      30 |   await page.getByRole("button", { name: "Create Account" }).click();
+      31 | }
+        at signup (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:28:54)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\dry-runs.spec.ts:58:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-03-saved-resta-e0f7a-e---profile---view---remove\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-03-saved-resta-e0f7a-e---profile---view---remove\error-context.md
+
+  30) specs\dry-runs.spec.ts:76:5 › DR-04 administrator restaurant workflow: login -> dashboard -> create/update/delete restaurant 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at loginAdmin (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:49:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\dry-runs.spec.ts:79:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-04-administrat-764ea-te-update-delete-restaurant\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-04-administrat-764ea-te-update-delete-restaurant\error-context.md
+
+  31) specs\dry-runs.spec.ts:102:5 › DR-05 administrator dish workflow: login -> manage dishes -> create/update/delete dish 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at loginAdmin (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:49:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\dry-runs.spec.ts:105:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-05-administrat-9630f---create-update-delete-dish\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-05-administrat-9630f---create-update-delete-dish\error-context.md
+
+  32) specs\dry-runs.spec.ts:128:5 › DR-06 administrator moderation workflow: review pending -> approve/reject -> visibility correct 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Password', { exact: true })
+
+
+       at helpers.ts:28
+
+      26 |   await page.getByLabel("Full name").fill(name);
+      27 |   await page.getByLabel("Email").fill(email);
+    > 28 |   await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
+         |                                                      ^
+      29 |   await page.getByLabel("Confirm password").fill(PASSWORD);
+      30 |   await page.getByRole("button", { name: "Create Account" }).click();
+      31 | }
+        at signup (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:28:54)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\dry-runs.spec.ts:130:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-06-administrat-33b8c-reject---visibility-correct\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-06-administrat-33b8c-reject---visibility-correct\error-context.md
+
+  33) specs\dry-runs.spec.ts:156:5 › DR-07 language journey: English, Sinhala and Tamil content readable and consistent 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Password', { exact: true })
+
+
+       at helpers.ts:28
+
+      26 |   await page.getByLabel("Full name").fill(name);
+      27 |   await page.getByLabel("Email").fill(email);
+    > 28 |   await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
+         |                                                      ^
+      29 |   await page.getByLabel("Confirm password").fill(PASSWORD);
+      30 |   await page.getByRole("button", { name: "Create Account" }).click();
+      31 | }
+        at signup (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:28:54)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\dry-runs.spec.ts:161:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-07-language-jo-39185-ent-readable-and-consistent\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\dry-runs-DR-07-language-jo-39185-ent-readable-and-consistent\error-context.md
+
+  34) specs\nonfunctional.spec.ts:51:5 › BB-18c mobile: restaurant filters are available ───────────
+
+    Error: dietary/location filters should be usable on mobile
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      57 |   log("BB-18c", `mobile visible filter checkboxes=${visibleFilterControls}; Apply Filters visible=${applyVisible}`);
+      58 |   await shot(page, "ui/responsive", "BB-18c-mobile-restaurants-no-filters", false);
+    > 59 |   expect(visibleFilterControls + (applyVisible ? 1 : 0), "dietary/location filters should be usable on mobile").toBeGreaterThan(0);
+         |                                                                                                                 ^
+      60 | });
+      61 |
+      62 | test("BB-18d mobile: profile, review form and admin remain usable", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:59:113
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-18c-mobile-restaurant-filters-are-available\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-18c-mobile-restaurant-filters-are-available\error-context.md
+
+  35) specs\nonfunctional.spec.ts:62:5 › BB-18d mobile: profile, review form and admin remain usable 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:66:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-18d-mobil-79ac6-orm-and-admin-remain-usable\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-18d-mobil-79ac6-orm-and-admin-remain-usable\error-context.md
+
+  36) specs\nonfunctional.spec.ts:88:5 › BB-20a automated accessibility scan (axe-core, WCAG 2.1 A/AA) of key pages 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:93:33
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-20a-autom-db96a--WCAG-2-1-A-AA-of-key-pages\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-20a-autom-db96a--WCAG-2-1-A-AA-of-key-pages\error-context.md
+
+  37) specs\nonfunctional.spec.ts:137:5 › BB-20d rating star buttons expose accessible names and selected state 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:140:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-20d-ratin-b0047-le-names-and-selected-state\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-20d-ratin-b0047-le-names-and-selected-state\error-context.md
+
+  38) specs\nonfunctional.spec.ts:175:5 › BB-19b customer can write a review in Sinhala and in Tamil via the language selector 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('Password') resolved to 2 elements:
+        1) <input value="" required="" type="password" placeholder="••••••••" autocomplete="current-password" class="h-12 w-full rounded-lg border border-soft-border px-3.5 outline-none focus:border-brand pr-16"/> aka getByRole('textbox', { name: 'Password Show password' })
+        2) <button type="button" aria-pressed="false" aria-label="Show password" class="absolute inset-y-0 right-3 my-auto h-fit text-xs font-semibold text-brand hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Show</button> aka getByRole('button', { name: 'Show password' })
+
+    Call log:
+      - waiting for getByLabel('Password')
+
+
+       at helpers.ts:36
+
+      34 |   await page.goto("/login");
+      35 |   await page.getByLabel("Email").fill(email);
+    > 36 |   await page.getByLabel("Password").fill(password);
+         |                                     ^
+      37 |   await page.getByRole("button", { name: "Log In" }).click();
+      38 | }
+      39 |
+        at login (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:36:37)
+        at loginOk (D:\restaurent\restaurant-review-portal\testing\e2e\specs\helpers.ts:42:3)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:178:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-19b-custo-20093-l-via-the-language-selector\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-19b-custo-20093-l-via-the-language-selector\error-context.md
+
+  39) specs\nonfunctional.spec.ts:193:5 › BB-19c interface language can be switched to Sinhala / Tamil 
+
+    Error: a UI language selector (EN/SI/TA)
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      197 |   const htmlLang = await page.evaluate(() => document.documentElement.lang);
+      198 |   log("BB-19c", `language switch controls on home page=${switcher}; <html lang>=${htmlLang}`);
+    > 199 |   expect(switcher, "a UI language selector (EN/SI/TA)").toBeGreaterThan(0);
+          |                                                         ^
+      200 | });
+      201 |
+      202 | // ------------------------------------------------------------------------------------------------ UI performance (dev server)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:199:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-19c-inter-fe272-e-switched-to-Sinhala-Tamil\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\cycles\cycle 2\evidence\ui\playwright-artifacts\nonfunctional-BB-19c-inter-fe272-e-switched-to-Sinhala-Tamil\error-context.md
+
+  39 failed
+    specs\admin.spec.ts:11:5 › TC-ADM-UI-001 admin login opens dashboard with live metrics ─────────
+    specs\admin.spec.ts:24:5 › BB-14a customer is denied the admin UI (redirected to login) ────────
+    specs\admin.spec.ts:38:5 › BB-14c customer who forges role=ADMIN in localStorage sees no admin data (API enforces role) 
+    specs\admin.spec.ts:53:5 › BB-15 admin creates, updates and deletes a restaurant through the UI 
+    specs\admin.spec.ts:93:5 › TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews cannot be deleted 
+    specs\admin.spec.ts:112:5 › BB-16 admin creates, updates and deletes a dish through the UI ─────
+    specs\admin.spec.ts:148:5 › TC-ADM-UI-003 invalid restaurant input shows validation feedback ───
+    specs\admin.spec.ts:160:5 › BB-13 admin approves and rejects pending reviews; public visibility follows status 
+    specs\admin.spec.ts:195:5 › TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting 
+    specs\customer.spec.ts:13:5 › BB-01 registration with valid data creates account and opens profile 
+    specs\customer.spec.ts:22:5 › BB-02a registration rejected when passwords do not match ─────────
+    specs\customer.spec.ts:33:5 › BB-02b registration rejected for duplicate email with feedback ───
+    specs\customer.spec.ts:40:5 › BB-02c registration blocked client-side for empty fields and short password 
+    specs\customer.spec.ts:58:5 › BB-03 valid login authenticates and grants access to profile ─────
+    specs\customer.spec.ts:67:5 › BB-04 invalid password is rejected with an error message ─────────
+    specs\customer.spec.ts:74:5 › BB-05 profile shows the user's name, email, reviews and saved sections 
+    specs\customer.spec.ts:82:5 › TC-UI-002 logout clears the session and protects the profile route 
+    specs\customer.spec.ts:197:5 › BB-10 authenticated user submits a valid review (stored for moderation) 
+    specs\customer.spec.ts:209:5 › BB-11a review with text shorter than 10 characters is blocked ───
+    specs\customer.spec.ts:221:5 › BB-11b rating outside 1-5 cannot be entered in the UI (star control limits range) 
+    specs\customer.spec.ts:230:5 › TC-UI-006 'Write a Review' from home page (no restaurant selected) lets the user pick a restaurant 
+    specs\customer.spec.ts:244:5 › BB-12 user sees own submitted reviews with status ───────────────
+    specs\customer.spec.ts:252:5 › TC-UI-007 saved restaurant: save, view on profile, remove ───────
+    specs\customer.spec.ts:269:5 › TC-UI-008 saved state is shown when revisiting an already-saved restaurant 
+    specs\customer.spec.ts:315:5 › TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard) 
+    specs\customer.spec.ts:324:5 › TC-UI-013 home page filter chips and location selector affect results 
+    specs\dry-runs.spec.ts:10:5 › DR-01 new user journey: register -> login -> browse -> search/filter -> view restaurant 
+    specs\dry-runs.spec.ts:28:5 › DR-02 review journey: login -> select restaurant -> submit review -> admin moderates -> visible 
+    specs\dry-runs.spec.ts:57:5 › DR-03 saved restaurant journey: login -> select -> save -> profile -> view -> remove 
+    specs\dry-runs.spec.ts:76:5 › DR-04 administrator restaurant workflow: login -> dashboard -> create/update/delete restaurant 
+    specs\dry-runs.spec.ts:102:5 › DR-05 administrator dish workflow: login -> manage dishes -> create/update/delete dish 
+    specs\dry-runs.spec.ts:128:5 › DR-06 administrator moderation workflow: review pending -> approve/reject -> visibility correct 
+    specs\dry-runs.spec.ts:156:5 › DR-07 language journey: English, Sinhala and Tamil content readable and consistent 
+    specs\nonfunctional.spec.ts:51:5 › BB-18c mobile: restaurant filters are available ─────────────
+    specs\nonfunctional.spec.ts:62:5 › BB-18d mobile: profile, review form and admin remain usable ─
+    specs\nonfunctional.spec.ts:88:5 › BB-20a automated accessibility scan (axe-core, WCAG 2.1 A/AA) of key pages 
+    specs\nonfunctional.spec.ts:137:5 › BB-20d rating star buttons expose accessible names and selected state 
+    specs\nonfunctional.spec.ts:175:5 › BB-19b customer can write a review in Sinhala and in Tamil via the language selector 
+    specs\nonfunctional.spec.ts:193:5 › BB-19c interface language can be switched to Sinhala / Tamil 
+  25 passed (6.9m)

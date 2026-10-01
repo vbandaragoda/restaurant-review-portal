@@ -1,0 +1,51 @@
+{
+  "testId": "TC-SEC-020",
+  "title": "Mass assignment: review submitted with status=APPROVED",
+  "category": "security",
+  "executedAt": "2026-10-01T11:24:03+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_B token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "ministry-of-crab",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "QA review: tasty rice and curry, friendly staff.",
+      "status": "APPROVED",
+      "moderatorNote": "self-approved"
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 54.0,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "296"
+    },
+    "body": {
+      "id": 6,
+      "author": "QA User B",
+      "restaurantSlug": "ministry-of-crab",
+      "restaurantName": "Ministry of Crab",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "QA review: tasty rice and curry, friendly staff.",
+      "status": "PENDING",
+      "createdAt": "2026-10-01T05:54:03.300220400Z"
+    }
+  },
+  "expected": "HTTP 201 but status forced to PENDING (client status ignored)",
+  "actual": "HTTP 201; status=PENDING note=None",
+  "verdict": "PASS"
+}

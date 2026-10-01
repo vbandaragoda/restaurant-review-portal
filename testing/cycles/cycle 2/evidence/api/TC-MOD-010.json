@@ -1,0 +1,33 @@
+{
+  "testId": "TC-MOD-010",
+  "title": "Moderation queue with invalid status filter",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:03+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/admin/reviews?status=FOO",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 10.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "A request parameter contains an invalid value",
+      "instance": "/api/v1/admin/reviews",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 400",
+  "verdict": "PASS"
+}

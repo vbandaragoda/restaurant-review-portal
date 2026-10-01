@@ -1,0 +1,39 @@
+{
+  "testId": "TC-SEC-060",
+  "title": "Login succeeds immediately after 10 consecutive failed attempts (no lockout/throttling)",
+  "category": "security",
+  "executedAt": "2026-10-01T11:24:07+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/login",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "qa.userb.112400@tastelanka.test",
+      "password": "<redacted test password, length 13>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 153.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "356"
+    },
+    "body": {
+      "token": "<JWT, 238 chars>",
+      "userId": 7,
+      "fullName": "QA User B",
+      "email": "qa.userb.112400@tastelanka.test",
+      "role": "USER",
+      "language": "en"
+    }
+  },
+  "expected": "Informational: records whether brute-force protection exists",
+  "actual": "HTTP 200; preceding 10 failed-attempt statuses=[401]",
+  "verdict": "PASS"
+}

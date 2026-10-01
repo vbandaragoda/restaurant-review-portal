@@ -1,0 +1,43 @@
+{
+  "testId": "TC-API-026",
+  "title": "Dish details by slug",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:02+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/dishes/chilli-crab",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 40.7,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "351"
+    },
+    "body": {
+      "id": 1,
+      "slug": "chilli-crab",
+      "name": "Chilli Crab",
+      "description": "Signature Sri Lankan crab dish with a spicy chilli sauce.",
+      "price": 9500,
+      "spiceLevel": "Hot",
+      "vegetarian": false,
+      "halal": true,
+      "imageColor": "#bd471f",
+      "rating": 4.9,
+      "foodRating": 4.9,
+      "serviceRating": 4.6,
+      "reviewCount": 142,
+      "restaurantSlug": "ministry-of-crab",
+      "restaurantName": "Ministry of Crab"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; spice=Hot price=9500",
+  "verdict": "PASS"
+}
