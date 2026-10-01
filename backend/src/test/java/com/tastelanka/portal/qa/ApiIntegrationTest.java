@@ -166,6 +166,7 @@ class ApiIntegrationTest {
     void customerForbiddenFromAdmin() throws Exception {
         String token = register("cust");
         assertThat(status(auth(get("/api/v1/admin/dashboard"), token))).isEqualTo(403);
+        assertThat(status(auth(get("/api/v1/admin/users"), token))).isEqualTo(403);
         assertThat(status(json(auth(post("/api/v1/admin/restaurants"), token), restaurantBody("junit-hack-" + run, 1, 2)))).isEqualTo(403);
         assertThat(status(auth(delete("/api/v1/admin/restaurants/1"), token))).isEqualTo(403);
         assertThat(restaurants.findBySlug("junit-hack-" + run)).isEmpty();
@@ -180,6 +181,14 @@ class ApiIntegrationTest {
         u.setRole(Role.MODERATOR);
         users.save(u);
         assertThat(status(auth(get("/api/v1/admin/dashboard"), token))).isEqualTo(200);
+    }
+
+    @Test
+    @DisplayName("TC-INT-012 administrator can view the registered user directory")
+    void administratorCanViewUsers() throws Exception {
+        MvcResult result = perform(auth(get("/api/v1/admin/users"), adminToken));
+        assertThat(result.getResponse().getStatus()).isEqualTo(200);
+        assertThat(result.getResponse().getContentAsString()).contains("JUnit Admin").doesNotContain("passwordHash");
     }
 
     // ------------------------------------------------------------------ reviews & moderation

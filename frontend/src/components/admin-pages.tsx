@@ -6,24 +6,24 @@ import { useRouter } from "next/navigation";
 import { api, apiErrorMessage } from "@/lib/api";
 import { mediaStyle } from "@/lib/media";
 import { getSession, useSession } from "@/lib/session";
-import type { Cuisine, DashboardStats, Dish, Restaurant, Review } from "@/lib/types";
+import type { Cuisine, DashboardStats, Dish, Profile, Restaurant, Review } from "@/lib/types";
 import { PageMessage, SiteHeader } from "@/components/site-shell";
 
-type AdminPage = "dashboard" | "cuisines" | "restaurants" | "menu" | "reviews";
+type AdminPage = "dashboard" | "cuisines" | "restaurants" | "menu" | "users" | "reviews";
 const input = "h-11 w-full rounded-lg border border-soft-border bg-white px-3 text-sm outline-none focus:border-brand";
 
 function AdminShell({ active, title, subtitle, children }: { active: AdminPage; title: string; subtitle: string; children: ReactNode }) {
   const router = useRouter(); const session = useSession(); const ready = Boolean(session && session.role !== "USER");
   useEffect(() => { const current = getSession(); if (!current || current.role === "USER") router.replace("/login?next=/admin"); }, [router]);
   if (!ready) return <main className="mx-auto max-w-3xl px-5 py-16"><PageMessage>Checking administrator access…</PageMessage></main>;
-  const links: Array<[AdminPage, string, string]> = [["dashboard","Dashboard","/admin"],["cuisines","Cuisines","/admin/cuisines"],["restaurants","Restaurants","/admin/restaurants"],["menu","Menu","/admin/menu"],["reviews","Review Moderation","/admin/reviews"]];
+  const links: Array<[AdminPage, string, string]> = [["dashboard","Dashboard","/admin"],["cuisines","Cuisines","/admin/cuisines"],["restaurants","Restaurants","/admin/restaurants"],["menu","Menu","/admin/menu"],["users","Users","/admin/users"],["reviews","Review Moderation","/admin/reviews"]];
   return <div className="min-h-screen bg-[#f8f6f1]"><SiteHeader /><div className="mx-auto grid max-w-[1440px] md:grid-cols-[240px_1fr]"><aside className="border-r border-soft-border bg-footer p-5 text-white md:min-h-[calc(100vh-84px)]"><p className="mb-7 text-sm font-bold text-[#ffa126]">ADMIN PORTAL</p><nav className="grid grid-cols-2 gap-2 md:grid-cols-1">{links.map(([key,label,href]) => <Link key={key} className={`rounded-lg px-4 py-3 text-sm ${active === key ? "bg-white font-semibold text-footer" : "text-white/80 hover:bg-white/10"}`} href={href}>{label}</Link>)}</nav></aside><main className="min-w-0 p-5 md:p-10"><h1 className="text-[30px] font-bold">{title}</h1><p className="mt-2 text-sm text-muted">{subtitle}</p><div className="mt-8">{children}</div></main></div></div>;
 }
 
 export function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null); const [error, setError] = useState("");
   useEffect(() => { api.get<DashboardStats>("/admin/dashboard").then((response) => setStats(response.data)).catch(() => setError("Dashboard metrics could not be loaded.")); }, []);
-  const cards: Array<[string, number | undefined, string]> = [["Cuisine categories",stats?.cuisines,"/admin/cuisines"],["Restaurants",stats?.restaurants,"/admin/restaurants"],["Menu items",stats?.dishes,"/admin/menu"],["Registered users",stats?.users,"#"],["Pending reviews",stats?.pendingReviews,"/admin/reviews"],["Approved reviews",stats?.approvedReviews,"/admin/reviews"]];
+  const cards: Array<[string, number | undefined, string]> = [["Cuisine categories",stats?.cuisines,"/admin/cuisines"],["Restaurants",stats?.restaurants,"/admin/restaurants"],["Menu items",stats?.dishes,"/admin/menu"],["Registered users",stats?.users,"/admin/users"],["Pending reviews",stats?.pendingReviews,"/admin/reviews"],["Approved reviews",stats?.approvedReviews,"/admin/reviews"]];
   return <AdminShell active="dashboard" title="Admin Dashboard" subtitle="Manage TasteLanka restaurants, menus and community reviews.">{error && <PageMessage error>{error}</PageMessage>}<div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{cards.map(([label,value,href]) => <Link key={label} href={href} className="rounded-xl border border-soft-border bg-white p-6"><p className="text-sm text-muted">{label}</p><p className="mt-3 text-4xl font-bold">{value ?? "–"}</p><p className="mt-5 text-xs font-semibold text-brand">View details →</p></Link>)}</div></AdminShell>;
 }
 
@@ -121,6 +121,45 @@ export function RestaurantManagement() {
 type DishForm={id?:number;restaurantSlug:string;slug:string;name:string;description:string;price:string;spiceLevel:"Mild"|"Medium"|"Hot";vegetarian:boolean;halal:boolean;imageUrl:string};
 const emptyDish:DishForm={restaurantSlug:"",slug:"",name:"",description:"",price:"",spiceLevel:"Medium",vegetarian:false,halal:false,imageUrl:""};
 export function MenuManagement(){const[restaurants,setRestaurants]=useState<Restaurant[]>([]);const[items,setItems]=useState<Dish[]>([]);const[form,setForm]=useState<DishForm>(emptyDish);const[message,setMessage]=useState("");const load=()=>Promise.all([api.get<Restaurant[]>("/admin/restaurants"),api.get<Dish[]>("/admin/dishes")]).then(([r,d])=>{setRestaurants(r.data);setItems(d.data);setForm((current)=>({...current,restaurantSlug:current.restaurantSlug||r.data[0]?.slug||""}));}).catch(()=>setMessage("Menu data could not be loaded."));useEffect(()=>{void load();},[]);const edit=(item:Dish)=>setForm({id:item.id,restaurantSlug:item.restaurantSlug,slug:item.slug,name:item.name,description:item.description??"",price:String(item.price),spiceLevel:item.spiceLevel,vegetarian:item.vegetarian,halal:item.halal,imageUrl:item.imageUrl??""});const submit=async(e:FormEvent)=>{e.preventDefault();const payload={...form,price:Number(form.price),id:undefined};try{if(form.id) await api.put(`/admin/dishes/${form.id}`,payload); else await api.post("/admin/dishes",payload);setForm({...emptyDish,restaurantSlug:restaurants[0]?.slug??""});setMessage("Menu item saved.");await load();}catch(error){setMessage(apiErrorMessage(error,"Menu item could not be saved."));}};const remove=async(item:Dish)=>{if(!window.confirm(`Delete ${item.name}?`))return;try{await api.delete(`/admin/dishes/${item.id}`);setMessage("Menu item deleted.");await load();}catch(error){setMessage(apiErrorMessage(error,"Menu item could not be deleted."));}};return <AdminShell active="menu" title="Menu Management" subtitle="Manage dishes, pricing and dietary information."><div className="grid gap-7 xl:grid-cols-[390px_1fr]"><form onSubmit={submit} className="space-y-4 rounded-xl border border-soft-border bg-white p-5"><h2 className="text-lg font-bold">{form.id?"Edit dish":"Add dish"}</h2>{message&&<PageMessage error={message.includes("could not")}>{message}</PageMessage>}<Field label="Restaurant"><select required className={input} value={form.restaurantSlug} onChange={(e)=>setForm({...form,restaurantSlug:e.target.value})}>{restaurants.map((r)=><option key={r.id} value={r.slug}>{r.name}</option>)}</select></Field><Field label="Dish name"><input required className={input} value={form.name} onChange={(e)=>setForm({...form,name:e.target.value})}/></Field><Field label="Slug"><input required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" className={input} value={form.slug} onChange={(e)=>setForm({...form,slug:e.target.value})}/></Field><div className="grid grid-cols-2 gap-3"><Field label="Price"><input required min="0" type="number" className={input} value={form.price} onChange={(e)=>setForm({...form,price:e.target.value})}/></Field><Field label="Spice"><select className={input} value={form.spiceLevel} onChange={(e)=>setForm({...form,spiceLevel:e.target.value as DishForm["spiceLevel"]})}><option>Mild</option><option>Medium</option><option>Hot</option></select></Field></div><Field label="Description"><textarea className="h-24 w-full rounded-lg border border-soft-border p-3 text-sm" value={form.description} onChange={(e)=>setForm({...form,description:e.target.value})}/></Field><div className="flex gap-5 text-xs"><label><input type="checkbox" checked={form.vegetarian} onChange={(e)=>setForm({...form,vegetarian:e.target.checked})}/> Vegetarian</label><label><input type="checkbox" checked={form.halal} onChange={(e)=>setForm({...form,halal:e.target.checked})}/> Halal</label></div><ImageUploadField label="Dish image" value={form.imageUrl} onChange={(imageUrl)=>setForm({...form,imageUrl})}/><div className="flex gap-2">{form.id&&<button type="button" onClick={()=>setForm({...emptyDish,restaurantSlug:restaurants[0]?.slug??""})} className="rounded-lg border border-soft-border px-4 py-3 text-sm">Cancel</button>}<button className="flex-1 rounded-lg bg-brand px-4 py-3 text-sm font-semibold text-white">Save Dish</button></div></form><div className="grid gap-3 lg:grid-cols-2">{items.map((item)=><article key={item.id} className="rounded-xl border border-soft-border bg-white p-4"><div className="h-28 rounded-lg" style={mediaStyle(item.imageUrl,item.imageColor)}/><h3 className="mt-3 font-bold">{item.name}</h3><p className="mt-1 text-xs text-muted">{item.restaurantName} • LKR {item.price}</p><div className="mt-4 flex gap-2"><button onClick={()=>edit(item)} className="rounded-lg border border-soft-border px-3 py-2 text-xs font-semibold">Edit</button><button onClick={()=>void remove(item)} className="rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-700">Delete</button></div></article>)}</div></div></AdminShell>;}
+
+export function UserManagement() {
+  const [items, setItems] = useState<Profile[]>([]);
+  const [query, setQuery] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    api.get<Profile[]>("/admin/users")
+      .then((response) => setItems(response.data))
+      .catch(() => setError("Registered users could not be loaded."))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const normalizedQuery = query.trim().toLowerCase();
+  const visibleItems = normalizedQuery
+    ? items.filter((item) => item.fullName.toLowerCase().includes(normalizedQuery)
+      || item.email.toLowerCase().includes(normalizedQuery)
+      || item.role.toLowerCase().includes(normalizedQuery))
+    : items;
+
+  return <AdminShell active="users" title="Registered Users" subtitle="View the accounts registered with TasteLanka.">
+    <div className="rounded-xl border border-soft-border bg-white p-5">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+        <div><h2 className="text-lg font-bold">User directory</h2><p className="mt-1 text-xs text-muted">{items.length} registered accounts</p></div>
+        <label className="sm:ml-auto"><span className="sr-only">Search users</span><input className={`${input} sm:w-72`} value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search name, email or role" /></label>
+      </div>
+      <div className="mt-5">
+        {loading && <PageMessage>Loading registered users…</PageMessage>}
+        {error && <PageMessage error>{error}</PageMessage>}
+        {!loading && !error && visibleItems.length === 0 && <PageMessage>No users match your search.</PageMessage>}
+        {!loading && !error && visibleItems.length > 0 && <div className="overflow-x-auto"><table className="w-full min-w-[720px] text-left text-sm">
+          <thead className="border-b border-soft-border text-xs uppercase tracking-wide text-muted"><tr><th className="px-3 py-3 font-semibold">Name</th><th className="px-3 py-3 font-semibold">Email</th><th className="px-3 py-3 font-semibold">Role</th><th className="px-3 py-3 font-semibold">Language</th><th className="px-3 py-3 font-semibold">Joined</th></tr></thead>
+          <tbody>{visibleItems.map((user) => <tr key={user.id} className="border-b border-soft-border last:border-0"><td className="px-3 py-4 font-semibold">{user.fullName}</td><td className="px-3 py-4 text-muted">{user.email}</td><td className="px-3 py-4"><span className={`rounded-full px-3 py-1 text-[11px] font-semibold ${user.role === "ADMIN" ? "bg-brand/10 text-brand" : user.role === "MODERATOR" ? "bg-amber-100 text-amber-800" : "bg-surface text-muted"}`}>{user.role}</span></td><td className="px-3 py-4 uppercase text-muted">{user.language}</td><td className="px-3 py-4 text-muted">{new Date(user.createdAt).toLocaleDateString("en-LK", { year: "numeric", month: "short", day: "numeric" })}</td></tr>)}</tbody>
+        </table></div>}
+      </div>
+    </div>
+  </AdminShell>;
+}
 
 export function ReviewModeration() {
   const [status, setStatus] = useState<"PENDING" | "APPROVED" | "REJECTED">("PENDING");

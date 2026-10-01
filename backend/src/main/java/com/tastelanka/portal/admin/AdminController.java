@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Objects;
+import java.time.Instant;
 
 @RestController
 @RequestMapping("/api/v1/admin")
@@ -51,6 +52,11 @@ public class AdminController {
     public DashboardStats dashboard() {
         return new DashboardStats(restaurants.count(), dishes.count(), cuisines.count(), users.count(),
                 reviews.countByStatus(ReviewStatus.PENDING), reviews.countByStatus(ReviewStatus.APPROVED));
+    }
+
+    @GetMapping("/users")
+    public List<UserSummary> users() {
+        return users.findAllByOrderByCreatedAtDesc().stream().map(UserSummary::from).toList();
     }
 
     @GetMapping("/cuisines")
@@ -238,6 +244,14 @@ public class AdminController {
 
     public record DashboardStats(long restaurants, long dishes, long cuisines, long users, long pendingReviews,
                                  long approvedReviews) { }
+
+    public record UserSummary(Long id, String fullName, String email, String role, String language,
+                              Instant createdAt) {
+        public static UserSummary from(com.tastelanka.portal.user.User user) {
+            return new UserSummary(user.getId(), user.getFullName(), user.getEmail(), user.getRole().name(),
+                    user.getPreferredLanguage(), user.getCreatedAt());
+        }
+    }
 
     public record CuisineRequest(
             @NotBlank @Pattern(regexp = "[a-z0-9]+(?:-[a-z0-9]+)*") String slug,
