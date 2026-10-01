@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: optional:file:.env[.properties]
   application:
     name: tastelanka-api
   datasource:
@@ -22,6 +24,7 @@ spring:
 
 server:
   port: ${PORT:8080}
+  address: 0.0.0.0
   servlet:
     encoding:
       charset: UTF-8
