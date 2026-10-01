@@ -1,0 +1,29 @@
+{
+  "testId": "TC-API-028",
+  "title": "Unsupported method DELETE /restaurants (authenticated user)",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:16+05:30",
+  "request": {
+    "method": "DELETE",
+    "url": "http://localhost:8080/api/v1/restaurants",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 37.6,
+    "headers": {
+      "Allow": "GET",
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "expected": "HTTP 405 Method Not Allowed",
+  "actual": "HTTP 403",
+  "verdict": "FAIL"
+}

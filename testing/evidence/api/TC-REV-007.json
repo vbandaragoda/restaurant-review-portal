@@ -1,0 +1,36 @@
+{
+  "testId": "TC-REV-007",
+  "title": "Review with whitespace-only text",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:16+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "nuga-gama",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "    "
+    }
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 34.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 403",
+  "verdict": "FAIL"
+}

@@ -1,0 +1,6 @@
+PASS TC-SEC-070a    POST   /auth/login                                                  -> 200 role=MODERATOR
+PASS TC-SEC-070     GET    /admin/reviews                                               -> 200 
+PASS TC-SEC-071     POST   /admin/restaurants                                           -> 201 moderator has restaurant-management rights
+PASS TC-SEC-072     DELETE /admin/restaurants/10                                        -> 204 
+
+[moderator-scope] executed=4 pass=4 fail=0

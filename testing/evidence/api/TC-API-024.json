@@ -1,0 +1,26 @@
+{
+  "testId": "TC-API-024",
+  "title": "Restaurant details for non-existent slug",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:15+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants/does-not-exist",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 60.4,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "expected": "HTTP 404 Not Found",
+  "actual": "HTTP 403",
+  "verdict": "FAIL"
+}

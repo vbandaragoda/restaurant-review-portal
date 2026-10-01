@@ -1,0 +1,49 @@
+{
+  "testId": "TC-SEC-030",
+  "title": "Stored XSS payload in review text (API layer)",
+  "category": "security",
+  "executedAt": "2026-09-30T19:05:17+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_B token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "nuga-gama",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "<script>alert('xss-qa')</script><img src=x onerror=alert('xss-img')> QA XSS probe"
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 25.6,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "315"
+    },
+    "body": {
+      "id": 7,
+      "author": "QA User B",
+      "restaurantSlug": "nuga-gama",
+      "restaurantName": "Nuga Gama",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "<script>alert('xss-qa')</script><img src=x onerror=alert('xss-img')> QA XSS probe",
+      "status": "PENDING",
+      "createdAt": "2026-09-30T13:35:17.198885600Z"
+    }
+  },
+  "expected": "HTTP 201; text stored verbatim (output encoding must happen in UI – see TC-UI XSS test)",
+  "actual": "HTTP 201",
+  "verdict": "PASS"
+}

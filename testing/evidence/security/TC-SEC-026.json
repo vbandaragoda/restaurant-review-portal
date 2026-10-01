@@ -1,0 +1,28 @@
+{
+  "testId": "TC-SEC-026",
+  "title": "Malformed JSON on public login endpoint",
+  "category": "security",
+  "executedAt": "2026-09-30T19:05:19+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/login",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{bad json"
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 7.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 403",
+  "verdict": "FAIL"
+}

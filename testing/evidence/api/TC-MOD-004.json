@@ -1,0 +1,46 @@
+{
+  "testId": "TC-MOD-004",
+  "title": "Admin rejects review",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:17+05:30",
+  "request": {
+    "method": "PATCH",
+    "url": "http://localhost:8080/api/v1/admin/reviews/6",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": "REJECTED",
+      "note": "QA rejected"
+    }
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 44.9,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "324"
+    },
+    "body": {
+      "id": 6,
+      "author": "QA User B",
+      "restaurantSlug": "ministry-of-crab",
+      "restaurantName": "Ministry of Crab",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "QA review: tasty rice and curry, friendly staff.",
+      "status": "REJECTED",
+      "moderatorNote": "QA rejected",
+      "createdAt": "2026-09-30T13:35:17.171407Z"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; status=REJECTED",
+  "verdict": "PASS"
+}

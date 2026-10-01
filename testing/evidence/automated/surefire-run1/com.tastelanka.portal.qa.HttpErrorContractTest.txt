@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+Test set: com.tastelanka.portal.qa.HttpErrorContractTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 2.378 s <<< FAILURE! -- in com.tastelanka.portal.qa.HttpErrorContractTest
+com.tastelanka.portal.qa.HttpErrorContractTest.invalidRegistration -- Time elapsed: 0.059 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 400
+ but was: 403
+	at com.tastelanka.portal.qa.HttpErrorContractTest.invalidRegistration(HttpErrorContractTest.java:42)
+
+com.tastelanka.portal.qa.HttpErrorContractTest.wrongLogin -- Time elapsed: 0.028 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 401
+ but was: 403
+	at com.tastelanka.portal.qa.HttpErrorContractTest.wrongLogin(HttpErrorContractTest.java:49)
+
+com.tastelanka.portal.qa.HttpErrorContractTest.errorBodyPresent -- Time elapsed: 0.016 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting not blank but was: ""
+	at com.tastelanka.portal.qa.HttpErrorContractTest.errorBodyPresent(HttpErrorContractTest.java:61)
+
+com.tastelanka.portal.qa.HttpErrorContractTest.unknownRestaurant -- Time elapsed: 0.021 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 404
+ but was: 403
+	at com.tastelanka.portal.qa.HttpErrorContractTest.unknownRestaurant(HttpErrorContractTest.java:55)
+

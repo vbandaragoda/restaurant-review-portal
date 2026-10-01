@@ -1,0 +1,132 @@
+"""Writes testing/defects/defect-register.csv. Content is taken from executed tests; see evidence paths.
+Authored in the forked session, re-verified against raw evidence and corrected in the main session (DEF-002 untested claim removed; DEF-017 page count 10)."""
+import csv, os
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+ENV = "Commit fc1f1cc; Windows 11; JDK 17.0.12; Node 22.21; MySQL 8.0.45 (tastelanka_qa); Edge 154; see test-environment.md"
+D = []
+def d(i, title, sev, pri, tests, req, desc, pre, steps, exp, act, ev, root):
+    D.append({"Defect ID": i, "Title": title, "Severity": sev, "Priority": pri, "Environment": ENV, "Related Test": tests,
+              "Requirement": req, "Description": desc, "Preconditions": pre, "Steps to Reproduce": steps, "Expected Result": exp,
+              "Actual Result": act, "Evidence": ev, "Root Cause (if known)": root, "Status": "Open",
+              "Fix Version/Commit": "—", "Retest Result": "Not retested – no fix delivered in this cycle"})
+
+d("DEF-001", "API returns HTTP 403 with empty body instead of the real error status (400/401/404/405/409/415/500)", "High", "High",
+  "TC-AUTH-002..005,007,009,010,014,015,017; TC-API-021,024,027,028,029; TC-REV-003..012,014,019; TC-MOD-006..008,010; TC-SAV-004; TC-ADM-003..006,008,011..015,022..025,028..030,032,033,035..037; TC-SEC-023,024,026; TC-HTTP-002..005",
+  "FR-17, NFR-08, FR-06, FR-07",
+  "Every error produced by a controller (validation, not found, conflict, bad credentials, method not allowed, unsupported media type and unhandled 500s) reaches the client as 403 Forbidden with Content-Length 0. Holds for anonymous and authenticated (including ADMIN) requests. Clients cannot show validation feedback or distinguish errors; server errors are hidden.",
+  "API running (default configuration).",
+  "1) POST /api/v1/auth/register with body {}  2) POST /api/v1/auth/login with a wrong password  3) GET /api/v1/restaurants/does-not-exist  4) As ADMIN, POST /api/v1/admin/restaurants with slug 'nuga-gama'",
+  "400 / 401 / 404 / 409 with an error body describing the problem",
+  "403 with empty body in every case (backend log shows the correct exception was resolved, e.g. MethodArgumentNotValidException, then masked)",
+  "evidence/api/TC-AUTH-003.json; evidence/api/TC-AUTH-014.json; evidence/api/TC-API-024.json; evidence/api/TC-ADM-003.json; evidence/automated/surefire-final/com.tastelanka.portal.qa.HttpErrorContractTest.txt; evidence/logs/backend-run-1.log",
+  "Servlet error dispatch to /error is not permitted in SecurityConfig and the stateless JWT context is not present on the ERROR dispatch, so Spring Security denies /error (403). MockMvc (no error dispatch) returns the correct statuses – confirmed by ApiIntegrationTest TC-INT-002/003/004 passing while HttpErrorContractTest fails.")
+d("DEF-002", "Unauthenticated requests to protected endpoints return 403 instead of 401", "Medium", "Medium",
+  "TC-SEC-001..004, TC-SEC-016, TC-SEC-017, TC-REV-002, TC-REV-018, TC-SAV-005, TC-INT-005", "NFR-05, NFR-08",
+  "Requests with no, malformed, tampered or expired token are rejected (access is correctly denied) but with 403 Forbidden, so clients cannot distinguish 'log in again' from 'not allowed'. (Not tested: whether the UI handles an expired session – the UI treats any error generically.)",
+  "API running.", "GET /api/v1/users/me without Authorization header (or with an expired token)",
+  "401 Unauthorized", "403 Forbidden, empty body",
+  "evidence/security/TC-SEC-001.json; evidence/security/TC-SEC-004.json; evidence/automated/surefire-final/com.tastelanka.portal.qa.ApiIntegrationTest.txt",
+  "No AuthenticationEntryPoint configured; Spring Security falls back to Http403ForbiddenEntryPoint.")
+d("DEF-003", "Default JWT signing secret committed in application.yml allows forging admin tokens", "Critical", "High",
+  "TC-SEC-005, TC-INT-006", "NFR-05, FR-16",
+  "application.yml falls back to a hard-coded JWT secret when JWT_SECRET is not set. The README run steps never set JWT_SECRET for the API (only .env for Docker MySQL), so a default start-up uses the public secret. A token forged offline with this secret for the admin e-mail is accepted, giving full administrator access without credentials.",
+  "API started per README (JWT_SECRET unset). Attacker knows/guesses an admin e-mail.",
+  "1) Build HS256 JWT {sub: admin email, exp: +1h} signed with the secret from application.yml  2) GET /api/v1/admin/dashboard with it",
+  "401/403 – token not issued by the server is rejected; application refuses to start with a default secret", "HTTP 200 with dashboard data",
+  "evidence/security/TC-SEC-005.json; evidence/automated/surefire-final/com.tastelanka.portal.qa.ApiIntegrationTest.txt",
+  "Insecure default `${JWT_SECRET:change-this-development-secret-...}` in application.yml; no start-up guard.")
+d("DEF-004", "Approved reviews never update restaurant/dish rating or review count", "Medium", "Medium",
+  "TC-MOD-012, TC-INT-021, DR-02 (step 7)", "FR-09, FR-14, NFR-07",
+  "Moderating a review to APPROVED leaves Restaurant.rating/reviewCount (and Dish ratings) unchanged. Seeded restaurants keep static seed values; restaurants created by admins display 0.0 rating / 0 reviews forever even with approved reviews.",
+  "Admin and customer accounts.", "1) Create restaurant  2) Customer submits a 4-star review  3) Admin approves  4) GET /restaurants/{slug}",
+  "reviewCount = 1, rating = 4.0", "reviewCount = 0, rating = 0 (seeded: 320 → 320, 4.8 → 4.8)",
+  "evidence/api/TC-MOD-012.json; evidence/api/TC-MOD-012a.json; evidence/ui/ui-step-log.txt (DR-02 step 7)",
+  "Restaurant.updateRating()/Dish.updateRatings() are never called (no aggregation on moderation).")
+d("DEF-005", "Restaurant accepted with minimum price greater than maximum price", "Low", "Medium",
+  "TC-ADM-007, TC-INT-034, TC-UNIT-VAL-010, TC-DATA-010", "FR-13, FR-17, NFR-07",
+  "Admin API/UI accepts priceMin > priceMax; the listing then shows customers 'LKR 9,000 – 100'.",
+  "Admin token.", "POST /api/v1/admin/restaurants with priceMin 9000, priceMax 100",
+  "400 validation error", "201 Created; row persisted (DB check shows 1 restaurant with price_min > price_max)",
+  "evidence/api/TC-ADM-007.json; evidence/database/TC-DATA-010-relationship-integrity.txt; evidence/ui/responsive/BB-18-tablet-restaurants.png",
+  "No cross-field validation in RestaurantRequest.")
+d("DEF-006", "Updating a restaurant or dish to an existing slug causes an unhandled server exception", "Medium", "Medium",
+  "TC-ADM-011, TC-ADM-028, TC-INT-032", "FR-13, NFR-08",
+  "PUT with a slug already used by another restaurant/dish raises DataIntegrityViolationException (duplicate key) that is not handled; clients receive a masked 403 (500 internally). Create correctly checks duplicates; update does not.",
+  "Admin token; existing restaurant.", "PUT /api/v1/admin/restaurants/{id} with slug 'nuga-gama'",
+  "409 Conflict 'Restaurant slug already exists'", "Unhandled SQLIntegrityConstraintViolationException 'Duplicate entry nuga-gama'; client gets 403",
+  "evidence/api/TC-ADM-011.json; evidence/api/TC-ADM-028.json; evidence/logs/backend-run-1.log (lines ~100-251); evidence/automated/surefire-final/com.tastelanka.portal.qa.ApiIntegrationTest.txt",
+  "AdminController.updateRestaurant/updateDish lack the slug-uniqueness check present in create.")
+d("DEF-007", "Restaurants that have reviews cannot be deleted; UI instructs an impossible action", "Medium", "Medium",
+  "TC-ADM-037, TC-INT-033, TC-ADM-UI-002", "FR-13, NFR-08",
+  "Deleting a restaurant with any review fails with an unhandled foreign-key exception. The admin UI says 'Remove its menu and reviews first', but no API or UI exists to delete reviews, so such restaurants can never be removed.",
+  "Restaurant with at least one review.", "Admin → Restaurants → Delete on a restaurant that has a review",
+  "Restaurant deleted (reviews handled) or 409 with a workable instruction", "Unhandled 'Cannot delete or update a parent row: fk_reviews_restaurant'; UI message with no possible remedy",
+  "evidence/api/TC-ADM-037.json; evidence/ui/TC-ADM-UI-002-delete-restaurant-with-reviews.png; evidence/logs/backend-run-1.log (line ~389)",
+  "fk_reviews_restaurant has no ON DELETE rule; controller does not handle the constraint; no review deletion capability.")
+d("DEF-008", "Admin edits to seeded data are overwritten, and deleted seeded dishes are re-created, on every API restart", "High", "High",
+  "TC-DATA-002, TC-DATA-003, TC-INT-035", "FR-18, NFR-07, FR-13",
+  "DevelopmentDataSeeder runs unconditionally on every start-up and resets the 5 seeded restaurants to hard-coded values and re-inserts deleted seeded dishes. Administrator changes are silently lost.",
+  "Admin edits restaurant 'nuga-gama' (priceMin 3500, new description) and deletes dish 'seafood-kottu'.",
+  "Restart the API, then GET /restaurants/nuga-gama and /dishes/seafood-kottu",
+  "Admin changes persist; deleted dish stays deleted", "priceMin back to 3000, description reset; seafood-kottu re-created with new id 10",
+  "evidence/database/TC-DATA-002.json; evidence/database/TC-DATA-003.json; evidence/database/TC-DATA-db-snapshot-before-restart.txt; evidence/database/TC-DATA-db-snapshot-after-restart.txt",
+  "DevelopmentDataSeeder.restaurant() calls update() on existing rows and dish() inserts missing slugs; not restricted to a dev profile or first run.")
+d("DEF-009", "Cuisine category links do not filter the restaurant list", "Medium", "Medium", "BB-08c", "FR-05",
+  "Links from the Cuisines page / home categories go to /restaurants?cuisine=X but the page ignores the cuisine parameter and lists every restaurant.",
+  "—", "Open /cuisines → click 'Seafood'", "Only seafood restaurants (Ministry of Crab)", "All 8 restaurants listed",
+  "evidence/ui/BB-08c-cuisine-link-seafood.png; evidence/ui/ui-step-log.txt (BB-08c)",
+  "restaurants/page.tsx reads only searchParams.q; RestaurantSearch has no initial cuisine.")
+d("DEF-010", "Price and spice-level filters are not available; home page filter chips and location selector do nothing", "Medium", "Medium",
+  "BB-08d, TC-UI-013", "FR-05",
+  "Test plan BB-08 requires price filtering. /restaurants offers no price or spice filter; API has no price parameter. Home hero shows Cuisine/Vegetarian/Vegan/Halal/Spice Level/Price Band chips and a location selector that have no effect.",
+  "—", "1) Open /restaurants and look for a price filter  2) On home, click 'Vegan' chip; choose location Galle and search 'cafe'",
+  "Price filter available; chips/location apply", "No price control; chip click does nothing; location ignored",
+  "evidence/ui/ui-step-log.txt (BB-08d, TC-UI-013); evidence/ui/TC-UI-013-home-location-ignored.png",
+  "Controls are presentational only (no handlers); API search lacks price parameters.")
+d("DEF-011", "'Clear all' unticks filters but results stay filtered until 'Apply Filters' is pressed", "Low", "Low", "BB-08b", "FR-05, NFR-02",
+  "After Clear all, checkboxes reset but the list still shows the previously filtered results.", "—",
+  "Tick Galle → Apply → Clear all", "Full list (8) shown", "Still 3 (Galle) results",
+  "evidence/ui/BB-08b-clear-all.png; evidence/ui/ui-step-log.txt (BB-08b)", "clear() resets state without reloading results.")
+d("DEF-012", "No search filters available on mobile", "Medium", "Medium", "BB-18c", "NFR-04, FR-05",
+  "The filter sidebar is hidden below 768 px and no alternative is offered, so mobile users cannot filter by location/cuisine/dietary.",
+  "Viewport 375×812.", "Open /restaurants on mobile", "Filters usable", "0 visible filter controls; Apply Filters hidden",
+  "evidence/ui/responsive/BB-18c-mobile-restaurants-no-filters.png", "`aside` has `hidden md:block`; no mobile counterpart.")
+d("DEF-013", "Restaurant listing overflows horizontally and collapses at tablet width (768 px)", "Medium", "Medium", "BB-18 (tablet)", "NFR-04",
+  "At 768×1024 /restaurants scrolls horizontally by 153 px; card text wraps one word per line and 'View Details' buttons overflow the card.",
+  "Viewport 768×1024.", "Open /restaurants", "No horizontal scrolling; readable cards", "153 px overflow; collapsed cards",
+  "evidence/ui/responsive/BB-18-tablet-restaurants.png; evidence/ui/ui-step-log.txt (BB-18-tablet)", "Fixed md grid columns (276px + card image 250px) too wide at 768 px.")
+d("DEF-014", "'Write a Review' from the home page is a dead end (no restaurant can be selected)", "Medium", "Medium", "TC-UI-006", "FR-09, FR-17, NFR-02",
+  "The home CTA opens /reviews/new without a restaurant; the form has no restaurant selector and submission fails with a generic 'check all fields' error.",
+  "Logged-in customer.", "Home → Write a Review → fill text → Submit", "User can choose a restaurant (or is guided to one)",
+  "Generic error; no way to complete", "evidence/ui/TC-UI-006-review-without-restaurant.png", "ReviewForm has no restaurant picker when slug is empty.")
+d("DEF-015", "Restaurant page shows 'Save' for a restaurant the user has already saved", "Low", "Low", "TC-UI-008", "FR-08, NFR-02",
+  "Saved state is not loaded on the restaurant page; after reload an already-saved restaurant shows 'Save'.", "Logged-in customer with a saved restaurant.",
+  "Save Nuga Gama → reload page", "Button shows 'Saved'", "Button shows 'Save'",
+  "evidence/ui/TC-UI-008-saved-state-after-reload.png; evidence/ui/ui-step-log.txt (TC-UI-008)", "saved flag initialised to false; not fetched from API.")
+d("DEF-016", "Home page 'Top Rated' cards and cuisine counts are hard-coded and disagree with live data", "Low", "Low", "TC-UI-011", "FR-01, NFR-07",
+  "Home shows 'The Empire Cafe (210 reviews)' while the API returns 220; cuisine counts ('120+ Restaurants') are static text; /restaurants/top-rated is not used.",
+  "—", "Compare home card with GET /restaurants/the-empire-cafe", "Same data", "210 vs 220",
+  "evidence/ui/ui-step-log.txt (TC-UI-011); evidence/ui/TC-UI-001-home-desktop.png", "home-page.tsx uses constant arrays.")
+d("DEF-017", "Insufficient colour contrast of brand-orange text (WCAG 1.4.3)", "Medium", "Medium", "BB-20a", "NFR-03",
+  "axe-core reports serious color-contrast violations on all 10 scanned pages (nav active link, links, buttons, labels in brand orange #d94705 on light backgrounds).",
+  "—", "Run axe WCAG 2.1 AA on key pages", "No serious contrast violations", "color-contrast (serious) on 10/10 pages",
+  "evidence/ui/BB-20a-axe-violations.json", "Brand colour below 4.5:1 for small text on #fff/#f8f6f1.")
+d("DEF-018", "Search input and select boxes on /restaurants have no accessible label", "Medium", "Medium", "BB-20a, BB-20e", "NFR-03",
+  "Search input (placeholder only), 'All Locations' select and 'Sort' select have no label/aria-label; axe select-name (critical).",
+  "—", "Inspect /restaurants with a screen reader / axe", "Every form control has an accessible name",
+  "3 unlabeled controls; select-name critical", "evidence/ui/BB-20a-axe-violations.json; evidence/ui/ui-step-log.txt (BB-20e)", "Missing <label>/aria-label.")
+d("DEF-019", "Rating star buttons are announced only as '★' with no value or selected state", "Medium", "Medium", "BB-20d", "NFR-03, FR-09",
+  "Each of the 15 star buttons on the review form has the accessible name '★' and no aria-pressed/checked, so screen-reader users cannot set or know the rating.",
+  "Logged-in customer.", "Open /reviews/new?restaurant=nuga-gama with a screen reader", "'1 star'…'5 stars' with selected state",
+  "Names '★'; aria-pressed null", "evidence/ui/ui-step-log.txt (BB-20d)", "Stars component uses bare buttons.")
+d("DEF-020", "Moderation actions are not traceable (no moderator, timestamp or reason captured)", "Medium", "Medium",
+  "TC-ADM-UI-004, TC-DATA-010, TC-MOD-002", "NFR-13, FR-14",
+  "The reviews table stores only status and an optional note; no moderator id or moderation time. The moderation UI always sends an empty note and offers no reason field.",
+  "Admin/moderator.", "Approve/reject a review; inspect reviews table", "Who/when/why of each moderation decision recorded",
+  "Only status (+ empty note) stored", "evidence/database/TC-DATA-010-relationship-integrity.txt (SHOW COLUMNS reviews); evidence/ui/ui-step-log.txt (TC-ADM-UI-004)",
+  "Review entity lacks moderator/moderatedAt fields; UI hard-codes note ''.")
+
+os.makedirs(os.path.join(ROOT, "defects"), exist_ok=True)
+with open(os.path.join(ROOT, "defects", "defect-register.csv"), "w", newline="", encoding="utf-8-sig") as fh:
+    w = csv.DictWriter(fh, fieldnames=list(D[0].keys())); w.writeheader(); w.writerows(D)
+print(len(D), "defects written")

@@ -1,0 +1,9 @@
+PASS TC-DATA-001    GET    /restaurants/qa-persist-190512                               -> 200 name=QA Persistence Diner
+FAIL TC-DATA-002    GET    /restaurants/nuga-gama                                       -> 200 description after restart='Traditional Sri Lankan dining with local cuisine options.'; pri
+FAIL TC-DATA-003    GET    /dishes/seafood-kottu                                        -> 200 
+PASS TC-DATA-004    GET    /users/me/saved-restaurants                                  -> 200 slugs=['pedlars-inn']
+PASS TC-DATA-005    GET    /reviews/mine                                                -> 200 review 1 status=['APPROVED']
+PASS TC-DATA-006    GET    /users/me                                                    -> 200 
+PASS TC-DATA-007    GET    /reviews                                                     -> 200 Sinhala text byte-identical after restart
+
+[persistence-post] executed=9 pass=7 fail=2

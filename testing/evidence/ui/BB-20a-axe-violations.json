@@ -1,0 +1,90 @@
+[
+  {
+    "page": "home",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 12,
+    "sample": ".gap-\\[30px\\] > .text-brand.font-semibold[href=\"/\"]"
+  },
+  {
+    "page": "restaurants",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 29,
+    "sample": ".gap-\\[30px\\] > .text-brand[href$=\"restaurants\"]"
+  },
+  {
+    "page": "restaurants",
+    "id": "select-name",
+    "impact": "critical",
+    "help": "Select element must have an accessible name",
+    "nodes": 2,
+    "sample": "form > select"
+  },
+  {
+    "page": "restaurant-details",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 7,
+    "sample": ".gap-\\[30px\\] > .text-brand[href$=\"restaurants\"]"
+  },
+  {
+    "page": "dish-details",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 5,
+    "sample": ".gap-\\[30px\\] > .text-brand.font-semibold[href$=\"restaurants\"]"
+  },
+  {
+    "page": "login",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 3,
+    "sample": "a[href$=\"contact\"]"
+  },
+  {
+    "page": "signup",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 2,
+    "sample": ".mt-4"
+  },
+  {
+    "page": "review-form",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 3,
+    "sample": ".text-brand[href$=\"nuga-gama\"]"
+  },
+  {
+    "page": "profile",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 1,
+    "sample": ".mt-9"
+  },
+  {
+    "page": "admin-dashboard",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 5,
+    "sample": ".rounded-xl.p-6[href$=\"restaurants\"] > .mt-5.text-xs.text-brand"
+  },
+  {
+    "page": "admin-reviews",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 1,
+    "sample": ".bg-brand.text-white.rounded-full"
+  }
+]

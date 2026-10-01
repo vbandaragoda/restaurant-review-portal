@@ -1,0 +1,35 @@
+{
+  "testId": "TC-ADM-000",
+  "title": "Admin dashboard stats",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:18+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/admin/dashboard",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 61.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "77"
+    },
+    "body": {
+      "restaurants": 5,
+      "dishes": 4,
+      "users": 8,
+      "pendingReviews": 2,
+      "approvedReviews": 4
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; keys present: ['restaurants', 'dishes', 'users', 'pendingReviews', 'approvedReviews']",
+  "verdict": "PASS"
+}

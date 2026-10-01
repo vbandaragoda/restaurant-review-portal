@@ -1,0 +1,27 @@
+{
+  "testId": "TC-REV-020",
+  "title": "Pending review NOT visible in public list",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:17+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/reviews?restaurant=nuga-gama",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 22.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "2"
+    },
+    "body": []
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; public ids=[] pending id=1",
+  "verdict": "PASS"
+}

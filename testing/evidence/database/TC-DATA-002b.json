@@ -1,0 +1,57 @@
+{
+  "testId": "TC-DATA-002b",
+  "title": "Admin edits seeded restaurant nuga-gama (description, priceMin=3500)",
+  "category": "database",
+  "executedAt": "2026-09-30T19:10:35+05:30",
+  "request": {
+    "method": "PUT",
+    "url": "http://localhost:8080/api/v1/admin/restaurants/4",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "slug": "nuga-gama",
+      "name": "Nuga Gama",
+      "cuisine": "Sri Lankan · Authentic",
+      "location": "Colombo",
+      "priceMin": 3500,
+      "priceMax": 5000,
+      "vegetarian": true,
+      "vegan": true,
+      "halal": true,
+      "imageColor": "#662e1a",
+      "description": "QA-EDITED description 190512"
+    }
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 38.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "278"
+    },
+    "body": {
+      "id": 4,
+      "slug": "nuga-gama",
+      "name": "Nuga Gama",
+      "cuisine": "Sri Lankan · Authentic",
+      "location": "Colombo",
+      "rating": 4.4,
+      "reviewCount": 150,
+      "priceMin": 3500,
+      "priceMax": 5000,
+      "vegetarian": true,
+      "vegan": true,
+      "halal": true,
+      "description": "QA-EDITED description 190512",
+      "imageColor": "#662e1a"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; description='QA-EDITED description 190512' priceMin=3500",
+  "verdict": "PASS"
+}

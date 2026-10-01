@@ -1,0 +1,59 @@
+2026-09-30T13:59:13.771Z	BB-01	registered qa.ui.cust.135906@tastelanka.test; redirected to /profile showing name and email
+2026-09-30T13:59:19.572Z	BB-02c	empty name valid=false; email message="Please include an '@' in the email address. 'not-an-email' is missing an '@'."; password message="Please lengthen this text to 8 characters or more (you are currently using 5 characters)."
+2026-09-30T13:59:30.051Z	BB-06	listing shows 8 restaurants
+2026-09-30T13:59:39.975Z	BB-08b	all=8; Galle filter=3
+2026-09-30T13:59:41.552Z	BB-08b	after Clear all (no Apply clicked) results text: 3 restaurants found
+2026-09-30T13:59:48.036Z	BB-08c	cuisine=Seafood listing shows: Ministry of Crab, The Empire Cafe, Pedlar’s Inn, Nuga Gama, Green Leaf Kitchen, QA Test Bistro, QA Reviewed Cafe, QA Persistence Diner
+2026-09-30T13:59:53.359Z	BB-08d	price filter controls found: 0
+2026-09-30T14:00:07.333Z	BB-11a	textarea validationMessage="Please lengthen this text to 10 characters or more (you are currently using 5 characters)."
+2026-09-30T14:00:10.064Z	BB-11b	food-quality star buttons = 5
+2026-09-30T14:00:15.062Z	TC-UI-006	restaurant picker controls=0
+2026-09-30T14:00:29.345Z	TC-UI-008	button label after reload of saved restaurant: Save
+2026-09-30T14:00:40.396Z	TC-SEC-031	dialogs fired=0; injected elements=0
+2026-09-30T14:00:41.748Z	TC-UI-011	home card: "★ 4.6 (210 reviews)The Empire CafeCafe · International⌖  KandyLKR 2,000 – 4,000"; API reviewCount=220
+2026-09-30T14:01:56.796Z	TC-ADM-UI-001	dashboard stats {"restaurants":8,"dishes":4,"users":15,"pendingReviews":14,"approvedReviews":4}
+2026-09-30T14:02:07.440Z	BB-15	after UI delete, GET /restaurants/qa-ui-rest-140148 -> 403
+2026-09-30T14:02:11.383Z	TC-ADM-UI-002	message shown: Restaurant could not be deleted. Remove its menu and reviews first.
+2026-09-30T14:02:12.863Z	TC-ADM-UI-002	review delete controls available in moderation UI: 0
+2026-09-30T14:02:25.789Z	TC-ADM-UI-003	slug validation message: "Please match the requested format."
+2026-09-30T14:02:44.602Z	TC-ADM-UI-004	note/reason inputs in moderation UI: 0
+2026-09-30T14:04:45.231Z	BB-18-tablet	home: horizontal overflow=0px; restaurants: horizontal overflow=153px; restaurant-details: horizontal overflow=0px; dish-details: horizontal overflow=0px; login: horizontal overflow=0px; signup: horizontal overflow=0px
+2026-09-30T14:04:58.804Z	BB-18-desktop	home: horizontal overflow=0px; restaurants: horizontal overflow=0px; restaurant-details: horizontal overflow=0px; dish-details: horizontal overflow=0px; login: horizontal overflow=0px; signup: horizontal overflow=0px
+2026-09-30T14:05:02.768Z	BB-18c	mobile visible filter checkboxes=0; Apply Filters visible=false
+2026-09-30T14:05:12.027Z	BB-18d	mobile admin restaurants overflow=0px
+2026-09-30T14:05:37.742Z	BB-20a	axe violations total=11; serious/critical=11; rules=color-contrast(serious), select-name(critical)
+2026-09-30T14:05:46.629Z	BB-20b	tab order: A::TasteLanka | INPUT:email:you@example.com | INPUT:password:•••••••• | A::Forgot password? | BUTTON:submit:Log In | A::Continue as Guest
+2026-09-30T14:05:49.568Z	BB-20c	focused email input: rgb(217, 71, 5)|none|none; focused Log In button: auto|1px|none
+2026-09-30T14:05:53.360Z	BB-20d	food-quality star buttons: ★|pressed=null, ★|pressed=null, ★|pressed=null, ★|pressed=null, ★|pressed=null
+2026-09-30T14:05:58.881Z	BB-20e	unlabeled controls on /restaurants: input[restaurants, dishes or cuisines...], select[], select[]
+2026-09-30T14:06:04.456Z	BB-19a	font-family=Inter, "Inter Fallback", "Noto Sans Sinhala", "Noto Sans Sinhala Fallback", "Noto Sans Tamil", "Noto Sans Tamil Fallback", sans-serif; loaded fonts=Inter, Inter Fallback, Noto Sans Sinhala, Noto Sans Sinhala Fallback, Noto Sans Tamil, Noto Sans Tamil Fallback
+2026-09-30T14:06:13.409Z	BB-19c	language switch controls on home page=0; <html lang>=en
+2026-09-30T14:06:28.973Z	PERF-UI	page,url,domContentLoadedMs,loadMs,contentReadyMs ; home,/,248,346,1525 ; restaurants,/restaurants,208,275,1427 ; restaurant-details,/restaurants/ministry-of-crab,289,377,1488 ; search,/restaurants?q=crab,208,268,1393
+2026-09-30T14:07:00.645Z	BB-18-mobile	home: horizontal overflow=0px; restaurants: horizontal overflow=0px; restaurant-details: horizontal overflow=0px; dish-details: horizontal overflow=0px; login: horizontal overflow=0px; signup: horizontal overflow=0px
+2026-09-30T14:07:11.096Z	BB-18-tablet	home: horizontal overflow=0px; restaurants: horizontal overflow=153px; restaurant-details: horizontal overflow=0px; dish-details: horizontal overflow=0px; login: horizontal overflow=0px; signup: horizontal overflow=0px
+2026-09-30T14:07:25.900Z	BB-18-desktop	home: horizontal overflow=0px; restaurants: horizontal overflow=0px; restaurant-details: horizontal overflow=0px; dish-details: horizontal overflow=0px; login: horizontal overflow=0px; signup: horizontal overflow=0px
+2026-09-30T14:08:29.357Z	DR-01	1 registered and landed on profile
+2026-09-30T14:08:30.521Z	DR-01	2 logged in again
+2026-09-30T14:08:30.999Z	DR-01	3 browsed listing
+2026-09-30T14:08:32.172Z	DR-01	4 searched 'Sri Lankan' + Colombo filter -> Nuga Gama listed
+2026-09-30T14:08:33.186Z	DR-01	5 restaurant details displayed — journey complete
+2026-09-30T14:08:37.351Z	DR-02	3 review submitted (overall 4 stars) -> pending message
+2026-09-30T14:08:37.795Z	DR-02	4 review not public while pending
+2026-09-30T14:08:47.642Z	DR-02	5 admin approved
+2026-09-30T14:08:49.067Z	DR-02	6 approved review visible publicly with 4 stars
+2026-09-30T14:08:49.209Z	DR-02	7 restaurant aggregate after approval: rating=4.5 reviewCount=490 (seed values 4.5/490)
+2026-09-30T14:08:55.100Z	DR-03	3 saved The Empire Cafe
+2026-09-30T14:08:56.234Z	DR-03	4 profile lists saved restaurant
+2026-09-30T14:08:56.664Z	DR-03	5 opened saved restaurant from profile
+2026-09-30T14:08:58.807Z	DR-03	6 removed; profile shows empty state after reload
+2026-09-30T14:09:01.521Z	DR-04	2 dashboard shown
+2026-09-30T14:09:02.743Z	DR-04	3 created
+2026-09-30T14:09:04.057Z	DR-04	4 updated; public page shows LKR 1,200–2,600
+2026-09-30T14:09:05.834Z	DR-04	5 deleted; absent after reload
+2026-09-30T14:09:11.270Z	DR-05	3 dish created for Green Leaf Kitchen
+2026-09-30T14:09:12.360Z	DR-05	4 updated; dish page shows LKR 1,250
+2026-09-30T14:09:14.329Z	DR-05	5 deleted; not on restaurant menu
+2026-09-30T14:09:28.579Z	DR-06	3 approved one, rejected one
+2026-09-30T14:09:33.467Z	DR-06	4 public shows approved only; author sees APPROVED/REJECTED
+2026-09-30T14:09:45.280Z	DR-07	2 Sinhala full name registered and shown on profile
+2026-09-30T14:09:49.957Z	DR-07	4 Sinhala and Tamil approved reviews rendered; Tamil review submitted; UI chrome remains English (no UI translation)

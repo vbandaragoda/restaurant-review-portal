@@ -1,0 +1,27 @@
+{
+  "testId": "TC-SEC-022",
+  "title": "SQL injection probe in location filter",
+  "category": "security",
+  "executedAt": "2026-09-30T19:05:19+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants?location=Colombo%27+OR+1%3D1+--+",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 8.9,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "2"
+    },
+    "body": []
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; rows returned=0",
+  "verdict": "PASS"
+}

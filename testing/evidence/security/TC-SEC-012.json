@@ -1,0 +1,28 @@
+{
+  "testId": "TC-SEC-012",
+  "title": "Customer deletes restaurant via admin API",
+  "category": "security",
+  "executedAt": "2026-09-30T19:05:19+05:30",
+  "request": {
+    "method": "DELETE",
+    "url": "http://localhost:8080/api/v1/admin/restaurants/1",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 11.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "expected": "HTTP 403",
+  "actual": "HTTP 403",
+  "verdict": "PASS"
+}

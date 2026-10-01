@@ -1,0 +1,39 @@
+{
+  "testId": "TC-ADM-028",
+  "title": "Update dish to slug used by another dish",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:18+05:30",
+  "request": {
+    "method": "PUT",
+    "url": "http://localhost:8080/api/v1/admin/dishes/8",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "qa-rest-190512",
+      "slug": "chilli-crab",
+      "name": "QA Hoppers",
+      "description": "Egg hoppers.",
+      "price": 850,
+      "spiceLevel": "Mild",
+      "vegetarian": true,
+      "halal": true,
+      "imageColor": "#aa5500"
+    }
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 19.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "expected": "HTTP 409 Conflict (slug already exists)",
+  "actual": "HTTP 403",
+  "verdict": "FAIL"
+}

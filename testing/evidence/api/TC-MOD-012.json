@@ -1,0 +1,42 @@
+{
+  "testId": "TC-MOD-012",
+  "title": "Approved review is reflected in restaurant reviewCount/rating",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:17+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants/ministry-of-crab",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 9.5,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "356"
+    },
+    "body": {
+      "id": 1,
+      "slug": "ministry-of-crab",
+      "name": "Ministry of Crab",
+      "cuisine": "Seafood · Sri Lankan",
+      "location": "Colombo",
+      "rating": 4.8,
+      "reviewCount": 320,
+      "priceMin": 8000,
+      "priceMax": 12000,
+      "vegetarian": false,
+      "vegan": false,
+      "halal": true,
+      "description": "Popular seafood dining in Colombo. Browse menu items, prices and approved customer reviews.",
+      "imageColor": "#332417"
+    }
+  },
+  "expected": "HTTP 200; reviewCount increases by 1 and rating is recalculated after approval",
+  "actual": "HTTP 200; reviewCount before=320 after=320; rating before=4.8 after=4.8",
+  "verdict": "FAIL"
+}

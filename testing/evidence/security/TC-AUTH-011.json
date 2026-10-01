@@ -1,0 +1,41 @@
+{
+  "testId": "TC-AUTH-011",
+  "title": "Register attempts role escalation via 'role':'ADMIN' field",
+  "category": "security",
+  "executedAt": "2026-09-30T19:05:14+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/register",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "fullName": "Escalate",
+      "email": "qa.escalate.190512@tastelanka.test",
+      "password": "<redacted test password, length 13>",
+      "role": "ADMIN"
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 216.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "362"
+    },
+    "body": {
+      "token": "<JWT, 242 chars>",
+      "userId": 5,
+      "fullName": "Escalate",
+      "email": "qa.escalate.190512@tastelanka.test",
+      "role": "USER",
+      "language": "en"
+    }
+  },
+  "expected": "HTTP 201 and role USER (extra 'role' field ignored)",
+  "actual": "HTTP 201; role assigned=USER",
+  "verdict": "PASS"
+}

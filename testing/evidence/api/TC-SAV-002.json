@@ -1,0 +1,44 @@
+{
+  "testId": "TC-SAV-002",
+  "title": "Save same restaurant again (idempotent)",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:17+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/users/me/saved-restaurants/green-leaf-kitchen",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 39.7,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "334"
+    },
+    "body": {
+      "id": 5,
+      "slug": "green-leaf-kitchen",
+      "name": "Green Leaf Kitchen",
+      "cuisine": "Sri Lankan · Vegetarian",
+      "location": "Kandy",
+      "rating": 4.3,
+      "reviewCount": 96,
+      "priceMin": 1500,
+      "priceMax": 3000,
+      "vegetarian": true,
+      "vegan": true,
+      "halal": true,
+      "description": "Vegetarian-friendly local dishes with mild and medium spice options.",
+      "imageColor": "#597a40"
+    }
+  },
+  "expected": "HTTP 200/201",
+  "actual": "HTTP 201",
+  "verdict": "PASS"
+}
