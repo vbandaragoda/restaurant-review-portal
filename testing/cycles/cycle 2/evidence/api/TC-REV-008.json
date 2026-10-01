@@ -1,0 +1,38 @@
+{
+  "testId": "TC-REV-008",
+  "title": "Review with ratings omitted",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:03+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "nuga-gama",
+      "language": "en",
+      "reviewText": "No ratings supplied here."
+    }
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 14.2,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Request body is malformed or contains an invalid value",
+      "instance": "/api/v1/reviews",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 400",
+  "verdict": "PASS"
+}

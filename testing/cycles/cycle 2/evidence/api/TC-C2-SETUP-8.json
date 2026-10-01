@@ -1,0 +1,48 @@
+{
+  "testId": "TC-C2-SETUP-8",
+  "title": "Setup: re-moderate the 2-star review to REJECTED",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "PATCH",
+    "url": "http://localhost:8080/api/v1/admin/reviews/11",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": "REJECTED",
+      "note": "Re-moderated by QA"
+    }
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 26.4,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "401"
+    },
+    "body": {
+      "id": 11,
+      "author": "QA User B",
+      "restaurantSlug": "qa-agg-112400c2",
+      "restaurantName": "QA Aggregation Cafe",
+      "foodRating": 4,
+      "serviceRating": 4,
+      "overallRating": 2,
+      "language": "en",
+      "reviewText": "Cycle 2 aggregation review 2 stars.",
+      "status": "REJECTED",
+      "moderatorNote": "Re-moderated by QA",
+      "moderatedBy": "TasteLanka Admin",
+      "moderatedAt": "2026-10-01T05:54:19.797333300Z",
+      "createdAt": "2026-10-01T05:54:19.705287Z"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200",
+  "verdict": "PASS"
+}

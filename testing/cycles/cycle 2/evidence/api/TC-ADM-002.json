@@ -1,0 +1,42 @@
+{
+  "testId": "TC-ADM-002",
+  "title": "Created restaurant readable via public API",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:04+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants/qa-rest-112400",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 37.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "277"
+    },
+    "body": {
+      "id": 6,
+      "slug": "qa-rest-112400",
+      "name": "QA Test Bistro",
+      "cuisine": "Sri Lankan · Fusion",
+      "location": "Galle",
+      "rating": 0.0,
+      "reviewCount": 0,
+      "priceMin": 1000,
+      "priceMax": 2500,
+      "vegetarian": true,
+      "vegan": false,
+      "halal": true,
+      "description": "Created by QA API test.",
+      "imageColor": "#123456"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; name=QA Test Bistro",
+  "verdict": "PASS"
+}

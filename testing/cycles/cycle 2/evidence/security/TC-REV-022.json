@@ -1,0 +1,33 @@
+{
+  "testId": "TC-REV-022",
+  "title": "Another user cannot delete someone else's review",
+  "category": "security",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "DELETE",
+    "url": "http://localhost:8080/api/v1/reviews/10",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 17.9,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "You can only delete your own reviews",
+      "instance": "/api/v1/reviews/10",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  "expected": "HTTP 403",
+  "actual": "HTTP 403; Content-Type=application/problem+json; detail='You can only delete your own reviews'",
+  "verdict": "PASS"
+}

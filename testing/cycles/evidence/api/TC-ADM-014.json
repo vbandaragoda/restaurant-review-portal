@@ -1,0 +1,29 @@
+{
+  "testId": "TC-ADM-014",
+  "title": "Malformed JSON body (authenticated admin)",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:18+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/admin/restaurants",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer <ADMIN token>"
+    },
+    "body": "{\"slug\": \"broken\", \"name\": "
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 32.7,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 403",
+  "verdict": "FAIL"
+}

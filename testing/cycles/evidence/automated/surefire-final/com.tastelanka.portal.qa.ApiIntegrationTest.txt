@@ -1,0 +1,52 @@
+-------------------------------------------------------------------------------
+Test set: com.tastelanka.portal.qa.ApiIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 18, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 14.02 s <<< FAILURE! -- in com.tastelanka.portal.qa.ApiIntegrationTest
+com.tastelanka.portal.qa.ApiIntegrationTest.anonymousProtectedEndpoint -- Time elapsed: 1.732 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+[anonymous GET /users/me] 
+expected: 401
+ but was: 403
+	at com.tastelanka.portal.qa.ApiIntegrationTest.anonymousProtectedEndpoint(ApiIntegrationTest.java:154)
+
+com.tastelanka.portal.qa.ApiIntegrationTest.invertedPriceRange -- Time elapsed: 1.475 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+expected: 400
+ but was: 201
+	at com.tastelanka.portal.qa.ApiIntegrationTest.invertedPriceRange(ApiIntegrationTest.java:260)
+
+com.tastelanka.portal.qa.ApiIntegrationTest.jwtSecretIsNotDefault -- Time elapsed: 0.178 s <<< FAILURE!
+java.lang.AssertionError: 
+[app.jwt.secret] 
+Expecting actual:
+  "change-this-development-secret-before-production-32-bytes-minimum"
+not to be equal to:
+  "change-this-development-secret-before-production-32-bytes-minimum"
+
+	at com.tastelanka.portal.qa.ApiIntegrationTest.jwtSecretIsNotDefault(ApiIntegrationTest.java:160)
+
+com.tastelanka.portal.qa.ApiIntegrationTest.seederDoesNotOverwriteAdminEdits -- Time elapsed: 0.666 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+[description after seeder run] 
+expected: "JUnit edited description 754e053e"
+ but was: "Vegetarian-friendly local dishes with mild and medium spice options."
+	at com.tastelanka.portal.qa.ApiIntegrationTest.seederDoesNotOverwriteAdminEdits(ApiIntegrationTest.java:273)
+
+com.tastelanka.portal.qa.ApiIntegrationTest.deleteRestaurantWithReviews -- Time elapsed: 0.498 s <<< FAILURE!
+java.lang.AssertionError: Unhandled server exception instead of an HTTP error response: SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`tastelanka_junit`.`reviews`, CONSTRAINT `fk_reviews_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`))
+	at com.tastelanka.portal.qa.ApiIntegrationTest.statusOrUnhandled(ApiIntegrationTest.java:109)
+	at com.tastelanka.portal.qa.ApiIntegrationTest.deleteRestaurantWithReviews(ApiIntegrationTest.java:253)
+
+com.tastelanka.portal.qa.ApiIntegrationTest.approvalUpdatesAggregateRating -- Time elapsed: 0.567 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+[reviewCount after 1 approved review] 
+expected: 1
+ but was: 0
+	at com.tastelanka.portal.qa.ApiIntegrationTest.approvalUpdatesAggregateRating(ApiIntegrationTest.java:207)
+
+com.tastelanka.portal.qa.ApiIntegrationTest.duplicateSlugOnUpdate -- Time elapsed: 0.254 s <<< FAILURE!
+java.lang.AssertionError: Unhandled server exception instead of an HTTP error response: SQLIntegrityConstraintViolationException: Duplicate entry 'nuga-gama' for key 'restaurants.uk_restaurants_slug'
+	at com.tastelanka.portal.qa.ApiIntegrationTest.statusOrUnhandled(ApiIntegrationTest.java:109)
+	at com.tastelanka.portal.qa.ApiIntegrationTest.duplicateSlugOnUpdate(ApiIntegrationTest.java:243)
+

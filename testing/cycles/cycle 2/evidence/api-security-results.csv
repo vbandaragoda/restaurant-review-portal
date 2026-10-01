@@ -1,0 +1,212 @@
+Test ID,Title,Category,Method,Endpoint,Expected,Actual,Verdict,Evidence,Executed,ElapsedMs
+TC-AUTH-001,Register with valid data,api,POST,/auth/register,HTTP 201; JWT returned; role USER; no password hash in response,"HTTP 201; role=USER, token issued=True, passwordHash exposed=False",PASS,evidence/api/TC-AUTH-001.json,2026-10-01T11:24:00+05:30,567.4
+TC-AUTH-002,Register duplicate email (different case),api,POST,/auth/register,HTTP 409 Conflict (email already registered),HTTP 409,PASS,evidence/api/TC-AUTH-002.json,2026-10-01T11:24:00+05:30,34.6
+TC-AUTH-003,Register with empty body (missing all fields),api,POST,/auth/register,HTTP 400 with validation feedback,HTTP 400,PASS,evidence/api/TC-AUTH-003.json,2026-10-01T11:24:00+05:30,54.2
+TC-AUTH-004,Register with invalid email format,api,POST,/auth/register,HTTP 400,HTTP 400,PASS,evidence/api/TC-AUTH-004.json,2026-10-01T11:24:00+05:30,10.9
+TC-AUTH-005,Register password length 7 (below min 8),api,POST,/auth/register,HTTP 400,HTTP 400,PASS,evidence/api/TC-AUTH-005.json,2026-10-01T11:24:00+05:30,8.9
+TC-AUTH-006,Register password length 8 (min boundary),api,POST,/auth/register,HTTP 201,HTTP 201,PASS,evidence/api/TC-AUTH-006.json,2026-10-01T11:24:00+05:30,133.5
+TC-AUTH-007,Register password length 73 (above max 72),api,POST,/auth/register,HTTP 400,HTTP 400,PASS,evidence/api/TC-AUTH-007.json,2026-10-01T11:24:00+05:30,19.3
+TC-AUTH-008,Register password length 72 (max boundary),api,POST,/auth/register,HTTP 201,HTTP 201,PASS,evidence/api/TC-AUTH-008.json,2026-10-01T11:24:01+05:30,125.0
+TC-AUTH-009,Register unsupported language 'fr',api,POST,/auth/register,HTTP 400,HTTP 400,PASS,evidence/api/TC-AUTH-009.json,2026-10-01T11:24:01+05:30,22.7
+TC-AUTH-010,Register whitespace-only full name,api,POST,/auth/register,HTTP 400,HTTP 400,PASS,evidence/api/TC-AUTH-010.json,2026-10-01T11:24:01+05:30,11.8
+TC-AUTH-011,Register attempts role escalation via 'role':'ADMIN' field,security,POST,/auth/register,HTTP 201 and role USER (extra 'role' field ignored),HTTP 201; role assigned=USER,PASS,evidence/security/TC-AUTH-011.json,2026-10-01T11:24:01+05:30,131.3
+TC-AUTH-012,Register Sinhala-preference user with Unicode name,api,POST,/auth/register,HTTP 201,"HTTP 201; fullName round-trip=නිමල් පෙරේරා, language=si",PASS,evidence/api/TC-AUTH-012.json,2026-10-01T11:24:01+05:30,121.9
+TC-AUTH-013,Login with valid credentials,api,POST,/auth/login,HTTP 200,"HTTP 200; keys present: ['token', 'role']",PASS,evidence/api/TC-AUTH-013.json,2026-10-01T11:24:01+05:30,115.0
+TC-AUTH-014,Login with incorrect password,api,POST,/auth/login,HTTP 401 Unauthorized with an error message,HTTP 401,PASS,evidence/api/TC-AUTH-014.json,2026-10-01T11:24:01+05:30,105.8
+TC-AUTH-015,Login with unregistered email,api,POST,/auth/login,HTTP 401,HTTP 401,PASS,evidence/api/TC-AUTH-015.json,2026-10-01T11:24:01+05:30,20.3
+TC-AUTH-016,Login with email in different letter case,api,POST,/auth/login,HTTP 200,HTTP 200,PASS,evidence/api/TC-AUTH-016.json,2026-10-01T11:24:01+05:30,128.5
+TC-AUTH-017,Login with missing password,api,POST,/auth/login,HTTP 400,HTTP 400,PASS,evidence/api/TC-AUTH-017.json,2026-10-01T11:24:01+05:30,16.1
+TC-AUTH-018,Register second customer (User B),api,POST,/auth/register,HTTP 201,HTTP 201,PASS,evidence/api/TC-AUTH-018.json,2026-10-01T11:24:01+05:30,140.6
+TC-AUTH-019,Register third customer (later promoted to MODERATOR),api,POST,/auth/register,HTTP 201,HTTP 201,PASS,evidence/api/TC-AUTH-019.json,2026-10-01T11:24:02+05:30,130.6
+TC-AUTH-020,Administrator login (bootstrap admin),api,POST,/auth/login,HTTP 200,HTTP 200; role=ADMIN,PASS,evidence/api/TC-AUTH-020.json,2026-10-01T11:24:02+05:30,121.0
+TC-API-001,Get own profile with valid token,api,GET,/users/me,HTTP 200,"HTTP 200; email matches=True, fields=['createdAt', 'email', 'fullName', 'id', 'language', 'role']",PASS,evidence/api/TC-API-001.json,2026-10-01T11:24:02+05:30,93.4
+TC-API-010,List all restaurants,api,GET,/restaurants,HTTP 200,"HTTP 200; count=5 slugs=['green-leaf-kitchen', 'ministry-of-crab', 'nuga-gama', 'pedlars-inn', 'the-empire-cafe']",PASS,evidence/api/TC-API-010.json,2026-10-01T11:24:02+05:30,49.1
+TC-API-011,Search by name 'crab',api,GET,/restaurants,HTTP 200,HTTP 200; slugs=['ministry-of-crab'],PASS,evidence/api/TC-API-011.json,2026-10-01T11:24:02+05:30,30.5
+TC-API-012,Search is case-insensitive 'NUGA',api,GET,/restaurants,HTTP 200,HTTP 200; slugs=['nuga-gama'],PASS,evidence/api/TC-API-012.json,2026-10-01T11:24:02+05:30,14.3
+TC-API-013,Search matches location 'galle',api,GET,/restaurants,HTTP 200,HTTP 200; slugs=['pedlars-inn'],PASS,evidence/api/TC-API-013.json,2026-10-01T11:24:02+05:30,11.5
+TC-API-014,Search with no matches,api,GET,/restaurants,HTTP 200,HTTP 200; count=0,PASS,evidence/api/TC-API-014.json,2026-10-01T11:24:02+05:30,25.2
+TC-API-015,Filter location=Kandy,api,GET,/restaurants,HTTP 200,"HTTP 200; slugs=['green-leaf-kitchen', 'the-empire-cafe']",PASS,evidence/api/TC-API-015.json,2026-10-01T11:24:02+05:30,15.5
+TC-API-016,Filter cuisine=Seafood,api,GET,/restaurants,HTTP 200,HTTP 200; slugs=['ministry-of-crab'],PASS,evidence/api/TC-API-016.json,2026-10-01T11:24:02+05:30,18.7
+TC-API-017,Filter vegan=true,api,GET,/restaurants,HTTP 200,"HTTP 200; slugs=['green-leaf-kitchen', 'nuga-gama', 'the-empire-cafe']",PASS,evidence/api/TC-API-017.json,2026-10-01T11:24:02+05:30,28.8
+TC-API-018,Filter vegetarian=true,api,GET,/restaurants,HTTP 200,"HTTP 200; slugs=['green-leaf-kitchen', 'nuga-gama', 'pedlars-inn', 'the-empire-cafe']",PASS,evidence/api/TC-API-018.json,2026-10-01T11:24:02+05:30,15.2
+TC-API-019,Filter halal=true,api,GET,/restaurants,HTTP 200,"HTTP 200; slugs=['green-leaf-kitchen', 'ministry-of-crab', 'nuga-gama', 'pedlars-inn', 'the-empire-cafe']",PASS,evidence/api/TC-API-019.json,2026-10-01T11:24:02+05:30,13.5
+TC-API-020,Combined filters location=Colombo & vegan=true,api,GET,/restaurants,HTTP 200,HTTP 200; slugs=['nuga-gama'],PASS,evidence/api/TC-API-020.json,2026-10-01T11:24:02+05:30,17.0
+TC-API-021,Invalid boolean filter vegetarian=abc,api,GET,/restaurants,HTTP 400 (type mismatch),HTTP 400,PASS,evidence/api/TC-API-021.json,2026-10-01T11:24:02+05:30,10.1
+TC-API-022,"Top-rated restaurants (max 4, sorted by rating desc)",api,GET,/restaurants/top-rated,HTTP 200,"HTTP 200; ratings=[4.8, 4.6, 4.5, 4.4]",PASS,evidence/api/TC-API-022.json,2026-10-01T11:24:02+05:30,36.6
+TC-API-023,Restaurant details by slug,api,GET,/restaurants/ministry-of-crab,HTTP 200,HTTP 200; name=Ministry of Crab,PASS,evidence/api/TC-API-023.json,2026-10-01T11:24:02+05:30,36.0
+TC-API-024,Restaurant details for non-existent slug,api,GET,/restaurants/does-not-exist,HTTP 404 Not Found,HTTP 404,PASS,evidence/api/TC-API-024.json,2026-10-01T11:24:02+05:30,20.7
+TC-API-025,Dishes for a restaurant,api,GET,/dishes,HTTP 200,HTTP 200; count=4,PASS,evidence/api/TC-API-025.json,2026-10-01T11:24:02+05:30,79.4
+TC-API-026,Dish details by slug,api,GET,/dishes/chilli-crab,HTTP 200,HTTP 200; spice=Hot price=9500,PASS,evidence/api/TC-API-026.json,2026-10-01T11:24:02+05:30,40.7
+TC-API-027,Dish details for non-existent slug,api,GET,/dishes/no-such-dish,HTTP 404,HTTP 404,PASS,evidence/api/TC-API-027.json,2026-10-01T11:24:02+05:30,26.7
+TC-API-028,Unsupported method DELETE /restaurants (authenticated user),api,DELETE,/restaurants,HTTP 405 Method Not Allowed,HTTP 405,PASS,evidence/api/TC-API-028.json,2026-10-01T11:24:02+05:30,14.0
+TC-API-029,Unsupported method PUT /health,api,PUT,/health,HTTP 405,HTTP 405,PASS,evidence/api/TC-API-029.json,2026-10-01T11:24:02+05:30,12.9
+TC-REV-001,Submit valid review (authenticated),api,POST,/reviews,HTTP 201; review stored with status PENDING,HTTP 201; status=PENDING id=1,PASS,evidence/api/TC-REV-001.json,2026-10-01T11:24:02+05:30,66.2
+TC-REV-002,Submit review without authentication,security,POST,/reviews,HTTP 401 Unauthorized,HTTP 401,PASS,evidence/security/TC-REV-002.json,2026-10-01T11:24:02+05:30,13.2
+TC-REV-003,Review with overall rating 0 (below range),api,POST,/reviews,HTTP 400,HTTP 400,PASS,evidence/api/TC-REV-003.json,2026-10-01T11:24:02+05:30,13.6
+TC-REV-004,Review with food rating 6 (above range),api,POST,/reviews,HTTP 400,HTTP 400,PASS,evidence/api/TC-REV-004.json,2026-10-01T11:24:02+05:30,20.4
+TC-REV-005,Review with ratings 1/1/1 (lower boundary),api,POST,/reviews,HTTP 201,HTTP 201,PASS,evidence/api/TC-REV-005.json,2026-10-01T11:24:02+05:30,24.7
+TC-REV-006,Review with missing review text,api,POST,/reviews,HTTP 400,HTTP 400,PASS,evidence/api/TC-REV-006.json,2026-10-01T11:24:03+05:30,20.3
+TC-REV-007,Review with whitespace-only text,api,POST,/reviews,HTTP 400,HTTP 400,PASS,evidence/api/TC-REV-007.json,2026-10-01T11:24:03+05:30,17.0
+TC-REV-008,Review with ratings omitted,api,POST,/reviews,HTTP 400,HTTP 400,PASS,evidence/api/TC-REV-008.json,2026-10-01T11:24:03+05:30,14.2
+TC-REV-009,Review with unsupported language 'fr',api,POST,/reviews,HTTP 400,HTTP 400,PASS,evidence/api/TC-REV-009.json,2026-10-01T11:24:03+05:30,31.1
+TC-REV-010,Review for non-existent restaurant,api,POST,/reviews,HTTP 404,HTTP 404,PASS,evidence/api/TC-REV-010.json,2026-10-01T11:24:03+05:30,16.9
+TC-REV-011,Review with dish that belongs to another restaurant,api,POST,/reviews,HTTP 400,HTTP 400,PASS,evidence/api/TC-REV-011.json,2026-10-01T11:24:03+05:30,25.1
+TC-REV-012,Review text 5001 chars (above max 5000),api,POST,/reviews,HTTP 400,HTTP 400,PASS,evidence/api/TC-REV-012.json,2026-10-01T11:24:03+05:30,20.7
+TC-REV-013,Review text exactly 5000 chars (max boundary),api,POST,/reviews,HTTP 201,HTTP 201; stored length=5000,PASS,evidence/api/TC-REV-013.json,2026-10-01T11:24:03+05:30,26.2
+TC-REV-014,Review with non-numeric rating 'five',api,POST,/reviews,HTTP 400,HTTP 400,PASS,evidence/api/TC-REV-014.json,2026-10-01T11:24:03+05:30,21.4
+TC-REV-015,Sinhala review text stored and returned intact,api,POST,/reviews,HTTP 201,HTTP 201; Sinhala text round-trip exact,PASS,evidence/api/TC-REV-015.json,2026-10-01T11:24:03+05:30,30.1
+TC-REV-016,Tamil review text stored and returned intact,api,POST,/reviews,HTTP 201,HTTP 201; Tamil text round-trip exact,PASS,evidence/api/TC-REV-016.json,2026-10-01T11:24:03+05:30,27.5
+TC-SEC-020,Mass assignment: review submitted with status=APPROVED,security,POST,/reviews,HTTP 201 but status forced to PENDING (client status ignored),HTTP 201; status=PENDING note=None,PASS,evidence/security/TC-SEC-020.json,2026-10-01T11:24:03+05:30,54.0
+TC-SEC-030,Stored XSS payload in review text (API layer),security,POST,/reviews,HTTP 201; text stored verbatim (output encoding must happen in UI – see TC-UI XSS test),HTTP 201,PASS,evidence/security/TC-SEC-030.json,2026-10-01T11:24:03+05:30,27.2
+TC-REV-017,View own reviews (User A),api,GET,/reviews/mine,HTTP 200,HTTP 200; count=3 authors=['QA User A'],PASS,evidence/api/TC-REV-017.json,2026-10-01T11:24:03+05:30,32.2
+TC-REV-018,View own reviews without token,security,GET,/reviews/mine,HTTP 401,HTTP 401,PASS,evidence/security/TC-REV-018.json,2026-10-01T11:24:03+05:30,10.8
+TC-REV-019,Public review list requires restaurant parameter,api,GET,/reviews,HTTP 400 (missing required parameter),HTTP 400,PASS,evidence/api/TC-REV-019.json,2026-10-01T11:24:03+05:30,7.3
+TC-REV-020,Pending review NOT visible in public list,api,GET,/reviews,HTTP 200,HTTP 200; public ids=[] pending id=1,PASS,evidence/api/TC-REV-020.json,2026-10-01T11:24:03+05:30,42.1
+TC-MOD-001,Admin lists pending reviews,api,GET,/admin/reviews,HTTP 200,HTTP 200; count=7,PASS,evidence/api/TC-MOD-001.json,2026-10-01T11:24:03+05:30,27.9
+TC-MOD-002,Admin approves review,api,PATCH,/admin/reviews/1,HTTP 200,HTTP 200; status=APPROVED,PASS,evidence/api/TC-MOD-002.json,2026-10-01T11:24:03+05:30,71.0
+TC-MOD-003,Approved review visible in public list,api,GET,/reviews,HTTP 200,HTTP 200; public ids=[1],PASS,evidence/api/TC-MOD-003.json,2026-10-01T11:24:03+05:30,14.6
+TC-MOD-004,Admin rejects review,api,PATCH,/admin/reviews/6,HTTP 200,HTTP 200; status=REJECTED,PASS,evidence/api/TC-MOD-004.json,2026-10-01T11:24:03+05:30,34.2
+TC-MOD-005,Rejected review not visible in public list,api,GET,/reviews,HTTP 200,HTTP 200; public ids=[],PASS,evidence/api/TC-MOD-005.json,2026-10-01T11:24:03+05:30,13.3
+TC-MOD-006,Moderate with invalid status 'DELETED',api,PATCH,/admin/reviews/1,HTTP 400,HTTP 400,PASS,evidence/api/TC-MOD-006.json,2026-10-01T11:24:03+05:30,11.9
+TC-MOD-007,Moderate non-existent review id,api,PATCH,/admin/reviews/999999,HTTP 404,HTTP 404,PASS,evidence/api/TC-MOD-007.json,2026-10-01T11:24:03+05:30,24.8
+TC-MOD-008,Moderation note longer than 500 chars,api,PATCH,/admin/reviews/1,HTTP 400,HTTP 400,PASS,evidence/api/TC-MOD-008.json,2026-10-01T11:24:03+05:30,24.7
+TC-MOD-009,Filter moderation queue by APPROVED,api,GET,/admin/reviews,HTTP 200,HTTP 200; count=1,PASS,evidence/api/TC-MOD-009.json,2026-10-01T11:24:03+05:30,23.5
+TC-MOD-010,Moderation queue with invalid status filter,api,GET,/admin/reviews,HTTP 400,HTTP 400,PASS,evidence/api/TC-MOD-010.json,2026-10-01T11:24:03+05:30,10.1
+TC-MOD-011,Own-review list shows moderation outcome to author,api,GET,/reviews/mine,HTTP 200,HTTP 200; approved status visible to author,PASS,evidence/api/TC-MOD-011.json,2026-10-01T11:24:03+05:30,34.4
+TC-MOD-012a,Restaurant rating/reviewCount before approval (baseline),api,GET,/restaurants/ministry-of-crab,HTTP 200,HTTP 200; rating=4.8 reviewCount=320,PASS,evidence/api/TC-MOD-012a.json,2026-10-01T11:24:03+05:30,8.5
+TC-MOD-012b,Approve Sinhala 5/4/5 review for ministry-of-crab,api,PATCH,/admin/reviews/4,HTTP 200,HTTP 200,PASS,evidence/api/TC-MOD-012b.json,2026-10-01T11:24:03+05:30,37.6
+TC-MOD-012,Approved review is reflected in restaurant reviewCount/rating,api,GET,/restaurants/ministry-of-crab,HTTP 200; reviewCount increases by 1 and rating is recalculated after approval,HTTP 200; reviewCount before=320 after=321; rating before=4.8 after=4.8,PASS,evidence/api/TC-MOD-012.json,2026-10-01T11:24:03+05:30,22.5
+TC-MOD-013,Approve Tamil review (for multilingual display test),api,PATCH,/admin/reviews/5,HTTP 200,HTTP 200,PASS,evidence/api/TC-MOD-013.json,2026-10-01T11:24:03+05:30,34.6
+TC-MOD-014,Approve XSS-probe review (for UI output-encoding test),api,PATCH,/admin/reviews/7,HTTP 200,HTTP 200,PASS,evidence/api/TC-MOD-014.json,2026-10-01T11:24:03+05:30,48.6
+TC-SAV-001,Save restaurant,api,POST,/users/me/saved-restaurants/green-leaf-kitchen,HTTP 201,HTTP 201; slug=green-leaf-kitchen,PASS,evidence/api/TC-SAV-001.json,2026-10-01T11:24:03+05:30,44.8
+TC-SAV-002,Save same restaurant again (idempotent),api,POST,/users/me/saved-restaurants/green-leaf-kitchen,HTTP 200/201,HTTP 201,PASS,evidence/api/TC-SAV-002.json,2026-10-01T11:24:03+05:30,16.1
+TC-SAV-003,List saved restaurants has no duplicate,api,GET,/users/me/saved-restaurants,HTTP 200,HTTP 200; slugs=['green-leaf-kitchen'],PASS,evidence/api/TC-SAV-003.json,2026-10-01T11:24:03+05:30,19.9
+TC-SAV-004,Save non-existent restaurant,api,POST,/users/me/saved-restaurants/no-such-restaurant,HTTP 404,HTTP 404,PASS,evidence/api/TC-SAV-004.json,2026-10-01T11:24:04+05:30,30.7
+TC-SAV-005,Save restaurant without token,security,POST,/users/me/saved-restaurants/nuga-gama,HTTP 401,HTTP 401,PASS,evidence/security/TC-SAV-005.json,2026-10-01T11:24:04+05:30,6.3
+TC-SEC-040,Horizontal access: User B deletes a restaurant saved by User A,security,DELETE,/users/me/saved-restaurants/green-leaf-kitchen,HTTP 204 acting only on User B's own list (no effect on User A),HTTP 204,PASS,evidence/security/TC-SEC-040.json,2026-10-01T11:24:04+05:30,27.3
+TC-SEC-041,User A's saved restaurant unaffected by User B action,security,GET,/users/me/saved-restaurants,HTTP 200,HTTP 200; User A slugs=['green-leaf-kitchen'],PASS,evidence/security/TC-SEC-041.json,2026-10-01T11:24:04+05:30,14.3
+TC-SEC-042,User B cannot see User A's saved list,security,GET,/users/me/saved-restaurants,HTTP 200,HTTP 200; User B slugs=[],PASS,evidence/security/TC-SEC-042.json,2026-10-01T11:24:04+05:30,24.7
+TC-SEC-043,User B's own-review list excludes User A's reviews,security,GET,/reviews/mine,HTTP 200,HTTP 200; authors=['QA User B'],PASS,evidence/security/TC-SEC-043.json,2026-10-01T11:24:04+05:30,17.1
+TC-SAV-006,Remove saved restaurant,api,DELETE,/users/me/saved-restaurants/green-leaf-kitchen,HTTP 204,HTTP 204,PASS,evidence/api/TC-SAV-006.json,2026-10-01T11:24:04+05:30,30.8
+TC-SAV-007,Saved list empty after removal,api,GET,/users/me/saved-restaurants,HTTP 200,HTTP 200; slugs=[],PASS,evidence/api/TC-SAV-007.json,2026-10-01T11:24:04+05:30,14.5
+TC-ADM-000,Admin dashboard stats,api,GET,/admin/dashboard,HTTP 200,"HTTP 200; keys present: ['restaurants', 'dishes', 'users', 'pendingReviews', 'approvedReviews']",PASS,evidence/api/TC-ADM-000.json,2026-10-01T11:24:04+05:30,51.2
+TC-ADM-001,Create restaurant (valid),api,POST,/admin/restaurants,HTTP 201,HTTP 201; id=6 rating=0,PASS,evidence/api/TC-ADM-001.json,2026-10-01T11:24:04+05:30,51.3
+TC-ADM-002,Created restaurant readable via public API,api,GET,/restaurants/qa-rest-112400,HTTP 200,HTTP 200; name=QA Test Bistro,PASS,evidence/api/TC-ADM-002.json,2026-10-01T11:24:04+05:30,37.1
+TC-ADM-003,Create restaurant with duplicate slug,api,POST,/admin/restaurants,HTTP 409,HTTP 409,PASS,evidence/api/TC-ADM-003.json,2026-10-01T11:24:04+05:30,15.4
+TC-ADM-004,Create restaurant with invalid slug 'Bad Slug!',api,POST,/admin/restaurants,HTTP 400,HTTP 400,PASS,evidence/api/TC-ADM-004.json,2026-10-01T11:24:04+05:30,12.4
+TC-ADM-005,Create restaurant missing name/cuisine/location,api,POST,/admin/restaurants,HTTP 400,HTTP 400,PASS,evidence/api/TC-ADM-005.json,2026-10-01T11:24:04+05:30,16.4
+TC-ADM-006,Create restaurant with negative price,api,POST,/admin/restaurants,HTTP 400,HTTP 400,PASS,evidence/api/TC-ADM-006.json,2026-10-01T11:24:04+05:30,13.4
+TC-ADM-007,Create restaurant with priceMin > priceMax,api,POST,/admin/restaurants,HTTP 400 (minimum price must not exceed maximum price),HTTP 400,PASS,evidence/api/TC-ADM-007.json,2026-10-01T11:24:04+05:30,13.2
+TC-ADM-008,Create restaurant with invalid colour 'red',api,POST,/admin/restaurants,HTTP 400,HTTP 400,PASS,evidence/api/TC-ADM-008.json,2026-10-01T11:24:04+05:30,15.0
+TC-ADM-009,Update restaurant (valid),api,PUT,/admin/restaurants/6,HTTP 200,HTTP 200; name=QA Test Bistro Updated location=Kandy,PASS,evidence/api/TC-ADM-009.json,2026-10-01T11:24:04+05:30,47.9
+TC-ADM-010,Update persisted (read back),api,GET,/restaurants/qa-rest-112400,HTTP 200,HTTP 200; name=QA Test Bistro Updated,PASS,evidence/api/TC-ADM-010.json,2026-10-01T11:24:04+05:30,11.6
+TC-ADM-011,Update restaurant to slug already used by another restaurant,api,PUT,/admin/restaurants/6,HTTP 409 Conflict (slug already exists),HTTP 409,PASS,evidence/api/TC-ADM-011.json,2026-10-01T11:24:04+05:30,19.1
+TC-ADM-012,Update non-existent restaurant,api,PUT,/admin/restaurants/999999,HTTP 404,HTTP 404,PASS,evidence/api/TC-ADM-012.json,2026-10-01T11:24:04+05:30,16.7
+TC-ADM-013,Update restaurant with non-numeric id,api,PUT,/admin/restaurants/abc,HTTP 400,HTTP 400,PASS,evidence/api/TC-ADM-013.json,2026-10-01T11:24:04+05:30,12.7
+TC-ADM-014,Malformed JSON body (authenticated admin),api,POST,/admin/restaurants,HTTP 400,HTTP 400,PASS,evidence/api/TC-ADM-014.json,2026-10-01T11:24:04+05:30,13.5
+TC-ADM-015,Unsupported content type text/plain,api,POST,/admin/restaurants,HTTP 415,HTTP 415,PASS,evidence/api/TC-ADM-015.json,2026-10-01T11:24:04+05:30,13.5
+TC-ADM-020,Create dish (valid),api,POST,/admin/dishes,HTTP 201,HTTP 201; id=8,PASS,evidence/api/TC-ADM-020.json,2026-10-01T11:24:04+05:30,51.4
+TC-ADM-021,Created dish appears in restaurant menu,api,GET,/dishes,HTTP 200,HTTP 200; slugs=['qa-dish-112400'],PASS,evidence/api/TC-ADM-021.json,2026-10-01T11:24:04+05:30,34.2
+TC-ADM-022,Create dish with duplicate slug,api,POST,/admin/dishes,HTTP 409,HTTP 409,PASS,evidence/api/TC-ADM-022.json,2026-10-01T11:24:04+05:30,18.0
+TC-ADM-023,Create dish for unknown restaurant,api,POST,/admin/dishes,HTTP 404,HTTP 404,PASS,evidence/api/TC-ADM-023.json,2026-10-01T11:24:04+05:30,28.0
+TC-ADM-024,Create dish with invalid spice level 'Extreme',api,POST,/admin/dishes,HTTP 400,HTTP 400,PASS,evidence/api/TC-ADM-024.json,2026-10-01T11:24:04+05:30,13.1
+TC-ADM-025,Create dish with negative price,api,POST,/admin/dishes,HTTP 400,HTTP 400,PASS,evidence/api/TC-ADM-025.json,2026-10-01T11:24:04+05:30,11.7
+TC-ADM-026,Update dish (price and spice),api,PUT,/admin/dishes/8,HTTP 200,HTTP 200; price=990 spice=Hot,PASS,evidence/api/TC-ADM-026.json,2026-10-01T11:24:04+05:30,37.8
+TC-ADM-027,Dish update persisted (read back),api,GET,/dishes/qa-dish-112400,HTTP 200,HTTP 200; price=990,PASS,evidence/api/TC-ADM-027.json,2026-10-01T11:24:04+05:30,13.8
+TC-ADM-028,Update dish to slug used by another dish,api,PUT,/admin/dishes/8,HTTP 409 Conflict (slug already exists),HTTP 409,PASS,evidence/api/TC-ADM-028.json,2026-10-01T11:24:04+05:30,19.3
+TC-ADM-029,Update non-existent dish,api,PUT,/admin/dishes/999999,HTTP 404,HTTP 404,PASS,evidence/api/TC-ADM-029.json,2026-10-01T11:24:04+05:30,28.5
+TC-ADM-030,Delete non-existent dish,api,DELETE,/admin/dishes/999999,HTTP 404,HTTP 404,PASS,evidence/api/TC-ADM-030.json,2026-10-01T11:24:04+05:30,20.9
+TC-ADM-031,Delete dish,api,DELETE,/admin/dishes/8,HTTP 204,HTTP 204,PASS,evidence/api/TC-ADM-031.json,2026-10-01T11:24:04+05:30,37.6
+TC-ADM-032,Deleted dish no longer readable,api,GET,/dishes/qa-dish-112400,HTTP 404,HTTP 404,PASS,evidence/api/TC-ADM-032.json,2026-10-01T11:24:04+05:30,14.8
+TC-ADM-033,Delete non-existent restaurant,api,DELETE,/admin/restaurants/999999,HTTP 404,HTTP 404,PASS,evidence/api/TC-ADM-033.json,2026-10-01T11:24:04+05:30,36.6
+TC-ADM-034a,Setup: dish on QA restaurant for cascade check,api,POST,/admin/dishes,HTTP 201,HTTP 201,PASS,evidence/api/TC-ADM-034a.json,2026-10-01T11:24:04+05:30,27.2
+TC-ADM-034,Delete restaurant without reviews (dishes cascade),api,DELETE,/admin/restaurants/6,HTTP 204,HTTP 204,PASS,evidence/api/TC-ADM-034.json,2026-10-01T11:24:05+05:30,30.8
+TC-ADM-035,Deleted restaurant no longer readable,api,GET,/restaurants/qa-rest-112400,HTTP 404,HTTP 404,PASS,evidence/api/TC-ADM-035.json,2026-10-01T11:24:05+05:30,10.2
+TC-ADM-036,Child dish removed with restaurant (cascade),api,GET,/dishes/qa-dish-cascade-112400,HTTP 404,HTTP 404,PASS,evidence/api/TC-ADM-036.json,2026-10-01T11:24:05+05:30,11.1
+TC-ADM-037a,Setup: second QA restaurant,api,POST,/admin/restaurants,HTTP 201,HTTP 201,PASS,evidence/api/TC-ADM-037a.json,2026-10-01T11:24:05+05:30,34.6
+TC-ADM-037b,Setup: customer review on second QA restaurant,api,POST,/reviews,HTTP 201,HTTP 201,PASS,evidence/api/TC-ADM-037b.json,2026-10-01T11:24:05+05:30,32.0
+TC-ADM-037,Delete restaurant that has customer reviews,api,DELETE,/admin/restaurants/7,HTTP 204 (restaurant and dependent data removed) or HTTP 409 with an explanatory message; never a 5xx,HTTP 409,PASS,evidence/api/TC-ADM-037.json,2026-10-01T11:24:05+05:30,25.5
+TC-SEC-001,Protected endpoint without token (/users/me),security,GET,/users/me,HTTP 401 Unauthorized,HTTP 401,PASS,evidence/security/TC-SEC-001.json,2026-10-01T11:24:05+05:30,9.3
+TC-SEC-002,Malformed bearer token,security,GET,/users/me,HTTP 401,HTTP 401,PASS,evidence/security/TC-SEC-002.json,2026-10-01T11:24:05+05:30,9.3
+TC-SEC-003,Token with tampered signature,security,GET,/users/me,HTTP 401,HTTP 401,PASS,evidence/security/TC-SEC-003.json,2026-10-01T11:24:05+05:30,6.4
+TC-SEC-004,Expired token rejected,security,GET,/users/me,HTTP 401,HTTP 401,PASS,evidence/security/TC-SEC-004.json,2026-10-01T11:24:05+05:30,9.2
+TC-SEC-005,"Forged admin token signed with default JWT secret (JWT_SECRET not set, as in README run steps)",security,GET,/admin/dashboard,HTTP 401/403 – tokens not issued by the server must be rejected,HTTP 401,PASS,evidence/security/TC-SEC-005.json,2026-10-01T11:24:05+05:30,29.2
+TC-SEC-006,INFO: previously issued token still accepted (logout is client-side only; no revocation endpoint),security,GET,/users/me,Informational observation – records actual behaviour; no logout/revocation requirement exists,HTTP 200,PASS,evidence/security/TC-SEC-006.json,2026-10-01T11:24:05+05:30,22.8
+TC-SEC-010,Customer accesses admin dashboard,security,GET,/admin/dashboard,HTTP 403,HTTP 403,PASS,evidence/security/TC-SEC-010.json,2026-10-01T11:24:05+05:30,11.7
+TC-SEC-011,Customer creates restaurant via admin API,security,POST,/admin/restaurants,HTTP 403,HTTP 403,PASS,evidence/security/TC-SEC-011.json,2026-10-01T11:24:05+05:30,28.5
+TC-SEC-012,Customer deletes restaurant via admin API,security,DELETE,/admin/restaurants/1,HTTP 403,HTTP 403,PASS,evidence/security/TC-SEC-012.json,2026-10-01T11:24:05+05:30,10.9
+TC-SEC-013,Customer moderates (self-approves) a review,security,PATCH,/admin/reviews/7,HTTP 403,HTTP 403,PASS,evidence/security/TC-SEC-013.json,2026-10-01T11:24:05+05:30,20.1
+TC-SEC-014,Customer deletes dish via admin API,security,DELETE,/admin/dishes/1,HTTP 403,HTTP 403,PASS,evidence/security/TC-SEC-014.json,2026-10-01T11:24:05+05:30,14.3
+TC-SEC-015,Restaurant id 1 intact after unauthorized delete attempt,security,GET,/admin/restaurants,HTTP 200,HTTP 200; restaurant id 1 still present,PASS,evidence/security/TC-SEC-015.json,2026-10-01T11:24:05+05:30,37.9
+TC-SEC-016,Anonymous access to admin dashboard,security,GET,/admin/dashboard,HTTP 401 Unauthorized (not authenticated),HTTP 401,PASS,evidence/security/TC-SEC-016.json,2026-10-01T11:24:05+05:30,8.0
+TC-SEC-017,Anonymous delete restaurant,security,DELETE,/admin/restaurants/1,HTTP 401,HTTP 401,PASS,evidence/security/TC-SEC-017.json,2026-10-01T11:24:05+05:30,11.6
+TC-SEC-021,SQL injection probe in search q,security,GET,/restaurants,HTTP 200 and empty list (input treated as literal),HTTP 200; rows returned=0,PASS,evidence/security/TC-SEC-021.json,2026-10-01T11:24:05+05:30,22.5
+TC-SEC-022,SQL injection probe in location filter,security,GET,/restaurants,HTTP 200,HTTP 200; rows returned=0,PASS,evidence/security/TC-SEC-022.json,2026-10-01T11:24:05+05:30,17.2
+TC-SEC-023,SQL injection probe in login email,security,POST,/auth/login,HTTP 400/401; no authentication,HTTP 400,PASS,evidence/security/TC-SEC-023.json,2026-10-01T11:24:05+05:30,23.7
+TC-SEC-024,SQL injection probe in restaurant slug path,security,GET,/restaurants/x' OR '1'='1,HTTP 404,HTTP 404,PASS,evidence/security/TC-SEC-024.json,2026-10-01T11:24:05+05:30,8.8
+TC-SEC-025,"Oversized search query (10,000 chars)",security,GET,/restaurants,Handled without 5xx,HTTP 400,PASS,evidence/security/TC-SEC-025.json,2026-10-01T11:24:05+05:30,57.1
+TC-SEC-026,Malformed JSON on public login endpoint,security,POST,/auth/login,HTTP 400,HTTP 400,PASS,evidence/security/TC-SEC-026.json,2026-10-01T11:24:05+05:30,11.3
+TC-SEC-027,Public review list does not leak emails,security,GET,/reviews,HTTP 200,HTTP 200; no email addresses in payload,PASS,evidence/security/TC-SEC-027.json,2026-10-01T11:24:05+05:30,36.1
+TC-SEC-050,CORS preflight from untrusted origin,security,OPTIONS,/users/me,Preflight rejected; no Access-Control-Allow-Origin for untrusted origin,HTTP 403; ACAO=None,PASS,evidence/security/TC-SEC-050.json,2026-10-01T11:24:05+05:30,29.4
+TC-SEC-051,CORS preflight from configured frontend origin,security,OPTIONS,/users/me,HTTP 200,HTTP 200; ACAO=http://localhost:3000,PASS,evidence/security/TC-SEC-051.json,2026-10-01T11:24:05+05:30,5.7
+TC-SEC-060,Login succeeds immediately after 10 consecutive failed attempts (no lockout/throttling),security,POST,/auth/login,Informational: records whether brute-force protection exists,HTTP 200; preceding 10 failed-attempt statuses=[401],PASS,evidence/security/TC-SEC-060.json,2026-10-01T11:24:07+05:30,153.3
+TC-C2-SETUP-1,Admin login,api,POST,/auth/login,HTTP 200,HTTP 200,PASS,evidence/api/TC-C2-SETUP-1.json,2026-10-01T11:24:18+05:30,119.1
+TC-C2-SETUP-2,User A login,api,POST,/auth/login,HTTP 200,HTTP 200,PASS,evidence/api/TC-C2-SETUP-2.json,2026-10-01T11:24:18+05:30,115.2
+TC-C2-SETUP-3,User B login,api,POST,/auth/login,HTTP 200,HTTP 200,PASS,evidence/api/TC-C2-SETUP-3.json,2026-10-01T11:24:19+05:30,108.6
+TC-API-040,Invalid registration returns 400 with problem detail,api,POST,/auth/register,"HTTP 400, Content-Type application/problem+json, non-empty 'detail'",HTTP 400; Content-Type=application/problem+json; detail='fullName: must not be blank',PASS,evidence/api/TC-API-040.json,2026-10-01T11:24:19+05:30,17.3
+TC-API-041,Wrong password returns 401 with problem detail,api,POST,/auth/login,HTTP 401,HTTP 401; Content-Type=application/problem+json; detail='Invalid email or password',PASS,evidence/api/TC-API-041.json,2026-10-01T11:24:19+05:30,114.6
+TC-API-042,Unknown restaurant returns 404 with problem detail,api,GET,/restaurants/no-such-restaurant,HTTP 404,HTTP 404; Content-Type=application/problem+json; detail='Restaurant not found',PASS,evidence/api/TC-API-042.json,2026-10-01T11:24:19+05:30,11.9
+TC-API-043,Duplicate slug on create returns 409 with problem detail (admin),api,POST,/admin/restaurants,HTTP 409,HTTP 409; Content-Type=application/problem+json; detail='Restaurant slug already exists',PASS,evidence/api/TC-API-043.json,2026-10-01T11:24:19+05:30,23.2
+TC-API-044,Unauthenticated protected request returns 401 with problem detail (DEF-002 retest),security,GET,/users/me,HTTP 401,HTTP 401; Content-Type=application/problem+json;charset=ISO-8859-1; detail='Authentication is required',PASS,evidence/security/TC-API-044.json,2026-10-01T11:24:19+05:30,7.7
+TC-API-045,Customer on admin endpoint returns 403 with problem detail,security,GET,/admin/dashboard,HTTP 403,HTTP 403; Content-Type=application/problem+json;charset=ISO-8859-1; detail='Access is denied',PASS,evidence/security/TC-API-045.json,2026-10-01T11:24:19+05:30,33.2
+TC-API-046,Unknown endpoint returns 404 (not 403),api,GET,/no-such-endpoint,HTTP 404 (or 401 for protected namespace) – never a masked 403,HTTP 401,PASS,evidence/api/TC-API-046.json,2026-10-01T11:24:19+05:30,24.6
+TC-API-030,"Filter maxPrice=2000 returns only restaurants starting at or below LKR 2,000",api,GET,/restaurants,HTTP 200,"HTTP 200; slugs=['green-leaf-kitchen', 'qa-rest2-112400', 'the-empire-cafe']",PASS,evidence/api/TC-API-030.json,2026-10-01T11:24:19+05:30,35.3
+TC-API-031,Filter spiceLevel=Hot returns restaurants with a Hot dish,api,GET,/restaurants,HTTP 200,HTTP 200; slugs=['ministry-of-crab'],PASS,evidence/api/TC-API-031.json,2026-10-01T11:24:19+05:30,26.8
+TC-API-032,Combined maxPrice=5000 & vegan=true,api,GET,/restaurants,HTTP 200,"HTTP 200; slugs=['green-leaf-kitchen', 'nuga-gama', 'the-empire-cafe']",PASS,evidence/api/TC-API-032.json,2026-10-01T11:24:19+05:30,30.3
+TC-API-033,Invalid spiceLevel=Extreme rejected,api,GET,/restaurants,HTTP 400,"HTTP 400; Content-Type=application/problem+json; detail='Spice level must be Mild, Medium, or Hot'",PASS,evidence/api/TC-API-033.json,2026-10-01T11:24:19+05:30,8.1
+TC-API-034,Negative maxPrice rejected,api,GET,/restaurants,HTTP 400,HTTP 400; Content-Type=application/problem+json; detail='Maximum price must not be negative',PASS,evidence/api/TC-API-034.json,2026-10-01T11:24:19+05:30,14.3
+TC-API-035,Non-numeric maxPrice rejected,api,GET,/restaurants,HTTP 400,HTTP 400,PASS,evidence/api/TC-API-035.json,2026-10-01T11:24:19+05:30,18.7
+TC-C2-SETUP-4,Setup: pending review by User A,api,POST,/reviews,HTTP 201,HTTP 201,PASS,evidence/api/TC-C2-SETUP-4.json,2026-10-01T11:24:19+05:30,28.0
+TC-MOD-015,Reject without a reason is refused,api,PATCH,/admin/reviews/9,HTTP 400,HTTP 400; Content-Type=application/problem+json; detail='A rejection reason is required',PASS,evidence/api/TC-MOD-015.json,2026-10-01T11:24:19+05:30,23.8
+TC-MOD-016,Reject with blank reason is refused,api,PATCH,/admin/reviews/9,HTTP 400,HTTP 400,PASS,evidence/api/TC-MOD-016.json,2026-10-01T11:24:19+05:30,33.3
+TC-MOD-017,Moving a review back to PENDING is refused,api,PATCH,/admin/reviews/9,HTTP 400,HTTP 400,PASS,evidence/api/TC-MOD-017.json,2026-10-01T11:24:19+05:30,16.0
+TC-MOD-018,"Reject with reason records moderator, time and note",api,PATCH,/admin/reviews/9,HTTP 200,HTTP 200; note='Duplicate content' moderatedBy='TasteLanka Admin' moderatedAt='2026-10-01T05:54:19.562502900Z',PASS,evidence/api/TC-MOD-018.json,2026-10-01T11:24:19+05:30,26.3
+TC-MOD-019,Author sees moderation reason in own reviews,api,GET,/reviews/mine,HTTP 200,HTTP 200; reason visible to author,PASS,evidence/api/TC-MOD-019.json,2026-10-01T11:24:19+05:30,15.3
+TC-C2-SETUP-5,Setup: restaurant for rating checks,api,POST,/admin/restaurants,HTTP 201,HTTP 201,PASS,evidence/api/TC-C2-SETUP-5.json,2026-10-01T11:24:19+05:30,23.0
+TC-C2-SETUP-64,Setup: 4-star review,api,POST,/reviews,HTTP 201,HTTP 201,PASS,evidence/api/TC-C2-SETUP-64.json,2026-10-01T11:24:19+05:30,33.1
+TC-C2-SETUP-74,Setup: approve,api,PATCH,/admin/reviews/10,HTTP 200,HTTP 200,PASS,evidence/api/TC-C2-SETUP-74.json,2026-10-01T11:24:19+05:30,33.9
+TC-C2-SETUP-62,Setup: 2-star review,api,POST,/reviews,HTTP 201,HTTP 201,PASS,evidence/api/TC-C2-SETUP-62.json,2026-10-01T11:24:19+05:30,28.2
+TC-C2-SETUP-72,Setup: approve,api,PATCH,/admin/reviews/11,HTTP 200,HTTP 200,PASS,evidence/api/TC-C2-SETUP-72.json,2026-10-01T11:24:19+05:30,32.9
+TC-MOD-020,Two approved reviews (4 and 2 stars) give rating 3.0 / count 2,api,GET,/restaurants/qa-agg-112400c2,HTTP 200,HTTP 200; rating=3.0 count=2,PASS,evidence/api/TC-MOD-020.json,2026-10-01T11:24:19+05:30,36.0
+TC-C2-SETUP-8,Setup: re-moderate the 2-star review to REJECTED,api,PATCH,/admin/reviews/11,HTTP 200,HTTP 200,PASS,evidence/api/TC-C2-SETUP-8.json,2026-10-01T11:24:19+05:30,26.4
+TC-MOD-021,Rejecting a previously approved review removes it from the rating,api,GET,/restaurants/qa-agg-112400c2,HTTP 200,HTTP 200; rating=4.0 count=1,PASS,evidence/api/TC-MOD-021.json,2026-10-01T11:24:19+05:30,8.2
+TC-REV-022,Another user cannot delete someone else's review,security,DELETE,/reviews/10,HTTP 403,HTTP 403; Content-Type=application/problem+json; detail='You can only delete your own reviews',PASS,evidence/security/TC-REV-022.json,2026-10-01T11:24:19+05:30,17.9
+TC-REV-023,Anonymous user cannot delete a review,security,DELETE,/reviews/10,HTTP 401,HTTP 401,PASS,evidence/security/TC-REV-023.json,2026-10-01T11:24:19+05:30,17.1
+TC-REV-024,Admin token cannot delete another user's review via customer endpoint,security,DELETE,/reviews/10,HTTP 403,HTTP 403,PASS,evidence/security/TC-REV-024.json,2026-10-01T11:24:19+05:30,42.5
+TC-REV-021,Author deletes own approved review,api,DELETE,/reviews/10,HTTP 204,HTTP 204,PASS,evidence/api/TC-REV-021.json,2026-10-01T11:24:19+05:30,37.9
+TC-REV-025,Deleted approved review is removed from rating and count,api,GET,/restaurants/qa-agg-112400c2,HTTP 200,HTTP 200; rating=0.0 count=0,PASS,evidence/api/TC-REV-025.json,2026-10-01T11:24:19+05:30,8.2
+TC-REV-026,Deleting a non-existent review returns 404,api,DELETE,/reviews/999999,HTTP 404,HTTP 404,PASS,evidence/api/TC-REV-026.json,2026-10-01T11:24:19+05:30,26.6
+TC-REV-027,Deleted review no longer in author's list,api,GET,/reviews/mine,HTTP 200,"HTTP 200; ids=[11, 7, 6, 5, 4]",PASS,evidence/api/TC-REV-027.json,2026-10-01T11:24:19+05:30,15.0
+TC-ADM-038,Delete restaurant with reviews returns 409 with explanatory detail,api,DELETE,/admin/restaurants/7,HTTP 409,HTTP 409; Content-Type=application/problem+json; detail='Restaurant has customer reviews and cannot be deleted',PASS,evidence/api/TC-ADM-038.json,2026-10-01T11:24:20+05:30,14.2
+TC-ADM-039,Update restaurant price range inverted is refused,api,PUT,/admin/restaurants/7,HTTP 400,HTTP 400; Content-Type=application/problem+json; detail='Minimum price must not exceed maximum price',PASS,evidence/api/TC-ADM-039.json,2026-10-01T11:24:20+05:30,12.1
+TC-SEC-070a,Moderator login,security,POST,/auth/login,HTTP 200,HTTP 200; role=MODERATOR,PASS,evidence/security/TC-SEC-070a.json,2026-10-01T11:24:42+05:30,116.3
+TC-SEC-070,Moderator can access moderation queue,security,GET,/admin/reviews,HTTP 200,HTTP 200,PASS,evidence/security/TC-SEC-070.json,2026-10-01T11:24:42+05:30,13.7
+TC-SEC-071,INFO: moderator creates restaurant (role scope not defined in requirements),security,POST,/admin/restaurants,Informational – records whether MODERATOR is limited to moderation,HTTP 201; moderator has restaurant-management rights,PASS,evidence/security/TC-SEC-071.json,2026-10-01T11:24:42+05:30,21.9
+TC-SEC-072,INFO: moderator deletes restaurant,security,DELETE,/admin/restaurants/9,Informational,HTTP 204,PASS,evidence/security/TC-SEC-072.json,2026-10-01T11:24:42+05:30,34.0
+TC-DATA-pre-login,Admin login,database,POST,/auth/login,HTTP 200,HTTP 200,PASS,evidence/database/TC-DATA-pre-login.json,2026-10-01T11:24:50+05:30,118.2
+TC-DATA-pre-loginA,User A login,database,POST,/auth/login,HTTP 200,HTTP 200,PASS,evidence/database/TC-DATA-pre-loginA.json,2026-10-01T11:24:51+05:30,107.9
+TC-DATA-001a,Create restaurant before restart,database,POST,/admin/restaurants,HTTP 201,HTTP 201,PASS,evidence/database/TC-DATA-001a.json,2026-10-01T11:24:51+05:30,22.2
+TC-DATA-002a,Read seeded restaurant nuga-gama,database,GET,/restaurants/nuga-gama,HTTP 200,HTTP 200,PASS,evidence/database/TC-DATA-002a.json,2026-10-01T11:24:51+05:30,24.0
+TC-DATA-002b,"Admin edits seeded restaurant nuga-gama (description, priceMin=3500)",database,PUT,/admin/restaurants/4,HTTP 200,HTTP 200; description='QA-EDITED description 112400' priceMin=3500,PASS,evidence/database/TC-DATA-002b.json,2026-10-01T11:24:51+05:30,22.1
+TC-DATA-003a,Find seeded dish seafood-kottu,database,GET,/dishes/seafood-kottu,HTTP 200,HTTP 200,PASS,evidence/database/TC-DATA-003a.json,2026-10-01T11:24:51+05:30,37.9
+TC-DATA-003b,Admin deletes seeded dish seafood-kottu,database,DELETE,/admin/dishes/4,HTTP 204,HTTP 204,PASS,evidence/database/TC-DATA-003b.json,2026-10-01T11:24:51+05:30,38.9
+TC-DATA-004a,User A saves restaurant before restart,database,POST,/users/me/saved-restaurants/pedlars-inn,HTTP 201,HTTP 201,PASS,evidence/database/TC-DATA-004a.json,2026-10-01T11:24:51+05:30,39.3
+TC-DATA-post-login,Admin login,database,POST,/auth/login,HTTP 200,HTTP 200,PASS,evidence/database/TC-DATA-post-login.json,2026-10-01T11:25:36+05:30,475.8
+TC-DATA-post-loginA,User A login,database,POST,/auth/login,HTTP 200,HTTP 200,PASS,evidence/database/TC-DATA-post-loginA.json,2026-10-01T11:25:36+05:30,131.2
+TC-DATA-001,Restaurant created before restart still exists,database,GET,/restaurants/qa-persist-112400,HTTP 200,HTTP 200; name=QA Persistence Diner,PASS,evidence/database/TC-DATA-001.json,2026-10-01T11:25:36+05:30,39.5
+TC-DATA-002,Admin edit to seeded restaurant survives restart,database,GET,/restaurants/nuga-gama,"HTTP 200; description='QA-EDITED description 112400', priceMin=3500",HTTP 200; description after restart='QA-EDITED description 112400'; priceMin=3500,PASS,evidence/database/TC-DATA-002.json,2026-10-01T11:25:36+05:30,31.5
+TC-DATA-003,Seeded dish deleted by admin stays deleted after restart,database,GET,/dishes/seafood-kottu,Dish not found (HTTP 404; API currently masks as 403 – DEF-001),HTTP 404,PASS,evidence/database/TC-DATA-003.json,2026-10-01T11:25:36+05:30,46.9
+TC-DATA-004,Saved restaurant persists after restart,database,GET,/users/me/saved-restaurants,HTTP 200,HTTP 200; slugs=['pedlars-inn'],PASS,evidence/database/TC-DATA-004.json,2026-10-01T11:25:36+05:30,95.3
+TC-DATA-005,Reviews and moderation status persist after restart,database,GET,/reviews/mine,HTTP 200,HTTP 200; review 1 status=['APPROVED'],PASS,evidence/database/TC-DATA-005.json,2026-10-01T11:25:36+05:30,43.5
+TC-DATA-006,"Previously issued JWT still valid after restart (stateless, same secret)",database,GET,/users/me,HTTP 200,HTTP 200,PASS,evidence/database/TC-DATA-006.json,2026-10-01T11:25:36+05:30,18.0
+TC-DATA-007,Unicode (Sinhala) review text intact after restart,database,GET,/reviews,HTTP 200,HTTP 200; Sinhala text byte-identical after restart,PASS,evidence/database/TC-DATA-007.json,2026-10-01T11:25:36+05:30,25.4

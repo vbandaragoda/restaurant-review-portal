@@ -1,0 +1,44 @@
+{
+  "testId": "TC-ADM-023",
+  "title": "Create dish for unknown restaurant",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:04+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/admin/dishes",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "no-such-restaurant",
+      "slug": "qa-dish2-112400",
+      "name": "QA Hoppers",
+      "description": "Egg hoppers.",
+      "price": 850,
+      "spiceLevel": "Mild",
+      "vegetarian": true,
+      "halal": true,
+      "imageColor": "#aa5500"
+    }
+  },
+  "response": {
+    "status": 404,
+    "elapsedMs": 28.0,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Restaurant not found",
+      "instance": "/api/v1/admin/dishes",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  "expected": "HTTP 404",
+  "actual": "HTTP 404",
+  "verdict": "PASS"
+}

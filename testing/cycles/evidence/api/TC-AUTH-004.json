@@ -1,0 +1,32 @@
+{
+  "testId": "TC-AUTH-004",
+  "title": "Register with invalid email format",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:13+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/register",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "fullName": "Bad Email",
+      "email": "not-an-email",
+      "password": "<redacted test password, length 13>"
+    }
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 8.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 403",
+  "verdict": "FAIL"
+}

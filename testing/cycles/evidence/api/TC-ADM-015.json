@@ -1,0 +1,29 @@
+{
+  "testId": "TC-ADM-015",
+  "title": "Unsupported content type text/plain",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:18+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/admin/restaurants",
+    "headers": {
+      "Content-Type": "text/plain",
+      "Authorization": "Bearer <ADMIN token>"
+    },
+    "body": "slug=x"
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 31.8,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "expected": "HTTP 415",
+  "actual": "HTTP 403",
+  "verdict": "FAIL"
+}

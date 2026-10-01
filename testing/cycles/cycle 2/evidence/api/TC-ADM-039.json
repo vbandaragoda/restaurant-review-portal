@@ -1,0 +1,44 @@
+{
+  "testId": "TC-ADM-039",
+  "title": "Update restaurant price range inverted is refused",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:20+05:30",
+  "request": {
+    "method": "PUT",
+    "url": "http://localhost:8080/api/v1/admin/restaurants/7",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "slug": "qa-rest2-112400",
+      "name": "QA Reviewed Cafe",
+      "cuisine": "Sri Lankan · Fusion",
+      "location": "Galle",
+      "priceMin": 9000,
+      "priceMax": 100,
+      "vegetarian": true,
+      "vegan": false,
+      "halal": true
+    }
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 12.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Minimum price must not exceed maximum price",
+      "instance": "/api/v1/admin/restaurants/7",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 400; Content-Type=application/problem+json; detail='Minimum price must not exceed maximum price'",
+  "verdict": "PASS"
+}

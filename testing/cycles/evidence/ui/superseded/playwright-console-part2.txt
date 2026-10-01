@@ -1,0 +1,293 @@
+
+Running 22 tests using 1 worker
+
+  ok  1 specs\dry-runs.spec.ts:10:5 › DR-01 new user journey: register -> login -> browse -> search/filter -> view restaurant (7.7s)
+  ok  2 specs\dry-runs.spec.ts:28:5 › DR-02 review journey: login -> select restaurant -> submit review -> admin moderates -> visible (32.0s)
+  ok  3 specs\dry-runs.spec.ts:57:5 › DR-03 saved restaurant journey: login -> select -> save -> profile -> view -> remove (6.9s)
+  ok  4 specs\dry-runs.spec.ts:76:5 › DR-04 administrator restaurant workflow: login -> dashboard -> create/update/delete restaurant (7.0s)
+  ok  5 specs\dry-runs.spec.ts:102:5 › DR-05 administrator dish workflow: login -> manage dishes -> create/update/delete dish (6.9s)
+  ok  6 specs\dry-runs.spec.ts:128:5 › DR-06 administrator moderation workflow: review pending -> approve/reject -> visibility correct (37.7s)
+  ok  7 specs\dry-runs.spec.ts:156:5 › DR-07 language journey: English, Sinhala and Tamil content readable and consistent (9.7s)
+  ok  8 specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at mobile 375x812: no horizontal overflow, content visible (20.8s)
+  x   9 specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at tablet 768x1024: no horizontal overflow, content visible (23.1s)
+  ok 10 specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at desktop 1440x900: no horizontal overflow, content visible (19.6s)
+  ok 11 specs\nonfunctional.spec.ts:40:5 › BB-18b mobile: bottom navigation is present and search works (10.5s)
+  x  12 specs\nonfunctional.spec.ts:51:5 › BB-18c mobile: restaurant filters are available (3.2s)
+  ok 13 specs\nonfunctional.spec.ts:62:5 › BB-18d mobile: profile, review form and admin remain usable (11.6s)
+  x  14 specs\nonfunctional.spec.ts:88:5 › BB-20a automated accessibility scan (axe-core, WCAG 2.1 A/AA) of key pages (40.8s)
+  ok 15 specs\nonfunctional.spec.ts:106:5 › BB-20b keyboard-only login: fields reachable by Tab and form submits with Enter (4.8s)
+  ok 16 specs\nonfunctional.spec.ts:126:5 › BB-20c focus is visibly indicated on interactive elements (1.8s)
+  x  17 specs\nonfunctional.spec.ts:137:5 › BB-20d rating star buttons expose accessible names and selected state (4.5s)
+  x  18 specs\nonfunctional.spec.ts:149:5 › BB-20e search and filter inputs have programmatic labels (3.2s)
+  ok 19 specs\nonfunctional.spec.ts:160:5 › BB-19a approved Sinhala and Tamil reviews display correctly with Unicode fonts (4.3s)
+  ok 20 specs\nonfunctional.spec.ts:175:5 › BB-19b customer can write a review in Sinhala and in Tamil via the language selector (8.2s)
+  x  21 specs\nonfunctional.spec.ts:193:5 › BB-19c interface language can be switched to Sinhala / Tamil (2.7s)
+  ok 22 specs\nonfunctional.spec.ts:203:5 › PERF-UI page load timings (Next.js dev server; indicative only) (15.8s)
+
+
+  1) specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at tablet 768x1024: no horizontal overflow, content visible 
+
+    Error: restaurants must not scroll horizontally at tablet
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 0
+    Received:    153
+
+      32 |       results.push(`${name}: horizontal overflow=${ov}px`);
+      33 |       await shot(page, "ui/responsive", `BB-18-${vpName}-${name}`);
+    > 34 |       expect.soft(ov, `${name} must not scroll horizontally at ${vpName}`).toBeLessThanOrEqual(0);
+         |                                                                            ^
+      35 |     }
+      36 |     log(`BB-18-${vpName}`, results.join("; "));
+      37 |   });
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:34:76
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\test-failed-5.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\test-failed-4.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18-respon-c4df2-al-overflow-content-visible\error-context.md
+
+  2) specs\nonfunctional.spec.ts:51:5 › BB-18c mobile: restaurant filters are available ────────────
+
+    Error: dietary/location filters should be usable on mobile
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      57 |   log("BB-18c", `mobile visible filter checkboxes=${visibleFilterControls}; Apply Filters visible=${applyVisible}`);
+      58 |   await shot(page, "ui/responsive", "BB-18c-mobile-restaurants-no-filters", false);
+    > 59 |   expect(visibleFilterControls + (applyVisible ? 1 : 0), "dietary/location filters should be usable on mobile").toBeGreaterThan(0);
+         |                                                                                                                 ^
+      60 | });
+      61 |
+      62 | test("BB-18d mobile: profile, review form and admin remain usable", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:59:113
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18c-mobile-restaurant-filters-are-available\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-18c-mobile-restaurant-filters-are-available\error-context.md
+
+  3) specs\nonfunctional.spec.ts:88:5 › BB-20a automated accessibility scan (axe-core, WCAG 2.1 A/AA) of key pages 
+
+    Error: no serious/critical WCAG A/AA violations
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 90
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 12,
+    +     "page": "home",
+    +     "sample": ".gap-\\[30px\\] > .text-brand.font-semibold[href=\"/\"]",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 29,
+    +     "page": "restaurants",
+    +     "sample": ".gap-\\[30px\\] > .text-brand[href$=\"restaurants\"]",
+    +   },
+    +   Object {
+    +     "help": "Select element must have an accessible name",
+    +     "id": "select-name",
+    +     "impact": "critical",
+    +     "nodes": 2,
+    +     "page": "restaurants",
+    +     "sample": "form > select",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 7,
+    +     "page": "restaurant-details",
+    +     "sample": ".gap-\\[30px\\] > .text-brand[href$=\"restaurants\"]",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 5,
+    +     "page": "dish-details",
+    +     "sample": ".gap-\\[30px\\] > .text-brand.font-semibold[href$=\"restaurants\"]",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 3,
+    +     "page": "login",
+    +     "sample": "a[href$=\"contact\"]",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 2,
+    +     "page": "signup",
+    +     "sample": ".mt-4",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 3,
+    +     "page": "review-form",
+    +     "sample": ".text-brand[href$=\"nuga-gama\"]",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 1,
+    +     "page": "profile",
+    +     "sample": ".mt-9",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 5,
+    +     "page": "admin-dashboard",
+    +     "sample": ".rounded-xl.p-6[href$=\"restaurants\"] > .mt-5.text-xs.text-brand",
+    +   },
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": 1,
+    +     "page": "admin-reviews",
+    +     "sample": ".bg-brand.text-white.rounded-full",
+    +   },
+    + ]
+
+      101 |   const serious = summary.filter((v) => v.impact === "serious" || v.impact === "critical");
+      102 |   log("BB-20a", `axe violations total=${summary.length}; serious/critical=${serious.length}; rules=${[...new Set(summary.map((v) => `${v.id}(${v.impact})`))].join(", ")}`);
+    > 103 |   expect(serious, "no serious/critical WCAG A/AA violations").toEqual([]);
+          |                                                               ^
+      104 | });
+      105 |
+      106 | test("BB-20b keyboard-only login: fields reachable by Tab and form submits with Enter", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:103:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20a-autom-db96a--WCAG-2-1-A-AA-of-key-pages\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20a-autom-db96a--WCAG-2-1-A-AA-of-key-pages\error-context.md
+
+  4) specs\nonfunctional.spec.ts:137:5 › BB-20d rating star buttons expose accessible names and selected state 
+
+    Error: each star should be announced with its value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      144 |     els.map((e) => `${e.getAttribute("aria-label") ?? e.textContent}|pressed=${e.getAttribute("aria-pressed")}`));
+      145 |   log("BB-20d", `food-quality star buttons: ${names.join(", ")}`);
+    > 146 |   expect(names.every((n) => /[1-5]/.test(n.split("|")[0])), "each star should be announced with its value").toBe(true);
+          |                                                                                                             ^
+      147 | });
+      148 |
+      149 | test("BB-20e search and filter inputs have programmatic labels", async ({ page }) => {
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:146:109
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20d-ratin-b0047-le-names-and-selected-state\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20d-ratin-b0047-le-names-and-selected-state\error-context.md
+
+  5) specs\nonfunctional.spec.ts:149:5 › BB-20e search and filter inputs have programmatic labels ──
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "input[restaurants, dishes or cuisines...]",
+    +   "select[]",
+    +   "select[]",
+    + ]
+
+      154 |     .map((el) => `${el.tagName.toLowerCase()}[${el.getAttribute("placeholder") ?? el.getAttribute("type") ?? ""}]`));
+      155 |   log("BB-20e", `unlabeled controls on /restaurants: ${unlabeled.join(", ") || "none"}`);
+    > 156 |   expect(unlabeled).toEqual([]);
+          |                     ^
+      157 | });
+      158 |
+      159 | // ------------------------------------------------------------------------------------------------ multilingual (BB-19)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:156:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20e-searc-60e67-ts-have-programmatic-labels\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-20e-searc-60e67-ts-have-programmatic-labels\error-context.md
+
+  6) specs\nonfunctional.spec.ts:193:5 › BB-19c interface language can be switched to Sinhala / Tamil 
+
+    Error: a UI language selector (EN/SI/TA)
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      197 |   const htmlLang = await page.evaluate(() => document.documentElement.lang);
+      198 |   log("BB-19c", `language switch controls on home page=${switcher}; <html lang>=${htmlLang}`);
+    > 199 |   expect(switcher, "a UI language selector (EN/SI/TA)").toBeGreaterThan(0);
+          |                                                         ^
+      200 | });
+      201 |
+      202 | // ------------------------------------------------------------------------------------------------ UI performance (dev server)
+        at D:\restaurent\restaurant-review-portal\testing\e2e\specs\nonfunctional.spec.ts:199:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\evidence\ui\playwright-artifacts\nonfunctional-BB-19c-inter-fe272-e-switched-to-Sinhala-Tamil\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\evidence\ui\playwright-artifacts\nonfunctional-BB-19c-inter-fe272-e-switched-to-Sinhala-Tamil\error-context.md
+
+  6 failed
+    specs\nonfunctional.spec.ts:24:7 › BB-18 responsive layout at tablet 768x1024: no horizontal overflow, content visible 
+    specs\nonfunctional.spec.ts:51:5 › BB-18c mobile: restaurant filters are available ─────────────
+    specs\nonfunctional.spec.ts:88:5 › BB-20a automated accessibility scan (axe-core, WCAG 2.1 A/AA) of key pages 
+    specs\nonfunctional.spec.ts:137:5 › BB-20d rating star buttons expose accessible names and selected state 
+    specs\nonfunctional.spec.ts:149:5 › BB-20e search and filter inputs have programmatic labels ───
+    specs\nonfunctional.spec.ts:193:5 › BB-19c interface language can be switched to Sinhala / Tamil 
+  16 passed (5.2m)
+exit=1 elapsed=321s QA_RUN=200712

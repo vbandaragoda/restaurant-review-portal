@@ -1,0 +1,62 @@
+2026-10-01T06:04:41.182Z	TC-ADM-UI-001	dashboard stats {"restaurants":8,"dishes":3,"users":18,"pendingReviews":15,"approvedReviews":4}
+2026-10-01T06:04:51.551Z	BB-15	after UI delete, GET /restaurants/qa-ui-rest-060434 -> 404
+2026-10-01T06:04:53.774Z	TC-ADM-UI-002	message shown: Restaurant has customer reviews and cannot be deleted
+2026-10-01T06:05:01.029Z	TC-ADM-UI-003	slug validation message: "Please match the requested format."
+2026-10-01T06:05:20.897Z	TC-ADM-UI-004	note/reason inputs in moderation UI: 0
+2026-10-01T06:05:28.569Z	BB-01	registered qa.ui.cust.060434@tastelanka.test; redirected to /profile showing name and email
+2026-10-01T06:05:33.009Z	BB-02c	empty name valid=false; email message="Please include an '@' in the email address. 'not-an-email' is missing an '@'."; password message="Please lengthen this text to 8 characters or more (you are currently using 5 characters)."
+2026-10-01T06:05:42.165Z	BB-06	listing shows 8 restaurants
+2026-10-01T06:05:50.625Z	BB-08b	all=8; Galle filter=2
+2026-10-01T06:05:52.244Z	BB-08b	after Clear all (no Apply clicked) results text: 8 restaurants found
+2026-10-01T06:05:54.084Z	BB-08c	cuisine=Seafood listing shows: Ministry of Crab
+2026-10-01T06:05:55.495Z	BB-08d	price filter controls found: 3
+2026-10-01T06:06:04.427Z	BB-11a	textarea validationMessage="Please lengthen this text to 10 characters or more (you are currently using 5 characters)."
+2026-10-01T06:06:06.412Z	BB-11b	food-quality star buttons = 5
+2026-10-01T06:06:08.741Z	TC-UI-006	restaurant picker controls=1
+2026-10-01T06:06:18.088Z	TC-UI-008	button label after reload of saved restaurant: Saved
+2026-10-01T06:06:24.769Z	TC-SEC-031	dialogs fired=0; injected elements=0
+2026-10-01T06:06:26.300Z	TC-UI-011	home card: "★ 4.6 (221 reviews)The Empire CafeCafe · International⌖  KandyLKR 2,000 – 4,000"; API reviewCount=221
+2026-10-01T06:06:30.868Z	TC-UI-013	URL after clicking 'Vegan' chip: http://localhost:3000/restaurants?vegan=true; search 'cafe' + location Galle -> URL http://localhost:3000/restaurants?q=cafe&location=Galle results: Pedlar’s Inn, QA Reviewed Cafe
+2026-10-01T06:06:31.081Z	TC-UI-013	vegan chip results=0; Galle+cafe result locations: Cafe · International · Galle | Sri Lankan · Fusion · Galle
+2026-10-01T06:06:32.515Z	DR-01	1 registered and landed on profile
+2026-10-01T06:06:33.358Z	DR-01	2 logged in again
+2026-10-01T06:06:33.709Z	DR-01	3 browsed listing
+2026-10-01T06:06:34.535Z	DR-01	4 searched 'Sri Lankan' + Colombo filter -> Nuga Gama listed
+2026-10-01T06:06:35.025Z	DR-01	5 restaurant details displayed — journey complete
+2026-10-01T06:06:37.832Z	DR-02	3 review submitted (overall 4 stars) -> pending message
+2026-10-01T06:06:38.191Z	DR-02	4 review not public while pending
+2026-10-01T06:06:50.039Z	DR-02	5 admin approved
+2026-10-01T06:06:50.852Z	DR-02	6 approved review visible publicly with 4 stars
+2026-10-01T06:06:50.860Z	DR-02	7 restaurant aggregate after approval: rating=4.5 reviewCount=491 (seed values 4.5/490)
+2026-10-01T06:06:53.338Z	DR-03	3 saved The Empire Cafe
+2026-10-01T06:06:53.953Z	DR-03	4 profile lists saved restaurant
+2026-10-01T06:06:54.219Z	DR-03	5 opened saved restaurant from profile
+2026-10-01T06:06:55.226Z	DR-03	6 removed; profile shows empty state after reload
+2026-10-01T06:06:58.060Z	DR-04	2 dashboard shown
+2026-10-01T06:06:59.134Z	DR-04	3 created
+2026-10-01T06:07:00.130Z	DR-04	4 updated; public page shows LKR 1,200–2,600
+2026-10-01T06:07:01.539Z	DR-04	5 deleted; absent after reload
+2026-10-01T06:07:04.329Z	DR-05	3 dish created for Green Leaf Kitchen
+2026-10-01T06:07:05.306Z	DR-05	4 updated; dish page shows LKR 1,250
+2026-10-01T06:07:06.251Z	DR-05	5 deleted; not on restaurant menu
+2026-10-01T06:07:36.725Z	DR-06	3 approved one, rejected one
+2026-10-01T06:07:41.650Z	DR-06	4 public shows approved only; author sees APPROVED/REJECTED
+2026-10-01T06:07:46.169Z	DR-07	2 Sinhala full name registered and shown on profile
+2026-10-01T06:07:47.513Z	DR-07	4 Sinhala and Tamil approved reviews rendered; Tamil review submitted; UI chrome remains English (no UI translation)
+2026-10-01T06:07:56.459Z	BB-18-mobile	home: horizontal overflow=0px; restaurants: horizontal overflow=0px; restaurant-details: horizontal overflow=0px; dish-details: horizontal overflow=0px; login: horizontal overflow=0px; signup: horizontal overflow=0px
+2026-10-01T06:08:05.446Z	BB-18-tablet	home: horizontal overflow=0px; restaurants: horizontal overflow=0px; restaurant-details: horizontal overflow=0px; dish-details: horizontal overflow=0px; login: horizontal overflow=0px; signup: horizontal overflow=0px
+2026-10-01T06:08:14.991Z	BB-18-desktop	home: horizontal overflow=0px; restaurants: horizontal overflow=0px; restaurant-details: horizontal overflow=0px; dish-details: horizontal overflow=0px; login: horizontal overflow=0px; signup: horizontal overflow=0px
+2026-10-01T06:08:18.525Z	BB-18c	mobile visible filter checkboxes=20; Apply Filters visible=true
+2026-10-01T06:08:24.429Z	BB-18d	mobile admin restaurants overflow=0px
+2026-10-01T06:08:46.118Z	BB-20a	axe violations total=0; serious/critical=0; rules=
+2026-10-01T06:08:47.364Z	BB-20b	tab order: A::TasteLanka | INPUT:email:you@example.com | INPUT:password:•••••••• | BUTTON:button:Show | A::Forgot password? | BUTTON:submit:Log In
+2026-10-01T06:08:49.083Z	BB-20c	focused email input: rgb(196, 59, 0)|none|none; focused Log In button: auto|1px|none
+2026-10-01T06:08:51.999Z	BB-20d	food-quality star buttons: 1 star|pressed=false, 2 stars|pressed=false, 3 stars|pressed=false, 4 stars|pressed=false, 5 stars|pressed=true
+2026-10-01T06:08:53.784Z	BB-20e	unlabeled controls on /restaurants: none
+2026-10-01T06:08:55.664Z	BB-19a	font-family=Inter, "Inter Fallback", "Noto Sans Sinhala", "Noto Sans Sinhala Fallback", "Noto Sans Tamil", "Noto Sans Tamil Fallback", sans-serif; loaded fonts=Inter, Inter Fallback, Noto Sans Sinhala, Noto Sans Sinhala Fallback, Noto Sans Tamil, Noto Sans Tamil Fallback
+2026-10-01T06:09:02.604Z	BB-19c	language switch controls on home page=0; <html lang>=en
+2026-10-01T06:09:17.484Z	PERF-UI	page,url,domContentLoadedMs,loadMs,contentReadyMs ; home,/,218,302,1279 ; restaurants,/restaurants,149,216,1235 ; restaurant-details,/restaurants/ministry-of-crab,179,242,1260 ; search,/restaurants?q=crab,195,241,1248
+2026-10-01T06:09:50.172Z	TC-ADM-UI-004	note/reason inputs in moderation UI: 0
+2026-10-01T06:09:55.498Z	TC-UI-013	URL after clicking 'Vegan' chip: http://localhost:3000/restaurants?vegan=true; search 'cafe' + location Galle -> URL http://localhost:3000/restaurants?q=cafe&location=Galle results: Pedlar’s Inn, QA Reviewed Cafe
+2026-10-01T06:09:55.732Z	TC-UI-013	vegan chip results=3; Galle+cafe result locations: Cafe · International · Galle | Sri Lankan · Fusion · Galle
+2026-10-01T06:10:25.990Z	TC-ADM-UI-004	note/reason inputs in moderation UI: 20

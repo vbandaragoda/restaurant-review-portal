@@ -1,13 +1,17 @@
-# Node / React
+# Node / Next.js
 node_modules/
 frontend/node_modules/
 frontend/dist/
 frontend/build/
+frontend/.next/
+frontend/out/
+.tmp/
 .env
 .env.local
 
 # Spring Boot / Java
 backend/target/
+backend/uploads/
 *.class
 *.jar
 *.war
@@ -27,6 +31,7 @@ backend/target/
 .DS_Store
 Thumbs.db
 
-# PostgreSQL / database backups
+# MySQL / database backups
 *.sql.bak
 *.dump
+*.cnf.local

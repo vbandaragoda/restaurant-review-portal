@@ -1,0 +1,450 @@
+[
+ [
+  "admin.spec.ts",
+  "TC-ADM-UI-001 admin login opens dashboard with live metrics",
+  "passed",
+  6892,
+  "2026-09-30T14:19:27.673Z"
+ ],
+ [
+  "admin.spec.ts",
+  "BB-14a customer is denied the admin UI (redirected to login)",
+  "passed",
+  5971,
+  "2026-09-30T14:19:36.011Z"
+ ],
+ [
+  "admin.spec.ts",
+  "BB-14b anonymous visitor is denied the admin UI",
+  "passed",
+  2466,
+  "2026-09-30T14:19:42.033Z"
+ ],
+ [
+  "admin.spec.ts",
+  "BB-14c customer who forges role=ADMIN in localStorage sees no admin data (API enforces role)",
+  "passed",
+  3339,
+  "2026-09-30T14:19:44.529Z"
+ ],
+ [
+  "admin.spec.ts",
+  "BB-15 admin creates, updates and deletes a restaurant through the UI",
+  "passed",
+  4368,
+  "2026-09-30T14:19:47.901Z"
+ ],
+ [
+  "admin.spec.ts",
+  "TC-ADM-UI-002 admin sees a clear message when a restaurant with reviews cannot be deleted",
+  "failed",
+  4547,
+  "2026-09-30T14:19:52.303Z"
+ ],
+ [
+  "admin.spec.ts",
+  "BB-16 admin creates, updates and deletes a dish through the UI",
+  "passed",
+  7391,
+  "2026-09-30T14:19:58.717Z"
+ ],
+ [
+  "admin.spec.ts",
+  "TC-ADM-UI-003 invalid restaurant input shows validation feedback",
+  "passed",
+  3511,
+  "2026-09-30T14:20:07.247Z"
+ ],
+ [
+  "admin.spec.ts",
+  "BB-13 admin approves and rejects pending reviews; public visibility follows status",
+  "failed",
+  30407,
+  "2026-09-30T14:20:10.797Z"
+ ],
+ [
+  "admin.spec.ts",
+  "TC-ADM-UI-004 moderator can enter a moderation note / reason when rejecting",
+  "failed",
+  10600,
+  "2026-09-30T14:20:48.318Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-001 home page renders hero, search and navigation",
+  "passed",
+  5863,
+  "2026-09-30T14:21:05.664Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-01 registration with valid data creates account and opens profile",
+  "passed",
+  5074,
+  "2026-09-30T14:21:12.504Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-02a registration rejected when passwords do not match",
+  "passed",
+  3838,
+  "2026-09-30T14:21:17.630Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-02b registration rejected for duplicate email with feedback",
+  "passed",
+  3688,
+  "2026-09-30T14:21:21.524Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-02c registration blocked client-side for empty fields and short password",
+  "passed",
+  4757,
+  "2026-09-30T14:21:25.309Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-03 valid login authenticates and grants access to profile",
+  "passed",
+  4547,
+  "2026-09-30T14:21:30.134Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-04 invalid password is rejected with an error message",
+  "passed",
+  5560,
+  "2026-09-30T14:21:34.740Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-05 profile shows the user's name, email, reviews and saved sections",
+  "passed",
+  4119,
+  "2026-09-30T14:21:40.386Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-002 logout clears the session and protects the profile route",
+  "failed",
+  52823,
+  "2026-09-30T14:21:44.543Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-06 restaurant listing displays available restaurants",
+  "passed",
+  4262,
+  "2026-09-30T14:22:43.835Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-07 search returns matching restaurants",
+  "passed",
+  3038,
+  "2026-09-30T14:22:49.034Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-003 search with no matches shows an empty-state message",
+  "passed",
+  2000,
+  "2026-09-30T14:22:52.107Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-004 home page search submits to results page",
+  "passed",
+  3889,
+  "2026-09-30T14:22:54.136Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-08a filter by location and dietary options reflects criteria",
+  "passed",
+  2767,
+  "2026-09-30T14:22:58.061Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-08b 'Clear all' resets filters and results",
+  "failed",
+  5081,
+  "2026-09-30T14:23:00.890Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-08c cuisine category link filters the listing",
+  "failed",
+  4067,
+  "2026-09-30T14:23:07.861Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-08d price and spice filters are available on restaurant search",
+  "failed",
+  5310,
+  "2026-09-30T14:23:15.068Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-09 restaurant details show info, menu and dish details",
+  "passed",
+  8308,
+  "2026-09-30T14:23:24.256Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-005 unknown restaurant slug shows an error state",
+  "passed",
+  3864,
+  "2026-09-30T14:23:33.916Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-10 authenticated user submits a valid review (stored for moderation)",
+  "passed",
+  7814,
+  "2026-09-30T14:23:37.823Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-11a review with text shorter than 10 characters is blocked",
+  "passed",
+  6981,
+  "2026-09-30T14:23:45.681Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-11b rating outside 1-5 cannot be entered in the UI (star control limits range)",
+  "passed",
+  4384,
+  "2026-09-30T14:23:52.718Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-006 'Write a Review' from home page (no restaurant selected) lets the user pick a restaurant",
+  "failed",
+  9493,
+  "2026-09-30T14:23:57.138Z"
+ ],
+ [
+  "customer.spec.ts",
+  "BB-12 user sees own submitted reviews with status",
+  "passed",
+  4399,
+  "2026-09-30T14:24:10.577Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-007 saved restaurant: save, view on profile, remove",
+  "passed",
+  9737,
+  "2026-09-30T14:24:16.216Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-008 saved state is shown when revisiting an already-saved restaurant",
+  "failed",
+  8513,
+  "2026-09-30T14:24:25.995Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-009 unauthenticated 'Save' redirects to login",
+  "passed",
+  4684,
+  "2026-09-30T14:24:38.848Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-010 unauthenticated review form redirects to login",
+  "passed",
+  3442,
+  "2026-09-30T14:24:44.592Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-SEC-031 stored XSS payload in an approved review is rendered as text (no script execution)",
+  "passed",
+  4629,
+  "2026-09-30T14:24:48.121Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-011 home 'Top Rated' section reflects API data",
+  "failed",
+  2415,
+  "2026-09-30T14:24:52.807Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard)",
+  "passed",
+  6845,
+  "2026-09-30T14:24:58.170Z"
+ ],
+ [
+  "customer.spec.ts",
+  "TC-UI-013 home page filter chips and location selector affect results",
+  "failed",
+  5376,
+  "2026-09-30T14:25:05.975Z"
+ ],
+ [
+  "dry-runs.spec.ts",
+  "DR-01 new user journey: register -> login -> browse -> search/filter -> view restaurant",
+  "passed",
+  11535,
+  "2026-09-30T14:25:16.552Z"
+ ],
+ [
+  "dry-runs.spec.ts",
+  "DR-02 review journey: login -> select restaurant -> submit review -> admin moderates -> visible",
+  "failed",
+  49389,
+  "2026-09-30T14:25:29.015Z"
+ ],
+ [
+  "dry-runs.spec.ts",
+  "DR-03 saved restaurant journey: login -> select -> save -> profile -> view -> remove",
+  "passed",
+  8137,
+  "2026-09-30T14:26:31.463Z"
+ ],
+ [
+  "dry-runs.spec.ts",
+  "DR-04 administrator restaurant workflow: login -> dashboard -> create/update/delete restaurant",
+  "passed",
+  8607,
+  "2026-09-30T14:26:40.613Z"
+ ],
+ [
+  "dry-runs.spec.ts",
+  "DR-05 administrator dish workflow: login -> manage dishes -> create/update/delete dish",
+  "passed",
+  7742,
+  "2026-09-30T14:26:49.262Z"
+ ],
+ [
+  "dry-runs.spec.ts",
+  "DR-06 administrator moderation workflow: review pending -> approve/reject -> visibility correct",
+  "failed",
+  26166,
+  "2026-09-30T14:26:57.034Z"
+ ],
+ [
+  "dry-runs.spec.ts",
+  "DR-07 language journey: English, Sinhala and Tamil content readable and consistent",
+  "passed",
+  7284,
+  "2026-09-30T14:27:29.479Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-18 responsive layout at mobile 375x812: no horizontal overflow, content visible",
+  "passed",
+  11634,
+  "2026-09-30T14:27:38.683Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-18 responsive layout at tablet 768x1024: no horizontal overflow, content visible",
+  "failed",
+  11099,
+  "2026-09-30T14:27:50.350Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-18 responsive layout at desktop 1440x900: no horizontal overflow, content visible",
+  "passed",
+  11265,
+  "2026-09-30T14:28:08.216Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-18b mobile: bottom navigation is present and search works",
+  "passed",
+  2065,
+  "2026-09-30T14:28:20.324Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-18c mobile: restaurant filters are available",
+  "failed",
+  2306,
+  "2026-09-30T14:28:22.418Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-18d mobile: profile, review form and admin remain usable",
+  "passed",
+  7040,
+  "2026-09-30T14:28:26.126Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-20a automated accessibility scan (axe-core, WCAG 2.1 A/AA) of key pages",
+  "failed",
+  26797,
+  "2026-09-30T14:28:33.670Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-20b keyboard-only login: fields reachable by Tab and form submits with Enter",
+  "passed",
+  2980,
+  "2026-09-30T14:29:03.331Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-20c focus is visibly indicated on interactive elements",
+  "passed",
+  1448,
+  "2026-09-30T14:29:06.792Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-20d rating star buttons expose accessible names and selected state",
+  "failed",
+  3692,
+  "2026-09-30T14:29:08.264Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-20e search and filter inputs have programmatic labels",
+  "failed",
+  3003,
+  "2026-09-30T14:29:13.728Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-19a approved Sinhala and Tamil reviews display correctly with Unicode fonts",
+  "passed",
+  3182,
+  "2026-09-30T14:29:18.736Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-19b customer can write a review in Sinhala and in Tamil via the language selector",
+  "passed",
+  6351,
+  "2026-09-30T14:29:22.386Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "BB-19c interface language can be switched to Sinhala / Tamil",
+  "failed",
+  2462,
+  "2026-09-30T14:29:28.770Z"
+ ],
+ [
+  "nonfunctional.spec.ts",
+  "PERF-UI page load timings (Next.js dev server; indicative only)",
+  "failed",
+  14562,
+  "2026-09-30T14:29:32.869Z"
+ ]
+]

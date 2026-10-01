@@ -1,0 +1,12 @@
+{
+  "name": "tastelanka-qa-e2e",
+  "private": true,
+  "description": "QA end-to-end tests (isolated from the application's own dependencies)",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0"
+  }
+}

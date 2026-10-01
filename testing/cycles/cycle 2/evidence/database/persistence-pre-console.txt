@@ -1,0 +1,8 @@
+PASS TC-DATA-001a   POST   /admin/restaurants                                           -> 201 
+PASS TC-DATA-002a   GET    /restaurants/nuga-gama                                       -> 200 
+PASS TC-DATA-002b   PUT    /admin/restaurants/4                                         -> 200 description='QA-EDITED description 112400' priceMin=3500
+PASS TC-DATA-003a   GET    /dishes/seafood-kottu                                        -> 200 
+PASS TC-DATA-003b   DELETE /admin/dishes/4                                              -> 204 
+PASS TC-DATA-004a   POST   /users/me/saved-restaurants/pedlars-inn                      -> 201 
+
+[persistence-pre] executed=8 pass=8 fail=0

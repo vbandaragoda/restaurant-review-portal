@@ -1,0 +1,42 @@
+{
+  "testId": "TC-DATA-002a",
+  "title": "Read seeded restaurant nuga-gama",
+  "category": "database",
+  "executedAt": "2026-09-30T19:10:35+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants/nuga-gama",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 10.4,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "307"
+    },
+    "body": {
+      "id": 4,
+      "slug": "nuga-gama",
+      "name": "Nuga Gama",
+      "cuisine": "Sri Lankan · Authentic",
+      "location": "Colombo",
+      "rating": 4.4,
+      "reviewCount": 150,
+      "priceMin": 3000,
+      "priceMax": 5000,
+      "vegetarian": true,
+      "vegan": true,
+      "halal": true,
+      "description": "Traditional Sri Lankan dining with local cuisine options.",
+      "imageColor": "#662e1a"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200",
+  "verdict": "PASS"
+}

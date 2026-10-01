@@ -1,0 +1,12 @@
+{'ID': 'PERF-001', 'Operation': 'Restaurant listing', 'Method': 'GET', 'Endpoint': '/restaurants', 'Samples': 50, 'Statuses': '200', 'Min ms': 8.4, 'Median ms': 10.8, 'P95 ms': 13.2, 'Max ms': 14.4}
+{'ID': 'PERF-002', 'Operation': 'Search q=crab', 'Method': 'GET', 'Endpoint': '/restaurants', 'Samples': 50, 'Statuses': '200', 'Min ms': 7.8, 'Median ms': 9.6, 'P95 ms': 10.8, 'Max ms': 10.9}
+{'ID': 'PERF-003', 'Operation': 'Filter location=Kandy&vegan=true', 'Method': 'GET', 'Endpoint': '/restaurants', 'Samples': 50, 'Statuses': '200', 'Min ms': 7.4, 'Median ms': 8.7, 'P95 ms': 9.7, 'Max ms': 10.2}
+{'ID': 'PERF-004', 'Operation': 'Top-rated', 'Method': 'GET', 'Endpoint': '/restaurants/top-rated', 'Samples': 50, 'Statuses': '200', 'Min ms': 6.9, 'Median ms': 8.6, 'P95 ms': 10.0, 'Max ms': 11.2}
+{'ID': 'PERF-005', 'Operation': 'Restaurant details', 'Method': 'GET', 'Endpoint': '/restaurants/ministry-of-crab', 'Samples': 50, 'Statuses': '200', 'Min ms': 6.6, 'Median ms': 8.1, 'P95 ms': 10.3, 'Max ms': 12.2}
+{'ID': 'PERF-006', 'Operation': 'Restaurant menu (dishes)', 'Method': 'GET', 'Endpoint': '/dishes', 'Samples': 50, 'Statuses': '200', 'Min ms': 8.1, 'Median ms': 9.5, 'P95 ms': 11.3, 'Max ms': 13.9}
+{'ID': 'PERF-007', 'Operation': 'Public approved reviews', 'Method': 'GET', 'Endpoint': '/reviews', 'Samples': 50, 'Statuses': '200', 'Min ms': 8.6, 'Median ms': 10.3, 'P95 ms': 11.9, 'Max ms': 14.0}
+{'ID': 'PERF-008', 'Operation': 'Own reviews (auth)', 'Method': 'GET', 'Endpoint': '/reviews/mine', 'Samples': 50, 'Statuses': '200', 'Min ms': 10.0, 'Median ms': 12.0, 'P95 ms': 13.6, 'Max ms': 16.8}
+{'ID': 'PERF-009', 'Operation': 'Profile (auth)', 'Method': 'GET', 'Endpoint': '/users/me', 'Samples': 50, 'Statuses': '200', 'Min ms': 7.8, 'Median ms': 8.9, 'P95 ms': 10.5, 'Max ms': 11.2}
+{'ID': 'PERF-010', 'Operation': 'Login (bcrypt)', 'Method': 'POST', 'Endpoint': '/auth/login', 'Samples': 50, 'Statuses': '200', 'Min ms': 92.4, 'Median ms': 96.6, 'P95 ms': 99.4, 'Max ms': 103.7}
+{'ID': 'PERF-011', 'Operation': 'Submit review (auth, write)', 'Method': 'POST', 'Endpoint': '/reviews', 'Samples': 10, 'Statuses': '201', 'Min ms': 15.3, 'Median ms': 15.9, 'P95 ms': 22.0, 'Max ms': 32.9}
+executed at 2026-09-30 19:12:22

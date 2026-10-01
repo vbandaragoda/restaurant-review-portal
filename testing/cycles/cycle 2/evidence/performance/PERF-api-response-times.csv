@@ -1,0 +1,12 @@
+ID,Operation,Method,Endpoint,Samples,Statuses,Min ms,Median ms,P95 ms,Max ms
+PERF-001,Restaurant listing,GET,/restaurants,50,200,9.3,13.1,16.1,18.3
+PERF-002,Search q=crab,GET,/restaurants,50,200,8.0,10.5,11.9,12.6
+PERF-003,Filter location=Kandy&vegan=true,GET,/restaurants,50,200,8.2,9.7,11.7,12.6
+PERF-004,Top-rated,GET,/restaurants/top-rated,50,200,7.5,9.0,11.2,13.5
+PERF-005,Restaurant details,GET,/restaurants/ministry-of-crab,50,200,7.2,8.8,10.8,11.8
+PERF-006,Restaurant menu (dishes),GET,/dishes,50,200,8.9,10.8,11.7,15.8
+PERF-007,Public approved reviews,GET,/reviews,50,200,9.4,12.0,14.9,17.4
+PERF-008,Own reviews (auth),GET,/reviews/mine,50,200,11.3,13.4,14.8,25.3
+PERF-009,Profile (auth),GET,/users/me,50,200,8.3,10.8,11.9,12.1
+PERF-010,Login (bcrypt),POST,/auth/login,50,200,97.4,103.9,110.2,124.1
+PERF-011,"Submit review (auth, write)",POST,/reviews,10,201,17.7,22.0,23.1,83.4

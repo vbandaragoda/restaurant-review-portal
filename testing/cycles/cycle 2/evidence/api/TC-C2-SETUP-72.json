@@ -1,0 +1,46 @@
+{
+  "testId": "TC-C2-SETUP-72",
+  "title": "Setup: approve",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "PATCH",
+    "url": "http://localhost:8080/api/v1/admin/reviews/11",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": "APPROVED"
+    }
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 32.9,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "364"
+    },
+    "body": {
+      "id": 11,
+      "author": "QA User B",
+      "restaurantSlug": "qa-agg-112400c2",
+      "restaurantName": "QA Aggregation Cafe",
+      "foodRating": 4,
+      "serviceRating": 4,
+      "overallRating": 2,
+      "language": "en",
+      "reviewText": "Cycle 2 aggregation review 2 stars.",
+      "status": "APPROVED",
+      "moderatedBy": "TasteLanka Admin",
+      "moderatedAt": "2026-10-01T05:54:19.740579200Z",
+      "createdAt": "2026-10-01T05:54:19.705287Z"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200",
+  "verdict": "PASS"
+}

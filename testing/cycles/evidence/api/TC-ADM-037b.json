@@ -1,0 +1,49 @@
+{
+  "testId": "TC-ADM-037b",
+  "title": "Setup: customer review on second QA restaurant",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:19+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "qa-rest2-190512",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "QA review on a restaurant that will be deleted."
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 31.2,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "294"
+    },
+    "body": {
+      "id": 8,
+      "author": "QA User A",
+      "restaurantSlug": "qa-rest2-190512",
+      "restaurantName": "QA Reviewed Cafe",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "QA review on a restaurant that will be deleted.",
+      "status": "PENDING",
+      "createdAt": "2026-09-30T13:35:19.107845400Z"
+    }
+  },
+  "expected": "HTTP 201",
+  "actual": "HTTP 201",
+  "verdict": "PASS"
+}

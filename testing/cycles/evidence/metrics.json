@@ -1,0 +1,85 @@
+{
+  "tot": 257,
+  "p": 155,
+  "f": 92,
+  "b": 0,
+  "ne": 10,
+  "rate": 62.8,
+  "sev": {
+    "Critical": 1,
+    "High": 2,
+    "Medium": 13,
+    "Low": 4
+  },
+  "ndef": 20,
+  "bb_p": 16,
+  "bb_f": 4,
+  "dr_p": 7,
+  "dr_f": 0,
+  "setup": 16,
+  "info": 4,
+  "cov": {
+    "Covered": 20,
+    "Partially Covered": 5,
+    "Not Covered": 0,
+    "Not Implemented": 2,
+    "Not Evidenced": 1
+  },
+  "levels": {
+    "API/Security/Data (system)": [
+      152,
+      82,
+      70,
+      0
+    ],
+    "JUnit integration": [
+      24,
+      13,
+      11,
+      0
+    ],
+    "JUnit unit": [
+      22,
+      21,
+      1,
+      0
+    ],
+    "Baseline black-box (UI/E2E)": [
+      20,
+      16,
+      4,
+      0
+    ],
+    "Dry run (E2E)": [
+      7,
+      7,
+      0,
+      0
+    ],
+    "Performance (UI)": [
+      1,
+      1,
+      0,
+      0
+    ],
+    "UI/E2E": [
+      18,
+      12,
+      6,
+      0
+    ],
+    "Existing automated/static": [
+      3,
+      3,
+      0,
+      0
+    ],
+    "Usability (participant)": [
+      10,
+      0,
+      0,
+      10
+    ]
+  },
+  "evid": 342
+}

@@ -1,0 +1,31 @@
+{
+  "testId": "TC-API-033",
+  "title": "Invalid spiceLevel=Extreme rejected",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants?spiceLevel=Extreme",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 8.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Spice level must be Mild, Medium, or Hot",
+      "instance": "/api/v1/restaurants",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 400; Content-Type=application/problem+json; detail='Spice level must be Mild, Medium, or Hot'",
+  "verdict": "PASS"
+}

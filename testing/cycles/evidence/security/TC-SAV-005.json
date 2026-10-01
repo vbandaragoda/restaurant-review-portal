@@ -1,0 +1,26 @@
+{
+  "testId": "TC-SAV-005",
+  "title": "Save restaurant without token",
+  "category": "security",
+  "executedAt": "2026-09-30T19:05:17+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/users/me/saved-restaurants/nuga-gama",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 19.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "expected": "HTTP 401",
+  "actual": "HTTP 403",
+  "verdict": "FAIL"
+}

@@ -1,0 +1,41 @@
+{
+  "testId": "TC-AUTH-001",
+  "title": "Register with valid data",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:13+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/register",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "fullName": "QA User A",
+      "email": "qa.usera.190512@tastelanka.test",
+      "password": "<redacted test password, length 13>",
+      "language": "en"
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 787.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "356"
+    },
+    "body": {
+      "token": "<JWT, 238 chars>",
+      "userId": 2,
+      "fullName": "QA User A",
+      "email": "qa.usera.190512@tastelanka.test",
+      "role": "USER",
+      "language": "en"
+    }
+  },
+  "expected": "HTTP 201; JWT returned; role USER; no password hash in response",
+  "actual": "HTTP 201; role=USER, token issued=True, passwordHash exposed=False",
+  "verdict": "PASS"
+}

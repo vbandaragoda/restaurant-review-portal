@@ -1,0 +1,126 @@
+{
+  "testId": "TC-SEC-015",
+  "title": "Restaurant id 1 intact after unauthorized delete attempt",
+  "category": "security",
+  "executedAt": "2026-10-01T11:24:05+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/admin/restaurants",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 37.9,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "1894"
+    },
+    "body": [
+      {
+        "id": 1,
+        "slug": "ministry-of-crab",
+        "name": "Ministry of Crab",
+        "cuisine": "Seafood · Sri Lankan",
+        "location": "Colombo",
+        "rating": 4.8,
+        "reviewCount": 322,
+        "priceMin": 8000,
+        "priceMax": 12000,
+        "vegetarian": false,
+        "vegan": false,
+        "halal": true,
+        "description": "Popular seafood dining in Colombo. Browse menu items, prices and approved customer reviews.",
+        "imageColor": "#332417"
+      },
+      {
+        "id": 2,
+        "slug": "the-empire-cafe",
+        "name": "The Empire Cafe",
+        "cuisine": "Cafe · International",
+        "location": "Kandy",
+        "rating": 4.6,
+        "reviewCount": 220,
+        "priceMin": 2000,
+        "priceMax": 4000,
+        "vegetarian": true,
+        "vegan": true,
+        "halal": true,
+        "description": "Casual dining with local and international favourites.",
+        "imageColor": "#38592e"
+      },
+      {
+        "id": 3,
+        "slug": "pedlars-inn",
+        "name": "Pedlar’s Inn",
+        "cuisine": "Cafe · International",
+        "location": "Galle",
+        "rating": 4.5,
+        "reviewCount": 490,
+        "priceMin": 5000,
+        "priceMax": 8000,
+        "vegetarian": true,
+        "vegan": false,
+        "halal": true,
+        "description": "Relaxed cafe-style dining in the Galle area.",
+        "imageColor": "#61949e"
+      },
+      {
+        "id": 4,
+        "slug": "nuga-gama",
+        "name": "Nuga Gama",
+        "cuisine": "Sri Lankan · Authentic",
+        "location": "Colombo",
+        "rating": 4.4,
+        "reviewCount": 152,
+        "priceMin": 3000,
+        "priceMax": 5000,
+        "vegetarian": true,
+        "vegan": true,
+        "halal": true,
+        "description": "Traditional Sri Lankan dining with local cuisine options.",
+        "imageColor": "#662e1a"
+      },
+      {
+        "id": 5,
+        "slug": "green-leaf-kitchen",
+        "name": "Green Leaf Kitchen",
+        "cuisine": "Sri Lankan · Vegetarian",
+        "location": "Kandy",
+        "rating": 4.3,
+        "reviewCount": 96,
+        "priceMin": 1500,
+        "priceMax": 3000,
+        "vegetarian": true,
+        "vegan": true,
+        "halal": true,
+        "description": "Vegetarian-friendly local dishes with mild and medium spice options.",
+        "imageColor": "#597a40"
+      },
+      {
+        "id": 7,
+        "slug": "qa-rest2-112400",
+        "name": "QA Reviewed Cafe",
+        "cuisine": "Sri Lankan · Fusion",
+        "location": "Galle",
+        "rating": 0.0,
+        "reviewCount": 0,
+        "priceMin": 1000,
+        "priceMax": 2500,
+        "vegetarian": true,
+        "vegan": false,
+        "halal": true,
+        "description": "Created by QA API test.",
+        "imageColor": "#123456"
+      }
+    ]
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; restaurant id 1 still present",
+  "verdict": "PASS"
+}

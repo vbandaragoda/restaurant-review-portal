@@ -1,0 +1,44 @@
+{
+  "testId": "TC-API-043",
+  "title": "Duplicate slug on create returns 409 with problem detail (admin)",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/admin/restaurants",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "slug": "nuga-gama",
+      "name": "Dup",
+      "cuisine": "X",
+      "location": "Galle",
+      "priceMin": 1,
+      "priceMax": 2,
+      "vegetarian": false,
+      "vegan": false,
+      "halal": false
+    }
+  },
+  "response": {
+    "status": 409,
+    "elapsedMs": 23.2,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Restaurant slug already exists",
+      "instance": "/api/v1/admin/restaurants",
+      "status": 409,
+      "title": "Conflict"
+    }
+  },
+  "expected": "HTTP 409",
+  "actual": "HTTP 409; Content-Type=application/problem+json; detail='Restaurant slug already exists'",
+  "verdict": "PASS"
+}

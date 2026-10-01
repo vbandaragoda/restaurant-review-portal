@@ -1,0 +1,31 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: tastelanka-mysql
+    restart: unless-stopped
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_ai_ci
+    environment:
+      MYSQL_DATABASE: tastelanka
+      MYSQL_USER: tastelanka
+      MYSQL_PASSWORD: ${DB_PASSWORD:-tastelanka_dev}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_dev_only}
+      TZ: Asia/Colombo
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema/001_schema.sql:/docker-entrypoint-initdb.d/10-schema.sql:ro
+      - ./database/schema/002_cuisines.sql:/docker-entrypoint-initdb.d/15-cuisines-schema.sql:ro
+      - ./database/seed/001_restaurants.sql:/docker-entrypoint-initdb.d/20-seed.sql:ro
+      - ./database/seed/002_cuisine_expansion.sql:/docker-entrypoint-initdb.d/30-cuisine-expansion.sql:ro
+      - ./database/seed/003_cuisines.sql:/docker-entrypoint-initdb.d/40-cuisines.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-root_dev_only}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mysql_data:

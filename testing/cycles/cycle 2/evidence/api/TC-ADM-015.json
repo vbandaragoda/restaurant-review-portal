@@ -1,0 +1,34 @@
+{
+  "testId": "TC-ADM-015",
+  "title": "Unsupported content type text/plain",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:04+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/admin/restaurants",
+    "headers": {
+      "Content-Type": "text/plain",
+      "Authorization": "Bearer <ADMIN token>"
+    },
+    "body": "slug=x"
+  },
+  "response": {
+    "status": 415,
+    "elapsedMs": 13.5,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Content-Type is not supported",
+      "instance": "/api/v1/admin/restaurants",
+      "status": 415,
+      "title": "Unsupported Media Type"
+    }
+  },
+  "expected": "HTTP 415",
+  "actual": "HTTP 415",
+  "verdict": "PASS"
+}

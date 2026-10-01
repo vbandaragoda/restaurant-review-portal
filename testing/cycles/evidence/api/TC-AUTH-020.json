@@ -1,0 +1,39 @@
+{
+  "testId": "TC-AUTH-020",
+  "title": "Administrator login (bootstrap admin)",
+  "category": "api",
+  "executedAt": "2026-09-30T19:05:15+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/login",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "qa.admin@tastelanka.test",
+      "password": "<redacted test password, length 22>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 114.5,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "349"
+    },
+    "body": {
+      "token": "<JWT, 230 chars>",
+      "userId": 1,
+      "fullName": "TasteLanka Admin",
+      "email": "qa.admin@tastelanka.test",
+      "role": "ADMIN",
+      "language": "en"
+    }
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; role=ADMIN",
+  "verdict": "PASS"
+}

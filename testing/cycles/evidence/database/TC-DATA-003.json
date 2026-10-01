@@ -1,0 +1,43 @@
+{
+  "testId": "TC-DATA-003",
+  "title": "Seeded dish deleted by admin stays deleted after restart",
+  "category": "database",
+  "executedAt": "2026-09-30T19:11:28+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/dishes/seafood-kottu",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 19.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "342"
+    },
+    "body": {
+      "id": 10,
+      "slug": "seafood-kottu",
+      "name": "Seafood Kottu",
+      "description": "Sri Lankan kottu prepared with fresh seafood.",
+      "price": 3800,
+      "spiceLevel": "Hot",
+      "vegetarian": false,
+      "halal": true,
+      "imageColor": "#734d2e",
+      "rating": 0.0,
+      "foodRating": 0.0,
+      "serviceRating": 0.0,
+      "reviewCount": 0,
+      "restaurantSlug": "ministry-of-crab",
+      "restaurantName": "Ministry of Crab"
+    }
+  },
+  "expected": "Dish not found (HTTP 404; API currently masks as 403 – DEF-001)",
+  "actual": "HTTP 200",
+  "verdict": "FAIL"
+}

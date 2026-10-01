@@ -1,0 +1,16 @@
+  ok 1 specs\admin.spec.ts:160:5 › BB-13 admin approves and rejects pending reviews; public visibility follows status (21.2s)
+  ok 2 specs\customer.spec.ts:125:5 › BB-08a filter by location and dietary options reflects criteria (2.3s)
+  ok 3 specs\customer.spec.ts:314:5 › TC-UI-012 customer created via API sees customer header state (Profile, not Dashboard) (2.4s)
+  ok 4 specs\dry-runs.spec.ts:10:5 › DR-01 new user journey: register -> login -> browse -> search/filter -> view restaurant (5.9s)
+  ok 5 specs\dry-runs.spec.ts:28:5 › DR-02 review journey: login -> select restaurant -> submit review -> admin moderates -> visible (21.5s)
+  5 passed (58.2s)
+              "expectedStatus": "passed",
+                  "status": "passed",
+              "expectedStatus": "passed",
+                  "status": "passed",
+              "expectedStatus": "passed",
+                  "status": "passed",
+              "expectedStatus": "passed",
+                  "status": "passed",
+              "expectedStatus": "passed",
+                  "status": "passed",

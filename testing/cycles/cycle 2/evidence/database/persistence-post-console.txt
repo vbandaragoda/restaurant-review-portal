@@ -1,0 +1,9 @@
+PASS TC-DATA-001    GET    /restaurants/qa-persist-112400                               -> 200 name=QA Persistence Diner
+PASS TC-DATA-002    GET    /restaurants/nuga-gama                                       -> 200 description after restart='QA-EDITED description 112400'; priceMin=3500
+PASS TC-DATA-003    GET    /dishes/seafood-kottu                                        -> 404 
+PASS TC-DATA-004    GET    /users/me/saved-restaurants                                  -> 200 slugs=['pedlars-inn']
+PASS TC-DATA-005    GET    /reviews/mine                                                -> 200 review 1 status=['APPROVED']
+PASS TC-DATA-006    GET    /users/me                                                    -> 200 
+PASS TC-DATA-007    GET    /reviews                                                     -> 200 Sinhala text byte-identical after restart
+
+[persistence-post] executed=9 pass=9 fail=0
