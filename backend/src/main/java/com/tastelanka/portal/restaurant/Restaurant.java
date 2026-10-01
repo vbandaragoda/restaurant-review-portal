@@ -37,18 +37,20 @@ public class Restaurant {
     private String description;
     @Column(name = "image_color", nullable = false, length = 7)
     private String imageColor = "#332417";
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
 
     protected Restaurant() { }
 
     public Restaurant(String slug, String name, String cuisine, String location, Integer priceMin, Integer priceMax,
-                      boolean vegetarian, boolean vegan, boolean halal, String description, String imageColor) {
-        update(slug, name, cuisine, location, priceMin, priceMax, vegetarian, vegan, halal, description, imageColor);
+                      boolean vegetarian, boolean vegan, boolean halal, String description, String imageUrl) {
+        update(slug, name, cuisine, location, priceMin, priceMax, vegetarian, vegan, halal, description, imageUrl);
         this.rating = BigDecimal.ZERO;
         this.reviewCount = 0;
     }
 
     public void update(String slug, String name, String cuisine, String location, Integer priceMin, Integer priceMax,
-                       boolean vegetarian, boolean vegan, boolean halal, String description, String imageColor) {
+                       boolean vegetarian, boolean vegan, boolean halal, String description, String imageUrl) {
         this.slug = slug;
         this.name = name;
         this.cuisine = cuisine;
@@ -59,7 +61,7 @@ public class Restaurant {
         this.vegan = vegan;
         this.halal = halal;
         this.description = description;
-        this.imageColor = imageColor == null || imageColor.isBlank() ? "#332417" : imageColor;
+        this.imageUrl = imageUrl == null || imageUrl.isBlank() ? null : imageUrl;
     }
 
     public void updateRating(BigDecimal rating, int reviewCount) {
@@ -97,4 +99,5 @@ public class Restaurant {
     public boolean isHalal() { return halal; }
     public String getDescription() { return description; }
     public String getImageColor() { return imageColor; }
+    public String getImageUrl() { return imageUrl; }
 }

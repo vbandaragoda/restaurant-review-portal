@@ -32,7 +32,9 @@ public class Dish {
     @Column(nullable = false)
     private boolean halal;
     @Column(name = "image_color", nullable = false, length = 7)
-    private String imageColor;
+    private String imageColor = "#bd471f";
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
     @Column(nullable = false, precision = 2, scale = 1)
     private BigDecimal rating = BigDecimal.ZERO;
     @Column(name = "food_rating", nullable = false, precision = 2, scale = 1)
@@ -45,13 +47,13 @@ public class Dish {
     protected Dish() { }
 
     public Dish(Restaurant restaurant, String slug, String name, String description, Integer price,
-                String spiceLevel, boolean vegetarian, boolean halal, String imageColor) {
+                String spiceLevel, boolean vegetarian, boolean halal, String imageUrl) {
         this.restaurant = restaurant;
-        update(slug, name, description, price, spiceLevel, vegetarian, halal, imageColor);
+        update(slug, name, description, price, spiceLevel, vegetarian, halal, imageUrl);
     }
 
     public void update(String slug, String name, String description, Integer price, String spiceLevel,
-                       boolean vegetarian, boolean halal, String imageColor) {
+                       boolean vegetarian, boolean halal, String imageUrl) {
         this.slug = slug;
         this.name = name;
         this.description = description;
@@ -59,7 +61,7 @@ public class Dish {
         this.spiceLevel = spiceLevel;
         this.vegetarian = vegetarian;
         this.halal = halal;
-        this.imageColor = imageColor == null || imageColor.isBlank() ? "#bd471f" : imageColor;
+        this.imageUrl = imageUrl == null || imageUrl.isBlank() ? null : imageUrl;
     }
 
     public void setRestaurant(Restaurant restaurant) { this.restaurant = restaurant; }
@@ -106,6 +108,7 @@ public class Dish {
     public boolean isVegetarian() { return vegetarian; }
     public boolean isHalal() { return halal; }
     public String getImageColor() { return imageColor; }
+    public String getImageUrl() { return imageUrl; }
     public BigDecimal getRating() { return rating; }
     public BigDecimal getFoodRating() { return foodRating; }
     public BigDecimal getServiceRating() { return serviceRating; }

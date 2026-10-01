@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useSession } from "@/lib/session";
+import { useRouter } from "next/navigation";
+import { clearSession, useSession } from "@/lib/session";
 
 export type ActivePage = "home" | "restaurants" | "cuisines" | "about" | "reviews" | "profile";
 
@@ -18,7 +19,13 @@ function Brand({ compact = false }: { compact?: boolean }) {
 }
 
 export function SiteHeader({ active }: { active?: ActivePage }) {
+  const router = useRouter();
   const session = useSession();
+  const logout = () => {
+    clearSession();
+    router.push("/");
+    router.refresh();
+  };
   const links: Array<[ActivePage, string, string]> = [
     ["home", "Home", "/"],
     ["restaurants", "Restaurants", "/restaurants"],
@@ -38,9 +45,12 @@ export function SiteHeader({ active }: { active?: ActivePage }) {
         <span className="min-w-0 flex-1" aria-hidden="true" />
         <div className="flex shrink-0 gap-2.5 text-sm leading-normal font-semibold">
           {session ? (
-            <Link className="rounded-[10px] border border-soft-border px-[22px] py-[13px]" href={session.role === "ADMIN" || session.role === "MODERATOR" ? "/admin" : "/profile"}>
-              {session.role === "USER" ? "Profile" : "Dashboard"}
-            </Link>
+            <>
+              <Link className="rounded-[10px] border border-soft-border px-[22px] py-[13px]" href={session.role === "ADMIN" || session.role === "MODERATOR" ? "/admin" : "/profile"}>
+                {session.role === "USER" ? "Profile" : "Dashboard"}
+              </Link>
+              <button onClick={logout} className="rounded-[10px] bg-brand px-[22px] py-[13px] text-white" type="button">Log Out</button>
+            </>
           ) : (
             <>
               <Link className="rounded-[10px] border border-soft-border px-[22px] py-[13px]" href="/login">Log In</Link>
@@ -51,7 +61,7 @@ export function SiteHeader({ active }: { active?: ActivePage }) {
       </header>
       <header className="relative z-20 flex h-16 items-center border-b border-soft-border px-5 shadow-[0_2px_8px_rgba(26,26,23,0.06)] md:hidden">
         <Link href="/" className="text-xl font-bold">TasteLanka</Link>
-        {session ? <Link className="ml-auto text-xs font-semibold text-brand" href="/profile">{session.fullName.split(" ")[0]}</Link> : <Link className="ml-auto text-xs font-semibold text-brand" href="/login">Log In</Link>}
+        {session ? <div className="ml-auto flex items-center gap-3"><Link className="text-xs font-semibold text-brand" href={session.role === "USER" ? "/profile" : "/admin"}>{session.fullName.split(" ")[0]}</Link><button onClick={logout} className="rounded-lg border border-soft-border px-3 py-2 text-xs font-semibold" type="button">Log Out</button></div> : <Link className="ml-auto text-xs font-semibold text-brand" href="/login">Log In</Link>}
       </header>
     </>
   );

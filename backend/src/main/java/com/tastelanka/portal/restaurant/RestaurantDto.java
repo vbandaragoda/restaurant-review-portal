@@ -16,13 +16,15 @@ public record RestaurantDto(
         boolean vegan,
         boolean halal,
         String description,
-        String imageColor) {
+        String imageColor,
+        String imageUrl) {
 
     public static RestaurantDto from(Restaurant restaurant) {
         return new RestaurantDto(
                 restaurant.getId(), restaurant.getSlug(), restaurant.getName(), restaurant.getCuisine(),
                 restaurant.getLocation(), restaurant.getRating(), restaurant.getReviewCount(),
                 restaurant.getPriceMin(), restaurant.getPriceMax(), restaurant.isVegetarian(),
-                restaurant.isVegan(), restaurant.isHalal(), restaurant.getDescription(), restaurant.getImageColor());
+                restaurant.isVegan(), restaurant.isHalal(), restaurant.getDescription(), restaurant.getImageColor(),
+                restaurant.getImageUrl());
     }
 }

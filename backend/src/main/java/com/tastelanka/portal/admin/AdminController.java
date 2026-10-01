@@ -62,7 +62,7 @@ public class AdminController {
         }
         return RestaurantDto.from(restaurants.save(new Restaurant(request.slug(), request.name(), request.cuisine(),
                 request.location(), request.priceMin(), request.priceMax(), request.vegetarian(), request.vegan(),
-                request.halal(), request.description(), request.imageColor())));
+                request.halal(), request.description(), request.imageUrl())));
     }
 
     @PutMapping("/restaurants/{id}")
@@ -76,7 +76,7 @@ public class AdminController {
                         "Restaurant slug already exists"); });
         restaurant.update(request.slug(), request.name(), request.cuisine(), request.location(), request.priceMin(),
                 request.priceMax(), request.vegetarian(), request.vegan(), request.halal(), request.description(),
-                request.imageColor());
+                request.imageUrl());
         return RestaurantDto.from(restaurant);
     }
 
@@ -104,7 +104,7 @@ public class AdminController {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Dish slug already exists");
         }
         return DishDto.from(dishes.save(new Dish(restaurant, request.slug(), request.name(), request.description(),
-                request.price(), request.spiceLevel(), request.vegetarian(), request.halal(), request.imageColor())));
+                request.price(), request.spiceLevel(), request.vegetarian(), request.halal(), request.imageUrl())));
     }
 
     @PutMapping("/dishes/{id}")
@@ -117,7 +117,7 @@ public class AdminController {
                         "Dish slug already exists"); });
         dish.setRestaurant(restaurant(request.restaurantSlug()));
         dish.update(request.slug(), request.name(), request.description(), request.price(), request.spiceLevel(),
-                request.vegetarian(), request.halal(), request.imageColor());
+                request.vegetarian(), request.halal(), request.imageUrl());
         return DishDto.from(dish);
     }
 
@@ -188,7 +188,7 @@ public class AdminController {
             boolean vegan,
             boolean halal,
             @Size(max = 5000) String description,
-            @Pattern(regexp = "#[0-9a-fA-F]{6}") String imageColor) { }
+            @Size(max = 500) @Pattern(regexp = "^/uploads/[0-9a-f-]+\\.(?:jpg|png|gif)$") String imageUrl) { }
 
     public record DishRequest(
             @NotBlank String restaurantSlug,
@@ -199,7 +199,7 @@ public class AdminController {
             @NotBlank @Pattern(regexp = "Mild|Medium|Hot") String spiceLevel,
             boolean vegetarian,
             boolean halal,
-            @Pattern(regexp = "#[0-9a-fA-F]{6}") String imageColor) { }
+            @Size(max = 500) @Pattern(regexp = "^/uploads/[0-9a-f-]+\\.(?:jpg|png|gif)$") String imageUrl) { }
 
     public record ModerationRequest(@NotNull ReviewStatus status, @Size(max = 500) String note) { }
 }

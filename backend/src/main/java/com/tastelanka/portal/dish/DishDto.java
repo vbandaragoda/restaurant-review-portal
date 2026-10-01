@@ -12,6 +12,7 @@ public record DishDto(
         boolean vegetarian,
         boolean halal,
         String imageColor,
+        String imageUrl,
         BigDecimal rating,
         BigDecimal foodRating,
         BigDecimal serviceRating,
@@ -20,8 +21,8 @@ public record DishDto(
         String restaurantName) {
     public static DishDto from(Dish dish) {
         return new DishDto(dish.getId(), dish.getSlug(), dish.getName(), dish.getDescription(), dish.getPrice(),
-                dish.getSpiceLevel(), dish.isVegetarian(), dish.isHalal(), dish.getImageColor(), dish.getRating(),
-                dish.getFoodRating(), dish.getServiceRating(), dish.getReviewCount(),
+                dish.getSpiceLevel(), dish.isVegetarian(), dish.isHalal(), dish.getImageColor(), dish.getImageUrl(),
+                dish.getRating(), dish.getFoodRating(), dish.getServiceRating(), dish.getReviewCount(),
                 dish.getRestaurant().getSlug(), dish.getRestaurant().getName());
     }
 }

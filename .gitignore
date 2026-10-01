@@ -11,6 +11,7 @@ frontend/out/
 
 # Spring Boot / Java
 backend/target/
+backend/uploads/
 *.class
 *.jar
 *.war
