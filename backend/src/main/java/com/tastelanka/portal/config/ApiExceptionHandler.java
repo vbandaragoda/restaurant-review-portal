@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
@@ -58,6 +59,11 @@ public class ApiExceptionHandler {
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     ResponseEntity<ProblemDetail> unsupportedMediaType() {
         return problem(HttpStatus.UNSUPPORTED_MEDIA_TYPE, "Content-Type is not supported");
+    }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    ResponseEntity<ProblemDetail> uploadTooLarge() {
+        return problem(HttpStatus.CONTENT_TOO_LARGE, "Image must be 5 MB or smaller");
     }
 
     @ExceptionHandler(HttpMediaTypeNotAcceptableException.class)

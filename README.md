@@ -28,7 +28,7 @@ Spring Boot 4.1 + Spring Security + JWT
 6. Start the UI: `cd frontend`, run `npm install`, then `npm run dev`.
 7. Open `http://localhost:3000`.
 
-The API defaults to `http://localhost:8080/api/v1`. Override it with `NEXT_PUBLIC_API_URL`.
+The API defaults to `http://localhost:8080/api/v1`. Override it with `NEXT_PUBLIC_API_URL`. Uploaded restaurant and dish images are stored in the API working directory's `uploads` folder (`backend/uploads` when started as shown above); set `UPLOAD_DIR` before starting the API to use a different directory.
 
 ## REST API
 
@@ -47,6 +47,7 @@ The API defaults to `http://localhost:8080/api/v1`. Override it with `NEXT_PUBLI
 - `POST /api/v1/auth/register`
 - `POST /api/v1/auth/login`
 - `GET /api/v1/admin/dashboard`
+- `POST /api/v1/admin/images` (JPEG, PNG or GIF; maximum 5 MB)
 - `GET|POST|PUT|DELETE /api/v1/admin/restaurants/**`
 - `GET|POST|PUT|DELETE /api/v1/admin/dishes/**`
 - `GET|PATCH /api/v1/admin/reviews/**`

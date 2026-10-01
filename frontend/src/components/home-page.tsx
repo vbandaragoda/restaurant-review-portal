@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { api } from "@/lib/api";
+import { mediaStyle } from "@/lib/media";
 import type { Restaurant } from "@/lib/types";
 import { MobileNavigation, SiteHeader } from "@/components/site-shell";
 
@@ -103,7 +104,7 @@ function DesktopHome({ restaurants, allRestaurants }: { restaurants: Restaurant[
         <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {restaurants.map((restaurant) => (
             <Link href={`/restaurants/${restaurant.slug}`} key={restaurant.name} className="h-[312px] overflow-hidden rounded-[14px] border border-soft-border transition hover:-translate-y-0.5 hover:shadow-md">
-              <div className="h-36" style={{ backgroundColor: restaurant.imageColor }} />
+              <div className="h-36" style={mediaStyle(restaurant.imageUrl, restaurant.imageColor)} />
               <div className="p-3.5">
                 <p className="text-sm font-semibold text-brand">★ {restaurant.rating} <span className="ml-1 text-[11px] font-normal text-muted">({restaurant.reviewCount} reviews)</span></p>
                 <h3 className="mt-[7px] text-lg font-bold">{restaurant.name}</h3>
@@ -152,7 +153,7 @@ function MobileHome({ restaurants }: { restaurants: Restaurant[] }) {
           <div className="mt-4 space-y-[22px]">
             {restaurants.slice(0, 2).map((restaurant) => (
               <Link href={`/restaurants/${restaurant.slug}`} key={restaurant.name} className="flex h-[148px] items-center overflow-hidden rounded-xl border border-[#ded9cf] p-[11px]">
-                <div className="h-[124px] w-28 shrink-0 rounded-[10px]" style={{ backgroundColor: restaurant.imageColor }} />
+                <div className="h-[124px] w-28 shrink-0 rounded-[10px]" style={mediaStyle(restaurant.imageUrl, restaurant.imageColor)} />
                 <div className="ml-4 min-w-0 self-start pt-2"><h3 className="truncate text-[15px] font-bold">{restaurant.name}</h3><p className="mt-[11px] truncate text-[11px] text-[#6b6b63]">{restaurant.location} • {restaurant.cuisine}</p><p className="mt-[13px] text-xs font-semibold text-brand">★ {restaurant.rating}</p><p className="mt-[11px] text-[11px] font-semibold">LKR {money(restaurant.priceMin)}–{money(restaurant.priceMax)}</p></div>
               </Link>
             ))}

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { api } from "@/lib/api";
+import { mediaStyle } from "@/lib/media";
 import type { Restaurant } from "@/lib/types";
 import { MobileNavigation, PageMessage, SiteFooter, SiteHeader } from "@/components/site-shell";
 
@@ -189,7 +190,7 @@ function Check({ label, checked, set }: { label: string; checked: boolean; set: 
 function RestaurantResult({ restaurant }: { restaurant: Restaurant }) {
   return (
     <article className="flex min-h-[160px] min-w-0 flex-col rounded-xl border border-soft-border p-3 lg:min-h-[210px] lg:flex-row lg:p-[15px]">
-      <div className="h-36 w-full shrink-0 rounded-[9px] lg:h-[178px] lg:w-[250px]" style={{ backgroundColor: restaurant.imageColor || "#332417" }} />
+      <div className="h-36 w-full shrink-0 rounded-[9px] lg:h-[178px] lg:w-[250px]" style={mediaStyle(restaurant.imageUrl, restaurant.imageColor || "#332417")} />
       <div className="flex min-w-0 flex-1 flex-col pt-4 lg:px-6 lg:py-0">
         <h3 className="break-words text-xl font-bold lg:text-[21px]">{restaurant.name}</h3>
         <p className="mt-2 text-[13px] font-semibold text-brand">★ {restaurant.rating} <span className="font-normal">({restaurant.reviewCount} reviews)</span></p>

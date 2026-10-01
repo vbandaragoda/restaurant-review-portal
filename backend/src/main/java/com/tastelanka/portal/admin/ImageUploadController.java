@@ -40,7 +40,7 @@ public class ImageUploadController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Select an image to upload");
         }
         if (file.getSize() > MAX_IMAGE_BYTES) {
-            throw new ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE, "Image must be 5 MB or smaller");
+            throw new ResponseStatusException(HttpStatus.CONTENT_TOO_LARGE, "Image must be 5 MB or smaller");
         }
         String extension = EXTENSIONS.get(file.getContentType());
         if (extension == null) {

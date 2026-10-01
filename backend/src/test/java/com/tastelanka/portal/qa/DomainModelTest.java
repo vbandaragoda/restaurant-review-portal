@@ -57,9 +57,12 @@ class DomainModelTest {
     void reviewModeration() {
         Review review = new Review(new User("A", "a@b.test", "h", "en"), restaurant(), null, 5, 4, 5, "en", "Great");
         assertThat(review.getStatus()).isEqualTo(ReviewStatus.PENDING);
-        review.moderate(ReviewStatus.APPROVED, "ok");
+        User moderator = new User("Moderator", "moderator@b.test", "h", "en");
+        review.moderate(ReviewStatus.APPROVED, "ok", moderator);
         assertThat(review.getStatus()).isEqualTo(ReviewStatus.APPROVED);
         assertThat(review.getModeratorNote()).isEqualTo("ok");
+        assertThat(review.getModeratedBy()).isEqualTo(moderator);
+        assertThat(review.getModeratedAt()).isNotNull();
         assertThat(review.getCreatedAt()).isNotNull();
     }
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
+import { mediaStyle } from "@/lib/media";
 import { getSession } from "@/lib/session";
 import type { Dish, Restaurant, Review } from "@/lib/types";
 import { MobileNavigation, PageMessage, SiteFooter, SiteHeader } from "@/components/site-shell";
@@ -45,9 +46,9 @@ export function RestaurantDetails({ slug }: { slug: string }) {
   return (
     <div className="min-h-screen bg-white pb-20 md:pb-0">
       <SiteHeader active="restaurants" />
-      <section className="relative flex h-[320px] flex-col justify-end gap-5 bg-[#332417] px-5 pb-8 text-white sm:flex-row sm:items-end sm:justify-start md:h-[360px] md:px-16 md:pb-16" style={{ backgroundColor: restaurant.imageColor }}>
-        <div><h1 className="text-[30px] font-bold md:text-[38px]">{restaurant.name}</h1><p className="mt-2 text-sm md:text-[15px]">{restaurant.cuisine} • {restaurant.location}</p><p className="mt-3 text-[15px] font-semibold text-[#ffbf33]">★ {restaurant.rating} &nbsp; {restaurant.reviewCount} reviews</p></div>
-        <div className="flex gap-2 sm:ml-auto">
+      <section className="relative flex h-[320px] flex-col justify-end gap-5 overflow-hidden bg-[#332417] px-5 pb-8 text-white before:pointer-events-none before:absolute before:inset-0 before:bg-black/45 sm:flex-row sm:items-end sm:justify-start md:h-[360px] md:px-16 md:pb-16" style={mediaStyle(restaurant.imageUrl, restaurant.imageColor)}>
+        <div className="relative"><h1 className="text-[30px] font-bold md:text-[38px]">{restaurant.name}</h1><p className="mt-2 text-sm md:text-[15px]">{restaurant.cuisine} • {restaurant.location}</p><p className="mt-3 text-[15px] font-semibold text-[#ffbf33]">★ {restaurant.rating} &nbsp; {restaurant.reviewCount} reviews</p></div>
+        <div className="relative flex gap-2 sm:ml-auto">
           <button onClick={saveRestaurant} disabled={saved} aria-pressed={saved} className="rounded-lg border border-white/50 px-4 py-3 text-xs font-semibold disabled:cursor-default disabled:bg-white/15" type="button">{saved ? "Saved" : "Save"}</button>
           <Link href={`/reviews/new?restaurant=${restaurant.slug}`} className="rounded-lg bg-brand px-5 py-3 text-xs font-semibold">Write a Review</Link>
         </div>
@@ -85,7 +86,7 @@ function Tag({ children }: { children: React.ReactNode }) {
 
 function DishCard({ dish }: { dish: Dish }) {
   return <article className="flex min-h-[180px] rounded-xl border border-soft-border p-[15px] md:h-[210px]">
-    <div className="w-[120px] shrink-0 rounded-[10px] md:w-[190px]" style={{ backgroundColor: dish.imageColor }} />
+    <div className="w-[120px] shrink-0 rounded-[10px] md:w-[190px]" style={mediaStyle(dish.imageUrl, dish.imageColor)} />
     <div className="flex min-w-0 flex-1 flex-col pl-4 md:pl-6"><h3 className="text-lg font-bold md:text-[19px]">{dish.name}</h3><p className="mt-2 text-sm font-semibold text-brand">LKR {money(dish.price)}</p><div className="mt-5 flex flex-wrap gap-2"><Tag>{dish.spiceLevel}</Tag>{dish.halal && <Tag>Halal</Tag>}{dish.vegetarian && <Tag>Vegetarian</Tag>}</div><p className="mt-3 hidden text-xs text-muted sm:block">View dish details and customer ratings</p><Link className="mt-auto self-end rounded-lg border border-soft-border px-5 py-3 text-xs font-semibold" href={`/dishes/${dish.slug}`}>View Dish</Link></div>
   </article>;
 }

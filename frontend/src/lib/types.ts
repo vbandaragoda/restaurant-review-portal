@@ -13,6 +13,7 @@ export type Restaurant = {
   halal: boolean;
   description?: string;
   imageColor: string;
+  imageUrl?: string;
 };
 
 export type Dish = {
@@ -25,6 +26,7 @@ export type Dish = {
   vegetarian: boolean;
   halal: boolean;
   imageColor: string;
+  imageUrl?: string;
   rating: number;
   foodRating: number;
   serviceRating: number;
