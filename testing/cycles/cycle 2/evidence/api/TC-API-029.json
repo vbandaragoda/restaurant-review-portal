@@ -1,0 +1,33 @@
+{
+  "testId": "TC-API-029",
+  "title": "Unsupported method PUT /health",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:02+05:30",
+  "request": {
+    "method": "PUT",
+    "url": "http://localhost:8080/api/v1/health",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {}
+  },
+  "response": {
+    "status": 405,
+    "elapsedMs": 12.9,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "HTTP method is not supported for this endpoint",
+      "instance": "/api/v1/health",
+      "status": 405,
+      "title": "Method Not Allowed"
+    }
+  },
+  "expected": "HTTP 405",
+  "actual": "HTTP 405",
+  "verdict": "PASS"
+}

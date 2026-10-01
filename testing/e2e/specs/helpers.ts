@@ -2,7 +2,8 @@ import { expect, Page } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 
-export const EVIDENCE = path.resolve(__dirname, "../../evidence");
+if (!process.env.QA_OUT) throw new Error("Set QA_OUT to the cycle folder (e.g. testing/cycles/cycle 2)");
+export const EVIDENCE = path.resolve(process.env.QA_OUT, "evidence");
 export const API = "http://localhost:8080/api/v1";
 export const PASSWORD = "QaUser#2026pw"; // test value used for accounts created by QA
 export const RUN = process.env.QA_RUN as string;
@@ -24,15 +25,17 @@ export async function signup(page: Page, name: string, email: string) {
   await page.goto("/signup");
   await page.getByLabel("Full name").fill(name);
   await page.getByLabel("Email").fill(email);
-  await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
-  await page.getByLabel("Confirm password").fill(PASSWORD);
+  // Cycle 2 maintenance: password fields gained a Show/Hide toggle (eed62c2), so getByLabel('Password') now matches 2 elements.
+  await page.getByRole("textbox", { name: /^Password/ }).fill(PASSWORD);
+  await page.getByRole("textbox", { name: /^Confirm password/ }).fill(PASSWORD);
   await page.getByRole("button", { name: "Create Account" }).click();
 }
 
 export async function login(page: Page, email: string, password = PASSWORD) {
   await page.goto("/login");
   await page.getByLabel("Email").fill(email);
-  await page.getByLabel("Password").fill(password);
+  // Cycle 2 maintenance: password fields gained a Show/Hide toggle (eed62c2), so getByLabel('Password') now matches 2 elements.
+  await page.getByRole("textbox", { name: /^Password/ }).fill(password);
   await page.getByRole("button", { name: "Log In" }).click();
 }
 

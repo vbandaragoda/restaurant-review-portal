@@ -1,0 +1,36 @@
+{
+  "testId": "TC-API-041",
+  "title": "Wrong password returns 401 with problem detail",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/login",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "qa.usera.112400@tastelanka.test",
+      "password": "<redacted test password, length 11>"
+    }
+  },
+  "response": {
+    "status": 401,
+    "elapsedMs": 114.6,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Invalid email or password",
+      "instance": "/api/v1/auth/login",
+      "status": 401,
+      "title": "Unauthorized"
+    }
+  },
+  "expected": "HTTP 401",
+  "actual": "HTTP 401; Content-Type=application/problem+json; detail='Invalid email or password'",
+  "verdict": "PASS"
+}

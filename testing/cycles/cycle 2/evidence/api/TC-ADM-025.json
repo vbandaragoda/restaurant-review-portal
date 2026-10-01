@@ -1,0 +1,44 @@
+{
+  "testId": "TC-ADM-025",
+  "title": "Create dish with negative price",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:04+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/admin/dishes",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "qa-rest-112400",
+      "slug": "qa-dish4-112400",
+      "name": "QA Hoppers",
+      "description": "Egg hoppers.",
+      "price": -1,
+      "spiceLevel": "Mild",
+      "vegetarian": true,
+      "halal": true,
+      "imageColor": "#aa5500"
+    }
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 11.7,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "price: must be greater than or equal to 0",
+      "instance": "/api/v1/admin/dishes",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 400",
+  "verdict": "PASS"
+}

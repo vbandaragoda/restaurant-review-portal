@@ -1,0 +1,76 @@
+{
+  "testId": "TC-API-032",
+  "title": "Combined maxPrice=5000 & vegan=true",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants?maxPrice=5000&vegan=true",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 30.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "957"
+    },
+    "body": [
+      {
+        "id": 2,
+        "slug": "the-empire-cafe",
+        "name": "The Empire Cafe",
+        "cuisine": "Cafe · International",
+        "location": "Kandy",
+        "rating": 4.6,
+        "reviewCount": 220,
+        "priceMin": 2000,
+        "priceMax": 4000,
+        "vegetarian": true,
+        "vegan": true,
+        "halal": true,
+        "description": "Casual dining with local and international favourites.",
+        "imageColor": "#38592e"
+      },
+      {
+        "id": 4,
+        "slug": "nuga-gama",
+        "name": "Nuga Gama",
+        "cuisine": "Sri Lankan · Authentic",
+        "location": "Colombo",
+        "rating": 4.4,
+        "reviewCount": 152,
+        "priceMin": 3000,
+        "priceMax": 5000,
+        "vegetarian": true,
+        "vegan": true,
+        "halal": true,
+        "description": "Traditional Sri Lankan dining with local cuisine options.",
+        "imageColor": "#662e1a"
+      },
+      {
+        "id": 5,
+        "slug": "green-leaf-kitchen",
+        "name": "Green Leaf Kitchen",
+        "cuisine": "Sri Lankan · Vegetarian",
+        "location": "Kandy",
+        "rating": 4.3,
+        "reviewCount": 96,
+        "priceMin": 1500,
+        "priceMax": 3000,
+        "vegetarian": true,
+        "vegan": true,
+        "halal": true,
+        "description": "Vegetarian-friendly local dishes with mild and medium spice options.",
+        "imageColor": "#597a40"
+      }
+    ]
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; slugs=['green-leaf-kitchen', 'nuga-gama', 'the-empire-cafe']",
+  "verdict": "PASS"
+}

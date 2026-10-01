@@ -1,0 +1,2 @@
+email	role
+qa.mod.112400@tastelanka.test	MODERATOR

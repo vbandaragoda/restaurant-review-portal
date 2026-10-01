@@ -1,0 +1,49 @@
+{
+  "testId": "TC-REV-005",
+  "title": "Review with ratings 1/1/1 (lower boundary)",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:02+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "nuga-gama",
+      "foodRating": 1,
+      "serviceRating": 1,
+      "overallRating": 1,
+      "language": "en",
+      "reviewText": "QA boundary review – minimum ratings."
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 24.7,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "273"
+    },
+    "body": {
+      "id": 2,
+      "author": "QA User A",
+      "restaurantSlug": "nuga-gama",
+      "restaurantName": "Nuga Gama",
+      "foodRating": 1,
+      "serviceRating": 1,
+      "overallRating": 1,
+      "language": "en",
+      "reviewText": "QA boundary review – minimum ratings.",
+      "status": "PENDING",
+      "createdAt": "2026-10-01T05:54:02.979631100Z"
+    }
+  },
+  "expected": "HTTP 201",
+  "actual": "HTTP 201",
+  "verdict": "PASS"
+}

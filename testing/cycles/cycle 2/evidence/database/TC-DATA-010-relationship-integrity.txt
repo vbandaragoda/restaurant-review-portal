@@ -1,0 +1,43 @@
++------------------------------------------------+---+
+| chk                                            | n |
++------------------------------------------------+---+
+| reviews without user                           | 0 |
+| reviews without restaurant                     | 0 |
+| reviews whose dish belongs to other restaurant | 0 |
+| dishes without restaurant                      | 0 |
+| saved rows without user/restaurant             | 0 |
+| duplicate saved rows                           | 0 |
+| ratings outside 1-5                            | 0 |
+| restaurants priceMin>priceMax                  | 0 |
+| moderated reviews missing moderator/time       | 0 |
+| rejected reviews without reason                | 0 |
++------------------------------------------------+---+
++----+----------+--------------------+--------------------------+----------------------------+
+| id | status   | moderator_note     | moderated_by             | moderated_at               |
++----+----------+--------------------+--------------------------+----------------------------+
+|  1 | APPROVED | QA approved        | qa.admin@tastelanka.test | 2026-10-01 05:54:03.525497 |
+|  4 | APPROVED | NULL               | qa.admin@tastelanka.test | 2026-10-01 05:54:03.785760 |
+|  5 | APPROVED | NULL               | qa.admin@tastelanka.test | 2026-10-01 05:54:03.836851 |
+|  6 | REJECTED | QA rejected        | qa.admin@tastelanka.test | 2026-10-01 05:54:03.586565 |
+|  7 | APPROVED | NULL               | qa.admin@tastelanka.test | 2026-10-01 05:54:03.901276 |
+|  9 | REJECTED | Duplicate content  | qa.admin@tastelanka.test | 2026-10-01 05:54:19.562503 |
+| 11 | REJECTED | Re-moderated by QA | qa.admin@tastelanka.test | 2026-10-01 05:54:19.797333 |
++----+----------+--------------------+--------------------------+----------------------------+
++--------------------+--------+--------------+------------------------+
+| slug               | rating | review_count | approved_reviews_in_db |
++--------------------+--------+--------------+------------------------+
+| ministry-of-crab   |    4.8 |          322 |                      2 |
+| the-empire-cafe    |    4.6 |          220 |                      0 |
+| pedlars-inn        |    4.5 |          490 |                      0 |
+| nuga-gama          |    4.4 |          152 |                      2 |
+| green-leaf-kitchen |    4.3 |           96 |                      0 |
+| qa-rest2-112400    |    0.0 |            0 |                      0 |
+| qa-agg-112400c2    |    0.0 |            0 |                      0 |
+| qa-persist-112400  |    0.0 |            0 |                      0 |
++--------------------+--------+--------------+------------------------+
++---------------------------------+-------------+----------+
+| email                           | hash_prefix | hash_len |
++---------------------------------+-------------+----------+
+| qa.admin@tastelanka.test        | $2a$10$     |       60 |
+| qa.usera.112400@tastelanka.test | $2a$10$     |       60 |
++---------------------------------+-------------+----------+

@@ -1,0 +1,96 @@
+{
+  "testId": "TC-API-025",
+  "title": "Dishes for a restaurant",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:02+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/dishes?restaurant=ministry-of-crab",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 79.4,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "1404"
+    },
+    "body": [
+      {
+        "id": 1,
+        "slug": "chilli-crab",
+        "name": "Chilli Crab",
+        "description": "Signature Sri Lankan crab dish with a spicy chilli sauce.",
+        "price": 9500,
+        "spiceLevel": "Hot",
+        "vegetarian": false,
+        "halal": true,
+        "imageColor": "#bd471f",
+        "rating": 4.9,
+        "foodRating": 4.9,
+        "serviceRating": 4.6,
+        "reviewCount": 142,
+        "restaurantSlug": "ministry-of-crab",
+        "restaurantName": "Ministry of Crab"
+      },
+      {
+        "id": 2,
+        "slug": "garlic-prawn-rice",
+        "name": "Garlic Prawn Rice",
+        "description": "Fragrant rice served with garlic prawns.",
+        "price": 4500,
+        "spiceLevel": "Medium",
+        "vegetarian": false,
+        "halal": true,
+        "imageColor": "#d19c42",
+        "rating": 4.7,
+        "foodRating": 4.8,
+        "serviceRating": 4.5,
+        "reviewCount": 88,
+        "restaurantSlug": "ministry-of-crab",
+        "restaurantName": "Ministry of Crab"
+      },
+      {
+        "id": 4,
+        "slug": "seafood-kottu",
+        "name": "Seafood Kottu",
+        "description": "Sri Lankan kottu prepared with fresh seafood.",
+        "price": 3800,
+        "spiceLevel": "Hot",
+        "vegetarian": false,
+        "halal": true,
+        "imageColor": "#734d2e",
+        "rating": 4.6,
+        "foodRating": 4.7,
+        "serviceRating": 4.4,
+        "reviewCount": 74,
+        "restaurantSlug": "ministry-of-crab",
+        "restaurantName": "Ministry of Crab"
+      },
+      {
+        "id": 3,
+        "slug": "vegetable-fried-rice",
+        "name": "Vegetable Fried Rice",
+        "description": "Vegetarian fried rice with seasonal vegetables.",
+        "price": 2200,
+        "spiceLevel": "Mild",
+        "vegetarian": true,
+        "halal": true,
+        "imageColor": "#598c40",
+        "rating": 4.5,
+        "foodRating": 4.6,
+        "serviceRating": 4.4,
+        "reviewCount": 61,
+        "restaurantSlug": "ministry-of-crab",
+        "restaurantName": "Ministry of Crab"
+      }
+    ]
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; count=4",
+  "verdict": "PASS"
+}

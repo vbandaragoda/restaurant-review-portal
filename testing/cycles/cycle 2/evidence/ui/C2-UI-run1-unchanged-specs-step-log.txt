@@ -1,0 +1,17 @@
+2026-10-01T05:59:16.485Z	BB-06	listing shows 8 restaurants
+2026-10-01T05:59:25.628Z	BB-08b	all=8; Galle filter=2
+2026-10-01T05:59:27.334Z	BB-08b	after Clear all (no Apply clicked) results text: 8 restaurants found
+2026-10-01T05:59:29.872Z	BB-08c	cuisine=Seafood listing shows: Ministry of Crab
+2026-10-01T05:59:31.062Z	BB-08d	price filter controls found: 3
+2026-10-01T06:00:06.335Z	TC-SEC-031	dialogs fired=0; injected elements=0
+2026-10-01T06:00:07.528Z	TC-UI-011	home card: "★ 4.6 (220 reviews)The Empire CafeCafe · International⌖  KandyLKR 2,000 – 4,000"; API reviewCount=220
+2026-10-01T06:02:16.715Z	BB-18-mobile	home: horizontal overflow=0px; restaurants: horizontal overflow=0px; restaurant-details: horizontal overflow=0px; dish-details: horizontal overflow=0px; login: horizontal overflow=0px; signup: horizontal overflow=0px
+2026-10-01T06:02:25.434Z	BB-18-tablet	home: horizontal overflow=0px; restaurants: horizontal overflow=0px; restaurant-details: horizontal overflow=0px; dish-details: horizontal overflow=0px; login: horizontal overflow=0px; signup: horizontal overflow=0px
+2026-10-01T06:02:34.348Z	BB-18-desktop	home: horizontal overflow=0px; restaurants: horizontal overflow=0px; restaurant-details: horizontal overflow=0px; dish-details: horizontal overflow=0px; login: horizontal overflow=0px; signup: horizontal overflow=0px
+2026-10-01T06:02:37.515Z	BB-18c	mobile visible filter checkboxes=0; Apply Filters visible=false
+2026-10-01T06:02:59.552Z	BB-20b	tab order: A::TasteLanka | INPUT:email:you@example.com | INPUT:password:•••••••• | BUTTON:button:Show | A::Forgot password? | BUTTON:submit:Log In
+2026-10-01T06:03:01.962Z	BB-20c	focused email input: rgb(196, 59, 0)|none|none; focused Log In button: auto|1px|none
+2026-10-01T06:03:06.745Z	BB-20e	unlabeled controls on /restaurants: none
+2026-10-01T06:03:08.611Z	BB-19a	font-family=Inter, "Inter Fallback", "Noto Sans Sinhala", "Noto Sans Sinhala Fallback", "Noto Sans Tamil", "Noto Sans Tamil Fallback", sans-serif; loaded fonts=Inter, Inter Fallback, Noto Sans Sinhala, Noto Sans Sinhala Fallback, Noto Sans Tamil, Noto Sans Tamil Fallback
+2026-10-01T06:03:13.619Z	BB-19c	language switch controls on home page=0; <html lang>=en
+2026-10-01T06:03:26.242Z	PERF-UI	page,url,domContentLoadedMs,loadMs,contentReadyMs ; home,/,201,271,1278 ; restaurants,/restaurants,159,204,1206 ; restaurant-details,/restaurants/ministry-of-crab,225,286,1294 ; search,/restaurants?q=crab,196,246,1253

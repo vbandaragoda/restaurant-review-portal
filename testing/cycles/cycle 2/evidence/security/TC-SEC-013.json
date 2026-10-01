@@ -1,0 +1,35 @@
+{
+  "testId": "TC-SEC-013",
+  "title": "Customer moderates (self-approves) a review",
+  "category": "security",
+  "executedAt": "2026-10-01T11:24:05+05:30",
+  "request": {
+    "method": "PATCH",
+    "url": "http://localhost:8080/api/v1/admin/reviews/7",
+    "headers": {
+      "Authorization": "Bearer <USER_B token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": "APPROVED"
+    }
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 20.1,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json;charset=ISO-8859-1",
+      "Content-Length": "42"
+    },
+    "body": {
+      "status": 403,
+      "detail": "Access is denied"
+    }
+  },
+  "expected": "HTTP 403",
+  "actual": "HTTP 403",
+  "verdict": "PASS"
+}

@@ -1,0 +1,36 @@
+{
+  "testId": "TC-MOD-006",
+  "title": "Moderate with invalid status 'DELETED'",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:03+05:30",
+  "request": {
+    "method": "PATCH",
+    "url": "http://localhost:8080/api/v1/admin/reviews/1",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": "DELETED"
+    }
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 11.9,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Request body is malformed or contains an invalid value",
+      "instance": "/api/v1/admin/reviews/1",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 400",
+  "verdict": "PASS"
+}

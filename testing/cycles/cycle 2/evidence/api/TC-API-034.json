@@ -1,0 +1,31 @@
+{
+  "testId": "TC-API-034",
+  "title": "Negative maxPrice rejected",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants?maxPrice=-1",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 14.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Maximum price must not be negative",
+      "instance": "/api/v1/restaurants",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 400; Content-Type=application/problem+json; detail='Maximum price must not be negative'",
+  "verdict": "PASS"
+}

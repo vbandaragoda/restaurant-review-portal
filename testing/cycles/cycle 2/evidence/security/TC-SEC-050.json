@@ -1,0 +1,28 @@
+{
+  "testId": "TC-SEC-050",
+  "title": "CORS preflight from untrusted origin",
+  "category": "security",
+  "executedAt": "2026-10-01T11:24:05+05:30",
+  "request": {
+    "method": "OPTIONS",
+    "url": "http://localhost:8080/api/v1/users/me",
+    "headers": {
+      "Origin": "https://evil.example",
+      "Access-Control-Request-Method": "GET"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 29.4,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY"
+    },
+    "body": "Invalid CORS request"
+  },
+  "expected": "Preflight rejected; no Access-Control-Allow-Origin for untrusted origin",
+  "actual": "HTTP 403; ACAO=None",
+  "verdict": "PASS"
+}

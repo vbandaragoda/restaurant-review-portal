@@ -1,0 +1,121 @@
+{
+  "tot": 296,
+  "p": 284,
+  "f": 1,
+  "ne": 10,
+  "na": 1,
+  "b": 0,
+  "rate": 99.6,
+  "levels": {
+    "API/Security/Data (system)": [
+      183,
+      183,
+      0,
+      0,
+      0
+    ],
+    "JUnit integration": [
+      29,
+      29,
+      0,
+      0,
+      0
+    ],
+    "JUnit unit": [
+      24,
+      23,
+      0,
+      0,
+      1
+    ],
+    "Baseline black-box (UI/E2E)": [
+      20,
+      20,
+      0,
+      0,
+      0
+    ],
+    "Dry run (E2E)": [
+      7,
+      7,
+      0,
+      0,
+      0
+    ],
+    "Performance (UI)": [
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    "UI/E2E": [
+      18,
+      18,
+      0,
+      0,
+      0
+    ],
+    "Existing automated/static": [
+      4,
+      3,
+      1,
+      0,
+      0
+    ],
+    "Usability (participant)": [
+      10,
+      0,
+      0,
+      10,
+      0
+    ]
+  },
+  "regression": {
+    "FAIL\u2192PASS": 91,
+    "PASS\u2192FAIL": 0,
+    "unchanged PASS": 155,
+    "unchanged FAIL": 0,
+    "new": 39,
+    "other": 11
+  },
+  "retest_pass": 21,
+  "retest_total": 21,
+  "def_status": {
+    "Open": 0,
+    "Reopened": 0,
+    "Fixed": 1,
+    "Closed": 20,
+    "Deferred": 0
+  },
+  "sev": {
+    "Critical": 1,
+    "High": 2,
+    "Medium": 14,
+    "Low": 4
+  },
+  "open_sev": {
+    "Critical": 0,
+    "High": 0,
+    "Medium": 1,
+    "Low": 0
+  },
+  "cov": {
+    "Covered": 22,
+    "Partially Covered": 3,
+    "Not Covered": 0,
+    "Not Implemented": 2,
+    "Not Evidenced": 1
+  },
+  "bb": {
+    "PASS": 20,
+    "FAIL": 0
+  },
+  "dr": {
+    "PASS": 7,
+    "FAIL": 0
+  },
+  "evid": 355,
+  "setup": 26,
+  "info": 4
+}

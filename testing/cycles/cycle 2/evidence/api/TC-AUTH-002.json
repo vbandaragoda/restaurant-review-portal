@@ -1,0 +1,37 @@
+{
+  "testId": "TC-AUTH-002",
+  "title": "Register duplicate email (different case)",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:00+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/register",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "fullName": "Dup",
+      "email": "QA.USERA.112400@TASTELANKA.TEST",
+      "password": "<redacted test password, length 13>"
+    }
+  },
+  "response": {
+    "status": 409,
+    "elapsedMs": 34.6,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "An account already exists for this email",
+      "instance": "/api/v1/auth/register",
+      "status": 409,
+      "title": "Conflict"
+    }
+  },
+  "expected": "HTTP 409 Conflict (email already registered)",
+  "actual": "HTTP 409",
+  "verdict": "PASS"
+}

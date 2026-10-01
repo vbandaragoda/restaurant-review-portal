@@ -1,0 +1,36 @@
+{
+  "testId": "TC-AUTH-015",
+  "title": "Login with unregistered email",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:01+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/login",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "qa.nobody.112400@tastelanka.test",
+      "password": "<redacted test password, length 13>"
+    }
+  },
+  "response": {
+    "status": 401,
+    "elapsedMs": 20.3,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Invalid email or password",
+      "instance": "/api/v1/auth/login",
+      "status": 401,
+      "title": "Unauthorized"
+    }
+  },
+  "expected": "HTTP 401",
+  "actual": "HTTP 401",
+  "verdict": "PASS"
+}

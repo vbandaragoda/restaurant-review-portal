@@ -1,0 +1,38 @@
+{
+  "testId": "TC-ADM-005",
+  "title": "Create restaurant missing name/cuisine/location",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:04+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/admin/restaurants",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "slug": "qa-missing-112400",
+      "priceMin": 1,
+      "priceMax": 2
+    }
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 16.4,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Request body is malformed or contains an invalid value",
+      "instance": "/api/v1/admin/restaurants",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 400",
+  "verdict": "PASS"
+}

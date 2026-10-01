@@ -1,0 +1,39 @@
+{
+  "testId": "TC-REV-002",
+  "title": "Submit review without authentication",
+  "category": "security",
+  "executedAt": "2026-10-01T11:24:02+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "nuga-gama",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "QA review: tasty rice and curry, friendly staff."
+    }
+  },
+  "response": {
+    "status": 401,
+    "elapsedMs": 13.2,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json;charset=ISO-8859-1",
+      "Content-Length": "52"
+    },
+    "body": {
+      "status": 401,
+      "detail": "Authentication is required"
+    }
+  },
+  "expected": "HTTP 401 Unauthorized",
+  "actual": "HTTP 401",
+  "verdict": "PASS"
+}

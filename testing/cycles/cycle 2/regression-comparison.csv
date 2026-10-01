@@ -1,0 +1,297 @@
+﻿Test ID,Level/Type,Cycle 1,Cycle 2,Change,Defect ID,Evidence
+TC-AUTH-001,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-AUTH-001.json
+TC-AUTH-002,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-AUTH-002.json
+TC-AUTH-003,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-AUTH-003.json
+TC-AUTH-004,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-AUTH-004.json
+TC-AUTH-005,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-AUTH-005.json
+TC-AUTH-006,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-AUTH-006.json
+TC-AUTH-007,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-AUTH-007.json
+TC-AUTH-008,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-AUTH-008.json
+TC-AUTH-009,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-AUTH-009.json
+TC-AUTH-010,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-AUTH-010.json
+TC-AUTH-011,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-AUTH-011.json
+TC-AUTH-012,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-AUTH-012.json
+TC-AUTH-013,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-AUTH-013.json
+TC-AUTH-014,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-AUTH-014.json
+TC-AUTH-015,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-AUTH-015.json
+TC-AUTH-016,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-AUTH-016.json
+TC-AUTH-017,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-AUTH-017.json
+TC-AUTH-018,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-AUTH-018.json
+TC-AUTH-019,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-AUTH-019.json
+TC-AUTH-020,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-AUTH-020.json
+TC-API-001,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-001.json
+TC-API-010,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-010.json
+TC-API-011,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-011.json
+TC-API-012,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-012.json
+TC-API-013,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-013.json
+TC-API-014,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-014.json
+TC-API-015,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-015.json
+TC-API-016,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-016.json
+TC-API-017,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-017.json
+TC-API-018,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-018.json
+TC-API-019,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-019.json
+TC-API-020,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-020.json
+TC-API-021,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-API-021.json
+TC-API-022,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-022.json
+TC-API-023,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-023.json
+TC-API-024,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-API-024.json
+TC-API-025,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-025.json
+TC-API-026,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-API-026.json
+TC-API-027,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-API-027.json
+TC-API-028,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-API-028.json
+TC-API-029,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-API-029.json
+TC-REV-001,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-REV-001.json
+TC-REV-002,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-REV-002.json
+TC-REV-003,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-REV-003.json
+TC-REV-004,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-REV-004.json
+TC-REV-005,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-REV-005.json
+TC-REV-006,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-REV-006.json
+TC-REV-007,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-REV-007.json
+TC-REV-008,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-REV-008.json
+TC-REV-009,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-REV-009.json
+TC-REV-010,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-REV-010.json
+TC-REV-011,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-REV-011.json
+TC-REV-012,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-REV-012.json
+TC-REV-013,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-REV-013.json
+TC-REV-014,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-REV-014.json
+TC-REV-015,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-REV-015.json
+TC-REV-016,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-REV-016.json
+TC-SEC-020,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-020.json
+TC-SEC-030,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-030.json
+TC-REV-017,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-REV-017.json
+TC-REV-018,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-REV-018.json
+TC-REV-019,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-REV-019.json
+TC-REV-020,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-REV-020.json
+TC-MOD-001,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-MOD-001.json
+TC-MOD-002,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-MOD-002.json
+TC-MOD-003,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-MOD-003.json
+TC-MOD-004,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-MOD-004.json
+TC-MOD-005,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-MOD-005.json
+TC-MOD-006,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-MOD-006.json
+TC-MOD-007,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-MOD-007.json
+TC-MOD-008,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-MOD-008.json
+TC-MOD-009,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-MOD-009.json
+TC-MOD-010,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-MOD-010.json
+TC-MOD-011,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-MOD-011.json
+TC-MOD-012,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-MOD-012.json
+TC-MOD-013,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-MOD-013.json
+TC-MOD-014,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-MOD-014.json
+TC-SAV-001,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-SAV-001.json
+TC-SAV-002,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-SAV-002.json
+TC-SAV-003,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-SAV-003.json
+TC-SAV-004,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-SAV-004.json
+TC-SAV-005,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-SAV-005.json
+TC-SEC-040,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-040.json
+TC-SEC-041,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-041.json
+TC-SEC-042,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-042.json
+TC-SEC-043,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-043.json
+TC-SAV-006,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-SAV-006.json
+TC-SAV-007,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-SAV-007.json
+TC-ADM-000,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-ADM-000.json
+TC-ADM-001,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-ADM-001.json
+TC-ADM-002,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-ADM-002.json
+TC-ADM-003,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-003.json
+TC-ADM-004,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-004.json
+TC-ADM-005,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-005.json
+TC-ADM-006,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-006.json
+TC-ADM-007,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-007.json
+TC-ADM-008,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-008.json
+TC-ADM-009,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-ADM-009.json
+TC-ADM-010,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-ADM-010.json
+TC-ADM-011,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-011.json
+TC-ADM-012,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-012.json
+TC-ADM-013,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-013.json
+TC-ADM-014,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-014.json
+TC-ADM-015,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-015.json
+TC-ADM-020,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-ADM-020.json
+TC-ADM-021,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-ADM-021.json
+TC-ADM-022,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-022.json
+TC-ADM-023,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-023.json
+TC-ADM-024,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-024.json
+TC-ADM-025,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-025.json
+TC-ADM-026,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-ADM-026.json
+TC-ADM-027,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-ADM-027.json
+TC-ADM-028,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-028.json
+TC-ADM-029,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-029.json
+TC-ADM-030,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-030.json
+TC-ADM-031,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-ADM-031.json
+TC-ADM-032,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-032.json
+TC-ADM-033,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-033.json
+TC-ADM-034,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/api/TC-ADM-034.json
+TC-ADM-035,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-035.json
+TC-ADM-036,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-036.json
+TC-ADM-037,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/api/TC-ADM-037.json
+TC-SEC-001,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-SEC-001.json
+TC-SEC-002,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-SEC-002.json
+TC-SEC-003,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-SEC-003.json
+TC-SEC-004,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-SEC-004.json
+TC-SEC-005,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-SEC-005.json
+TC-SEC-010,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-010.json
+TC-SEC-011,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-011.json
+TC-SEC-012,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-012.json
+TC-SEC-013,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-013.json
+TC-SEC-014,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-014.json
+TC-SEC-015,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-015.json
+TC-SEC-016,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-SEC-016.json
+TC-SEC-017,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-SEC-017.json
+TC-SEC-021,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-021.json
+TC-SEC-022,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-022.json
+TC-SEC-023,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-SEC-023.json
+TC-SEC-024,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-SEC-024.json
+TC-SEC-025,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-025.json
+TC-SEC-026,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/security/TC-SEC-026.json
+TC-SEC-027,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-027.json
+TC-SEC-050,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-050.json
+TC-SEC-051,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-051.json
+TC-API-040,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-API-040.json
+TC-API-041,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-API-041.json
+TC-API-042,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-API-042.json
+TC-API-043,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-API-043.json
+TC-API-044,API/Security/Data (system),NEW,PASS,new,,evidence/security/TC-API-044.json
+TC-API-045,API/Security/Data (system),NEW,PASS,new,,evidence/security/TC-API-045.json
+TC-API-046,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-API-046.json
+TC-API-030,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-API-030.json
+TC-API-031,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-API-031.json
+TC-API-032,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-API-032.json
+TC-API-033,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-API-033.json
+TC-API-034,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-API-034.json
+TC-API-035,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-API-035.json
+TC-MOD-015,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-MOD-015.json
+TC-MOD-016,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-MOD-016.json
+TC-MOD-017,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-MOD-017.json
+TC-MOD-018,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-MOD-018.json
+TC-MOD-019,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-MOD-019.json
+TC-MOD-020,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-MOD-020.json
+TC-MOD-021,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-MOD-021.json
+TC-REV-022,API/Security/Data (system),NEW,PASS,new,,evidence/security/TC-REV-022.json
+TC-REV-023,API/Security/Data (system),NEW,PASS,new,,evidence/security/TC-REV-023.json
+TC-REV-024,API/Security/Data (system),NEW,PASS,new,,evidence/security/TC-REV-024.json
+TC-REV-021,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-REV-021.json
+TC-REV-025,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-REV-025.json
+TC-REV-026,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-REV-026.json
+TC-REV-027,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-REV-027.json
+TC-ADM-038,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-ADM-038.json
+TC-ADM-039,API/Security/Data (system),NEW,PASS,new,,evidence/api/TC-ADM-039.json
+TC-SEC-070,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-070.json
+TC-DATA-001,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/database/TC-DATA-001.json
+TC-DATA-002,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/database/TC-DATA-002.json
+TC-DATA-003,API/Security/Data (system),FAIL,PASS,FAIL→PASS,,evidence/database/TC-DATA-003.json
+TC-DATA-004,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/database/TC-DATA-004.json
+TC-DATA-005,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/database/TC-DATA-005.json
+TC-DATA-006,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/database/TC-DATA-006.json
+TC-DATA-007,API/Security/Data (system),PASS,PASS,unchanged PASS,,evidence/database/TC-DATA-007.json
+AUTO-001,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.BackendApplicationTests.txt
+TC-INT-005,JUnit integration,FAIL,PASS,FAIL→PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-034,JUnit integration,FAIL,PASS,FAIL→PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-006,JUnit integration,FAIL,PASS,FAIL→PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-035,JUnit integration,FAIL,PASS,FAIL→PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-004,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-003,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-033,JUnit integration,FAIL,PASS,FAIL→PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-024,JUnit integration,NEW,PASS,new,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-030,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-025,JUnit integration,NEW,PASS,new,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-001,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-042,JUnit integration,NEW,PASS,new,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-011,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-040,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-010,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-002,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-023,JUnit integration,NEW,PASS,new,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-022,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-026,JUnit integration,NEW,PASS,new,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-021,JUnit integration,FAIL,PASS,FAIL→PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-031,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-020,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-INT-032,JUnit integration,FAIL,PASS,FAIL→PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.ApiIntegrationTest.txt
+TC-UNIT-DOM-003,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.DomainModelTest.txt
+TC-UNIT-DOM-006,JUnit unit,NEW,PASS,new,,evidence/automated/surefire/com.tastelanka.portal.qa.DomainModelTest.txt
+TC-UNIT-DOM-005,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.DomainModelTest.txt
+TC-UNIT-DOM-001,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.DomainModelTest.txt
+TC-UNIT-DOM-002,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.DomainModelTest.txt
+TC-UNIT-DOM-004,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.DomainModelTest.txt
+TC-HTTP-001,JUnit integration,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.HttpErrorContractTest.txt
+TC-HTTP-002,JUnit integration,FAIL,PASS,FAIL→PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.HttpErrorContractTest.txt
+TC-HTTP-003,JUnit integration,FAIL,PASS,FAIL→PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.HttpErrorContractTest.txt
+TC-HTTP-005,JUnit integration,FAIL,PASS,FAIL→PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.HttpErrorContractTest.txt
+TC-HTTP-004,JUnit integration,FAIL,PASS,FAIL→PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.HttpErrorContractTest.txt
+TC-UNIT-JWT-002,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.JwtServiceTest.txt
+TC-UNIT-JWT-003,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.JwtServiceTest.txt
+TC-UNIT-JWT-004,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.JwtServiceTest.txt
+TC-UNIT-JWT-005,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.JwtServiceTest.txt
+TC-UNIT-JWT-006,JUnit unit,NEW,PASS,new,,evidence/automated/surefire/com.tastelanka.portal.qa.JwtServiceTest.txt
+TC-UNIT-JWT-001,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.JwtServiceTest.txt
+TC-UNIT-VAL-009,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+TC-UNIT-VAL-012,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+TC-UNIT-VAL-006,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+TC-UNIT-VAL-002,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+TC-UNIT-VAL-004,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+TC-UNIT-VAL-001,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+TC-UNIT-VAL-008,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+TC-UNIT-VAL-011,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+TC-UNIT-VAL-005,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+TC-UNIT-VAL-003,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+TC-UNIT-VAL-007,JUnit unit,PASS,PASS,unchanged PASS,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+TC-UNIT-VAL-010,JUnit unit,FAIL,NOT APPLICABLE,other,,evidence/automated/surefire/com.tastelanka.portal.qa.RequestValidationTest.txt
+BB-01,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/BB-01-registration-success-profile.png
+BB-02,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/BB-02a-registration-password-mismatch.png
+BB-03,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/BB-03-login-success.png
+BB-04,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/BB-04-login-invalid-password.png
+BB-05,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/BB-05-profile.png
+BB-06,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/BB-06-restaurant-listing.png
+BB-07,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/BB-07-search-crab.png
+BB-08,Baseline black-box (UI/E2E),FAIL,PASS,FAIL→PASS,,evidence/ui/BB-08a-filter-kandy-vegan.png
+BB-09,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/ui-step-log.txt
+BB-10,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/BB-10-review-submitted.png
+BB-11,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/BB-11a-review-too-short.png
+BB-12,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/BB-12-own-reviews-pending.png
+BB-13,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/ui-step-log.txt
+BB-14,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/security/BB-14a-customer-denied-admin-ui.png
+BB-15,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/ui-step-log.txt
+BB-16,Baseline black-box (UI/E2E),PASS,PASS,unchanged PASS,,evidence/ui/ui-step-log.txt
+BB-17,Baseline black-box (UI/E2E),FAIL,PASS,FAIL→PASS,,evidence/database/TC-DATA-002.json
+BB-18,Baseline black-box (UI/E2E),FAIL,PASS,FAIL→PASS,,evidence/ui/responsive/BB-18-desktop-dish-details.png
+BB-19,Baseline black-box (UI/E2E),PASS (partial – UI translation not implemented),PASS (partial – UI translation not implemented),unchanged PASS,,evidence/ui/BB-19a-sinhala-tamil-reviews.png
+BB-20,Baseline black-box (UI/E2E),FAIL,PASS,FAIL→PASS,,evidence/ui/ui-step-log.txt
+DR-01,Dry run (E2E),PASS,PASS,unchanged PASS,,evidence/dry-runs/DR-01-step4-search-filter.png
+DR-02,Dry run (E2E),PASS,PASS,unchanged PASS,,evidence/dry-runs/DR-02-step3-review-submitted.png
+DR-03,Dry run (E2E),PASS,PASS,unchanged PASS,,evidence/dry-runs/DR-03-step4-profile-saved.png
+DR-04,Dry run (E2E),PASS,PASS,unchanged PASS,,evidence/dry-runs/DR-04-step2-dashboard.png
+DR-05,Dry run (E2E),PASS,PASS,unchanged PASS,,evidence/dry-runs/DR-05-step4-dish-updated.png
+DR-06,Dry run (E2E),PASS,PASS,unchanged PASS,,evidence/dry-runs/DR-06-step3-after-moderation.png
+DR-07,Dry run (E2E),PASS,PASS,unchanged PASS,,evidence/dry-runs/DR-07-step2-sinhala-name-profile.png
+PERF-UI,Performance (UI),PASS,PASS,unchanged PASS,,evidence/ui/ui-step-log.txt
+TC-ADM-UI-001,UI/E2E,PASS,PASS,unchanged PASS,,evidence/ui/TC-ADM-UI-001-admin-dashboard.png
+TC-ADM-UI-002,UI/E2E,FAIL,PASS,FAIL→PASS,,evidence/ui/TC-ADM-UI-002-delete-restaurant-with-reviews.png
+TC-ADM-UI-003,UI/E2E,PASS,PASS,unchanged PASS,,evidence/ui/TC-ADM-UI-003-invalid-slug.png
+TC-ADM-UI-004,UI/E2E,FAIL,PASS,FAIL→PASS,,evidence/ui/ui-step-log.txt
+TC-SEC-031,UI/E2E,PASS,PASS,unchanged PASS,,evidence/security/TC-SEC-031-xss-rendered-as-text.png
+TC-UI-001,UI/E2E,PASS,PASS,unchanged PASS,,evidence/ui/TC-UI-001-home-desktop.png
+TC-UI-002,UI/E2E,PASS,PASS,unchanged PASS,,evidence/ui/TC-UI-002-logout-profile-redirect.png
+TC-UI-003,UI/E2E,PASS,PASS,unchanged PASS,,evidence/ui/TC-UI-003-search-no-results.png
+TC-UI-004,UI/E2E,PASS,PASS,unchanged PASS,,evidence/ui/ui-step-log.txt
+TC-UI-005,UI/E2E,PASS,PASS,unchanged PASS,,evidence/ui/TC-UI-005-unknown-restaurant.png
+TC-UI-006,UI/E2E,FAIL,PASS,FAIL→PASS,,evidence/ui/TC-UI-006-review-without-restaurant.png
+TC-UI-007,UI/E2E,PASS,PASS,unchanged PASS,,evidence/ui/ui-step-log.txt
+TC-UI-008,UI/E2E,FAIL,PASS,FAIL→PASS,,evidence/ui/TC-UI-008-saved-state-after-reload.png
+TC-UI-009,UI/E2E,PASS,PASS,unchanged PASS,,evidence/ui/ui-step-log.txt
+TC-UI-010,UI/E2E,PASS,PASS,unchanged PASS,,evidence/ui/ui-step-log.txt
+TC-UI-011,UI/E2E,FAIL,PASS,FAIL→PASS,,evidence/ui/ui-step-log.txt
+TC-UI-012,UI/E2E,PASS,PASS,unchanged PASS,,evidence/ui/ui-step-log.txt
+TC-UI-013,UI/E2E,FAIL,PASS,FAIL→PASS,,evidence/ui/TC-UI-013-home-location-ignored.png
+C2-AUTO-001,Existing automated/static,NEW,FAIL,new,DEF-021,evidence/automated/C2-AUTO-001-backend-test-as-committed.log
+AUTO-002,Existing automated/static,PASS,PASS,unchanged PASS,,evidence/automated/C2-AUTO-frontend-lint.log
+AUTO-003,Existing automated/static,PASS,PASS,unchanged PASS,,evidence/automated/C2-AUTO-frontend-tsc.log
+AUTO-004,Existing automated/static,PASS,PASS,unchanged PASS,,evidence/automated/C2-AUTO-frontend-build.log
+TC-SEC-007,API/Security/Data (system),NEW,PASS,new,,evidence/security/TC-SEC-007-startup-without-jwt-secret.log
+TC-SEC-008,API/Security/Data (system),NEW,PASS,new,,evidence/security/TC-SEC-008-startup-with-placeholder-secret.log
+UT-01,Usability (participant),NOT EXECUTED,NOT EXECUTED,other,,
+UT-02,Usability (participant),NOT EXECUTED,NOT EXECUTED,other,,
+UT-03,Usability (participant),NOT EXECUTED,NOT EXECUTED,other,,
+UT-04,Usability (participant),NOT EXECUTED,NOT EXECUTED,other,,
+UT-05,Usability (participant),NOT EXECUTED,NOT EXECUTED,other,,
+UT-06,Usability (participant),NOT EXECUTED,NOT EXECUTED,other,,
+UT-07,Usability (participant),NOT EXECUTED,NOT EXECUTED,other,,
+UT-08,Usability (participant),NOT EXECUTED,NOT EXECUTED,other,,
+UT-09,Usability (participant),NOT EXECUTED,NOT EXECUTED,other,,
+UT-10,Usability (participant),NOT EXECUTED,NOT EXECUTED,other,,

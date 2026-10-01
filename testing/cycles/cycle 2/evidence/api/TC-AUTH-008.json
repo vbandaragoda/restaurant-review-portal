@@ -1,0 +1,40 @@
+{
+  "testId": "TC-AUTH-008",
+  "title": "Register password length 72 (max boundary)",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:01+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/auth/register",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "fullName": "Pw SeventyTwo",
+      "email": "qa.pw72.112400@tastelanka.test",
+      "password": "<redacted test password, length 72>"
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 125.0,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "357"
+    },
+    "body": {
+      "token": "<JWT, 236 chars>",
+      "userId": 4,
+      "fullName": "Pw SeventyTwo",
+      "email": "qa.pw72.112400@tastelanka.test",
+      "role": "USER",
+      "language": "en"
+    }
+  },
+  "expected": "HTTP 201",
+  "actual": "HTTP 201",
+  "verdict": "PASS"
+}

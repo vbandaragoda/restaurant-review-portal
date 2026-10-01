@@ -1,0 +1,49 @@
+{
+  "testId": "TC-C2-SETUP-62",
+  "title": "Setup: 2-star review",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_B token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "qa-agg-112400c2",
+      "foodRating": 4,
+      "serviceRating": 4,
+      "overallRating": 2,
+      "language": "en",
+      "reviewText": "Cycle 2 aggregation review 2 stars."
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 28.2,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "286"
+    },
+    "body": {
+      "id": 11,
+      "author": "QA User B",
+      "restaurantSlug": "qa-agg-112400c2",
+      "restaurantName": "QA Aggregation Cafe",
+      "foodRating": 4,
+      "serviceRating": 4,
+      "overallRating": 2,
+      "language": "en",
+      "reviewText": "Cycle 2 aggregation review 2 stars.",
+      "status": "PENDING",
+      "createdAt": "2026-10-01T05:54:19.705286700Z"
+    }
+  },
+  "expected": "HTTP 201",
+  "actual": "HTTP 201",
+  "verdict": "PASS"
+}

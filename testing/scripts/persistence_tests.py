@@ -8,11 +8,11 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
-from qa_lib import ROOT, Runner, label_token, load_env  # noqa: E402
+from qa_lib import OUT, Runner, label_token, load_env  # noqa: E402
 
 env = load_env()
 phase = sys.argv[1]
-ctx_path = os.path.join(ROOT, "evidence", "run-context.json")
+ctx_path = os.path.join(OUT, "evidence", "run-context.json")
 ctx = json.load(open(ctx_path, encoding="utf-8"))
 R = Runner(f"persistence-{phase}")
 D = "database"

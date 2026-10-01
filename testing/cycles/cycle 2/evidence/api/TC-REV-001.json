@@ -1,0 +1,49 @@
+{
+  "testId": "TC-REV-001",
+  "title": "Submit valid review (authenticated)",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:02+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "nuga-gama",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "QA review: tasty rice and curry, friendly staff."
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 66.2,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "282"
+    },
+    "body": {
+      "id": 1,
+      "author": "QA User A",
+      "restaurantSlug": "nuga-gama",
+      "restaurantName": "Nuga Gama",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "en",
+      "reviewText": "QA review: tasty rice and curry, friendly staff.",
+      "status": "PENDING",
+      "createdAt": "2026-10-01T05:54:02.887672400Z"
+    }
+  },
+  "expected": "HTTP 201; review stored with status PENDING",
+  "actual": "HTTP 201; status=PENDING id=1",
+  "verdict": "PASS"
+}

@@ -49,6 +49,14 @@ class JwtServiceTest {
     }
 
     @Test
+    @DisplayName("TC-UNIT-JWT-006 missing, blank or placeholder secret is refused (DEF-003 retest)")
+    void missingOrPlaceholderSecretRefused() {
+        assertThatThrownBy(() -> new JwtService(null, 60_000)).isInstanceOf(IllegalStateException.class);
+        assertThatThrownBy(() -> new JwtService("  ", 60_000)).isInstanceOf(IllegalStateException.class);
+        assertThatThrownBy(() -> new JwtService("replace-with-at-least-32-random-bytes", 60_000)).isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
     @DisplayName("TC-UNIT-JWT-005 secret shorter than 32 bytes is refused at construction")
     void shortSecretRefused() {
         assertThatThrownBy(() -> new JwtService("too-short", 60_000)).isInstanceOf(RuntimeException.class);

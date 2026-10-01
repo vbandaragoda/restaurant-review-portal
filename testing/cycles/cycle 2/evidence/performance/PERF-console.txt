@@ -1,0 +1,12 @@
+{'ID': 'PERF-001', 'Operation': 'Restaurant listing', 'Method': 'GET', 'Endpoint': '/restaurants', 'Samples': 50, 'Statuses': '200', 'Min ms': 9.3, 'Median ms': 13.1, 'P95 ms': 16.1, 'Max ms': 18.3}
+{'ID': 'PERF-002', 'Operation': 'Search q=crab', 'Method': 'GET', 'Endpoint': '/restaurants', 'Samples': 50, 'Statuses': '200', 'Min ms': 8.0, 'Median ms': 10.5, 'P95 ms': 11.9, 'Max ms': 12.6}
+{'ID': 'PERF-003', 'Operation': 'Filter location=Kandy&vegan=true', 'Method': 'GET', 'Endpoint': '/restaurants', 'Samples': 50, 'Statuses': '200', 'Min ms': 8.2, 'Median ms': 9.7, 'P95 ms': 11.7, 'Max ms': 12.6}
+{'ID': 'PERF-004', 'Operation': 'Top-rated', 'Method': 'GET', 'Endpoint': '/restaurants/top-rated', 'Samples': 50, 'Statuses': '200', 'Min ms': 7.5, 'Median ms': 9.0, 'P95 ms': 11.2, 'Max ms': 13.5}
+{'ID': 'PERF-005', 'Operation': 'Restaurant details', 'Method': 'GET', 'Endpoint': '/restaurants/ministry-of-crab', 'Samples': 50, 'Statuses': '200', 'Min ms': 7.2, 'Median ms': 8.8, 'P95 ms': 10.8, 'Max ms': 11.8}
+{'ID': 'PERF-006', 'Operation': 'Restaurant menu (dishes)', 'Method': 'GET', 'Endpoint': '/dishes', 'Samples': 50, 'Statuses': '200', 'Min ms': 8.9, 'Median ms': 10.8, 'P95 ms': 11.7, 'Max ms': 15.8}
+{'ID': 'PERF-007', 'Operation': 'Public approved reviews', 'Method': 'GET', 'Endpoint': '/reviews', 'Samples': 50, 'Statuses': '200', 'Min ms': 9.4, 'Median ms': 12.0, 'P95 ms': 14.9, 'Max ms': 17.4}
+{'ID': 'PERF-008', 'Operation': 'Own reviews (auth)', 'Method': 'GET', 'Endpoint': '/reviews/mine', 'Samples': 50, 'Statuses': '200', 'Min ms': 11.3, 'Median ms': 13.4, 'P95 ms': 14.8, 'Max ms': 25.3}
+{'ID': 'PERF-009', 'Operation': 'Profile (auth)', 'Method': 'GET', 'Endpoint': '/users/me', 'Samples': 50, 'Statuses': '200', 'Min ms': 8.3, 'Median ms': 10.8, 'P95 ms': 11.9, 'Max ms': 12.1}
+{'ID': 'PERF-010', 'Operation': 'Login (bcrypt)', 'Method': 'POST', 'Endpoint': '/auth/login', 'Samples': 50, 'Statuses': '200', 'Min ms': 97.4, 'Median ms': 103.9, 'P95 ms': 110.2, 'Max ms': 124.1}
+{'ID': 'PERF-011', 'Operation': 'Submit review (auth, write)', 'Method': 'POST', 'Endpoint': '/reviews', 'Samples': 10, 'Statuses': '201', 'Min ms': 17.7, 'Median ms': 22.0, 'P95 ms': 23.1, 'Max ms': 83.4}
+executed at 2026-10-01 11:26:15

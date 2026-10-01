@@ -2,7 +2,8 @@
 No thresholds are defined in the test plan, so results are reported, not judged."""
 import csv, json, statistics, time, requests, sys, os
 API = "http://localhost:8080/api/v1"; N = 50; WARM = 5
-ctx = json.load(open("evidence/run-context.json"))
+OUT = os.environ["QA_OUT"]
+ctx = json.load(open(os.path.join(OUT, "evidence", "run-context.json")))
 tok = requests.post(API + "/auth/login", json={"email": ctx["userA"], "password": "QaUser#2026pw"}).json()["token"]
 H = {"Authorization": "Bearer " + tok}
 cases = [
@@ -30,7 +31,7 @@ for cid, name, m, path, params, body, hdr in cases:
     row = {"ID": cid, "Operation": name, "Method": m, "Endpoint": path, "Samples": n, "Statuses": "/".join(map(str, sorted(codes))),
            "Min ms": round(t[0], 1), "Median ms": round(statistics.median(t), 1), "P95 ms": round(t[int(0.95 * (n - 1))], 1), "Max ms": round(t[-1], 1)}
     rows.append(row); print(row)
-os.makedirs("evidence/performance", exist_ok=True)
-with open("evidence/performance/PERF-api-response-times.csv", "w", newline="", encoding="utf-8") as fh:
+os.makedirs(os.path.join(OUT, "evidence", "performance"), exist_ok=True)
+with open(os.path.join(OUT, "evidence", "performance", "PERF-api-response-times.csv"), "w", newline="", encoding="utf-8") as fh:
     w = csv.DictWriter(fh, fieldnames=rows[0].keys()); w.writeheader(); w.writerows(rows)
 print("executed at", time.strftime("%Y-%m-%d %H:%M:%S"))

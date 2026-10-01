@@ -1,0 +1,44 @@
+{
+  "testId": "TC-API-013",
+  "title": "Search matches location 'galle'",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:02+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants?q=galle",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 11.5,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "300"
+    },
+    "body": [
+      {
+        "id": 3,
+        "slug": "pedlars-inn",
+        "name": "Pedlar’s Inn",
+        "cuisine": "Cafe · International",
+        "location": "Galle",
+        "rating": 4.5,
+        "reviewCount": 490,
+        "priceMin": 5000,
+        "priceMax": 8000,
+        "vegetarian": true,
+        "vegan": false,
+        "halal": true,
+        "description": "Relaxed cafe-style dining in the Galle area.",
+        "imageColor": "#61949e"
+      }
+    ]
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; slugs=['pedlars-inn']",
+  "verdict": "PASS"
+}

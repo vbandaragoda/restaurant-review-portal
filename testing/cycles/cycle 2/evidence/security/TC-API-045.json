@@ -1,0 +1,32 @@
+{
+  "testId": "TC-API-045",
+  "title": "Customer on admin endpoint returns 403 with problem detail",
+  "category": "security",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/admin/dashboard",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 403,
+    "elapsedMs": 33.2,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json;charset=ISO-8859-1",
+      "Content-Length": "42"
+    },
+    "body": {
+      "status": 403,
+      "detail": "Access is denied"
+    }
+  },
+  "expected": "HTTP 403",
+  "actual": "HTTP 403; Content-Type=application/problem+json;charset=ISO-8859-1; detail='Access is denied'",
+  "verdict": "PASS"
+}

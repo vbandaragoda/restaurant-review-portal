@@ -1,0 +1,49 @@
+{
+  "testId": "TC-REV-016",
+  "title": "Tamil review text stored and returned intact",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:03+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_B token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "ministry-of-crab",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "ta",
+      "reviewText": "மிகவும் சுவையான உணவு. சேவை நன்றாக இருந்தது."
+    }
+  },
+  "response": {
+    "status": 201,
+    "elapsedMs": 27.5,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "363"
+    },
+    "body": {
+      "id": 5,
+      "author": "QA User B",
+      "restaurantSlug": "ministry-of-crab",
+      "restaurantName": "Ministry of Crab",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 4,
+      "language": "ta",
+      "reviewText": "மிகவும் சுவையான உணவு. சேவை நன்றாக இருந்தது.",
+      "status": "PENDING",
+      "createdAt": "2026-10-01T05:54:03.239694600Z"
+    }
+  },
+  "expected": "HTTP 201",
+  "actual": "HTTP 201; Tamil text round-trip exact",
+  "verdict": "PASS"
+}

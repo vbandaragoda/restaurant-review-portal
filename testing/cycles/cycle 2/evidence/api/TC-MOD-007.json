@@ -1,0 +1,36 @@
+{
+  "testId": "TC-MOD-007",
+  "title": "Moderate non-existent review id",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:03+05:30",
+  "request": {
+    "method": "PATCH",
+    "url": "http://localhost:8080/api/v1/admin/reviews/999999",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": "APPROVED"
+    }
+  },
+  "response": {
+    "status": 404,
+    "elapsedMs": 24.8,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Review not found",
+      "instance": "/api/v1/admin/reviews/999999",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  "expected": "HTTP 404",
+  "actual": "HTTP 404",
+  "verdict": "PASS"
+}

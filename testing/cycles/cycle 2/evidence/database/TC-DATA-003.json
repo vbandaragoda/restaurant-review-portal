@@ -1,0 +1,31 @@
+{
+  "testId": "TC-DATA-003",
+  "title": "Seeded dish deleted by admin stays deleted after restart",
+  "category": "database",
+  "executedAt": "2026-10-01T11:25:36+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/dishes/seafood-kottu",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 404,
+    "elapsedMs": 46.9,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Dish not found",
+      "instance": "/api/v1/dishes/seafood-kottu",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  "expected": "Dish not found (HTTP 404; API currently masks as 403 – DEF-001)",
+  "actual": "HTTP 404",
+  "verdict": "PASS"
+}

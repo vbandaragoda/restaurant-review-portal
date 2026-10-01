@@ -13,7 +13,7 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(__file__))
-from qa_lib import ROOT, Runner, label_token, load_env  # noqa: E402
+from qa_lib import OUT, ROOT, Runner, label_token, load_env  # noqa: E402
 
 env = load_env()
 RUN = time.strftime("%H%M%S")
@@ -416,5 +416,5 @@ ctx = {"run": RUN, "userA": email("usera"), "userB": email("userb"), "moderator"
        "reviewPendingOrApproved": rev1, "reviewSinhala": revSi, "reviewTamil": revTa, "reviewXss": revXss,
        "reviewRejected": revMass, "restaurantWithReviews": rest2Id, "restaurantWithReviewsSlug": f"qa-rest2-{RUN}",
        "invertedPriceRestaurantId": invertedId}
-with open(os.path.join(ROOT, "evidence", "run-context.json"), "w", encoding="utf-8") as fh:
+with open(os.path.join(OUT, "evidence", "run-context.json"), "w", encoding="utf-8") as fh:
     json.dump(ctx, fh, indent=2)

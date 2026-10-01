@@ -1,0 +1,41 @@
+{
+  "testId": "TC-REV-003",
+  "title": "Review with overall rating 0 (below range)",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:02+05:30",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:8080/api/v1/reviews",
+    "headers": {
+      "Authorization": "Bearer <USER_A token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "restaurantSlug": "nuga-gama",
+      "foodRating": 4,
+      "serviceRating": 5,
+      "overallRating": 0,
+      "language": "en",
+      "reviewText": "QA review: tasty rice and curry, friendly staff."
+    }
+  },
+  "response": {
+    "status": 400,
+    "elapsedMs": 13.6,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "overallRating: must be greater than or equal to 1",
+      "instance": "/api/v1/reviews",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  "expected": "HTTP 400",
+  "actual": "HTTP 400",
+  "verdict": "PASS"
+}

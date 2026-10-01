@@ -141,6 +141,8 @@ test("DR-06 administrator moderation workflow: review pending -> approve/reject 
   await admin.goto("/admin/reviews");
   await admin.getByRole("article").filter({ hasText: texts.ok }).getByRole("button", { name: "Approve" }).click();
   await expect(admin.getByText("Review approved.")).toBeVisible();
+  // Cycle 2 maintenance: rejection reason now required (eed62c2).
+  await admin.getByRole("article").filter({ hasText: texts.bad }).getByLabel(/Moderation note/).fill("Off-topic content");
   await admin.getByRole("article").filter({ hasText: texts.bad }).getByRole("button", { name: "Reject" }).click();
   await expect(admin.getByText("Review rejected.")).toBeVisible();
   await shot(admin, D, "DR-06-step3-after-moderation"); step("DR-06", "3 approved one, rejected one");

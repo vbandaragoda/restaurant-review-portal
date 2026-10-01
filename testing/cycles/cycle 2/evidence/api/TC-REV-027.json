@@ -1,0 +1,109 @@
+{
+  "testId": "TC-REV-027",
+  "title": "Deleted review no longer in author's list",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/reviews/mine",
+    "headers": {
+      "Authorization": "Bearer <USER_B token>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "elapsedMs": 15.0,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Content-Length": "2097"
+    },
+    "body": [
+      {
+        "id": 11,
+        "author": "QA User B",
+        "restaurantSlug": "qa-agg-112400c2",
+        "restaurantName": "QA Aggregation Cafe",
+        "foodRating": 4,
+        "serviceRating": 4,
+        "overallRating": 2,
+        "language": "en",
+        "reviewText": "Cycle 2 aggregation review 2 stars.",
+        "status": "REJECTED",
+        "moderatorNote": "Re-moderated by QA",
+        "moderatedBy": "TasteLanka Admin",
+        "moderatedAt": "2026-10-01T05:54:19.797333Z",
+        "createdAt": "2026-10-01T05:54:19.705287Z"
+      },
+      {
+        "id": 7,
+        "author": "QA User B",
+        "restaurantSlug": "nuga-gama",
+        "restaurantName": "Nuga Gama",
+        "foodRating": 4,
+        "serviceRating": 5,
+        "overallRating": 4,
+        "language": "en",
+        "reviewText": "<script>alert('xss-qa')</script><img src=x onerror=alert('xss-img')> QA XSS probe",
+        "status": "APPROVED",
+        "moderatedBy": "TasteLanka Admin",
+        "moderatedAt": "2026-10-01T05:54:03.901276Z",
+        "createdAt": "2026-10-01T05:54:03.320322Z"
+      },
+      {
+        "id": 6,
+        "author": "QA User B",
+        "restaurantSlug": "ministry-of-crab",
+        "restaurantName": "Ministry of Crab",
+        "foodRating": 4,
+        "serviceRating": 5,
+        "overallRating": 4,
+        "language": "en",
+        "reviewText": "QA review: tasty rice and curry, friendly staff.",
+        "status": "REJECTED",
+        "moderatorNote": "QA rejected",
+        "moderatedBy": "TasteLanka Admin",
+        "moderatedAt": "2026-10-01T05:54:03.586565Z",
+        "createdAt": "2026-10-01T05:54:03.300220Z"
+      },
+      {
+        "id": 5,
+        "author": "QA User B",
+        "restaurantSlug": "ministry-of-crab",
+        "restaurantName": "Ministry of Crab",
+        "foodRating": 4,
+        "serviceRating": 5,
+        "overallRating": 4,
+        "language": "ta",
+        "reviewText": "மிகவும் சுவையான உணவு. சேவை நன்றாக இருந்தது.",
+        "status": "APPROVED",
+        "moderatedBy": "TasteLanka Admin",
+        "moderatedAt": "2026-10-01T05:54:03.836851Z",
+        "createdAt": "2026-10-01T05:54:03.239695Z"
+      },
+      {
+        "id": 4,
+        "author": "QA User B",
+        "restaurantSlug": "ministry-of-crab",
+        "restaurantName": "Ministry of Crab",
+        "dishSlug": "chilli-crab",
+        "dishName": "Chilli Crab",
+        "foodRating": 4,
+        "serviceRating": 5,
+        "overallRating": 4,
+        "language": "si",
+        "reviewText": "රසවත් කකුළුවන් කෑම. සේවය ඉතා හොඳයි.",
+        "status": "APPROVED",
+        "moderatedBy": "TasteLanka Admin",
+        "moderatedAt": "2026-10-01T05:54:03.785760Z",
+        "createdAt": "2026-10-01T05:54:03.203621Z"
+      }
+    ]
+  },
+  "expected": "HTTP 200",
+  "actual": "HTTP 200; ids=[11, 7, 6, 5, 4]",
+  "verdict": "PASS"
+}

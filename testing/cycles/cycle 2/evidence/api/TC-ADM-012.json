@@ -1,0 +1,46 @@
+{
+  "testId": "TC-ADM-012",
+  "title": "Update non-existent restaurant",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:04+05:30",
+  "request": {
+    "method": "PUT",
+    "url": "http://localhost:8080/api/v1/admin/restaurants/999999",
+    "headers": {
+      "Authorization": "Bearer <ADMIN token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "slug": "qa-ghost-112400",
+      "name": "QA Test Bistro",
+      "cuisine": "Sri Lankan · Fusion",
+      "location": "Galle",
+      "priceMin": 1000,
+      "priceMax": 2500,
+      "vegetarian": true,
+      "vegan": false,
+      "halal": true,
+      "description": "Created by QA API test.",
+      "imageColor": "#123456"
+    }
+  },
+  "response": {
+    "status": 404,
+    "elapsedMs": 16.7,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Restaurant not found",
+      "instance": "/api/v1/admin/restaurants/999999",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  "expected": "HTTP 404",
+  "actual": "HTTP 404",
+  "verdict": "PASS"
+}

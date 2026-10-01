@@ -1,4 +1,8 @@
 import { defineConfig } from "@playwright/test";
+import path from "node:path";
+
+if (!process.env.QA_OUT) throw new Error("Set QA_OUT to the cycle folder (e.g. testing/cycles/cycle 2)");
+const UI = path.resolve(process.env.QA_OUT, "evidence", "ui");
 
 // One run id for the whole run: workers restart after a failure and must reuse the same test accounts.
 process.env.QA_RUN ??= new Date().toISOString().replace(/\D/g, "").slice(8, 14);
@@ -11,11 +15,11 @@ export default defineConfig({
   retries: 0,
   timeout: 90_000,
   expect: { timeout: 15_000 },
-  outputDir: "../evidence/ui/playwright-artifacts",
+  outputDir: path.join(UI, "playwright-artifacts"),
   reporter: [
     ["list"],
-    ["json", { outputFile: "../evidence/ui/playwright-results.json" }],
-    ["html", { outputFolder: "../evidence/ui/playwright-report", open: "never" }],
+    ["json", { outputFile: path.join(UI, "playwright-results.json") }],
+    ["html", { outputFolder: path.join(UI, "playwright-report"), open: "never" }],
   ],
   use: {
     baseURL: "http://localhost:3000",

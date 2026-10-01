@@ -1,0 +1,31 @@
+{
+  "testId": "TC-API-042",
+  "title": "Unknown restaurant returns 404 with problem detail",
+  "category": "api",
+  "executedAt": "2026-10-01T11:24:19+05:30",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/restaurants/no-such-restaurant",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 404,
+    "elapsedMs": 11.9,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json"
+    },
+    "body": {
+      "detail": "Restaurant not found",
+      "instance": "/api/v1/restaurants/no-such-restaurant",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  "expected": "HTTP 404",
+  "actual": "HTTP 404; Content-Type=application/problem+json; detail='Restaurant not found'",
+  "verdict": "PASS"
+}

@@ -111,6 +111,8 @@ class RequestValidationTest {
     }
 
     @Test
+    @org.junit.jupiter.api.Disabled("Cycle 2: obsolete premise - commit eed62c2 validates the price range in AdminController and a DB "
+            + "CHECK constraint instead of Bean Validation. Behaviour is verified by TC-INT-034 and API test TC-ADM-007.")
     @DisplayName("TC-UNIT-VAL-010 restaurant with minimum price above maximum price is rejected (DEF-005)")
     void priceRangeOrder() {
         assertThat(valid(restaurant("inverted", 9000, 100, "#123456")))
