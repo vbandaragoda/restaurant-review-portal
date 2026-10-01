@@ -1,5 +1,6 @@
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080/api/v1";
-const mediaBaseUrl = apiBaseUrl.replace(/\/api\/v1\/?$/, "");
+import { API_BASE_URL } from "@/lib/api";
+
+const mediaBaseUrl = API_BASE_URL.replace(/\/api\/v1\/?$/i, "");
 
 export function mediaUrl(path?: string) {
   if (!path) return undefined;

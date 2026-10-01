@@ -54,7 +54,7 @@ export function RestaurantSearch({ initialQuery = "", initialLocation = "", init
       const response = await api.get<Restaurant[]>("/restaurants", { params });
       setRestaurants(response.data);
     } catch {
-      setError("Restaurants could not be loaded. Confirm that the Spring Boot API is running on port 8080.");
+      setError("Restaurants could not be loaded. Please confirm that the API is available.");
     } finally {
       setLoading(false);
     }
@@ -65,7 +65,7 @@ export function RestaurantSearch({ initialQuery = "", initialLocation = "", init
       cuisine: initialCuisine || undefined, vegetarian: initialVegetarian, vegan: initialVegan, halal: initialHalal,
       maxPrice: initialMaxPrice ? Number(initialMaxPrice) : undefined, spiceLevel: initialSpiceLevel || undefined } })
       .then((response) => setRestaurants(response.data))
-      .catch(() => setError("Restaurants could not be loaded. Confirm that the Spring Boot API is running on port 8080."))
+      .catch(() => setError("Restaurants could not be loaded. Please confirm that the API is available."))
       .finally(() => setLoading(false));
   }, [initialCuisine, initialHalal, initialLocation, initialMaxPrice, initialQuery, initialSpiceLevel, initialVegan, initialVegetarian]);
 

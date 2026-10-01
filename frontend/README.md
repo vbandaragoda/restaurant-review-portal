@@ -7,7 +7,8 @@ npm install
 npm run dev
 ```
 
-Set `NEXT_PUBLIC_API_URL` to the Spring Boot API base URL. It defaults to `http://localhost:8080/api/v1`.
+Set `NEXT_PUBLIC_API_URL` to the Spring Boot backend origin, without a trailing `/api/v1` path. For example,
+use `https://tastelanka-api.onrender.com` in Vercel. It defaults to `http://localhost:8080` for local development.
 
 Useful checks:
 
