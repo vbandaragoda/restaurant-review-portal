@@ -5,17 +5,8 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { api } from "@/lib/api";
 import { mediaStyle } from "@/lib/media";
-import type { Restaurant } from "@/lib/types";
+import type { Cuisine, Restaurant } from "@/lib/types";
 import { MobileNavigation, SiteHeader } from "@/components/site-shell";
-
-const cuisines = [
-  { name: "Sri Lankan", color: "#dbe5d1" },
-  { name: "Indian", color: "#faf5eb" },
-  { name: "Chinese", color: "#ebd9ba" },
-  { name: "Italian", color: "#dbd1b8" },
-  { name: "Middle Eastern", color: "#e5d6bf" },
-  { name: "Western", color: "#e0cca8" },
-] as const;
 
 const requirements = [
   ["Dietary filters", "Vegetarian · Vegan · Halal"],
@@ -67,35 +58,37 @@ function SectionHeader({ title, link, href = "#" }: { title: string; link: strin
   );
 }
 
-function DesktopHome({ restaurants, allRestaurants }: { restaurants: Restaurant[]; allRestaurants: Restaurant[] }) {
+function DesktopHome({ restaurants, cuisines }: { restaurants: Restaurant[]; cuisines: Cuisine[] }) {
   const router = useRouter();
   return (
     <div className="hidden md:block">
-      <section className="h-[510px] bg-[#1f1f17] px-[5vw] pt-[58px] text-white xl:px-[72px]">
-        <p className="text-[11px] font-semibold text-[#c2baa8]">HERO PHOTO PLACEHOLDER · Sri Lankan coastal dining</p>
-        <p className="mt-5 text-[13px] font-semibold text-[#e5d1b0]">EXPLORE. TASTE. SHARE.</p>
-        <h1 className="mt-[17px] text-[42px] leading-[50px] font-bold tracking-[-0.5px]">Find Great Food<br />in Colombo, Kandy &amp; Galle</h1>
-        <p className="mt-3 text-[17px] leading-[21px] text-[#e0ded4]">Discover restaurants, explore menus, read real reviews<br />and share your dining experiences.</p>
-        <div className="mt-4"><SearchForm /></div>
-        <div className="mt-5 flex flex-wrap items-center gap-2.5">
-          <Link href="/cuisines" className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] hover:bg-surface">Cuisine</Link>
-          <Link href="/restaurants?vegetarian=true" className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] hover:bg-surface">Vegetarian</Link>
-          <Link href="/restaurants?vegan=true" className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] hover:bg-surface">Vegan</Link>
-          <Link href="/restaurants?halal=true" className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] hover:bg-surface">Halal</Link>
-          <label className="sr-only" htmlFor="home-spice-filter">Spice level</label>
-          <select id="home-spice-filter" defaultValue="" onChange={(event) => event.target.value && router.push(`/restaurants?spiceLevel=${event.target.value}`)} className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] outline-none"><option value="" disabled>Spice Level</option><option>Mild</option><option>Medium</option><option>Hot</option></select>
-          <label className="sr-only" htmlFor="home-price-filter">Maximum price</label>
-          <select id="home-price-filter" defaultValue="" onChange={(event) => event.target.value && router.push(`/restaurants?maxPrice=${event.target.value}`)} className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] outline-none"><option value="" disabled>Price Band</option><option value="3000">Up to LKR 3,000</option><option value="5000">Up to LKR 5,000</option><option value="8000">Up to LKR 8,000</option></select>
+      <section className="relative h-[510px] overflow-hidden bg-[#1f1f17] bg-[url('/images/hero.jpg')] bg-cover bg-center px-[5vw] pt-[58px] text-white xl:px-[72px]">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10" aria-hidden="true" />
+        <div className="relative z-10">
+          <p className="text-[13px] font-semibold text-[#e5d1b0]">EXPLORE. TASTE. SHARE.</p>
+          <h1 className="mt-[17px] text-[42px] leading-[50px] font-bold tracking-[-0.5px]">Find Great Food<br />in Colombo, Kandy &amp; Galle</h1>
+          <p className="mt-3 text-[17px] leading-[21px] text-[#e0ded4]">Discover restaurants, explore menus, read real reviews<br />and share your dining experiences.</p>
+          <div className="mt-4"><SearchForm /></div>
+          <div className="mt-5 flex flex-wrap items-center gap-2.5">
+            <Link href="/cuisines" className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] hover:bg-surface">Cuisine</Link>
+            <Link href="/restaurants?vegetarian=true" className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] hover:bg-surface">Vegetarian</Link>
+            <Link href="/restaurants?vegan=true" className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] hover:bg-surface">Vegan</Link>
+            <Link href="/restaurants?halal=true" className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] hover:bg-surface">Halal</Link>
+            <label className="sr-only" htmlFor="home-spice-filter">Spice level</label>
+            <select id="home-spice-filter" defaultValue="" onChange={(event) => event.target.value && router.push(`/restaurants?spiceLevel=${event.target.value}`)} className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] outline-none"><option value="" disabled>Spice Level</option><option>Mild</option><option>Medium</option><option>Hot</option></select>
+            <label className="sr-only" htmlFor="home-price-filter">Maximum price</label>
+            <select id="home-price-filter" defaultValue="" onChange={(event) => event.target.value && router.push(`/restaurants?maxPrice=${event.target.value}`)} className="rounded-[18px] bg-white px-[15px] py-2.5 text-xs font-medium text-[#1a1a17] outline-none"><option value="" disabled>Price Band</option><option value="3000">Up to LKR 3,000</option><option value="5000">Up to LKR 5,000</option><option value="8000">Up to LKR 8,000</option></select>
+          </div>
         </div>
       </section>
 
       <main className="mx-auto max-w-[1440px] px-[4.45vw] pt-[34px] pb-10 xl:px-16">
         <SectionHeader title="Popular Cuisine Categories" link="View All Categories →" href="/cuisines" />
         <div className="mt-10 grid grid-cols-3 gap-4 lg:grid-cols-6">
-          {cuisines.map((cuisine) => (
+          {cuisines.slice(0, 6).map((cuisine) => (
             <Link href={`/restaurants?cuisine=${encodeURIComponent(cuisine.name)}`} key={cuisine.name} className="h-[174px] overflow-hidden rounded-[14px] border border-soft-border transition hover:-translate-y-0.5 hover:shadow-md">
-              <div className="h-[104px]" style={{ backgroundColor: cuisine.color }} />
-              <div className="bg-white p-2.5"><h3 className="text-[15px] font-semibold">{cuisine.name}</h3><p className="mt-1 text-[11px] text-muted">{allRestaurants.filter((restaurant) => restaurant.cuisine.toLowerCase().includes(cuisine.name.toLowerCase())).length} restaurants</p></div>
+              <div className="h-[104px]" style={mediaStyle(cuisine.imageUrl, "#eeeae1")} />
+              <div className="bg-white p-2.5"><h3 className="text-[15px] font-semibold">{cuisine.name}</h3><p className="mt-1 text-[11px] text-muted">{cuisine.restaurantCount} restaurants</p></div>
             </Link>
           ))}
         </div>
@@ -126,7 +119,7 @@ function DesktopHome({ restaurants, allRestaurants }: { restaurants: Restaurant[
       </main>
 
       <footer className="mt-[70px] flex h-[190px] items-start bg-footer px-[5vw] py-[42px] text-white xl:px-[72px]">
-        <div><p className="text-[22px] font-bold text-[#edb84d]">TasteLanka</p><p className="mt-[7px] text-[11px] font-medium text-[#c2ccbf]">Discover · Dine · Review</p><p className="mt-[7px] text-xs font-medium">Good Food. A Better Sri Lanka.</p></div>
+        <div><p className="text-[22px] font-bold text-[#edb84d]">TasteLanka</p><p className="mt-[7px] text-[11px] font-medium text-[#c2ccbf]">Discover · Dine · Review</p><p className="mt-[7px] text-xs font-medium">Good Food. A Better Sri Lanka.</p><p className="mt-4 text-[11px] text-[#c2ccbf]">&copy; 2026 Group 4</p></div>
         <nav className="ml-auto flex gap-[26px] text-xs font-medium" aria-label="Footer navigation">
           {["Home", "About", "Contact", "Terms", "Privacy"].map((item) => <Link href={item === "Home" ? "/" : `/${item.toLowerCase()}`} key={item}>{item}</Link>)}
         </nav>
@@ -135,7 +128,7 @@ function DesktopHome({ restaurants, allRestaurants }: { restaurants: Restaurant[
   );
 }
 
-function MobileHome({ restaurants }: { restaurants: Restaurant[] }) {
+function MobileHome({ restaurants, cuisines }: { restaurants: Restaurant[]; cuisines: Cuisine[] }) {
   return (
     <div className="min-h-[844px] bg-white pb-24 md:hidden">
       <main className="px-5 pt-6">
@@ -145,7 +138,7 @@ function MobileHome({ restaurants }: { restaurants: Restaurant[] }) {
         <section className="mt-[26px]">
           <h2 className="text-lg font-bold">Popular cuisines</h2>
           <div className="mt-4 flex justify-between gap-1 overflow-x-auto">
-            {["Rice & Curry", "Kottu", "Seafood", "Indian"].map((cuisine) => <Link key={cuisine} href={`/restaurants?cuisine=${encodeURIComponent(cuisine)}`} className="shrink-0 rounded-[15px] bg-surface px-2.5 py-[9px] text-[11px] leading-3 font-semibold">{cuisine}</Link>)}
+            {cuisines.slice(0, 4).map((cuisine) => <Link key={cuisine.id} href={`/restaurants?cuisine=${encodeURIComponent(cuisine.name)}`} className="shrink-0 rounded-[15px] bg-surface px-2.5 py-[9px] text-[11px] leading-3 font-semibold">{cuisine.name}</Link>)}
           </div>
         </section>
         <section className="mt-[27px]">
@@ -167,13 +160,13 @@ function MobileHome({ restaurants }: { restaurants: Restaurant[] }) {
 
 export function HomePage() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [allRestaurants, setAllRestaurants] = useState<Restaurant[]>([]);
+  const [cuisines, setCuisines] = useState<Cuisine[]>([]);
   useEffect(() => {
-    Promise.all([api.get<Restaurant[]>("/restaurants/top-rated"), api.get<Restaurant[]>("/restaurants")])
-      .then(([topRated, all]) => { setRestaurants(topRated.data); setAllRestaurants(all.data); })
-      .catch(() => { setRestaurants([]); setAllRestaurants([]); });
+    Promise.all([api.get<Restaurant[]>("/restaurants/top-rated"), api.get<Cuisine[]>("/cuisines")])
+      .then(([topRated, cuisineResponse]) => { setRestaurants(topRated.data); setCuisines(cuisineResponse.data); })
+      .catch(() => { setRestaurants([]); setCuisines([]); });
   }, []);
-  return <><SiteHeader active="home" /><DesktopHome restaurants={restaurants} allRestaurants={allRestaurants} /><MobileHome restaurants={restaurants} /></>;
+  return <><SiteHeader active="home" /><DesktopHome restaurants={restaurants} cuisines={cuisines} /><MobileHome restaurants={restaurants} cuisines={cuisines} /></>;
 }
 
 function money(value: number) {

@@ -273,6 +273,29 @@ class ApiIntegrationTest {
                 .as("description after seeder run").isEqualTo("JUnit edited description " + run);
     }
 
+    @Test
+    @DisplayName("TC-INT-036 cuisine create -> public list -> update -> delete is persisted")
+    void cuisineCrud() throws Exception {
+        String slug = "junit-cuisine-" + run;
+        String createBody = "{\"slug\":\"" + slug + "\",\"name\":\"JUnit Cuisine " + run
+                + "\",\"description\":\"Initial description\",\"displayOrder\":90}";
+        MvcResult created = perform(json(auth(post("/api/v1/admin/cuisines"), adminToken), createBody));
+        assertThat(created.getResponse().getStatus()).isEqualTo(201);
+        long id = ((Number) JsonPath.read(created.getResponse().getContentAsString(), "$.id")).longValue();
+
+        String publicList = perform(get("/api/v1/cuisines")).getResponse().getContentAsString();
+        assertThat(publicList).contains("\"slug\":\"" + slug + "\"");
+
+        String updateBody = "{\"slug\":\"" + slug + "\",\"name\":\"Updated Cuisine " + run
+                + "\",\"description\":\"Updated description\",\"displayOrder\":91}";
+        MvcResult updated = perform(json(auth(put("/api/v1/admin/cuisines/" + id), adminToken), updateBody));
+        assertThat(updated.getResponse().getStatus()).isEqualTo(200);
+        assertThat((String) JsonPath.read(updated.getResponse().getContentAsString(), "$.name"))
+                .isEqualTo("Updated Cuisine " + run);
+        assertThat(status(auth(delete("/api/v1/admin/cuisines/" + id), adminToken))).isEqualTo(204);
+        assertThat(status(get("/api/v1/cuisines/" + slug))).isEqualTo(404);
+    }
+
     // ------------------------------------------------------------------ saved restaurants
     @Test
     @DisplayName("TC-INT-040 saving is idempotent and isolated per user")

@@ -6,25 +6,104 @@ import { useRouter } from "next/navigation";
 import { api, apiErrorMessage } from "@/lib/api";
 import { mediaStyle } from "@/lib/media";
 import { getSession, useSession } from "@/lib/session";
-import type { DashboardStats, Dish, Restaurant, Review } from "@/lib/types";
+import type { Cuisine, DashboardStats, Dish, Restaurant, Review } from "@/lib/types";
 import { PageMessage, SiteHeader } from "@/components/site-shell";
 
-type AdminPage = "dashboard" | "restaurants" | "menu" | "reviews";
+type AdminPage = "dashboard" | "cuisines" | "restaurants" | "menu" | "reviews";
 const input = "h-11 w-full rounded-lg border border-soft-border bg-white px-3 text-sm outline-none focus:border-brand";
 
 function AdminShell({ active, title, subtitle, children }: { active: AdminPage; title: string; subtitle: string; children: ReactNode }) {
   const router = useRouter(); const session = useSession(); const ready = Boolean(session && session.role !== "USER");
   useEffect(() => { const current = getSession(); if (!current || current.role === "USER") router.replace("/login?next=/admin"); }, [router]);
   if (!ready) return <main className="mx-auto max-w-3xl px-5 py-16"><PageMessage>Checking administrator access…</PageMessage></main>;
-  const links: Array<[AdminPage, string, string]> = [["dashboard","Dashboard","/admin"],["restaurants","Restaurants","/admin/restaurants"],["menu","Menu","/admin/menu"],["reviews","Review Moderation","/admin/reviews"]];
+  const links: Array<[AdminPage, string, string]> = [["dashboard","Dashboard","/admin"],["cuisines","Cuisines","/admin/cuisines"],["restaurants","Restaurants","/admin/restaurants"],["menu","Menu","/admin/menu"],["reviews","Review Moderation","/admin/reviews"]];
   return <div className="min-h-screen bg-[#f8f6f1]"><SiteHeader /><div className="mx-auto grid max-w-[1440px] md:grid-cols-[240px_1fr]"><aside className="border-r border-soft-border bg-footer p-5 text-white md:min-h-[calc(100vh-84px)]"><p className="mb-7 text-sm font-bold text-[#ffa126]">ADMIN PORTAL</p><nav className="grid grid-cols-2 gap-2 md:grid-cols-1">{links.map(([key,label,href]) => <Link key={key} className={`rounded-lg px-4 py-3 text-sm ${active === key ? "bg-white font-semibold text-footer" : "text-white/80 hover:bg-white/10"}`} href={href}>{label}</Link>)}</nav></aside><main className="min-w-0 p-5 md:p-10"><h1 className="text-[30px] font-bold">{title}</h1><p className="mt-2 text-sm text-muted">{subtitle}</p><div className="mt-8">{children}</div></main></div></div>;
 }
 
 export function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null); const [error, setError] = useState("");
   useEffect(() => { api.get<DashboardStats>("/admin/dashboard").then((response) => setStats(response.data)).catch(() => setError("Dashboard metrics could not be loaded.")); }, []);
-  const cards: Array<[string, number | undefined, string]> = [["Restaurants",stats?.restaurants,"/admin/restaurants"],["Menu items",stats?.dishes,"/admin/menu"],["Registered users",stats?.users,"#"],["Pending reviews",stats?.pendingReviews,"/admin/reviews"],["Approved reviews",stats?.approvedReviews,"/admin/reviews"]];
+  const cards: Array<[string, number | undefined, string]> = [["Cuisine categories",stats?.cuisines,"/admin/cuisines"],["Restaurants",stats?.restaurants,"/admin/restaurants"],["Menu items",stats?.dishes,"/admin/menu"],["Registered users",stats?.users,"#"],["Pending reviews",stats?.pendingReviews,"/admin/reviews"],["Approved reviews",stats?.approvedReviews,"/admin/reviews"]];
   return <AdminShell active="dashboard" title="Admin Dashboard" subtitle="Manage TasteLanka restaurants, menus and community reviews.">{error && <PageMessage error>{error}</PageMessage>}<div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{cards.map(([label,value,href]) => <Link key={label} href={href} className="rounded-xl border border-soft-border bg-white p-6"><p className="text-sm text-muted">{label}</p><p className="mt-3 text-4xl font-bold">{value ?? "–"}</p><p className="mt-5 text-xs font-semibold text-brand">View details →</p></Link>)}</div></AdminShell>;
+}
+
+type CuisineForm = { id?: number; slug: string; name: string; description: string; displayOrder: string; imageUrl: string };
+const emptyCuisine: CuisineForm = { slug: "", name: "", description: "", displayOrder: "0", imageUrl: "" };
+
+export function CuisineManagement() {
+  const [items, setItems] = useState<Cuisine[]>([]);
+  const [form, setForm] = useState<CuisineForm>(emptyCuisine);
+  const [message, setMessage] = useState("");
+  const [messageError, setMessageError] = useState(false);
+
+  const load = useCallback(() => api.get<Cuisine[]>("/admin/cuisines")
+    .then((response) => setItems(response.data))
+    .catch(() => { setMessage("Cuisine categories could not be loaded."); setMessageError(true); }), []);
+
+  useEffect(() => { void load(); }, [load]);
+
+  const edit = (item: Cuisine) => {
+    setForm({ id: item.id, slug: item.slug, name: item.name, description: item.description ?? "", displayOrder: String(item.displayOrder), imageUrl: item.imageUrl ?? "" });
+    setMessage("");
+    setMessageError(false);
+  };
+
+  const submit = async (event: FormEvent) => {
+    event.preventDefault();
+    setMessage("");
+    setMessageError(false);
+    const payload = { slug: form.slug, name: form.name, description: form.description, displayOrder: Number(form.displayOrder), imageUrl: form.imageUrl || null };
+    try {
+      if (form.id) await api.put(`/admin/cuisines/${form.id}`, payload);
+      else await api.post("/admin/cuisines", payload);
+      setForm(emptyCuisine);
+      setMessage("Cuisine category saved.");
+      await load();
+    } catch (error) {
+      setMessage(apiErrorMessage(error, "Cuisine category could not be saved."));
+      setMessageError(true);
+    }
+  };
+
+  const remove = async (item: Cuisine) => {
+    if (!window.confirm(`Delete ${item.name}?`)) return;
+    try {
+      await api.delete(`/admin/cuisines/${item.id}`);
+      if (form.id === item.id) setForm(emptyCuisine);
+      setMessage("Cuisine category deleted.");
+      setMessageError(false);
+      await load();
+    } catch (error) {
+      setMessage(apiErrorMessage(error, "Cuisine category could not be deleted."));
+      setMessageError(true);
+    }
+  };
+
+  return <AdminShell active="cuisines" title="Cuisine Management" subtitle="Create and edit the cuisine categories shown on the homepage, cuisine directory and restaurant filters.">
+    <div className="grid gap-7 xl:grid-cols-[390px_1fr]">
+      <form onSubmit={submit} className="space-y-4 rounded-xl border border-soft-border bg-white p-5">
+        <h2 className="text-lg font-bold">{form.id ? "Edit cuisine" : "Add cuisine"}</h2>
+        {message && <PageMessage error={messageError}>{message}</PageMessage>}
+        <Field label="Name"><input required maxLength={80} className={input} value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></Field>
+        <Field label="Slug"><input required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" className={input} value={form.slug} onChange={(event) => setForm({ ...form, slug: event.target.value })} /></Field>
+        <Field label="Display order"><input required min="0" max="999" type="number" className={input} value={form.displayOrder} onChange={(event) => setForm({ ...form, displayOrder: event.target.value })} /></Field>
+        <Field label="Description"><textarea maxLength={1000} className="h-24 w-full rounded-lg border border-soft-border p-3 text-sm outline-none focus:border-brand" value={form.description} onChange={(event) => setForm({ ...form, description: event.target.value })} /></Field>
+        <ImageUploadField label="Cuisine image" value={form.imageUrl} onChange={(imageUrl) => setForm({ ...form, imageUrl })} />
+        <div className="flex gap-2">
+          {form.id && <button type="button" onClick={() => { setForm(emptyCuisine); setMessage(""); }} className="rounded-lg border border-soft-border px-4 py-3 text-sm">Cancel</button>}
+          <button className="flex-1 rounded-lg bg-brand px-4 py-3 text-sm font-semibold text-white" type="submit">Save Cuisine</button>
+        </div>
+      </form>
+      <div className="space-y-3">
+        {items.length === 0 && <PageMessage>No cuisine categories have been added.</PageMessage>}
+        {items.map((item) => <article key={item.id} className="flex items-center rounded-xl border border-soft-border bg-white p-4">
+          <span className="mr-4 size-16 shrink-0 rounded-lg" style={mediaStyle(item.imageUrl, "#eeeae1")} />
+          <div className="min-w-0"><h3 className="font-bold">{item.name}</h3><p className="mt-1 text-xs text-muted">Order {item.displayOrder} · {item.restaurantCount} restaurants</p>{item.description && <p className="mt-2 line-clamp-1 text-xs text-muted">{item.description}</p>}</div>
+          <div className="ml-auto flex shrink-0 gap-2 pl-3"><button onClick={() => edit(item)} className="rounded-lg border border-soft-border px-3 py-2 text-xs font-semibold">Edit</button><button onClick={() => void remove(item)} className="rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-700">Delete</button></div>
+        </article>)}
+      </div>
+    </div>
+  </AdminShell>;
 }
 
 type RestaurantForm = { id?: number; slug: string; name: string; cuisine: string; location: string; priceMin: string; priceMax: string; vegetarian: boolean; vegan: boolean; halal: boolean; description: string; imageUrl: string };

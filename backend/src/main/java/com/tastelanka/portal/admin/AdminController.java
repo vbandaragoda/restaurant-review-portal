@@ -1,5 +1,8 @@
 package com.tastelanka.portal.admin;
 
+import com.tastelanka.portal.cuisine.Cuisine;
+import com.tastelanka.portal.cuisine.CuisineDto;
+import com.tastelanka.portal.cuisine.CuisineRepository;
 import com.tastelanka.portal.dish.Dish;
 import com.tastelanka.portal.dish.DishDto;
 import com.tastelanka.portal.dish.DishRepository;
@@ -33,19 +36,73 @@ public class AdminController {
     private final DishRepository dishes;
     private final ReviewRepository reviews;
     private final UserRepository users;
+    private final CuisineRepository cuisines;
 
     public AdminController(RestaurantRepository restaurants, DishRepository dishes,
-                           ReviewRepository reviews, UserRepository users) {
+                           ReviewRepository reviews, UserRepository users, CuisineRepository cuisines) {
         this.restaurants = restaurants;
         this.dishes = dishes;
         this.reviews = reviews;
         this.users = users;
+        this.cuisines = cuisines;
     }
 
     @GetMapping("/dashboard")
     public DashboardStats dashboard() {
-        return new DashboardStats(restaurants.count(), dishes.count(), users.count(),
+        return new DashboardStats(restaurants.count(), dishes.count(), cuisines.count(), users.count(),
                 reviews.countByStatus(ReviewStatus.PENDING), reviews.countByStatus(ReviewStatus.APPROVED));
+    }
+
+    @GetMapping("/cuisines")
+    public List<CuisineDto> cuisines() {
+        return cuisines.findAllByOrderByDisplayOrderAscNameAsc().stream().map(this::toCuisineDto).toList();
+    }
+
+    @PostMapping("/cuisines")
+    @ResponseStatus(HttpStatus.CREATED)
+    public CuisineDto createCuisine(@Valid @RequestBody CuisineRequest request) {
+        if (cuisines.findBySlug(request.slug()).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Cuisine slug already exists");
+        }
+        if (cuisines.findByNameIgnoreCase(request.name()).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Cuisine name already exists");
+        }
+        return toCuisineDto(cuisines.save(new Cuisine(request.slug(), request.name(), request.description(),
+                request.imageUrl(), request.displayOrder())));
+    }
+
+    @PutMapping("/cuisines/{id}")
+    @Transactional
+    public CuisineDto updateCuisine(@PathVariable Long id, @Valid @RequestBody CuisineRequest request) {
+        Cuisine cuisine = cuisines.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cuisine not found"));
+        cuisines.findBySlug(request.slug()).filter(existing -> !Objects.equals(existing.getId(), id))
+                .ifPresent(existing -> { throw new ResponseStatusException(HttpStatus.CONFLICT,
+                        "Cuisine slug already exists"); });
+        cuisines.findByNameIgnoreCase(request.name()).filter(existing -> !Objects.equals(existing.getId(), id))
+                .ifPresent(existing -> { throw new ResponseStatusException(HttpStatus.CONFLICT,
+                        "Cuisine name already exists"); });
+
+        String oldName = cuisine.getName();
+        cuisine.update(request.slug(), request.name(), request.description(), request.imageUrl(),
+                request.displayOrder());
+        if (!oldName.equalsIgnoreCase(cuisine.getName())) {
+            restaurants.findByCuisineContainingIgnoreCase(oldName)
+                    .forEach(restaurant -> restaurant.renameCuisineCategory(oldName, cuisine.getName()));
+        }
+        return toCuisineDto(cuisine);
+    }
+
+    @DeleteMapping("/cuisines/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCuisine(@PathVariable Long id) {
+        Cuisine cuisine = cuisines.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cuisine not found"));
+        if (restaurants.countByCuisineContainingIgnoreCase(cuisine.getName()) > 0) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "Cuisine is used by restaurants and cannot be deleted");
+        }
+        cuisines.delete(cuisine);
     }
 
     @GetMapping("/restaurants")
@@ -175,7 +232,19 @@ public class AdminController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Restaurant not found"));
     }
 
-    public record DashboardStats(long restaurants, long dishes, long users, long pendingReviews, long approvedReviews) { }
+    private CuisineDto toCuisineDto(Cuisine cuisine) {
+        return CuisineDto.from(cuisine, restaurants.countByCuisineContainingIgnoreCase(cuisine.getName()));
+    }
+
+    public record DashboardStats(long restaurants, long dishes, long cuisines, long users, long pendingReviews,
+                                 long approvedReviews) { }
+
+    public record CuisineRequest(
+            @NotBlank @Pattern(regexp = "[a-z0-9]+(?:-[a-z0-9]+)*") String slug,
+            @NotBlank @Size(max = 80) String name,
+            @Size(max = 1000) String description,
+            @Size(max = 500) @Pattern(regexp = "^/uploads/[0-9a-f-]+\\.(?:jpg|png|gif)$") String imageUrl,
+            @NotNull @Min(0) @Max(999) Integer displayOrder) { }
 
     public record RestaurantRequest(
             @NotBlank @Pattern(regexp = "[a-z0-9]+(?:-[a-z0-9]+)*") String slug,

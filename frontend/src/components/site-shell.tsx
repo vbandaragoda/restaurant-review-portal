@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import logoIcon from "@/app/icon.png";
 import { clearSession, useSession } from "@/lib/session";
 
 export type ActivePage = "home" | "restaurants" | "cuisines" | "about" | "reviews" | "profile";
@@ -9,10 +11,15 @@ export type ActivePage = "home" | "restaurants" | "cuisines" | "about" | "review
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="TasteLanka home">
-      <span className={`${compact ? "size-10" : "size-11"} rounded-full bg-brand`} />
+      <Image
+        src={logoIcon}
+        alt=""
+        sizes={compact ? "40px" : "44px"}
+        className={`${compact ? "size-10 rounded-[10px]" : "size-11 rounded-xl"} object-cover`}
+      />
       <span>
-        <strong className="block text-2xl leading-none">TasteLanka</strong>
-        <span className="mt-1 block text-[10px] text-muted">Discover • Dine • Review</span>
+        <strong className={`block leading-none ${compact ? "text-xl" : "text-2xl"}`}>TasteLanka</strong>
+        {!compact && <span className="mt-1 block text-[10px] text-muted">Discover • Dine • Review</span>}
       </span>
     </Link>
   );
@@ -60,7 +67,7 @@ export function SiteHeader({ active }: { active?: ActivePage }) {
         </div>
       </header>
       <header className="relative z-20 flex h-16 items-center border-b border-soft-border px-5 shadow-[0_2px_8px_rgba(26,26,23,0.06)] md:hidden">
-        <Link href="/" className="text-xl font-bold">TasteLanka</Link>
+        <Brand compact />
         {session ? <div className="ml-auto flex items-center gap-3"><Link className="text-xs font-semibold text-brand" href={session.role === "USER" ? "/profile" : "/admin"}>{session.fullName.split(" ")[0]}</Link><button onClick={logout} className="rounded-lg border border-soft-border px-3 py-2 text-xs font-semibold" type="button">Log Out</button></div> : <Link className="ml-auto text-xs font-semibold text-brand" href="/login">Log In</Link>}
       </header>
     </>

@@ -82,4 +82,13 @@ class DomainModelTest {
         assertThat(r.getReviewCount()).isZero();
         assertThat(r.getRating()).isEqualByComparingTo("0.0");
     }
+
+    @Test
+    @DisplayName("TC-UNIT-DOM-007 renaming a cuisine category updates matching restaurant tags only")
+    void renameCuisineCategory() {
+        Restaurant restaurant = new Restaurant("qa-seafood", "QA Seafood", "Seafood · Sri Lankan", "Galle",
+                100, 200, false, false, true, "d", null);
+        restaurant.renameCuisineCategory("Sri Lankan", "Local Cuisine");
+        assertThat(restaurant.getCuisine()).isEqualTo("Seafood · Local Cuisine");
+    }
 }

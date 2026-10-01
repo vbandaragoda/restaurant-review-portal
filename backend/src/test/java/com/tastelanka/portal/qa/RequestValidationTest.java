@@ -1,6 +1,7 @@
 package com.tastelanka.portal.qa;
 
 import com.tastelanka.portal.admin.AdminController.DishRequest;
+import com.tastelanka.portal.admin.AdminController.CuisineRequest;
 import com.tastelanka.portal.admin.AdminController.ModerationRequest;
 import com.tastelanka.portal.admin.AdminController.RestaurantRequest;
 import com.tastelanka.portal.auth.AuthController.LoginRequest;
@@ -124,6 +125,16 @@ class RequestValidationTest {
     @CsvSource({"Mild,true", "Medium,true", "Hot,true", "Extreme,false", "hot,false"})
     void dishSpice(String spice, boolean expected) {
         assertThat(valid(new DishRequest("nuga-gama", "qa-dish", "Dish", null, 500, spice, true, true, null))).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("TC-UNIT-VAL-013 cuisine validates slug, order and uploaded image path")
+    void cuisineValidation() {
+        assertThat(valid(new CuisineRequest("sri-lankan", "Sri Lankan", "desc", null, 1))).isTrue();
+        assertThat(valid(new CuisineRequest("Bad Slug", "Sri Lankan", "desc", null, 1))).isFalse();
+        assertThat(valid(new CuisineRequest("valid", " ", "desc", null, 1))).isFalse();
+        assertThat(valid(new CuisineRequest("valid", "Valid", "desc", "red", 1))).isFalse();
+        assertThat(valid(new CuisineRequest("valid", "Valid", "desc", null, 1000))).isFalse();
     }
 
     @Test

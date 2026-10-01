@@ -9,6 +9,8 @@ import java.util.Optional;
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     Optional<Restaurant> findBySlug(String slug);
     List<Restaurant> findTop4ByOrderByRatingDescReviewCountDesc();
+    List<Restaurant> findByCuisineContainingIgnoreCase(String cuisine);
+    long countByCuisineContainingIgnoreCase(String cuisine);
 
     @Query("""
             select r from Restaurant r

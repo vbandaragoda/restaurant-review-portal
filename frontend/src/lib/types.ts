@@ -16,6 +16,16 @@ export type Restaurant = {
   imageUrl?: string;
 };
 
+export type Cuisine = {
+  id: number;
+  slug: string;
+  name: string;
+  description?: string;
+  imageUrl?: string;
+  displayOrder: number;
+  restaurantCount: number;
+};
+
 export type Dish = {
   id: number;
   slug: string;
@@ -75,6 +85,7 @@ export type Profile = {
 export type DashboardStats = {
   restaurants: number;
   dishes: number;
+  cuisines: number;
   users: number;
   pendingReviews: number;
   approvedReviews: number;

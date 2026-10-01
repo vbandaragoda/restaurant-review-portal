@@ -64,6 +64,18 @@ public class Restaurant {
         this.imageUrl = imageUrl == null || imageUrl.isBlank() ? null : imageUrl;
     }
 
+    public void renameCuisineCategory(String oldName, String newName) {
+        String[] categories = cuisine.split("\\s*\\u00B7\\s*");
+        boolean changed = false;
+        for (int index = 0; index < categories.length; index++) {
+            if (categories[index].equalsIgnoreCase(oldName)) {
+                categories[index] = newName;
+                changed = true;
+            }
+        }
+        if (changed) cuisine = String.join(" \u00B7 ", categories);
+    }
+
     public void updateRating(BigDecimal rating, int reviewCount) {
         this.rating = rating;
         this.reviewCount = reviewCount;

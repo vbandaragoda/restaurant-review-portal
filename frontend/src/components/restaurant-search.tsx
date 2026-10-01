@@ -4,11 +4,10 @@ import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { api } from "@/lib/api";
 import { mediaStyle } from "@/lib/media";
-import type { Restaurant } from "@/lib/types";
+import type { Cuisine, Restaurant } from "@/lib/types";
 import { MobileNavigation, PageMessage, SiteFooter, SiteHeader } from "@/components/site-shell";
 
 const locations = ["Colombo", "Kandy", "Galle"];
-const cuisines = ["Sri Lankan", "Indian", "Chinese", "Italian", "Middle Eastern", "Western", "Seafood", "Vegetarian"];
 const spiceLevels = ["Mild", "Medium", "Hot"];
 const priceBands = [{ value: "3000", label: "Up to LKR 3,000" }, { value: "5000", label: "Up to LKR 5,000" }, { value: "8000", label: "Up to LKR 8,000" }];
 
@@ -39,6 +38,7 @@ export function RestaurantSearch({ initialQuery = "", initialLocation = "", init
   const [maxPrice, setMaxPrice] = useState(initialMaxPrice);
   const [spiceLevel, setSpiceLevel] = useState(initialSpiceLevel);
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [cuisineOptions, setCuisineOptions] = useState<string[]>(initialCuisine ? [initialCuisine] : []);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -68,6 +68,12 @@ export function RestaurantSearch({ initialQuery = "", initialLocation = "", init
       .catch(() => setError("Restaurants could not be loaded. Confirm that the Spring Boot API is running on port 8080."))
       .finally(() => setLoading(false));
   }, [initialCuisine, initialHalal, initialLocation, initialMaxPrice, initialQuery, initialSpiceLevel, initialVegan, initialVegetarian]);
+
+  useEffect(() => {
+    api.get<Cuisine[]>("/cuisines")
+      .then((response) => setCuisineOptions(response.data.map((item) => item.name)))
+      .catch(() => { if (!initialCuisine) setCuisineOptions([]); });
+  }, [initialCuisine]);
 
   const syncUrl = (overrides: FilterOverrides = {}) => {
     const active = { query, location, cuisine, vegetarian, vegan, halal, maxPrice, spiceLevel, ...overrides };
@@ -114,6 +120,7 @@ export function RestaurantSearch({ initialQuery = "", initialLocation = "", init
       <main className="mx-auto grid max-w-[1440px] gap-8 px-5 py-8 md:px-8 lg:grid-cols-[276px_minmax(0,1fr)] lg:gap-10 lg:px-16 lg:py-10">
         <aside className="hidden lg:block">
           <FilterPanel location={location} setLocation={setLocation} cuisine={cuisine} setCuisine={setCuisine}
+            cuisines={cuisineOptions}
             vegetarian={vegetarian} setVegetarian={setVegetarian} vegan={vegan} setVegan={setVegan}
             halal={halal} setHalal={setHalal} maxPrice={maxPrice} setMaxPrice={setMaxPrice}
             spiceLevel={spiceLevel} setSpiceLevel={setSpiceLevel} clear={clear} apply={applyFilters} />
@@ -123,6 +130,7 @@ export function RestaurantSearch({ initialQuery = "", initialLocation = "", init
           <details className="mb-6 rounded-xl border border-soft-border bg-white p-4 lg:hidden">
             <summary className="cursor-pointer text-lg font-bold">Filters</summary>
             <FilterPanel location={location} setLocation={setLocation} cuisine={cuisine} setCuisine={setCuisine}
+              cuisines={cuisineOptions}
               vegetarian={vegetarian} setVegetarian={setVegetarian} vegan={vegan} setVegan={setVegan}
               halal={halal} setHalal={setHalal} maxPrice={maxPrice} setMaxPrice={setMaxPrice}
               spiceLevel={spiceLevel} setSpiceLevel={setSpiceLevel} clear={clear} apply={applyFilters} compact />
@@ -148,6 +156,7 @@ export function RestaurantSearch({ initialQuery = "", initialLocation = "", init
 type FilterPanelProps = {
   location: string; setLocation: (value: string) => void;
   cuisine: string; setCuisine: (value: string) => void;
+  cuisines: string[];
   vegetarian: boolean; setVegetarian: (value: boolean) => void;
   vegan: boolean; setVegan: (value: boolean) => void;
   halal: boolean; setHalal: (value: boolean) => void;
@@ -156,7 +165,7 @@ type FilterPanelProps = {
   clear: () => void; apply: () => void; compact?: boolean;
 };
 
-function FilterPanel({ location, setLocation, cuisine, setCuisine, vegetarian, setVegetarian, vegan, setVegan,
+function FilterPanel({ location, setLocation, cuisine, setCuisine, cuisines, vegetarian, setVegetarian, vegan, setVegan,
   halal, setHalal, maxPrice, setMaxPrice, spiceLevel, setSpiceLevel, clear, apply, compact = false }: FilterPanelProps) {
   return <div className={compact ? "pt-4" : ""}>
     <div className="flex items-center">{!compact && <h2 className="text-[22px] font-bold">Filters</h2>}<button onClick={clear} className="ml-auto text-[13px] font-semibold text-brand" type="button">Clear all</button></div>
