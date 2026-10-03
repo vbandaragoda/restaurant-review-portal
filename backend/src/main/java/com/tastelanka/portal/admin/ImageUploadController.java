@@ -1,6 +1,7 @@
 package com.tastelanka.portal.admin;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.tastelanka.portal.image.StoredImage;
+import com.tastelanka.portal.image.StoredImageRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,11 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.imageio.ImageIO;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.Map;
 import java.util.UUID;
 
@@ -28,10 +26,10 @@ public class ImageUploadController {
             MediaType.IMAGE_PNG_VALUE, ".png",
             MediaType.IMAGE_GIF_VALUE, ".gif");
 
-    private final Path uploadDirectory;
+    private final StoredImageRepository images;
 
-    public ImageUploadController(@Value("${app.upload.directory:uploads}") String uploadDirectory) {
-        this.uploadDirectory = Path.of(uploadDirectory).toAbsolutePath().normalize();
+    public ImageUploadController(StoredImageRepository images) {
+        this.images = images;
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -48,19 +46,13 @@ public class ImageUploadController {
                     "Only JPEG, PNG, and GIF images are supported");
         }
 
-        try (InputStream validationStream = file.getInputStream()) {
-            if (ImageIO.read(validationStream) == null) {
+        try {
+            byte[] data = file.getBytes();
+            if (ImageIO.read(new ByteArrayInputStream(data)) == null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Uploaded file is not a valid image");
             }
-            Files.createDirectories(uploadDirectory);
             String filename = UUID.randomUUID() + extension;
-            Path target = uploadDirectory.resolve(filename).normalize();
-            if (!target.getParent().equals(uploadDirectory)) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid upload path");
-            }
-            try (InputStream uploadStream = file.getInputStream()) {
-                Files.copy(uploadStream, target, StandardCopyOption.REPLACE_EXISTING);
-            }
+            images.save(new StoredImage(filename, file.getContentType(), data));
             return new ImageUploadResponse("/uploads/" + filename);
         } catch (IOException exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Image could not be stored", exception);

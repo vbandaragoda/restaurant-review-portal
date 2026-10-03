@@ -28,7 +28,11 @@ Spring Boot 4.1 + Spring Security + JWT
 6. Start the UI: `cd frontend`, run `npm install`, then `npm run dev`.
 7. Open `http://localhost:3000`.
 
-The API defaults to `http://localhost:8080/api/v1`. Override it with `NEXT_PUBLIC_API_URL`. Uploaded restaurant and dish images are stored in the API working directory's `uploads` folder (`backend/uploads` when started as shown above); set `UPLOAD_DIR` before starting the API to use a different directory.
+The API defaults to `http://localhost:8080/api/v1`. Override it with `NEXT_PUBLIC_API_URL`. New restaurant, cuisine, and dish images are stored in MySQL's `uploaded_images` table so they survive stateless hosting restarts and redeployments. The configured `UPLOAD_DIR` (default: `uploads`) is read only as a compatibility fallback for images created by older local builds.
+
+### Recover images after an ephemeral-host restart
+
+If an earlier Render deployment stored images on its local filesystem, its database can still contain `/uploads/...` references after Render deletes the corresponding files. Deploy this version, then edit each affected cuisine, restaurant, or dish in the administration UI, select the image again, and save the record. The replacement image is stored in MySQL and remains available across future backend restarts. Previously deleted Render files cannot be reconstructed from their database paths.
 
 ## REST API
 
